@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle, Star } from "lucide-react";
+import { ArrowRight, CheckCircle, Star, BookOpen, Gift } from "lucide-react";
 import libroCover from "@/assets/libro-cover.png";
 import bonusCover from "@/assets/bonus-cover.png";
+import { Book3DScene } from "./Book3D";
 
 interface HeroProps {
   onBuyClick: () => void;
@@ -38,25 +40,26 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight animate-fade-up" style={{ animationDelay: '0.1s' }}>
-              Trasforma la Tua
-              <span className="text-gradient block">Intimità di Coppia</span>
+              Diventa il Partner
+              <span className="text-gradient block">Che Lei Desidera</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-              La guida completa per comprendere e migliorare l'intimità femminile. 
-              20 capitoli, tecniche pratiche step-by-step, e bonus esclusivi.
+              La guida definitiva di <span className="text-primary font-bold">oltre 200 pagine</span> per 
+              soddisfare completamente la tua partner. Tecniche pratiche, fondamenti scientifici, 
+              e segreti che trasformeranno la vostra intimità.
             </p>
 
             {/* Quick benefits */}
             <div className="space-y-3 animate-fade-up" style={{ animationDelay: '0.3s' }}>
               {[
-                "Fondamenti psicologici e anatomia essenziale",
-                "Tecniche pratiche step-by-step",
-                "Bonus: Checklist e risorse pratiche"
+                { icon: BookOpen, text: "200+ pagine di contenuti completi" },
+                { icon: CheckCircle, text: "Tecniche step-by-step illustrate" },
+                { icon: Gift, text: "Bonus €20 incluso GRATIS (50 pagine)" }
               ].map((benefit, i) => (
                 <div key={i} className="flex items-center gap-3 justify-center lg:justify-start">
-                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-foreground font-medium">{benefit}</span>
+                  <benefit.icon className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-foreground font-medium">{benefit.text}</span>
                 </div>
               ))}
             </div>
@@ -91,36 +94,49 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
             </div>
           </div>
 
-          {/* Product Image */}
+          {/* 3D Product Image */}
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <div className="relative">
+            <div className="relative w-full max-w-lg">
               {/* Glow effect */}
               <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-3xl transform scale-90" />
               
-              {/* Book mockups - main book and bonus */}
-              <div className="relative z-10 flex items-end gap-4">
-                <img
-                  src={libroCover}
-                  alt="Manuale dell'Idraulico Distratto - Ebook Cover"
-                  className="w-48 lg:w-64 animate-float shadow-elevated rounded-lg"
-                />
-                <img
-                  src={bonusCover}
-                  alt="Bonus - Risorse Pratiche"
-                  className="w-32 lg:w-44 animate-float shadow-elevated rounded-lg opacity-90"
-                  style={{ animationDelay: '0.5s' }}
-                />
-              </div>
+              {/* 3D Book Scene */}
+              <Suspense fallback={
+                <div className="flex items-end gap-4 justify-center">
+                  <img
+                    src={libroCover}
+                    alt="Manuale dell'Idraulico Distratto - Ebook Cover"
+                    className="w-48 lg:w-64 animate-float shadow-elevated rounded-lg"
+                  />
+                  <img
+                    src={bonusCover}
+                    alt="Bonus - Risorse Pratiche"
+                    className="w-32 lg:w-44 animate-float shadow-elevated rounded-lg opacity-90"
+                  />
+                </div>
+              }>
+                <Book3DScene mainCover={libroCover} bonusCover={bonusCover} />
+              </Suspense>
 
-              {/* Floating badge */}
-              <div className="absolute -bottom-4 -left-4 bg-card rounded-xl px-4 py-3 shadow-elevated z-20 animate-fade-up" style={{ animationDelay: '0.6s' }}>
+              {/* Floating badges */}
+              <div className="absolute bottom-8 left-0 bg-card rounded-xl px-4 py-3 shadow-elevated z-20 animate-fade-up" style={{ animationDelay: '0.6s' }}>
                 <div className="flex items-center gap-2">
                   <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                    <span className="text-xl">📚</span>
+                    <BookOpen className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-bold text-foreground">20 Capitoli</p>
-                    <p className="text-sm text-muted-foreground">+ Bonus PDF</p>
+                    <p className="font-bold text-foreground">200+ Pagine</p>
+                    <p className="text-sm text-muted-foreground">6 Sezioni Complete</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute top-8 right-0 bg-accent/90 rounded-xl px-4 py-3 shadow-elevated z-20 animate-fade-up" style={{ animationDelay: '0.7s' }}>
+                <div className="flex items-center gap-2">
+                  <Gift className="w-5 h-5 text-accent-foreground" />
+                  <div>
+                    <p className="font-bold text-accent-foreground text-sm">BONUS GRATIS</p>
+                    <p className="text-xs text-accent-foreground/80">Valore €20</p>
                   </div>
                 </div>
               </div>

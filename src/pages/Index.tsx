@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Hero } from "@/components/landing/Hero";
+import { PainPoints } from "@/components/landing/PainPoints";
 import { Benefits } from "@/components/landing/Benefits";
 import { TableOfContents } from "@/components/landing/TableOfContents";
+import { ValueProposition } from "@/components/landing/ValueProposition";
 import { WhatYouGet } from "@/components/landing/WhatYouGet";
 import { SocialProof } from "@/components/landing/SocialProof";
 import { FAQ } from "@/components/landing/FAQ";
@@ -92,7 +94,7 @@ const Index = () => {
       )
     : "€37";
   
-  const originalPrice = "€67";
+  const originalPrice = "€87";
 
   return (
     <main className="min-h-screen">
@@ -101,8 +103,10 @@ const Index = () => {
         price={price}
         originalPrice={originalPrice}
       />
+      <PainPoints />
       <Benefits />
       <TableOfContents />
+      <ValueProposition />
       <WhatYouGet onBuyClick={handleBuyClick} />
       <SocialProof />
       <FAQ />
