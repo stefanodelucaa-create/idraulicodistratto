@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Hero } from "@/components/landing/Hero";
 import { Benefits } from "@/components/landing/Benefits";
+import { TableOfContents } from "@/components/landing/TableOfContents";
 import { WhatYouGet } from "@/components/landing/WhatYouGet";
 import { SocialProof } from "@/components/landing/SocialProof";
 import { FAQ } from "@/components/landing/FAQ";
@@ -101,6 +102,7 @@ const Index = () => {
         originalPrice={originalPrice}
       />
       <Benefits />
+      <TableOfContents />
       <WhatYouGet onBuyClick={handleBuyClick} />
       <SocialProof />
       <FAQ />
