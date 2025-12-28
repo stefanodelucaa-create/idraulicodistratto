@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, Star } from "lucide-react";
-import ebookMockup from "@/assets/ebook-mockup.png";
+import libroCover from "@/assets/libro-cover.png";
+import bonusCover from "@/assets/bonus-cover.png";
 
 interface HeroProps {
   onBuyClick: () => void;
@@ -96,12 +97,20 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
               {/* Glow effect */}
               <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-3xl transform scale-90" />
               
-              {/* Book mockup */}
-              <img
-                src={ebookMockup}
-                alt="Manuale dell'Idraulico Distratto - Ebook Cover"
-                className="relative z-10 w-full max-w-sm lg:max-w-md animate-float shadow-elevated rounded-lg"
-              />
+              {/* Book mockups - main book and bonus */}
+              <div className="relative z-10 flex items-end gap-4">
+                <img
+                  src={libroCover}
+                  alt="Manuale dell'Idraulico Distratto - Ebook Cover"
+                  className="w-48 lg:w-64 animate-float shadow-elevated rounded-lg"
+                />
+                <img
+                  src={bonusCover}
+                  alt="Bonus - Risorse Pratiche"
+                  className="w-32 lg:w-44 animate-float shadow-elevated rounded-lg opacity-90"
+                  style={{ animationDelay: '0.5s' }}
+                />
+              </div>
 
               {/* Floating badge */}
               <div className="absolute -bottom-4 -left-4 bg-card rounded-xl px-4 py-3 shadow-elevated z-20 animate-fade-up" style={{ animationDelay: '0.6s' }}>
