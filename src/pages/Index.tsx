@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Hero } from "@/components/landing/Hero";
 import { PainPoints } from "@/components/landing/PainPoints";
-import { StepByStep } from "@/components/landing/StepByStep";
-import { Benefits } from "@/components/landing/Benefits";
+import { Transformation } from "@/components/landing/Transformation";
+import { Stats } from "@/components/landing/Stats";
 import { TableOfContents } from "@/components/landing/TableOfContents";
 import { ValueProposition } from "@/components/landing/ValueProposition";
 import { WhatYouGet } from "@/components/landing/WhatYouGet";
@@ -106,8 +106,8 @@ const Index = () => {
         originalPrice={originalPrice}
       />
       <PainPoints />
-      <StepByStep />
-      <Benefits />
+      <Transformation />
+      <Stats />
       <TableOfContents />
       <ValueProposition />
       <WhatYouGet onBuyClick={handleBuyClick} />
