@@ -34,33 +34,33 @@ interface PainPointsProps {
 
 export const PainPoints = ({ onBuyClick }: PainPointsProps) => {
   return (
-    <section className="py-16 md:py-20 bg-muted/50">
-      <div className="container px-5">
-        <div className="text-center mb-10 md:mb-16">
-          <span className="inline-block bg-destructive/10 text-destructive px-4 py-2 rounded-full text-sm font-medium mb-4">
+    <section className="py-12 sm:py-16 md:py-20 bg-muted/50">
+      <div className="container px-4 sm:px-5">
+        <div className="text-center mb-8 sm:mb-10 md:mb-16">
+          <span className="inline-block bg-destructive/10 text-destructive px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4">
             Ti Riconosci?
           </span>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4 leading-tight">
-            Ti Riconosci in Almeno Una<br className="hidden sm:block" />
-            <span className="text-primary">di Queste Situazioni?</span>
+          <h2 className="text-[20px] sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-foreground mb-3 sm:mb-4 leading-tight px-2">
+            Ti Riconosci in Almeno Una
+            <span className="text-primary block sm:inline"> di Queste Situazioni?</span>
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto">
+        <div className="grid gap-3 sm:gap-4 md:grid-cols-2 md:gap-6 max-w-5xl mx-auto">
           {painPoints.map((point, index) => (
             <div
               key={index}
-              className="bg-card rounded-2xl p-5 md:p-6 shadow-soft hover:shadow-elevated transition-all duration-300 border border-border/50"
+              className="bg-card rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-soft hover:shadow-elevated transition-all duration-300 border border-border/50"
             >
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-destructive/10 flex items-center justify-center flex-shrink-0">
-                  <XCircle className="w-5 h-5 md:w-6 md:h-6 text-destructive" />
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-destructive/10 flex items-center justify-center flex-shrink-0">
+                  <XCircle className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-destructive" />
                 </div>
-                <div>
-                  <h3 className="text-lg md:text-xl font-bold text-foreground mb-2 leading-snug">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-[15px] sm:text-lg md:text-xl font-bold text-foreground mb-1.5 sm:mb-2 leading-snug">
                     {point.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                  <p className="text-muted-foreground leading-relaxed text-[13px] sm:text-sm md:text-base">
                     {point.description}
                   </p>
                 </div>
@@ -70,21 +70,21 @@ export const PainPoints = ({ onBuyClick }: PainPointsProps) => {
         </div>
 
         {/* Mini CTA */}
-        <div className="mt-10 md:mt-12 text-center">
-          <div className="inline-block bg-card rounded-2xl p-6 md:p-8 shadow-elevated border border-primary/20 max-w-2xl">
-            <p className="text-foreground text-base md:text-lg font-medium mb-4">
-              Se ti sei riconosciuto in almeno 2 di questi punti,<br className="hidden sm:block" />
-              <span className="text-primary font-bold">questa guida è stata scritta per te.</span>
+        <div className="mt-8 sm:mt-10 md:mt-12 text-center px-2">
+          <div className="bg-card rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 shadow-elevated border border-primary/20 max-w-2xl mx-auto">
+            <p className="text-foreground text-[14px] sm:text-base md:text-lg font-medium mb-3 sm:mb-4 leading-relaxed">
+              Se ti sei riconosciuto in almeno 2 di questi punti,
+              <span className="text-primary font-bold block sm:inline"> questa guida è stata scritta per te.</span>
             </p>
             {onBuyClick && (
               <Button 
                 variant="cta" 
                 size="lg" 
                 onClick={onBuyClick}
-                className="group min-h-[48px] w-full sm:w-auto"
+                className="group min-h-[48px] w-full sm:w-auto text-[14px] sm:text-base"
               >
                 Scopri la Soluzione
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
               </Button>
             )}
           </div>

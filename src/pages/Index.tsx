@@ -83,9 +83,9 @@ const Index = () => {
   };
 
   // Display price must be consistent across the landing (launch offer)
-  // Note: make sure the Shopify product price is also set to €47 to avoid checkout mismatch.
+  // Note: make sure the Shopify product price is also set to €37 to avoid checkout mismatch.
   const originalPrice = "€79";
-  const price = "€47";
+  const price = "€37";
 
   // If you need the real Shopify price for debugging, keep it here (not shown in UI)
   const _shopifyPrice = product

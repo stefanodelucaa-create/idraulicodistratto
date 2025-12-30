@@ -13,8 +13,8 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
   return (
     <section className="min-h-screen bg-hero relative overflow-hidden">
       {/* Announcement bar */}
-      <div className="bg-primary text-primary-foreground py-2.5 text-center text-sm font-medium px-4">
-        🎁 Offerta Lancio: 6 Bonus (valore €125) inclusi GRATIS + 40% di sconto!
+      <div className="bg-primary text-primary-foreground py-2 sm:py-2.5 text-center text-xs sm:text-sm font-medium px-3 sm:px-4">
+        🎁 Offerta Lancio: 6 Bonus (valore €125) inclusi GRATIS + 53% di sconto!
       </div>
 
       {/* Subtle background pattern */}
@@ -23,22 +23,22 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
         <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-accent/10 blur-3xl" />
       </div>
 
-      <div className="container relative z-10 py-8 lg:py-16">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="container relative z-10 py-6 sm:py-8 lg:py-16 px-4 sm:px-5">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           {/* Product Images - Mobile First */}
           <div className="order-1 flex justify-center lg:order-2 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <div className="relative w-full max-w-[280px] md:max-w-[350px] lg:max-w-lg">
+            <div className="relative w-full max-w-[260px] sm:max-w-[280px] md:max-w-[350px] lg:max-w-lg">
               {/* Glow effect */}
               <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-3xl transform scale-90" />
               
               {/* Book Mockups - Stack vertically on mobile, overlap on desktop */}
-              <div className="relative flex flex-col items-center justify-center gap-4 md:gap-0 md:flex-row md:items-end">
+              <div className="relative flex flex-col items-center justify-center gap-3 sm:gap-4 md:gap-0 md:flex-row md:items-end">
                 {/* Main Book */}
                 <img
                   src={ebookMockup}
                   alt="Squirting: La Guida Completa - Ebook"
                   loading="eager"
-                  className="w-52 sm:w-56 md:w-64 lg:w-80 drop-shadow-2xl animate-float relative z-10"
+                  className="w-44 sm:w-52 md:w-64 lg:w-80 drop-shadow-2xl animate-float relative z-10"
                   style={{ filter: 'drop-shadow(0 25px 50px rgba(0,0,0,0.3))' }}
                 />
                 
@@ -47,7 +47,7 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
                   src={bonusMockup}
                   alt="6 Bonus Inclusi"
                   loading="eager"
-                  className="w-36 sm:w-40 md:w-36 lg:w-48 drop-shadow-2xl animate-float md:absolute md:-right-4 lg:right-0 md:bottom-0"
+                  className="w-32 sm:w-36 md:w-36 lg:w-48 drop-shadow-2xl animate-float md:absolute md:-right-4 lg:right-0 md:bottom-0"
                   style={{ 
                     filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.25))',
                     animationDelay: '0.5s'
@@ -58,43 +58,39 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
           </div>
 
           {/* Content */}
-          <div className="order-2 lg:order-1 space-y-5 text-center lg:text-left">
-            <h1 className="text-[28px] md:text-4xl lg:text-5xl font-display font-bold text-foreground leading-tight animate-fade-up" style={{ animationDelay: '0.1s' }}>
+          <div className="order-2 lg:order-1 space-y-3 sm:space-y-4 text-center lg:text-left">
+            <h1 className="text-[22px] sm:text-[26px] md:text-4xl lg:text-5xl font-display font-bold text-foreground leading-tight animate-fade-up" style={{ animationDelay: '0.1s' }}>
               Elimina l'Ansia da Prestazione e Trasforma il Sesso da
               <span className="text-gradient block">Missione a Connessione</span>
             </h1>
 
-            <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 animate-fade-up leading-relaxed" style={{ animationDelay: '0.2s' }}>
+            <p className="text-[14px] sm:text-[15px] md:text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 animate-fade-up leading-relaxed" style={{ animationDelay: '0.2s' }}>
               La guida scientifica di <span className="text-primary font-bold">oltre 200 pagine</span> che ti insegna psicologia sessuale, anatomia femminile reale e comunicazione strutturata per esplorare lo squirting senza pressione, senza miti porno e senza sentirti inadeguato.
             </p>
 
             {/* 3 Bullet points */}
-            <div className="space-y-3 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+            <div className="space-y-2 animate-fade-up" style={{ animationDelay: '0.3s' }}>
               {[
                 { icon: Brain, text: "70% psicologia e comunicazione, 30% tecnica fisica" },
                 { icon: Target, text: "Basato su anatomia reale: clitoride interno, punto G, ghiandole di Skene" },
                 { icon: Heart, text: "Per coppie che vogliono connessione autentica, non solo 'risultati'" },
               ].map((benefit, i) => (
-                <div key={i} className="flex items-start gap-3 justify-center lg:justify-start">
-                  <benefit.icon className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground font-medium text-left text-sm md:text-base">{benefit.text}</span>
+                <div key={i} className="flex items-start gap-2 justify-center lg:justify-start">
+                  <benefit.icon className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground font-medium text-left text-[12px] sm:text-[13px] md:text-base leading-snug">{benefit.text}</span>
                 </div>
               ))}
             </div>
 
             {/* Price block */}
-            <div className="bg-card/80 backdrop-blur rounded-2xl p-5 shadow-elevated border border-border/50 animate-fade-up" style={{ animationDelay: '0.35s' }}>
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-4">
-                <div className="text-center sm:text-left">
-                  <div className="flex items-center gap-2 justify-center sm:justify-start">
-                    <span className="text-sm text-muted-foreground line-through">Prezzo normale: €79</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl md:text-4xl font-bold text-foreground">{price}</span>
-                    <span className="bg-accent text-accent-foreground text-xs font-bold px-2 py-1 rounded">-40%</span>
-                  </div>
-                  <span className="text-sm text-primary font-medium">Risparmi: €32</span>
+            <div className="bg-card/80 backdrop-blur rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-elevated border border-border/50 animate-fade-up" style={{ animationDelay: '0.35s' }}>
+              <div className="flex flex-col items-center gap-1 sm:gap-2 mb-3 sm:mb-4">
+                <span className="text-xs sm:text-sm text-muted-foreground line-through">Prezzo normale: €79</span>
+                <div className="flex items-center justify-center gap-2 sm:gap-3">
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{price}</span>
+                  <span className="bg-accent text-accent-foreground text-[10px] sm:text-xs font-bold px-2 py-0.5 sm:py-1 rounded">-53%</span>
                 </div>
+                <span className="text-xs sm:text-sm text-primary font-medium">Risparmi: €42</span>
               </div>
 
               {/* CTA Button */}
@@ -102,17 +98,17 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
                 variant="cta" 
                 size="xl" 
                 onClick={onBuyClick}
-                className="w-full group min-h-[52px] text-base md:text-lg"
+                className="w-full group min-h-[48px] sm:min-h-[52px] text-[13px] sm:text-base md:text-lg"
               >
                 Ottieni Accesso Immediato + 6 Bonus
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
               </Button>
 
               {/* Trust line */}
-              <div className="flex flex-wrap items-center justify-center gap-3 mt-4 text-xs md:text-sm text-muted-foreground">
-                <span className="flex items-center gap-1"><CheckCircle className="w-4 h-4 text-primary" /> Download immediato PDF</span>
-                <span className="flex items-center gap-1"><Shield className="w-4 h-4 text-primary" /> Pagamento sicuro</span>
-                <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-primary" /> Garanzia 60 giorni</span>
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-3 sm:mt-4 text-[10px] sm:text-xs md:text-sm text-muted-foreground">
+                <span className="flex items-center gap-1"><CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-primary" /> Download immediato</span>
+                <span className="flex items-center gap-1"><Shield className="w-3 h-3 sm:w-4 sm:h-4 text-primary" /> Pagamento sicuro</span>
+                <span className="flex items-center gap-1"><Clock className="w-3 h-3 sm:w-4 sm:h-4 text-primary" /> Garanzia 60 giorni</span>
               </div>
             </div>
           </div>
