@@ -34,8 +34,8 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
               {/* Glow effect */}
               <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-3xl transform scale-90" />
 
-              {/* Book Mockups - Main centered, bonus top-right */}
-              <div className="relative flex items-center justify-center">
+              {/* Book Mockups - Main centered, bonus bottom-right on same plane */}
+              <div className="relative flex items-end justify-center pb-4">
                 {/* Main Book */}
                 <img
                   src={ebookMockup}
@@ -45,8 +45,8 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
                   style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.3))" }}
                 />
 
-                {/* Bonus Book with tag - positioned top right */}
-                <div className="absolute -top-4 -right-2 sm:-top-6 sm:-right-4 md:-top-8 md:-right-8 z-20">
+                {/* Bonus Book with tag - positioned bottom right, same plane */}
+                <div className="absolute bottom-0 -right-2 sm:-right-6 md:-right-10 z-20">
                   {/* BONUS GRATIS tag */}
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-30 bg-accent text-accent-foreground text-xs sm:text-sm font-bold px-3 py-1 sm:px-4 sm:py-1.5 rounded-full shadow-lg flex items-center gap-1.5 whitespace-nowrap">
                     <Gift className="w-4 h-4" />
