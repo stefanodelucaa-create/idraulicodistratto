@@ -41,7 +41,7 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
                   src={ebookMockup}
                   alt="Squirting: La Guida Completa - Ebook"
                   loading="eager"
-                  className="w-72 sm:w-80 md:w-88 lg:w-[420px] drop-shadow-2xl animate-float relative z-10 -translate-x-4 sm:-translate-x-6 md:-translate-x-8"
+                  className="w-72 sm:w-80 md:w-88 lg:w-[420px] drop-shadow-2xl animate-float relative z-10 -translate-x-8 sm:-translate-x-10 md:-translate-x-12"
                   style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.3))" }}
                 />
 
