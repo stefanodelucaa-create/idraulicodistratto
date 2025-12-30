@@ -58,13 +58,13 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
           </div>
 
           {/* Content */}
-          <div className="order-2 lg:order-1 space-y-4 sm:space-y-5 text-center lg:text-left px-1">
+          <div className="order-2 lg:order-1 space-y-4 sm:space-y-5 text-center lg:text-left px-1 max-w-full">
             <h1 className="text-[22px] sm:text-[26px] md:text-4xl lg:text-5xl font-display font-bold text-foreground leading-tight animate-fade-up" style={{ animationDelay: '0.1s' }}>
               Elimina l'Ansia da Prestazione e Trasforma il Sesso da
               <span className="text-gradient block">Missione a Connessione</span>
             </h1>
 
-            <p className="text-[15px] sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 animate-fade-up leading-relaxed" style={{ animationDelay: '0.2s' }}>
+            <p className="text-[15px] sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 animate-fade-up leading-relaxed break-words" style={{ animationDelay: '0.2s' }}>
               La guida scientifica di <span className="text-primary font-bold">oltre 200 pagine</span> che ti insegna psicologia sessuale, anatomia femminile reale e comunicazione strutturata per esplorare lo squirting senza pressione, senza miti porno e senza sentirti inadeguato.
             </p>
 
@@ -75,9 +75,11 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
                 { icon: Target, text: "Basato su anatomia reale: clitoride interno, punto G, ghiandole di Skene" },
                 { icon: Heart, text: "Per coppie che vogliono connessione autentica, non solo 'risultati'" },
               ].map((benefit, i) => (
-                <div key={i} className="flex items-start gap-3 justify-center lg:justify-start">
+                <div key={i} className="flex items-start gap-3 justify-center lg:justify-start max-w-full">
                   <benefit.icon className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground font-medium text-left text-[14px] sm:text-[15px] md:text-base leading-snug">{benefit.text}</span>
+                  <span className="flex-1 min-w-0 text-foreground font-medium text-left text-[14px] sm:text-[15px] md:text-base leading-snug break-words">
+                    {benefit.text}
+                  </span>
                 </div>
               ))}
             </div>
@@ -105,10 +107,10 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
               </Button>
 
               {/* Trust line */}
-              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-4 text-xs sm:text-sm text-muted-foreground">
-                <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-primary" /> Download immediato</span>
-                <span className="flex items-center gap-1.5"><Shield className="w-4 h-4 text-primary" /> Pagamento sicuro</span>
-                <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-primary" /> Garanzia 60 giorni</span>
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-4 text-xs sm:text-sm text-muted-foreground max-w-full">
+                <span className="flex items-center gap-1.5 min-w-0"><CheckCircle className="w-4 h-4 text-primary flex-shrink-0" /> <span className="min-w-0 break-words">Download immediato</span></span>
+                <span className="flex items-center gap-1.5 min-w-0"><Shield className="w-4 h-4 text-primary flex-shrink-0" /> <span className="min-w-0 break-words">Pagamento sicuro</span></span>
+                <span className="flex items-center gap-1.5 min-w-0"><Clock className="w-4 h-4 text-primary flex-shrink-0" /> <span className="min-w-0 break-words">Garanzia 60 giorni</span></span>
               </div>
             </div>
           </div>
