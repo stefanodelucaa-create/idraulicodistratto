@@ -46,7 +46,7 @@ export const WhyDifferent = () => {
             Perché È Diversa
           </span>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4 leading-tight">
-            Perché Questa Non è l'Ennesima<br className="hidden sm:block" />
+            Perché Questa Non è l'Ennesima{" "}
             <span className="text-primary">Guida sul Sesso Trovata Online</span>
           </h2>
         </div>

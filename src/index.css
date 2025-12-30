@@ -121,9 +121,9 @@
     line-height: 1.6;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    word-break: break-word;
-    hyphens: auto;
-    -webkit-hyphens: auto;
+    word-break: normal;
+    hyphens: none;
+    -webkit-hyphens: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -137,6 +137,8 @@
   p, span, li {
     word-wrap: break-word;
     overflow-wrap: break-word;
+    hyphens: none;
+    -webkit-hyphens: none;
   }
 
   /* Mobile-first typography */
