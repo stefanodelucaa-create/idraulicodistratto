@@ -34,14 +34,14 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
               {/* Glow effect */}
               <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-3xl transform scale-90" />
 
-              {/* Book Mockups - Main centered, bonus bottom-right on same plane */}
+              {/* Book Mockups - Main shifted left on mobile, bonus bottom-right on same plane */}
               <div className="relative flex items-end justify-center pb-4">
-                {/* Main Book */}
+                {/* Main Book - shifted left on mobile */}
                 <img
                   src={ebookMockup}
                   alt="Squirting: La Guida Completa - Ebook"
                   loading="eager"
-                  className="w-72 sm:w-80 md:w-88 lg:w-[420px] drop-shadow-2xl animate-float relative z-10"
+                  className="w-72 sm:w-80 md:w-88 lg:w-[420px] drop-shadow-2xl animate-float relative z-10 -ml-8 sm:ml-0"
                   style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.3))" }}
                 />
 
