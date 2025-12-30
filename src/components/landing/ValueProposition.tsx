@@ -127,32 +127,38 @@ export const ValueProposition = ({ onBuyClick }: ValuePropositionProps) => {
           </div>
         </div>
 
-        {/* Value Stack */}
+        {/* Value Stack - Premium Design */}
         <div className="mt-8 sm:mt-10 md:mt-12 max-w-2xl mx-auto">
-          <div className="bg-card rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-elevated border border-primary/20 text-center">
-            <div className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-muted-foreground text-sm">
+          <div className="relative bg-gradient-to-br from-card via-card to-secondary/30 rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 border border-primary/20 text-center overflow-hidden"
+            style={{ boxShadow: "0 20px 50px -15px hsl(32 80% 35% / 0.2), inset 0 1px 0 0 hsl(40 30% 100% / 0.1)" }}
+          >
+            {/* Premium glow */}
+            <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+            
+            <div className="relative space-y-2 sm:space-y-3 mb-5 sm:mb-6">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-muted-foreground text-sm sm:text-base">
                 <span>Valore Ebook:</span>
-                <span className="font-bold">€{ebookValue}</span>
+                <span className="font-bold text-foreground">€{ebookValue}</span>
               </div>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-muted-foreground text-sm">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-muted-foreground text-sm sm:text-base">
                 <span>Valore 6 Bonus:</span>
-                <span className="font-bold">€{bonusTotal}</span>
+                <span className="font-bold text-foreground">€{bonusTotal}</span>
               </div>
-              <div className="h-px bg-border my-2 sm:my-3" />
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-base sm:text-lg">
-                <span className="text-foreground font-medium">Valore Totale:</span>
+              <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent my-3 sm:my-4" />
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-4 text-lg sm:text-xl">
+                <span className="text-foreground font-semibold">Valore Totale:</span>
                 <span className="font-bold text-muted-foreground line-through">€{totalValue}</span>
               </div>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xl sm:text-2xl md:text-3xl">
-                <span className="text-foreground font-bold">Oggi paghi solo:</span>
-                <span className="font-bold text-primary">€37</span>
+              <div className="flex flex-col items-center gap-1 pt-2">
+                <span className="text-foreground font-bold text-xl sm:text-2xl">Oggi paghi solo:</span>
+                <span className="font-bold text-3xl sm:text-4xl md:text-5xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">€37</span>
               </div>
             </div>
 
-            {/* Price comparison */}
-            <div className="bg-muted/50 rounded-lg sm:rounded-xl p-3 sm:p-4 mb-4 sm:mb-6 text-left">
-              <p className="text-[12px] sm:text-sm md:text-base text-muted-foreground leading-relaxed">
+            {/* Price comparison - Premium styling */}
+            <div className="relative bg-gradient-to-r from-muted/50 via-muted/30 to-muted/50 rounded-xl p-4 sm:p-5 mb-5 sm:mb-6 text-left border border-border/30">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                 💡 <strong className="text-foreground">Per confronto:</strong> Una sessione con un sex therapist costa tra 80 e 150€. 
                 Un workshop di coppia può costare 300–500€. Questa guida ha l'equivalente di diverse sessioni di lavoro, 
                 ma la paghi meno di una cena fuori.
@@ -164,10 +170,10 @@ export const ValueProposition = ({ onBuyClick }: ValuePropositionProps) => {
                 variant="cta" 
                 size="xl" 
                 onClick={onBuyClick}
-                className="group min-h-[48px] sm:min-h-[52px] w-full text-[13px] sm:text-base"
+                className="relative group min-h-[56px] sm:min-h-[60px] w-full text-lg sm:text-xl md:text-2xl font-bold shadow-lg shadow-primary/25"
               >
                 Ottieni Tutto a €37
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-1" />
               </Button>
             )}
           </div>
