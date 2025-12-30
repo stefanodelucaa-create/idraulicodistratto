@@ -34,8 +34,8 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
               {/* Glow effect */}
               <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-3xl transform scale-90" />
 
-              {/* Book Mockups - Side by side on mobile, overlap on desktop */}
-              <div className="relative flex flex-row items-end justify-center gap-4 sm:gap-5 md:gap-0">
+              {/* Book Mockups - Main centered, bonus top-right */}
+              <div className="relative flex items-center justify-center">
                 {/* Main Book */}
                 <img
                   src={ebookMockup}
@@ -45,10 +45,10 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
                   style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.3))" }}
                 />
 
-                {/* Bonus Book with tag */}
-                <div className="relative -ml-8 sm:-ml-10 md:absolute md:-right-4 lg:right-0 md:bottom-0">
+                {/* Bonus Book with tag - positioned top right */}
+                <div className="absolute -top-4 -right-2 sm:-top-6 sm:-right-4 md:-top-8 md:-right-8 z-20">
                   {/* BONUS GRATIS tag */}
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 bg-accent text-accent-foreground text-xs sm:text-sm font-bold px-3 py-1 sm:px-4 sm:py-1.5 rounded-full shadow-lg flex items-center gap-1.5 whitespace-nowrap">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-30 bg-accent text-accent-foreground text-xs sm:text-sm font-bold px-3 py-1 sm:px-4 sm:py-1.5 rounded-full shadow-lg flex items-center gap-1.5 whitespace-nowrap">
                     <Gift className="w-4 h-4" />
                     BONUS GRATIS
                   </div>
@@ -56,7 +56,7 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
                     src={bonusMockup}
                     alt="6 Bonus Inclusi"
                     loading="eager"
-                    className="w-44 sm:w-48 md:w-52 lg:w-56 drop-shadow-2xl animate-float"
+                    className="w-48 sm:w-52 md:w-56 lg:w-60 drop-shadow-2xl animate-float"
                     style={{
                       filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.25))",
                       animationDelay: "0.5s",
