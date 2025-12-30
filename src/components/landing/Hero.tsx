@@ -36,12 +36,12 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
 
               {/* Book Mockups - Main centered, bonus bottom-right on same plane */}
               <div className="relative flex items-end justify-center pb-4">
-                {/* Main Book */}
+                {/* Main Book - slightly shifted left */}
                 <img
                   src={ebookMockup}
                   alt="Squirting: La Guida Completa - Ebook"
                   loading="eager"
-                  className="w-72 sm:w-80 md:w-88 lg:w-[420px] drop-shadow-2xl animate-float relative z-10"
+                  className="w-72 sm:w-80 md:w-88 lg:w-[420px] drop-shadow-2xl animate-float relative z-10 -translate-x-4 sm:-translate-x-6 md:-translate-x-8"
                   style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.3))" }}
                 />
 
