@@ -13,7 +13,7 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
   return (
     <section className="min-h-screen bg-hero relative overflow-hidden">
       {/* Announcement bar */}
-      <div className="bg-primary text-primary-foreground py-2 sm:py-2.5 text-center text-xs sm:text-sm font-medium px-3 sm:px-4">
+      <div className="bg-primary text-primary-foreground py-3 sm:py-3.5 text-center text-sm sm:text-base font-semibold px-4 sm:px-6">
         🎁 Offerta Lancio: 6 Bonus (valore €125) inclusi GRATIS + 53% di sconto!
       </div>
 
