@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import IndexBold from "./pages/IndexBold";
 import IndexDark from "./pages/IndexDark";
 import IndexTech from "./pages/IndexTech";
+import IndexHybrid from "./pages/IndexHybrid";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
           <Route path="/v2" element={<IndexBold />} />
           <Route path="/v3" element={<IndexDark />} />
           <Route path="/v4" element={<IndexTech />} />
+          <Route path="/v5" element={<IndexHybrid />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
