@@ -56,9 +56,7 @@ const IndexBold = () => {
     }
   };
 
-  const price = product 
-    ? `€${parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(0)}`
-    : "€47";
+  const price = "€37";
 
   return (
     <div className="min-h-screen bg-black text-white">

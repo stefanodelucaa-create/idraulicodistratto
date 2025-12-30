@@ -29,19 +29,19 @@ export const StickyCTA = ({ onBuyClick, price }: StickyCTAProps) => {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
-      <div className="bg-card/95 backdrop-blur-lg border-t border-border shadow-2xl px-4 py-3 safe-area-pb">
-        <div className="flex items-center justify-between gap-3">
+      <div className="bg-card/95 backdrop-blur-lg border-t border-border shadow-2xl px-3 sm:px-4 py-2.5 sm:py-3 safe-area-pb">
+        <div className="flex items-center justify-between gap-2 sm:gap-3">
           <div className="flex flex-col">
-            <span className="text-xs text-muted-foreground line-through">€79</span>
-            <span className="text-xl font-bold text-foreground">{price}</span>
+            <span className="text-[10px] sm:text-xs text-muted-foreground line-through">€79</span>
+            <span className="text-lg sm:text-xl font-bold text-foreground">{price}</span>
           </div>
           <Button 
             variant="cta" 
             onClick={onBuyClick}
-            className="flex-1 max-w-[200px] group min-h-[48px]"
+            className="flex-1 max-w-[180px] sm:max-w-[200px] group min-h-[44px] sm:min-h-[48px] text-[13px] sm:text-base"
           >
             Accesso Immediato
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1" />
           </Button>
         </div>
       </div>
