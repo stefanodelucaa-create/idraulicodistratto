@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Gift } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 interface StickyCTAProps {
   onBuyClick: () => void;
@@ -29,33 +29,37 @@ export const StickyCTA = ({ onBuyClick, price }: StickyCTAProps) => {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
-      <div className="bg-gradient-to-r from-card via-card to-card/95 backdrop-blur-xl border-t border-primary/20 shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.2)] px-3 sm:px-4 py-3 sm:py-3.5 safe-area-pb">
-        <div className="flex items-center justify-between gap-3">
-          {/* Left section: Product name + bonus + price */}
-          <div className="flex flex-col min-w-0 flex-shrink">
-            <div className="flex items-center gap-1.5 mb-0.5">
-              <span className="text-[11px] sm:text-xs font-semibold text-foreground truncate">
-                Manuale dell'Idraulico Distratto
-              </span>
-              <span className="flex items-center gap-0.5 bg-primary/15 text-primary text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap">
-                <Gift className="w-2.5 h-2.5" />
-                +BONUS
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] sm:text-xs text-muted-foreground line-through">€79</span>
-              <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{price}</span>
+      {/* Premium gradient border top */}
+      <div className="h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
+      
+      <div 
+        className="bg-gradient-to-b from-card to-background backdrop-blur-xl px-4 py-4 safe-area-pb"
+        style={{ boxShadow: "0 -10px 40px -10px hsl(32 80% 35% / 0.15)" }}
+      >
+        {/* Single row layout: Price info + CTA */}
+        <div className="flex items-center gap-4">
+          {/* Left: Compact price display */}
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <div className="flex flex-col items-start">
+              <div className="flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-primary" />
+                <span className="text-xs font-medium text-muted-foreground">Offerta Lancio</span>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-xs text-muted-foreground line-through">€79</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{price}</span>
+              </div>
             </div>
           </div>
           
-          {/* CTA Button */}
+          {/* Right: Full-width CTA */}
           <Button 
             variant="cta" 
             onClick={onBuyClick}
-            className="flex-shrink-0 group min-h-[48px] sm:min-h-[52px] px-4 sm:px-5 text-sm sm:text-base font-bold shadow-lg shadow-primary/25"
+            className="flex-1 group min-h-[52px] text-base font-bold shadow-lg shadow-primary/30"
           >
-            Acquista Ora
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <span className="truncate">Acquista Ora</span>
+            <ArrowRight className="w-5 h-5 flex-shrink-0 transition-transform group-hover:translate-x-1" />
           </Button>
         </div>
       </div>
