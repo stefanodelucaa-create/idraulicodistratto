@@ -57,7 +57,7 @@ const IndexDark = () => {
 
   const price = product 
     ? `€${parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(0)}`
-    : "€37";
+    : "€47";
 
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-white" style={{ fontFamily: "'DM Sans', sans-serif" }}>

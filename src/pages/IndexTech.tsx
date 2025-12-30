@@ -57,7 +57,7 @@ const IndexTech = () => {
 
   const price = product 
     ? `€${parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(0)}`
-    : "€37";
+    : "€47";
 
   return (
     <div className="min-h-screen bg-slate-950 text-white overflow-hidden" style={{ fontFamily: "'DM Sans', sans-serif" }}>
