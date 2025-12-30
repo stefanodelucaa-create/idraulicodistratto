@@ -32,20 +32,22 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
               <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-3xl transform scale-90" />
               
               {/* Book Mockups - Stack vertically on mobile, overlap on desktop */}
-              <div className="relative flex flex-col md:flex-row items-center md:items-end justify-center gap-4 md:gap-0">
+              <div className="relative flex flex-col items-center justify-center gap-4 md:gap-0 md:flex-row md:items-end">
                 {/* Main Book */}
                 <img
                   src={ebookMockup}
                   alt="Squirting: La Guida Completa - Ebook"
-                  className="w-48 md:w-64 lg:w-80 drop-shadow-2xl animate-float relative z-10"
+                  loading="eager"
+                  className="w-52 sm:w-56 md:w-64 lg:w-80 drop-shadow-2xl animate-float relative z-10"
                   style={{ filter: 'drop-shadow(0 25px 50px rgba(0,0,0,0.3))' }}
                 />
                 
-                {/* Bonus Book - Hidden on very small screens, visible from md up */}
+                {/* Bonus Book - visible on mobile (stack), overlap from md+ */}
                 <img
                   src={bonusMockup}
                   alt="6 Bonus Inclusi"
-                  className="hidden sm:block w-28 md:w-36 lg:w-48 drop-shadow-2xl animate-float md:absolute md:-right-4 lg:right-0 md:bottom-0"
+                  loading="eager"
+                  className="w-36 sm:w-40 md:w-36 lg:w-48 drop-shadow-2xl animate-float md:absolute md:-right-4 lg:right-0 md:bottom-0"
                   style={{ 
                     filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.25))',
                     animationDelay: '0.5s'

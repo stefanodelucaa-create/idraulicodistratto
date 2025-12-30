@@ -20,6 +20,9 @@ export const Guarantee = () => {
                 <p className="text-lg md:text-xl text-primary font-medium">
                   Rischio Zero per Te
                 </p>
+                <p className="mt-3 text-sm md:text-base text-muted-foreground">
+                  Prova la guida con calma: l'investimento è di <span className="font-bold text-foreground">€47</span> e hai 60 giorni per decidere.
+                </p>
               </div>
 
               <div className="grid md:grid-cols-3 gap-5 md:gap-6">
