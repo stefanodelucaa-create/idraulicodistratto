@@ -27,25 +27,25 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Product Images - Mobile First */}
           <div className="order-1 flex justify-center lg:order-2 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <div className="relative w-full max-w-[300px] lg:max-w-lg">
+            <div className="relative w-full max-w-[280px] md:max-w-[350px] lg:max-w-lg">
               {/* Glow effect */}
               <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-3xl transform scale-90" />
               
-              {/* Book Mockups */}
-              <div className="relative flex items-end justify-center">
+              {/* Book Mockups - Stack vertically on mobile, overlap on desktop */}
+              <div className="relative flex flex-col md:flex-row items-center md:items-end justify-center gap-4 md:gap-0">
                 {/* Main Book */}
                 <img
                   src={ebookMockup}
                   alt="Squirting: La Guida Completa - Ebook"
-                  className="w-56 md:w-72 lg:w-80 drop-shadow-2xl animate-float relative z-10"
+                  className="w-48 md:w-64 lg:w-80 drop-shadow-2xl animate-float relative z-10"
                   style={{ filter: 'drop-shadow(0 25px 50px rgba(0,0,0,0.3))' }}
                 />
                 
-                {/* Bonus Book */}
+                {/* Bonus Book - Hidden on very small screens, visible from md up */}
                 <img
                   src={bonusMockup}
                   alt="6 Bonus Inclusi"
-                  className="w-32 md:w-40 lg:w-48 drop-shadow-2xl animate-float absolute -right-2 md:right-0 bottom-0"
+                  className="hidden sm:block w-28 md:w-36 lg:w-48 drop-shadow-2xl animate-float md:absolute md:-right-4 lg:right-0 md:bottom-0"
                   style={{ 
                     filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.25))',
                     animationDelay: '0.5s'
