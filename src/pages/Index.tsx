@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Hero } from "@/components/landing/Hero";
 import { PainPoints } from "@/components/landing/PainPoints";
-import { Transformation } from "@/components/landing/Transformation";
-import { Stats } from "@/components/landing/Stats";
+import { WhyDifferent } from "@/components/landing/WhyDifferent";
 import { TableOfContents } from "@/components/landing/TableOfContents";
 import { ValueProposition } from "@/components/landing/ValueProposition";
-import { WhatYouGet } from "@/components/landing/WhatYouGet";
 import { SocialProof } from "@/components/landing/SocialProof";
+import { IsForYou } from "@/components/landing/IsForYou";
 import { Guarantee } from "@/components/landing/Guarantee";
 import { FAQ } from "@/components/landing/FAQ";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
+import { StickyCTA } from "@/components/landing/StickyCTA";
 import { useCartStore } from "@/stores/cartStore";
 import { fetchProducts, ShopifyProduct, createStorefrontCheckout, CartItem } from "@/lib/shopify";
 
@@ -51,7 +51,6 @@ const Index = () => {
       return;
     }
 
-    // Create cart item for direct checkout
     const cartItem: CartItem = {
       product,
       variantId: variant.id,
@@ -63,13 +62,8 @@ const Index = () => {
 
     try {
       toast.loading("Preparando il checkout...", { id: "checkout" });
-      
-      // Direct checkout without cart drawer for single product landing page
       const checkoutUrl = await createStorefrontCheckout([cartItem]);
-      
       toast.dismiss("checkout");
-      
-      // Open checkout in new tab
       window.open(checkoutUrl, '_blank');
     } catch (error) {
       toast.dismiss("checkout");
@@ -80,7 +74,6 @@ const Index = () => {
     }
   };
 
-  // Format price for display
   const formatPrice = (amount: string, currencyCode: string) => {
     const num = parseFloat(amount);
     if (currencyCode === "EUR") {
@@ -94,9 +87,9 @@ const Index = () => {
         product.node.priceRange.minVariantPrice.amount,
         product.node.priceRange.minVariantPrice.currencyCode
       )
-    : "€37";
+    : "€47";
   
-  const originalPrice = "€87";
+  const originalPrice = "€79";
 
   return (
     <main className="min-h-screen">
@@ -105,21 +98,21 @@ const Index = () => {
         price={price}
         originalPrice={originalPrice}
       />
-      <PainPoints />
-      <Transformation />
-      <Stats />
+      <PainPoints onBuyClick={handleBuyClick} />
+      <WhyDifferent />
       <TableOfContents />
-      <ValueProposition />
-      <WhatYouGet onBuyClick={handleBuyClick} />
+      <ValueProposition onBuyClick={handleBuyClick} />
       <SocialProof />
-      <Guarantee />
+      <IsForYou />
       <FAQ />
+      <Guarantee />
       <FinalCTA 
         onBuyClick={handleBuyClick} 
         price={price}
         originalPrice={originalPrice}
       />
       <Footer />
+      <StickyCTA onBuyClick={handleBuyClick} price={price} />
     </main>
   );
 };

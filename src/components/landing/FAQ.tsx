@@ -7,55 +7,71 @@ import {
 
 const faqs = [
   {
-    question: "Come riceverò l'ebook dopo l'acquisto?",
-    answer: "Subito dopo il pagamento, riceverai un'email con i link per scaricare l'ebook principale e il PDF bonus. Il download è immediato e i file sono tuoi per sempre."
+    question: "Questo ebook garantisce che la mia partner squirterà?",
+    answer: "No, e diffida da chiunque faccia questa promessa. Il 15-20% delle donne ha ghiandole di Skene poco sviluppate, il che rende lo squirting anatomicamente difficile o impossibile. Questa guida ti insegna a creare le condizioni ottimali e a gestire le aspettative in modo sano. Il vero obiettivo è connessione e piacere condiviso, non una performance a tutti i costi."
   },
   {
-    question: "In che formato è disponibile?",
-    answer: "L'ebook e il bonus sono in formato PDF, compatibile con qualsiasi dispositivo: smartphone, tablet, computer. Puoi leggerlo dove preferisci."
+    question: "In cosa è diverso dai video online o dai forum?",
+    answer: "I video online (spesso porno) mostrano risultati irrealistici senza contesto. I forum sono frammentari e pieni di consigli non verificati. Questa guida è strutturata come un vero percorso: 70% psicologia/comunicazione, 30% tecnica. Basata su ricerca scientifica e terapia sessuale, non su performance da film per adulti."
   },
   {
-    question: "Il pagamento è sicuro?",
-    answer: "Assolutamente sì. Utilizziamo Shopify per elaborare i pagamenti, che garantisce transazioni sicure e crittografate. I tuoi dati sono sempre protetti."
+    question: "Quanto tempo serve per vedere risultati?",
+    answer: "Dipende dalla vostra situazione di partenza. Alcuni lettori riportano miglioramenti nella comunicazione e nell'intimità già dalla prima settimana. Per le tecniche specifiche, consigliamo almeno 3-4 sessioni di esplorazione senza pressione prima di aspettarsi risultati concreti. Il vero cambiamento sta nel mindset, non nella fretta."
   },
   {
-    question: "È adatto a tutti?",
-    answer: "Questa guida è pensata per uomini che vogliono comprendere meglio l'intimità femminile e migliorare la propria relazione di coppia. Il contenuto è esplicito ma sempre rispettoso e orientato al benessere reciproco."
+    question: "È adatto anche se ho poca esperienza?",
+    answer: "Assolutamente sì. La guida parte dalle basi: psicologia, anatomia, comunicazione. Non presuppone nessuna esperienza pregressa. Anzi, chi inizia senza preconcetti spesso impara più velocemente di chi deve 'disimparare' informazioni sbagliate."
   },
   {
-    question: "Quanto sono dettagliate le tecniche?",
-    answer: "Molto dettagliate. Ogni tecnica è spiegata step-by-step con descrizioni precise di posizioni, movimenti, pressioni e ritmi. Niente è lasciato al caso."
+    question: "Posso leggerlo insieme alla mia partner?",
+    answer: "Sì, e lo consigliamo. Molte sezioni sono pensate per essere condivise: gli esercizi di comunicazione, le checklist, persino il bonus 'Esercizi Pratici per Lei'. Leggere insieme crea un terreno comune e apre il dialogo in modo naturale."
   },
   {
-    question: "C'è una garanzia?",
-    answer: "Siamo sicuri della qualità del contenuto. Se per qualsiasi motivo non sei soddisfatto, contattaci entro 30 giorni dall'acquisto per assistenza."
+    question: "Funziona anche se la mia partner non è interessata allo squirting?",
+    answer: "Certo. Circa il 70% del contenuto riguarda psicologia, comunicazione e comprensione del piacere femminile in generale. Queste competenze migliorano l'intimità indipendentemente dall'obiettivo specifico. Lo squirting è un 'di più', non l'unico traguardo."
+  },
+  {
+    question: "È adatto a coppie lesbiche / same-sex?",
+    answer: "La maggior parte del contenuto (anatomia, comunicazione, tecniche manuali) è universale e applicabile a qualsiasi tipo di coppia. Alcune sezioni presuppongono una dinamica maschile-femminile, ma i principi sono facilmente adattabili."
+  },
+  {
+    question: "Cosa succede subito dopo l'acquisto?",
+    answer: "Ricevi immediatamente un'email con i link per scaricare l'ebook principale (PDF) e tutti i 6 bonus. Nessuna attesa, nessuna spedizione. Puoi iniziare a leggere entro 2 minuti dall'acquisto."
+  },
+  {
+    question: "Ci sono costi nascosti o abbonamenti?",
+    answer: "No. Paghi €47 una volta sola e hai accesso a vita a tutto il materiale. Nessun abbonamento, nessun costo ricorrente, nessun 'upsell' forzato dopo l'acquisto."
+  },
+  {
+    question: "Posso ottenere il rimborso se non fa per me?",
+    answer: "Sì. Hai 60 giorni di garanzia completa. Se per qualsiasi motivo senti che la guida non ti ha dato valore, basta una mail per il rimborso. E puoi tenere comunque tutti i 6 bonus come nostro ringraziamento per aver provato."
   }
 ];
 
 export const FAQ = () => {
   return (
-    <section id="faq" className="py-20 bg-background">
-      <div className="container max-w-3xl">
-        <div className="text-center mb-12">
-          <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-            Domande Frequenti
+    <section id="faq" className="py-16 md:py-20 bg-background">
+      <div className="container px-5 max-w-3xl">
+        <div className="text-center mb-10 md:mb-12">
+          <span className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
+            FAQ
           </span>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mt-4">
-            Hai Domande?
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-foreground">
+            Domande Frequenti
           </h2>
         </div>
 
-        <Accordion type="single" collapsible className="space-y-4">
+        <Accordion type="single" collapsible className="space-y-3">
           {faqs.map((faq, index) => (
             <AccordionItem 
               key={index} 
               value={`item-${index}`}
-              className="bg-card rounded-xl px-6 shadow-soft border border-border/50 data-[state=open]:shadow-elevated transition-all"
+              className="bg-card rounded-xl px-5 md:px-6 shadow-soft border border-border/50 data-[state=open]:shadow-elevated transition-all"
             >
-              <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary hover:no-underline py-5">
+              <AccordionTrigger className="text-left font-semibold text-foreground hover:text-primary hover:no-underline py-4 md:py-5 min-h-[56px] text-sm md:text-base">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground pb-5">
+              <AccordionContent className="text-muted-foreground pb-5 text-sm md:text-base leading-relaxed">
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>

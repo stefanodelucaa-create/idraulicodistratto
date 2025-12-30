@@ -1,106 +1,175 @@
-import { Book, Gift, FileText, CheckCircle } from "lucide-react";
+import { Book, Gift, CheckCircle, FileText, MessageSquare, ListChecks, Heart, Smartphone, LineChart, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-export const ValueProposition = () => {
+const bonuses = [
+  {
+    icon: ListChecks,
+    title: "Checklist Complete per Ogni Situazione",
+    description: "Checklist stampabili (pre-sessione, durante, post-sessione) per non dimenticare nulla: ambiente, consenso, segnali da osservare, errori da evitare.",
+    value: 19,
+  },
+  {
+    icon: MessageSquare,
+    title: "FAQ Estese con Risposte Complete",
+    description: "Documento con decine di domande e risposte approfondite su problemi reali: cosa fare se lei sente dolore, se non arriva nulla dopo molte sessioni, se ha paura di 'fare pipì', ecc.",
+    value: 24,
+  },
+  {
+    icon: FileText,
+    title: "Guida Rapida Risoluzione Problemi",
+    description: "Una mappa decisionale da consultare al volo: 'Se succede X, controlla Y, poi fai Z'. Ideale da avere a portata di mano.",
+    value: 17,
+  },
+  {
+    icon: Heart,
+    title: "Esercizi Pratici per Lei",
+    description: "Una mini guida pensata per lei: esercizi di consapevolezza corporea, auto-esplorazione, rimozione delle inibizioni e dialogo con te.",
+    value: 29,
+  },
+  {
+    icon: Smartphone,
+    title: "App Utili per Coppie",
+    description: "Selezione e spiegazione di app per migliorare comunicazione, intimità, rilassamento e pianificazione dei vostri momenti insieme.",
+    value: 15,
+  },
+  {
+    icon: LineChart,
+    title: "Scheda di Tracking Progressi",
+    description: "Template editabile per monitorare nel tempo ciò che funziona: tecniche, livello di connessione, feedback di lei, miglioramenti nel rapporto.",
+    value: 21,
+  },
+];
+
+interface ValuePropositionProps {
+  onBuyClick?: () => void;
+}
+
+export const ValueProposition = ({ onBuyClick }: ValuePropositionProps) => {
+  const ebookValue = 79;
+  const bonusTotal = bonuses.reduce((sum, b) => sum + b.value, 0);
+  const totalValue = ebookValue + bonusTotal;
+
   return (
-    <section className="py-20 bg-gradient-to-b from-background to-muted/30">
-      <div className="container">
-        <div className="text-center mb-12">
+    <section className="py-16 md:py-20 bg-gradient-to-b from-background to-muted/30">
+      <div className="container px-5">
+        <div className="text-center mb-10 md:mb-12">
           <span className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
-            Cosa Ottieni
+            Cosa Riceverai
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground mb-4">
-            Un Investimento nel Tuo Rapporto
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4">
+            Cosa Riceverai Oltre all'Ebook
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
           {/* Main Ebook */}
-          <div className="bg-card rounded-3xl p-8 shadow-elevated border-2 border-primary/20 relative overflow-hidden">
+          <div className="bg-card rounded-3xl p-6 md:p-8 shadow-elevated border-2 border-primary/20 relative overflow-hidden">
             <div className="absolute top-0 right-0 bg-primary text-primary-foreground px-4 py-1 text-sm font-bold rounded-bl-xl">
-              INCLUSO
+              PRINCIPALE
             </div>
             
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
-                <Book className="w-8 h-8 text-primary" />
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                <Book className="w-7 h-7 md:w-8 md:h-8 text-primary" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-foreground">Manuale Completo</h3>
-                <p className="text-primary font-medium">Oltre 200 pagine</p>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground">Manuale Completo</h3>
+                <p className="text-primary font-medium">200+ pagine, 25 capitoli</p>
               </div>
             </div>
 
             <ul className="space-y-3 mb-6">
               {[
-                "6 sezioni complete e strutturate",
-                "20 capitoli dettagliati",
-                "Tecniche step-by-step illustrate",
-                "Fondamenti psicologici e anatomici",
-                "Scenari avanzati per esperti",
+                "Percorso completo: psicologia, anatomia, tecniche, scenari avanzati",
+                "Struttura chiara e progressiva, pensata come un vero percorso di coaching",
+                "Puoi usarlo da solo o leggerlo insieme alla tua partner",
               ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span className="text-foreground">{item}</span>
+                <li key={i} className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground text-sm md:text-base">{item}</span>
                 </li>
               ))}
             </ul>
 
-            <div className="flex items-center gap-2">
-              <FileText className="w-5 h-5 text-muted-foreground" />
-              <span className="text-muted-foreground">Formato PDF - Download immediato</span>
+            <div className="bg-primary/5 rounded-xl p-4 text-center">
+              <span className="text-lg md:text-xl font-bold text-primary">Valore: €{ebookValue}</span>
             </div>
           </div>
 
-          {/* Bonus */}
-          <div className="bg-card rounded-3xl p-8 shadow-elevated border-2 border-accent/30 relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-accent text-accent-foreground px-4 py-1 text-sm font-bold rounded-bl-xl">
-              BONUS GRATIS
-            </div>
-            
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center">
-                <Gift className="w-8 h-8 text-accent" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-foreground">Risorse Pratiche</h3>
-                <p className="text-accent font-medium">50 pagine bonus</p>
-              </div>
+          {/* Bonus Section */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3 mb-4">
+              <Gift className="w-6 h-6 text-accent" />
+              <h3 className="text-xl md:text-2xl font-bold text-foreground">6 Bonus Inclusi GRATIS</h3>
             </div>
 
-            <ul className="space-y-3 mb-6">
-              {[
-                "Checklist pre-incontro",
-                "Guida alla comunicazione intima",
-                "Schede tecniche di riferimento",
-                "Esercizi pratici per coppie",
-                "FAQ e soluzioni comuni",
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                  <span className="text-foreground">{item}</span>
-                </li>
+            <div className="grid gap-3">
+              {bonuses.map((bonus, index) => (
+                <div
+                  key={index}
+                  className="bg-card rounded-xl p-4 shadow-soft border border-border/50 hover:shadow-elevated transition-all"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                      <bonus.icon className="w-5 h-5 text-accent" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <h4 className="font-bold text-foreground text-sm md:text-base truncate">{bonus.title}</h4>
+                        <span className="text-accent font-bold text-sm whitespace-nowrap">€{bonus.value}</span>
+                      </div>
+                      <p className="text-muted-foreground text-xs md:text-sm line-clamp-2">{bonus.description}</p>
+                    </div>
+                  </div>
+                </div>
               ))}
-            </ul>
-
-            <div className="bg-accent/10 rounded-xl p-4">
-              <div className="flex items-center justify-between">
-                <span className="text-foreground font-medium">Valore reale:</span>
-                <span className="text-lg font-bold text-muted-foreground line-through">€20</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-foreground font-medium">Per te oggi:</span>
-                <span className="text-2xl font-bold text-accent">GRATIS</span>
-              </div>
             </div>
           </div>
         </div>
 
-        {/* Total value */}
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center gap-4 bg-primary/5 rounded-full px-8 py-4">
-            <span className="text-lg text-muted-foreground">Valore totale:</span>
-            <span className="text-2xl font-bold text-muted-foreground line-through">€87</span>
-            <span className="text-3xl font-bold text-primary">→ Oggi solo €37</span>
+        {/* Value Stack */}
+        <div className="mt-10 md:mt-12 max-w-2xl mx-auto">
+          <div className="bg-card rounded-2xl p-6 md:p-8 shadow-elevated border border-primary/20 text-center">
+            <div className="space-y-2 mb-6">
+              <div className="flex items-center justify-center gap-4 text-muted-foreground">
+                <span>Valore Ebook:</span>
+                <span className="font-bold">€{ebookValue}</span>
+              </div>
+              <div className="flex items-center justify-center gap-4 text-muted-foreground">
+                <span>Valore 6 Bonus:</span>
+                <span className="font-bold">€{bonusTotal}</span>
+              </div>
+              <div className="h-px bg-border my-3" />
+              <div className="flex items-center justify-center gap-4 text-lg">
+                <span className="text-foreground font-medium">Valore Totale:</span>
+                <span className="font-bold text-muted-foreground line-through">€{totalValue}</span>
+              </div>
+              <div className="flex items-center justify-center gap-4 text-2xl md:text-3xl">
+                <span className="text-foreground font-bold">Oggi paghi solo:</span>
+                <span className="font-bold text-primary">€47</span>
+              </div>
+            </div>
+
+            {/* Price comparison */}
+            <div className="bg-muted/50 rounded-xl p-4 mb-6 text-left">
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                💡 <strong className="text-foreground">Per confronto:</strong> Una sessione con un sex therapist costa tra 80 e 150€. 
+                Un workshop di coppia può costare 300–500€. Questa guida ha l'equivalente di diverse sessioni di lavoro, 
+                ma la paghi meno di una cena fuori.
+              </p>
+            </div>
+
+            {onBuyClick && (
+              <Button 
+                variant="cta" 
+                size="xl" 
+                onClick={onBuyClick}
+                className="group min-h-[52px] w-full"
+              >
+                Ottieni Tutto a €47
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+            )}
           </div>
         </div>
       </div>

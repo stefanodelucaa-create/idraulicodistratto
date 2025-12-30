@@ -1,69 +1,95 @@
-import { Star, Quote } from "lucide-react";
+import { BookOpen, FlaskConical, Heart, Star, Quote } from "lucide-react";
 
+const trustFeatures = [
+  {
+    icon: BookOpen,
+    title: "Contenuto Denso e Strutturato",
+    description: "Oltre 200 pagine, 25 capitoli, basati su psicologia sessuale, anatomia e comunicazione reale di coppia.",
+  },
+  {
+    icon: FlaskConical,
+    title: "Basata su Ricerca e Esperienza Reale",
+    description: "Concetti presi da terapia sessuale, studio dell'anatomia femminile e analisi di centinaia di discussioni reali tra uomini e donne.",
+  },
+  {
+    icon: Heart,
+    title: "Focalizzata su Intimità, non Performance",
+    description: "L'obiettivo non è 'farle fare qualcosa' per ego, ma costruire intimità, sicurezza e piacere condiviso.",
+  },
+];
+
+// Placeholder for future testimonials
 const testimonials = [
   {
     name: "Marco R.",
     location: "Milano",
-    text: "Finalmente una guida che spiega le cose in modo chiaro e senza tabù. Ha davvero trasformato la nostra intimità di coppia.",
+    text: "La parte sulla psicologia mi ha aperto gli occhi. Ho capito che stavo mettendo pressione a entrambi senza rendermene conto. Ora l'approccio è completamente diverso.",
     rating: 5
   },
   {
     name: "Alessandro T.",
-    location: "Roma",
-    text: "Le tecniche step-by-step sono incredibilmente utili. Ho capito cose che non sapevo dopo anni di relazione.",
+    location: "Roma", 
+    text: "Finalmente una guida che spiega il 'perché' dietro le tecniche. Capire l'anatomia reale ha fatto la differenza. Niente più improvvisazione.",
     rating: 5
   },
   {
     name: "Luca M.",
     location: "Napoli",
-    text: "Il bonus con le checklist è oro puro. Pratico, diretto, efficace. Consiglio a tutti gli uomini che vogliono migliorare.",
+    text: "Gli script per la comunicazione sono oro. Sapevo che dovevo parlarne ma non sapevo come. Ora abbiamo un dialogo aperto che non avevamo mai avuto.",
     rating: 5
   }
 ];
 
-const stats = [
-  { value: "500+", label: "Coppie Soddisfatte" },
-  { value: "20", label: "Capitoli Dettagliati" },
-  { value: "100%", label: "Download Immediato" }
-];
-
 export const SocialProof = () => {
   return (
-    <section id="testimonianze" className="py-20 bg-card-gradient">
-      <div className="container">
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-4 mb-16">
-          {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <p className="text-3xl md:text-4xl font-display font-bold text-primary mb-1">
-                {stat.value}
-              </p>
-              <p className="text-sm md:text-base text-muted-foreground">
-                {stat.label}
+    <section id="testimonianze" className="py-16 md:py-20 bg-card-gradient">
+      <div className="container px-5">
+        {/* Trust Section Title */}
+        <div className="text-center mb-10 md:mb-12">
+          <span className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
+            Affidabilità
+          </span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4">
+            Perché Puoi Fidarti di Questa Guida
+          </h2>
+        </div>
+
+        {/* Trust Features */}
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto mb-12 md:mb-16">
+          {trustFeatures.map((feature, index) => (
+            <div
+              key={index}
+              className="bg-card rounded-2xl p-6 md:p-8 shadow-soft border border-border/50 text-center"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5">
+                <feature.icon className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="text-lg md:text-xl font-bold text-foreground mb-3">
+                {feature.title}
+              </h3>
+              <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                {feature.description}
               </p>
             </div>
           ))}
         </div>
 
         {/* Testimonials */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-primary font-semibold text-sm uppercase tracking-wider">
-            Testimonianze
-          </span>
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mt-4 mb-6">
+        <div className="text-center mb-8">
+          <h3 className="text-xl md:text-2xl font-bold text-foreground">
             Cosa Dicono i Nostri Lettori
-          </h2>
+          </h3>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-5 md:gap-6 max-w-5xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-card rounded-2xl p-6 shadow-soft border border-border/50"
+              className="bg-card rounded-2xl p-5 md:p-6 shadow-soft border border-border/50"
             >
               <Quote className="w-8 h-8 text-primary/30 mb-4" />
               
-              <p className="text-foreground mb-6 italic">
+              <p className="text-foreground mb-5 italic text-sm md:text-base leading-relaxed">
                 "{testimonial.text}"
               </p>
               
@@ -80,18 +106,6 @@ export const SocialProof = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Expert credentials */}
-        <div className="mt-16 bg-card rounded-2xl p-8 shadow-soft border border-border/50 text-center max-w-3xl mx-auto">
-          <h3 className="text-xl font-display font-bold text-foreground mb-4">
-            Basato su Ricerca Scientifica
-          </h3>
-          <p className="text-muted-foreground">
-            Questa guida combina studi scientifici sulla fisiologia femminile, 
-            principi di psicologia della sessualità, e feedback reali da centinaia 
-            di coppie che hanno applicato queste tecniche con successo.
-          </p>
         </div>
       </div>
     </section>
