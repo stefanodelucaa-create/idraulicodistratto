@@ -82,14 +82,18 @@ const Index = () => {
     return `${currencyCode} ${num.toFixed(2)}`;
   };
 
-  const price = product 
+  // Display price must be consistent across the landing (launch offer)
+  // Note: make sure the Shopify product price is also set to €47 to avoid checkout mismatch.
+  const originalPrice = "€79";
+  const price = "€47";
+
+  // If you need the real Shopify price for debugging, keep it here (not shown in UI)
+  const _shopifyPrice = product
     ? formatPrice(
         product.node.priceRange.minVariantPrice.amount,
         product.node.priceRange.minVariantPrice.currencyCode
       )
-    : "€47";
-  
-  const originalPrice = "€79";
+    : price;
 
   return (
     <main className="min-h-screen">
