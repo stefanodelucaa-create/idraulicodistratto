@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Gift } from "lucide-react";
 
 interface StickyCTAProps {
   onBuyClick: () => void;
@@ -29,19 +29,33 @@ export const StickyCTA = ({ onBuyClick, price }: StickyCTAProps) => {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
-      <div className="bg-card/95 backdrop-blur-lg border-t border-border shadow-2xl px-3 sm:px-4 py-2.5 sm:py-3 safe-area-pb">
-        <div className="flex items-center justify-between gap-2 sm:gap-3">
-          <div className="flex flex-col">
-            <span className="text-[10px] sm:text-xs text-muted-foreground line-through">€79</span>
-            <span className="text-lg sm:text-xl font-bold text-foreground">{price}</span>
+      <div className="bg-gradient-to-r from-card via-card to-card/95 backdrop-blur-xl border-t border-primary/20 shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.2)] px-3 sm:px-4 py-3 sm:py-3.5 safe-area-pb">
+        <div className="flex items-center justify-between gap-3">
+          {/* Left section: Product name + bonus + price */}
+          <div className="flex flex-col min-w-0 flex-shrink">
+            <div className="flex items-center gap-1.5 mb-0.5">
+              <span className="text-[11px] sm:text-xs font-semibold text-foreground truncate">
+                Manuale dell'Idraulico Distratto
+              </span>
+              <span className="flex items-center gap-0.5 bg-primary/15 text-primary text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap">
+                <Gift className="w-2.5 h-2.5" />
+                +BONUS
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] sm:text-xs text-muted-foreground line-through">€79</span>
+              <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{price}</span>
+            </div>
           </div>
+          
+          {/* CTA Button */}
           <Button 
             variant="cta" 
             onClick={onBuyClick}
-            className="flex-1 max-w-[180px] sm:max-w-[200px] group min-h-[44px] sm:min-h-[48px] text-[13px] sm:text-base"
+            className="flex-shrink-0 group min-h-[48px] sm:min-h-[52px] px-4 sm:px-5 text-sm sm:text-base font-bold shadow-lg shadow-primary/25"
           >
-            Accesso Immediato
-            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1" />
+            Acquista Ora
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Button>
         </div>
       </div>

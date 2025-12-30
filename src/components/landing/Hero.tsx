@@ -95,18 +95,24 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
               ))}
             </div>
 
-            {/* Price block */}
+            {/* Price block - Premium styling */}
             <div
-              className="bg-card/80 backdrop-blur rounded-2xl p-5 sm:p-6 shadow-elevated border border-border/50 animate-fade-up w-full"
-              style={{ animationDelay: "0.35s" }}
+              className="relative bg-gradient-to-br from-card via-card to-secondary/30 backdrop-blur rounded-2xl p-5 sm:p-6 border border-primary/20 animate-fade-up w-full overflow-hidden"
+              style={{ 
+                animationDelay: "0.35s",
+                boxShadow: "0 20px 50px -15px hsl(32 80% 35% / 0.2), inset 0 1px 0 0 hsl(40 30% 100% / 0.1)"
+              }}
             >
-              <div className="flex flex-col items-center gap-2 mb-4">
+              {/* Subtle premium glow effect */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+              
+              <div className="relative flex flex-col items-center gap-2 mb-4">
                 <span className="text-sm text-muted-foreground line-through">Prezzo normale: €79</span>
                 <div className="flex items-center justify-center gap-3">
-                  <span className="text-3xl sm:text-4xl font-bold text-foreground">{price}</span>
-                  <span className="bg-accent text-accent-foreground text-xs font-bold px-2 py-1 rounded">-53%</span>
+                  <span className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">{price}</span>
+                  <span className="bg-gradient-to-r from-primary to-accent text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full shadow-lg shadow-primary/20">-53%</span>
                 </div>
-                <span className="text-sm text-primary font-medium">Risparmi: €42</span>
+                <span className="text-sm text-primary font-semibold">Risparmi: €42</span>
               </div>
 
               {/* CTA Button */}
@@ -114,14 +120,14 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
                 variant="cta"
                 size="xl"
                 onClick={onBuyClick}
-                className="w-full group min-h-[52px] text-[15px] sm:text-base md:text-lg whitespace-normal"
+                className="w-full group min-h-[56px] sm:min-h-[60px] text-lg sm:text-xl md:text-2xl font-bold whitespace-normal tracking-tight"
               >
-                Ottieni Accesso Immediato + 6 Bonus
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                Ottieni Tutto a {price}
+                <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-1" />
               </Button>
 
               {/* Trust line */}
-              <div className="mt-4 text-xs sm:text-sm text-muted-foreground">
+              <div className="relative mt-4 text-xs sm:text-sm text-muted-foreground">
                 <div className="flex flex-col items-center gap-2 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
                   <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-primary" /> Download immediato</span>
                   <span className="flex items-center gap-1.5"><Shield className="w-4 h-4 text-primary" /> Pagamento sicuro</span>
