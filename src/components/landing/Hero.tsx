@@ -24,13 +24,16 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
       </div>
 
       <div className="container relative z-10 py-6 sm:py-8 lg:py-16 px-4 sm:px-5">
-        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           {/* Product Images - Mobile First */}
-          <div className="order-1 flex justify-center lg:order-2 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            <div className="relative w-full max-w-[260px] sm:max-w-[280px] md:max-w-[350px] lg:max-w-lg">
+          <div
+            className="order-1 flex justify-center lg:order-2 animate-fade-up min-w-0"
+            style={{ animationDelay: "0.2s" }}
+          >
+            <div className="relative w-full max-w-[280px] sm:max-w-[320px] md:max-w-[350px] lg:max-w-lg">
               {/* Glow effect */}
               <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-3xl transform scale-90" />
-              
+
               {/* Book Mockups - Side by side on mobile, overlap on desktop */}
               <div className="relative flex flex-row items-end justify-center gap-2 sm:gap-3 md:gap-0">
                 {/* Main Book */}
@@ -39,18 +42,18 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
                   alt="Squirting: La Guida Completa - Ebook"
                   loading="eager"
                   className="w-36 sm:w-44 md:w-64 lg:w-80 drop-shadow-2xl animate-float relative z-10"
-                  style={{ filter: 'drop-shadow(0 25px 50px rgba(0,0,0,0.3))' }}
+                  style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.3))" }}
                 />
-                
+
                 {/* Bonus Book - side by side on mobile, overlap from md+ */}
                 <img
                   src={bonusMockup}
                   alt="6 Bonus Inclusi"
                   loading="eager"
                   className="w-20 sm:w-24 md:w-36 lg:w-48 drop-shadow-2xl animate-float -ml-3 sm:-ml-4 md:absolute md:-right-4 lg:right-0 md:bottom-0"
-                  style={{ 
-                    filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.25))',
-                    animationDelay: '0.5s'
+                  style={{
+                    filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.25))",
+                    animationDelay: "0.5s",
                   }}
                 />
               </div>
@@ -58,26 +61,32 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
           </div>
 
           {/* Content */}
-          <div className="order-2 lg:order-1 space-y-4 sm:space-y-5 text-center lg:text-left px-1 max-w-full">
-            <h1 className="text-[22px] sm:text-[26px] md:text-4xl lg:text-5xl font-display font-bold text-foreground leading-tight animate-fade-up" style={{ animationDelay: '0.1s' }}>
+          <div className="order-2 lg:order-1 min-w-0 w-full max-w-[560px] mx-auto lg:mx-0 space-y-4 sm:space-y-5 text-center lg:text-left">
+            <h1
+              className="text-[22px] sm:text-[26px] md:text-4xl lg:text-5xl font-display font-bold text-foreground leading-tight animate-fade-up"
+              style={{ animationDelay: "0.1s" }}
+            >
               Elimina l'Ansia da Prestazione e Trasforma il Sesso da
               <span className="text-gradient block">Missione a Connessione</span>
             </h1>
 
-            <p className="text-[15px] sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 animate-fade-up leading-relaxed break-words" style={{ animationDelay: '0.2s' }}>
+            <p
+              className="text-[15px] sm:text-base md:text-lg lg:text-xl text-muted-foreground animate-fade-up leading-relaxed break-words"
+              style={{ animationDelay: "0.2s" }}
+            >
               La guida scientifica di <span className="text-primary font-bold">oltre 200 pagine</span> che ti insegna psicologia sessuale, anatomia femminile reale e comunicazione strutturata per esplorare lo squirting senza pressione, senza miti porno e senza sentirti inadeguato.
             </p>
 
             {/* 3 Bullet points */}
-            <div className="space-y-3 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+            <div className="space-y-3 animate-fade-up" style={{ animationDelay: "0.3s" }}>
               {[
                 { icon: Brain, text: "70% psicologia e comunicazione, 30% tecnica fisica" },
                 { icon: Target, text: "Basato su anatomia reale: clitoride interno, punto G, ghiandole di Skene" },
                 { icon: Heart, text: "Per coppie che vogliono connessione autentica, non solo 'risultati'" },
               ].map((benefit, i) => (
-                <div key={i} className="flex items-start gap-3 justify-center lg:justify-start max-w-full">
+                <div key={i} className="flex items-start gap-3 justify-center lg:justify-start min-w-0">
                   <benefit.icon className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="flex-1 min-w-0 text-foreground font-medium text-left text-[14px] sm:text-[15px] md:text-base leading-snug break-words">
+                  <span className="min-w-0 text-foreground font-medium text-left text-[14px] sm:text-[15px] md:text-base leading-snug break-words">
                     {benefit.text}
                   </span>
                 </div>
@@ -85,7 +94,10 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
             </div>
 
             {/* Price block */}
-            <div className="bg-card/80 backdrop-blur rounded-2xl p-5 sm:p-6 shadow-elevated border border-border/50 animate-fade-up" style={{ animationDelay: '0.35s' }}>
+            <div
+              className="bg-card/80 backdrop-blur rounded-2xl p-5 sm:p-6 shadow-elevated border border-border/50 animate-fade-up w-full"
+              style={{ animationDelay: "0.35s" }}
+            >
               <div className="flex flex-col items-center gap-2 mb-4">
                 <span className="text-sm text-muted-foreground line-through">Prezzo normale: €79</span>
                 <div className="flex items-center justify-center gap-3">
@@ -96,21 +108,23 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
               </div>
 
               {/* CTA Button */}
-              <Button 
-                variant="cta" 
-                size="xl" 
+              <Button
+                variant="cta"
+                size="xl"
                 onClick={onBuyClick}
-                className="w-full group min-h-[52px] text-[15px] sm:text-base md:text-lg"
+                className="w-full group min-h-[52px] text-[15px] sm:text-base md:text-lg whitespace-normal"
               >
                 Ottieni Accesso Immediato + 6 Bonus
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Button>
 
               {/* Trust line */}
-              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-4 text-xs sm:text-sm text-muted-foreground max-w-full">
-                <span className="flex items-center gap-1.5 min-w-0"><CheckCircle className="w-4 h-4 text-primary flex-shrink-0" /> <span className="min-w-0 break-words">Download immediato</span></span>
-                <span className="flex items-center gap-1.5 min-w-0"><Shield className="w-4 h-4 text-primary flex-shrink-0" /> <span className="min-w-0 break-words">Pagamento sicuro</span></span>
-                <span className="flex items-center gap-1.5 min-w-0"><Clock className="w-4 h-4 text-primary flex-shrink-0" /> <span className="min-w-0 break-words">Garanzia 60 giorni</span></span>
+              <div className="mt-4 text-xs sm:text-sm text-muted-foreground">
+                <div className="flex flex-col items-center gap-2 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
+                  <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-primary" /> Download immediato</span>
+                  <span className="flex items-center gap-1.5"><Shield className="w-4 h-4 text-primary" /> Pagamento sicuro</span>
+                  <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-primary" /> Garanzia 60 giorni</span>
+                </div>
               </div>
             </div>
           </div>
