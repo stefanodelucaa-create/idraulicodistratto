@@ -153,83 +153,107 @@ const IndexHybrid = () => {
       {/* ANNOUNCEMENT BAR - Luxury Warm Style */}
       <div className="bg-gradient-to-r from-primary via-primary/90 to-primary text-primary-foreground py-3 sm:py-4 text-center text-sm sm:text-base font-semibold px-4 shadow-lg">
         <Sparkles className="w-4 h-4 inline mr-2 text-yellow-200" />
-        Edizione Premium: 53% di Sconto + 6 Bonus Esclusivi (valore €125)
+        Edizione Premium: 53% di Sconto + 6 Bonus (€125)
         <Sparkles className="w-4 h-4 inline ml-2 text-yellow-200" />
       </div>
 
-      {/* HERO SECTION - Warm Palette with Premium Elements */}
-      <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden">
+      {/* HERO SECTION - Mobile Optimized */}
+      <section className="relative py-6 sm:py-12 lg:py-20 overflow-hidden">
         {/* Warm gradient background with subtle luxury glow */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
         <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-10 left-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
         
         <div className="container relative z-10 px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-            {/* Content */}
-            <div className="text-center lg:text-left space-y-6">
-              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary px-5 py-2.5 rounded-full text-sm font-medium shadow-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-14 items-center">
+            
+            {/* Product Images - Mobile First (shows first on mobile) */}
+            <div className="order-1 lg:order-2 flex justify-center py-4 sm:py-8">
+              <div className="relative w-full max-w-[480px]">
+                {/* Premium glow effect */}
+                <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl scale-75" />
+                
+                {/* Book Mockups - Side by side on mobile */}
+                <div className="relative flex items-end justify-center pb-4">
+                  {/* Main Book - shifted left on mobile */}
+                  <img 
+                    src={ebookMockup} 
+                    alt="Ebook" 
+                    loading="eager"
+                    className="w-64 sm:w-72 md:w-80 lg:w-96 drop-shadow-2xl relative z-10 -ml-6 sm:ml-0" 
+                    style={{ filter: "drop-shadow(0 30px 60px rgba(234, 88, 12, 0.2))" }} 
+                  />
+                  
+                  {/* Bonus Book - positioned bottom right */}
+                  <div className="absolute bottom-0 -right-2 sm:-right-6 md:-right-10 z-20">
+                    <img 
+                      src={bonusMockup} 
+                      alt="Bonus" 
+                      loading="eager"
+                      className="w-44 sm:w-52 md:w-56 lg:w-64 drop-shadow-xl" 
+                      style={{ filter: "drop-shadow(0 20px 40px rgba(234, 88, 12, 0.15))" }} 
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Content - Shows second on mobile */}
+            <div className="order-2 lg:order-1 text-center lg:text-left space-y-4 sm:space-y-5 max-w-[560px] mx-auto lg:mx-0">
+              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 text-primary px-4 py-2 rounded-full text-sm font-medium shadow-sm">
                 <Crown className="w-4 h-4" />
                 Esperienza Premium
               </div>
               
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-foreground">
+              <h1 className="text-[22px] sm:text-[28px] md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-foreground">
                 Manuale dell'
                 <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent block">
                   Idraulico Distratto
                 </span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed">
+              <p className="text-[15px] sm:text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
                 Una guida completa di <span className="text-primary font-semibold">200+ pagine</span> che trasforma l'ansia da prestazione in connessione profonda.
               </p>
 
-              <div className="space-y-3">
+              <div className="space-y-2.5 sm:space-y-3">
                 {[
                   { icon: Brain, text: "70% psicologia e comunicazione" },
                   { icon: Target, text: "Anatomia scientifica reale" },
                   { icon: Heart, text: "Intimità prima della tecnica" },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-4 justify-center lg:justify-start">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center shadow-sm border border-primary/10">
-                      <item.icon className="w-5 h-5 text-primary" />
+                  <div key={i} className="flex items-center gap-3 justify-center lg:justify-start">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center shadow-sm border border-primary/10 flex-shrink-0">
+                      <item.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                     </div>
-                    <span className="text-foreground/80 font-medium">{item.text}</span>
+                    <span className="text-foreground/80 font-medium text-[14px] sm:text-[15px] md:text-base text-left">{item.text}</span>
                   </div>
                 ))}
               </div>
 
               {/* Premium Price Block */}
-              <div className="bg-gradient-to-br from-white to-secondary/30 rounded-3xl p-6 sm:p-8 border border-primary/20 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1),0_0_40px_-10px_rgba(234,88,12,0.1)]">
-                <div className="flex items-center justify-center gap-4 sm:gap-6 mb-5">
-                  <span className="text-xl sm:text-2xl text-muted-foreground line-through">{originalPrice}</span>
-                  <span className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">{price}</span>
-                  <span className="bg-gradient-to-r from-primary to-primary/80 text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-lg">-53%</span>
+              <div className="relative bg-gradient-to-br from-white to-secondary/30 rounded-2xl sm:rounded-3xl p-5 sm:p-6 md:p-8 border border-primary/20 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.1),0_0_40px_-10px_rgba(234,88,12,0.1)] overflow-hidden">
+                {/* Subtle glow */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                
+                <div className="relative flex items-center justify-center gap-3 sm:gap-4 mb-4">
+                  <span className="text-lg sm:text-xl text-muted-foreground line-through">{originalPrice}</span>
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">{price}</span>
+                  <span className="bg-gradient-to-r from-primary to-primary/80 text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-full shadow-lg">-53%</span>
                 </div>
                 
                 <Button 
                   onClick={handleBuyClick}
-                  className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground text-lg sm:text-xl md:text-2xl font-bold py-6 sm:py-7 rounded-2xl group shadow-[0_10px_30px_-5px_rgba(234,88,12,0.4)]"
+                  className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground text-base sm:text-lg md:text-xl lg:text-2xl font-bold py-5 sm:py-6 md:py-7 rounded-xl sm:rounded-2xl group shadow-[0_10px_30px_-5px_rgba(234,88,12,0.4)] min-h-[56px] sm:min-h-[60px]"
                 >
                   Ottieni Tutto a {price}
                   <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
 
-                <div className="mt-5 flex flex-wrap justify-center gap-4 sm:gap-6 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-2"><CheckCircle className="w-4 h-4 text-primary" /> Download immediato</span>
-                  <span className="flex items-center gap-2"><Shield className="w-4 h-4 text-primary" /> Pagamento sicuro</span>
-                  <span className="flex items-center gap-2"><Clock className="w-4 h-4 text-primary" /> Garanzia 60 giorni</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Product Images */}
-            <div className="relative flex justify-center pb-8">
-              <div className="absolute inset-0 bg-primary/5 rounded-full blur-3xl scale-75" />
-              <div className="relative flex items-end justify-center">
-                <img src={ebookMockup} alt="Ebook" className="w-64 sm:w-72 lg:w-80 drop-shadow-2xl" style={{ filter: "drop-shadow(0 30px 60px rgba(234, 88, 12, 0.15))" }} />
-                <div className="absolute bottom-0 -right-2 sm:-right-8">
-                  <img src={bonusMockup} alt="Bonus" className="w-44 sm:w-52 lg:w-56 drop-shadow-xl" style={{ filter: "drop-shadow(0 20px 40px rgba(234, 88, 12, 0.1))" }} />
+                <div className="relative mt-4 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
+                  <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-primary" /> Download immediato</span>
+                  <span className="flex items-center gap-1.5"><Shield className="w-4 h-4 text-primary" /> Pagamento sicuro</span>
+                  <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-primary" /> Garanzia 60 giorni</span>
                 </div>
               </div>
             </div>
@@ -579,20 +603,22 @@ const IndexHybrid = () => {
         </div>
       </footer>
 
-      {/* STICKY CTA */}
+      {/* STICKY CTA - Mobile Optimized */}
       <div className={`fixed bottom-0 left-0 right-0 z-50 transition-all duration-500 ${isStickyCTAVisible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
-        <div className="bg-gradient-to-r from-white via-white to-white/95 backdrop-blur-xl border-t border-primary/20 px-4 py-3 shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.15)]">
-          <div className="max-w-lg mx-auto flex items-center justify-between gap-3">
+        <div className="bg-gradient-to-r from-white via-white to-white/95 backdrop-blur-xl border-t border-primary/20 px-3 sm:px-4 py-2.5 sm:py-3 shadow-[0_-8px_30px_-10px_rgba(0,0,0,0.15)]">
+          <div className="max-w-lg mx-auto flex items-center justify-between gap-2 sm:gap-3">
             <div className="flex-1 min-w-0">
-              <p className="text-xs sm:text-sm font-bold text-foreground truncate">Manuale + BONUS</p>
-              <div className="flex items-center gap-2">
-                <span className="text-xs text-muted-foreground line-through">€79</span>
-                <span className="text-lg sm:text-xl font-bold text-primary">{price}</span>
+              <p className="text-[11px] sm:text-sm font-bold text-foreground leading-tight">Manuale dell'Idraulico Distratto</p>
+              <p className="text-[10px] sm:text-xs text-primary font-medium">+ 6 BONUS inclusi</p>
+              <div className="flex items-center gap-1.5 sm:gap-2 mt-0.5">
+                <span className="text-[10px] sm:text-xs text-muted-foreground line-through">€79</span>
+                <span className="text-base sm:text-lg font-bold text-primary">{price}</span>
+                <span className="text-[9px] sm:text-[10px] bg-primary/10 text-primary font-bold px-1.5 py-0.5 rounded">-53%</span>
               </div>
             </div>
             <Button 
               onClick={handleBuyClick}
-              className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground font-bold px-4 sm:px-6 py-3 rounded-xl shadow-lg shadow-primary/20 text-sm sm:text-base whitespace-nowrap"
+              className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground font-bold px-3 sm:px-5 py-2.5 sm:py-3 rounded-lg sm:rounded-xl shadow-lg shadow-primary/20 text-xs sm:text-sm whitespace-nowrap min-h-[44px] sm:min-h-[48px]"
             >
               Acquista Ora
             </Button>
