@@ -103,22 +103,22 @@ export const ValueProposition = ({ onBuyClick }: ValuePropositionProps) => {
               <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground">6 Bonus Inclusi GRATIS</h3>
             </div>
 
-            <div className="grid gap-2 sm:gap-3">
+            <div className="grid gap-3 sm:gap-3">
               {bonuses.map((bonus, index) => (
                 <div
                   key={index}
-                  className="bg-card rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-soft border border-border/50 hover:shadow-elevated transition-all"
+                  className="bg-card rounded-xl p-4 shadow-soft border border-border/50 hover:shadow-elevated transition-all"
                 >
-                  <div className="flex items-start gap-2 sm:gap-3">
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                      <bonus.icon className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                      <bonus.icon className="w-5 h-5 sm:w-5 sm:h-5 text-accent" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-2 mb-0.5 sm:mb-1">
-                        <h4 className="font-bold text-foreground text-[13px] sm:text-sm md:text-base leading-tight">{bonus.title}</h4>
-                        <span className="text-accent font-bold text-xs sm:text-sm whitespace-nowrap">€{bonus.value}</span>
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <h4 className="font-bold text-foreground text-sm sm:text-base leading-tight">{bonus.title}</h4>
+                        <span className="text-accent font-bold text-sm whitespace-nowrap">€{bonus.value}</span>
                       </div>
-                      <p className="text-muted-foreground text-[11px] sm:text-xs md:text-sm line-clamp-2 leading-relaxed">{bonus.description}</p>
+                      <p className="text-muted-foreground text-[13px] sm:text-sm leading-relaxed">{bonus.description}</p>
                     </div>
                   </div>
                 </div>

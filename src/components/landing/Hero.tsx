@@ -58,39 +58,39 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
           </div>
 
           {/* Content */}
-          <div className="order-2 lg:order-1 space-y-3 sm:space-y-4 text-center lg:text-left">
+          <div className="order-2 lg:order-1 space-y-4 sm:space-y-5 text-center lg:text-left px-1">
             <h1 className="text-[22px] sm:text-[26px] md:text-4xl lg:text-5xl font-display font-bold text-foreground leading-tight animate-fade-up" style={{ animationDelay: '0.1s' }}>
               Elimina l'Ansia da Prestazione e Trasforma il Sesso da
               <span className="text-gradient block">Missione a Connessione</span>
             </h1>
 
-            <p className="text-[14px] sm:text-[15px] md:text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 animate-fade-up leading-relaxed" style={{ animationDelay: '0.2s' }}>
+            <p className="text-[15px] sm:text-base md:text-lg lg:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 animate-fade-up leading-relaxed" style={{ animationDelay: '0.2s' }}>
               La guida scientifica di <span className="text-primary font-bold">oltre 200 pagine</span> che ti insegna psicologia sessuale, anatomia femminile reale e comunicazione strutturata per esplorare lo squirting senza pressione, senza miti porno e senza sentirti inadeguato.
             </p>
 
             {/* 3 Bullet points */}
-            <div className="space-y-2 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+            <div className="space-y-3 animate-fade-up" style={{ animationDelay: '0.3s' }}>
               {[
                 { icon: Brain, text: "70% psicologia e comunicazione, 30% tecnica fisica" },
                 { icon: Target, text: "Basato su anatomia reale: clitoride interno, punto G, ghiandole di Skene" },
                 { icon: Heart, text: "Per coppie che vogliono connessione autentica, non solo 'risultati'" },
               ].map((benefit, i) => (
-                <div key={i} className="flex items-start gap-2 justify-center lg:justify-start">
-                  <benefit.icon className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground font-medium text-left text-[12px] sm:text-[13px] md:text-base leading-snug">{benefit.text}</span>
+                <div key={i} className="flex items-start gap-3 justify-center lg:justify-start">
+                  <benefit.icon className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                  <span className="text-foreground font-medium text-left text-[14px] sm:text-[15px] md:text-base leading-snug">{benefit.text}</span>
                 </div>
               ))}
             </div>
 
             {/* Price block */}
-            <div className="bg-card/80 backdrop-blur rounded-xl sm:rounded-2xl p-4 sm:p-5 shadow-elevated border border-border/50 animate-fade-up" style={{ animationDelay: '0.35s' }}>
-              <div className="flex flex-col items-center gap-1 sm:gap-2 mb-3 sm:mb-4">
-                <span className="text-xs sm:text-sm text-muted-foreground line-through">Prezzo normale: €79</span>
-                <div className="flex items-center justify-center gap-2 sm:gap-3">
-                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">{price}</span>
-                  <span className="bg-accent text-accent-foreground text-[10px] sm:text-xs font-bold px-2 py-0.5 sm:py-1 rounded">-53%</span>
+            <div className="bg-card/80 backdrop-blur rounded-2xl p-5 sm:p-6 shadow-elevated border border-border/50 animate-fade-up" style={{ animationDelay: '0.35s' }}>
+              <div className="flex flex-col items-center gap-2 mb-4">
+                <span className="text-sm text-muted-foreground line-through">Prezzo normale: €79</span>
+                <div className="flex items-center justify-center gap-3">
+                  <span className="text-3xl sm:text-4xl font-bold text-foreground">{price}</span>
+                  <span className="bg-accent text-accent-foreground text-xs font-bold px-2 py-1 rounded">-53%</span>
                 </div>
-                <span className="text-xs sm:text-sm text-primary font-medium">Risparmi: €42</span>
+                <span className="text-sm text-primary font-medium">Risparmi: €42</span>
               </div>
 
               {/* CTA Button */}
@@ -98,17 +98,17 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
                 variant="cta" 
                 size="xl" 
                 onClick={onBuyClick}
-                className="w-full group min-h-[48px] sm:min-h-[52px] text-[13px] sm:text-base md:text-lg"
+                className="w-full group min-h-[52px] text-[15px] sm:text-base md:text-lg"
               >
                 Ottieni Accesso Immediato + 6 Bonus
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Button>
 
               {/* Trust line */}
-              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-3 sm:mt-4 text-[10px] sm:text-xs md:text-sm text-muted-foreground">
-                <span className="flex items-center gap-1"><CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-primary" /> Download immediato</span>
-                <span className="flex items-center gap-1"><Shield className="w-3 h-3 sm:w-4 sm:h-4 text-primary" /> Pagamento sicuro</span>
-                <span className="flex items-center gap-1"><Clock className="w-3 h-3 sm:w-4 sm:h-4 text-primary" /> Garanzia 60 giorni</span>
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-4 text-xs sm:text-sm text-muted-foreground">
+                <span className="flex items-center gap-1.5"><CheckCircle className="w-4 h-4 text-primary" /> Download immediato</span>
+                <span className="flex items-center gap-1.5"><Shield className="w-4 h-4 text-primary" /> Pagamento sicuro</span>
+                <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-primary" /> Garanzia 60 giorni</span>
               </div>
             </div>
           </div>
