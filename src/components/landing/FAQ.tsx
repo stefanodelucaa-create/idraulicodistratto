@@ -7,10 +7,6 @@ import {
 
 const faqs = [
   {
-    question: "Questo ebook garantisce che la mia partner squirterà?",
-    answer: "No, e diffida da chiunque faccia questa promessa. Il 15-20% delle donne ha ghiandole di Skene poco sviluppate, il che rende lo squirting anatomicamente difficile o impossibile. Questa guida ti insegna a creare le condizioni ottimali e a gestire le aspettative in modo sano. Il vero obiettivo è connessione e piacere condiviso, non una performance a tutti i costi."
-  },
-  {
     question: "In cosa è diverso dai video online o dai forum?",
     answer: "I video online (spesso porno) mostrano risultati irrealistici senza contesto. I forum sono frammentari e pieni di consigli non verificati. Questa guida è strutturata come un vero percorso: 70% psicologia/comunicazione, 30% tecnica. Basata su ricerca scientifica e terapia sessuale, non su performance da film per adulti."
   },
@@ -40,7 +36,7 @@ const faqs = [
   },
   {
     question: "Ci sono costi nascosti o abbonamenti?",
-    answer: "No. Paghi €47 una volta sola e hai accesso a vita a tutto il materiale. Nessun abbonamento, nessun costo ricorrente, nessun 'upsell' forzato dopo l'acquisto."
+    answer: "No. Paghi €37 una volta sola e hai accesso a vita a tutto il materiale. Nessun abbonamento, nessun costo ricorrente, nessun 'upsell' forzato dopo l'acquisto."
   },
   {
     question: "Posso ottenere il rimborso se non fa per me?",

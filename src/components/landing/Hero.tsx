@@ -31,23 +31,23 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
               {/* Glow effect */}
               <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-3xl transform scale-90" />
               
-              {/* Book Mockups - Stack vertically on mobile, overlap on desktop */}
-              <div className="relative flex flex-col items-center justify-center gap-3 sm:gap-4 md:gap-0 md:flex-row md:items-end">
+              {/* Book Mockups - Side by side on mobile, overlap on desktop */}
+              <div className="relative flex flex-row items-end justify-center gap-2 sm:gap-3 md:gap-0">
                 {/* Main Book */}
                 <img
                   src={ebookMockup}
                   alt="Squirting: La Guida Completa - Ebook"
                   loading="eager"
-                  className="w-44 sm:w-52 md:w-64 lg:w-80 drop-shadow-2xl animate-float relative z-10"
+                  className="w-36 sm:w-44 md:w-64 lg:w-80 drop-shadow-2xl animate-float relative z-10"
                   style={{ filter: 'drop-shadow(0 25px 50px rgba(0,0,0,0.3))' }}
                 />
                 
-                {/* Bonus Book - visible on mobile (stack), overlap from md+ */}
+                {/* Bonus Book - side by side on mobile, overlap from md+ */}
                 <img
                   src={bonusMockup}
                   alt="6 Bonus Inclusi"
                   loading="eager"
-                  className="w-32 sm:w-36 md:w-36 lg:w-48 drop-shadow-2xl animate-float md:absolute md:-right-4 lg:right-0 md:bottom-0"
+                  className="w-20 sm:w-24 md:w-36 lg:w-48 drop-shadow-2xl animate-float -ml-3 sm:-ml-4 md:absolute md:-right-4 lg:right-0 md:bottom-0"
                   style={{ 
                     filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.25))',
                     animationDelay: '0.5s'
