@@ -27,36 +27,36 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           {/* Product Images - Mobile First */}
           <div
-            className="order-1 flex justify-center lg:order-2 animate-fade-up min-w-0 py-4"
+            className="order-1 flex justify-center lg:order-2 animate-fade-up min-w-0 py-6"
             style={{ animationDelay: "0.2s" }}
           >
-            <div className="relative w-full max-w-[340px] sm:max-w-[380px] md:max-w-[420px] lg:max-w-lg">
+            <div className="relative w-full max-w-[400px] sm:max-w-[440px] md:max-w-[480px] lg:max-w-lg">
               {/* Glow effect */}
               <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-3xl transform scale-90" />
 
               {/* Book Mockups - Side by side on mobile, overlap on desktop */}
-              <div className="relative flex flex-row items-end justify-center gap-3 sm:gap-4 md:gap-0">
+              <div className="relative flex flex-row items-end justify-center gap-4 sm:gap-5 md:gap-0">
                 {/* Main Book */}
                 <img
                   src={ebookMockup}
                   alt="Squirting: La Guida Completa - Ebook"
                   loading="eager"
-                  className="w-44 sm:w-52 md:w-64 lg:w-80 drop-shadow-2xl animate-float relative z-10"
+                  className="w-52 sm:w-60 md:w-72 lg:w-80 drop-shadow-2xl animate-float relative z-10"
                   style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.3))" }}
                 />
 
                 {/* Bonus Book with tag */}
-                <div className="relative -ml-4 sm:-ml-5 md:absolute md:-right-4 lg:right-0 md:bottom-0">
+                <div className="relative -ml-6 sm:-ml-8 md:absolute md:-right-4 lg:right-0 md:bottom-0">
                   {/* BONUS GRATIS tag */}
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-20 bg-accent text-accent-foreground text-[10px] sm:text-xs font-bold px-2 py-0.5 sm:px-3 sm:py-1 rounded-full shadow-lg flex items-center gap-1 whitespace-nowrap">
-                    <Gift className="w-3 h-3" />
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 bg-accent text-accent-foreground text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full shadow-lg flex items-center gap-1.5 whitespace-nowrap">
+                    <Gift className="w-3.5 h-3.5" />
                     BONUS GRATIS
                   </div>
                   <img
                     src={bonusMockup}
                     alt="6 Bonus Inclusi"
                     loading="eager"
-                    className="w-28 sm:w-32 md:w-36 lg:w-48 drop-shadow-2xl animate-float"
+                    className="w-36 sm:w-40 md:w-44 lg:w-48 drop-shadow-2xl animate-float"
                     style={{
                       filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.25))",
                       animationDelay: "0.5s",
