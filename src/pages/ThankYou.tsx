@@ -188,13 +188,46 @@ export default function ThankYou() {
               Manuale dell'Idraulico Distratto (PDF, 200+ pagine) disponibile per download immediato.
             </p>
             
-            <a 
-              href="/ebook.pdf" 
-              download
-              className="inline-block w-[90%] max-w-[400px] bg-[#2E7D32] hover:bg-[#1B5E20] text-white font-semibold text-lg py-4 px-12 rounded-xl shadow-[0_6px_20px_rgba(46,125,50,0.3)] hover:scale-[1.02] transition-all duration-300"
+            <button 
+              onClick={() => {
+                if (localStorage.getItem('ebook_downloaded')) return;
+                localStorage.setItem('ebook_downloaded', 'true');
+                
+                // Download ebook
+                const linkEbook = document.createElement('a');
+                linkEbook.href = '/ebook.pdf';
+                linkEbook.download = 'ebook.pdf';
+                linkEbook.click();
+                
+                // Download bonus after small delay
+                setTimeout(() => {
+                  const linkBonus = document.createElement('a');
+                  linkBonus.href = '/bonus.pdf';
+                  linkBonus.download = 'bonus.pdf';
+                  linkBonus.click();
+                }, 500);
+                
+                // Disable button visually
+                const btn = document.querySelector('[data-download-btn]') as HTMLButtonElement;
+                if (btn) {
+                  btn.disabled = true;
+                  btn.textContent = '✓ DOWNLOAD COMPLETATO';
+                  btn.classList.remove('bg-[#2E7D32]', 'hover:bg-[#1B5E20]', 'hover:scale-[1.02]');
+                  btn.classList.add('bg-[#9E9E9E]', 'cursor-not-allowed');
+                }
+              }}
+              disabled={typeof window !== 'undefined' && localStorage.getItem('ebook_downloaded') === 'true'}
+              data-download-btn
+              className={`inline-block w-[90%] max-w-[400px] font-semibold text-lg py-4 px-12 rounded-xl shadow-[0_6px_20px_rgba(46,125,50,0.3)] transition-all duration-300 ${
+                typeof window !== 'undefined' && localStorage.getItem('ebook_downloaded') === 'true'
+                  ? 'bg-[#9E9E9E] text-white cursor-not-allowed'
+                  : 'bg-[#2E7D32] hover:bg-[#1B5E20] text-white hover:scale-[1.02]'
+              }`}
             >
-              SCARICA EBOOK PDF ORA
-            </a>
+              {typeof window !== 'undefined' && localStorage.getItem('ebook_downloaded') === 'true' 
+                ? '✓ DOWNLOAD COMPLETATO' 
+                : 'SCARICA EBOOK + BONUS PDF ORA'}
+            </button>
             
             <p className="text-[13px] text-[#666666] mt-4">
               ✓ Download istantaneo • ✓ Formato PDF • ✓ Link backup via email
