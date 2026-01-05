@@ -173,14 +173,28 @@ export default function ThankYou() {
         </section>
 
         {/* SECTION 2 - TRANSITION DIVIDER */}
-        <div className="relative my-16 md:my-16">
-          <div className="h-0.5 bg-border"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-4 md:px-8 py-2 max-w-[90%] md:max-w-none">
-            <span className="font-bold text-sm md:text-lg text-primary flex items-center gap-2 whitespace-nowrap">
-              <Clock className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
-              <span className="hidden sm:inline">ASPETTA! Non Chiudere Ancora...</span>
-              <span className="sm:hidden">ASPETTA! Non Chiudere...</span>
-            </span>
+        <div className="relative my-12 md:my-16">
+          {/* Glow lines */}
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
+          </div>
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+          </div>
+          
+          {/* Badge */}
+          <div className="relative flex justify-center">
+            <div className="bg-gradient-to-r from-primary via-accent to-primary p-[2px] rounded-full shadow-glow animate-[subtle-pulse_2s_ease-in-out_infinite]">
+              <div className="bg-background px-6 md:px-10 py-3 md:py-4 rounded-full">
+                <span className="font-bold text-base md:text-xl text-primary flex items-center gap-2 md:gap-3">
+                  <span className="text-xl md:text-2xl">🚨</span>
+                  <Clock className="w-5 h-5 md:w-6 md:h-6 text-accent animate-pulse" />
+                  <span className="hidden sm:inline">ASPETTA! Non Chiudere Ancora...</span>
+                  <span className="sm:hidden">ASPETTA! Non Chiudere...</span>
+                  <span className="text-xl md:text-2xl">🚨</span>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
