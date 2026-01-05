@@ -76,10 +76,15 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "subtle-pulse": {
+          "0%, 100%": { transform: "scale(1)", boxShadow: "0 8px 24px rgba(255,107,53,0.4)" },
+          "50%": { transform: "scale(1.015)", boxShadow: "0 10px 28px rgba(255,107,53,0.45)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "subtle-pulse": "subtle-pulse 3s ease-in-out infinite",
       },
     },
   },

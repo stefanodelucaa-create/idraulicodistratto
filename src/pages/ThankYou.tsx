@@ -29,7 +29,7 @@ const testimonials = [
   {
     name: "Luca T.",
     location: "Milano",
-    text: "La community Telegram è oro: ho risolto dubbi specifici che non trovavo nell'ebook. Miglior investimento fatto!"
+    text: "Ogni aggiornamento aggiunge tecniche nuove che non trovi altrove. Miglior investimento fatto!"
   },
   {
     name: "Giulia R.",
@@ -50,10 +50,6 @@ const faqs = [
   {
     question: "Posso avere rimborso se non mi piace?",
     answer: "Assolutamente sì. Hai 60 giorni per richiedere rimborso completo, senza domande. Vale sia per ebook base che per Lifetime."
-  },
-  {
-    question: "Come funziona la community Telegram?",
-    answer: "Riceverai link di accesso via email entro 24h. È un gruppo privato dove condividere esperienze, fare domande e ricevere supporto da altri lettori."
   }
 ];
 
@@ -65,23 +61,13 @@ const benefits = [
   },
   {
     icon: "🔓",
-    title: "Community Telegram privata",
-    description: "Confronto con altri lettori + supporto reciproco"
-  },
-  {
-    icon: "🔓",
-    title: "Q&A mensile via email",
-    description: "Domande specifiche sul tuo caso → risposte entro 48h"
-  },
-  {
-    icon: "🔓",
     title: "Early access futuri prodotti",
     description: "Sconti 20% su tutto ciò che creo dopo questo ebook"
   },
   {
     icon: "🔓",
-    title: "Badge \"Lifetime Member\"",
-    description: "Riconoscimento esclusivo nella community"
+    title: "Supporto prioritario via email",
+    description: "Risposte rapide alle tue domande specifiche"
   }
 ];
 
@@ -217,12 +203,13 @@ export default function ThankYou() {
         </section>
 
         {/* SECTION 3 - TRANSITION DIVIDER */}
-        <div className="relative my-12 md:my-16">
+        <div className="relative my-16 md:my-16">
           <div className="h-0.5 bg-[#E0E0E0]"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-6 md:px-8 py-2">
-            <span className="font-bold text-base md:text-lg text-[#FF6B35] flex items-center gap-2">
-              <Clock className="w-5 h-5" />
-              ASPETTA! Non Chiudere Ancora...
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-4 md:px-8 py-2 max-w-[90%] md:max-w-none">
+            <span className="font-bold text-sm md:text-lg text-[#FF6B35] flex items-center gap-2 whitespace-nowrap">
+              <Clock className="w-4 h-4 md:w-5 md:h-5 flex-shrink-0" />
+              <span className="hidden sm:inline">ASPETTA! Non Chiudere Ancora...</span>
+              <span className="sm:hidden">ASPETTA! Non Chiudere...</span>
             </span>
           </div>
         </div>
@@ -275,7 +262,7 @@ export default function ThankYou() {
                 Vuoi che Questo Ebook CRESCA con Te?
               </h2>
               <p className="text-base md:text-lg text-[#555555] leading-relaxed mb-6">
-                Passa a LIFETIME ACCESS e ricevi tutti gli aggiornamenti futuri, accesso alla community esclusiva e molto altro.
+                Passa a LIFETIME ACCESS e ricevi tutti gli aggiornamenti futuri, supporto prioritario e molto altro.
               </p>
 
               {/* Warning Box */}
@@ -283,8 +270,7 @@ export default function ThankYou() {
                 <p className="font-semibold text-[#856404] mb-2">⚠️ Con la versione BASE che hai acquistato:</p>
                 <ul className="text-[15px] leading-7 text-[#856404]">
                   <li><span className="text-[#D32F2F]">❌</span> NON ricevi aggiornamenti futuri (v2.0, v3.0...)</li>
-                  <li><span className="text-[#D32F2F]">❌</span> NON hai accesso alla community Telegram</li>
-                  <li><span className="text-[#D32F2F]">❌</span> NON puoi fare Q&A mensili via email</li>
+                  <li><span className="text-[#D32F2F]">❌</span> NON hai supporto prioritario via email</li>
                   <li><span className="text-[#D32F2F]">❌</span> Dovresti ricomprare ogni update a €37!</li>
                 </ul>
               </div>
@@ -321,8 +307,7 @@ export default function ThankYou() {
               <button
                 onClick={handleUpsellPurchase}
                 disabled={isLoading}
-                className="w-full bg-[#FF6B35] hover:bg-[#E55A25] text-white font-bold text-lg md:text-xl py-5 px-8 rounded-xl shadow-[0_8px_24px_rgba(255,107,53,0.4)] hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(255,107,53,0.5)] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed animate-[pulse_3s_ease-in-out_infinite]"
-                style={{ animationTimingFunction: 'ease-in-out' }}
+                className="w-full bg-[#FF6B35] hover:bg-[#E55A25] text-white font-bold text-lg md:text-xl py-5 px-8 rounded-xl shadow-[0_8px_24px_rgba(255,107,53,0.4)] hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(255,107,53,0.5)] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed animate-[subtle-pulse_3s_ease-in-out_infinite]"
               >
                 {isLoading ? "Caricamento..." : "SÌ, VOGLIO LIFETIME ACCESS (+€12)"}
               </button>
