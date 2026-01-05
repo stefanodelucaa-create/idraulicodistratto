@@ -320,8 +320,8 @@ export default function ThankYou() {
               </button>
               
               <p className="text-[13px] text-muted-foreground text-center mt-4">
-                <span className="text-primary">✓</span> Pagamento sicuro 1 click • 
-                <span className="text-primary">✓</span> Stesso metodo usato prima • 
+                <span className="text-primary">✓</span> Pagamento sicuro SSL • 
+                <span className="text-primary">✓</span> Checkout rapido • 
                 <span className="text-primary">✓</span> Garanzia 60 giorni
               </p>
 
