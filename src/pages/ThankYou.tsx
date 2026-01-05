@@ -219,7 +219,7 @@ export default function ThankYou() {
           </div>
           
           {/* Big Title */}
-          <h2 className="font-bold text-2xl md:text-4xl text-primary animate-pulse">
+          <h2 className="font-bold text-2xl md:text-4xl text-primary">
             🎁 ABBIAMO UN REGALO PER TE 🎁
           </h2>
         </div>
