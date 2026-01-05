@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { createStorefrontCheckout, CartItem, ShopifyProduct } from "@/lib/shopify";
 import { toast } from "sonner";
+import ebookBaseCover from "@/assets/ebook-base-cover.png";
 
 // Simulated order data (in production, this comes from Shopify Liquid variables)
 const getOrderData = () => {
@@ -242,9 +243,11 @@ export default function ThankYou() {
               <div className="relative flex items-center justify-center gap-4 mb-4">
                 {/* Base Ebook (faded) */}
                 <div className="relative opacity-70">
-                  <div className="w-24 md:w-32 h-32 md:h-44 bg-muted rounded-lg shadow-lg flex items-center justify-center">
-                    <span className="text-muted-foreground text-xs text-center px-2">Versione Base</span>
-                  </div>
+                  <img 
+                    src={ebookBaseCover} 
+                    alt="Manuale dell'Idraulico Distratto - Versione Base" 
+                    className="w-24 md:w-32 h-auto rounded-lg shadow-lg"
+                  />
                 </div>
                 
                 {/* Arrow */}
