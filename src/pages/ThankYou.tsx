@@ -172,65 +172,40 @@ export default function ThankYou() {
           </div>
         </section>
 
-        {/* SECTION 2 - EBOOK DOWNLOAD */}
+        {/* SECTION 2 - EMAIL DELIVERY NOTICE */}
         <section 
           className={`rounded-2xl p-8 md:p-10 mb-8 border-l-4 border-primary bg-gradient-to-b from-primary/10 to-primary/20 transition-all duration-500 ${
             isVisible.download ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
           <div className="text-center">
-            <div className="text-5xl md:text-6xl mb-4 text-primary">📥</div>
+            <div className="text-5xl md:text-6xl mb-4">📧</div>
             <h2 className="font-semibold text-xl md:text-2xl text-primary mb-3">
-              📥 Il Tuo Ebook è Pronto per il Download!
+              Il Tuo Ebook Sta Arrivando!
             </h2>
             <p className="text-base text-muted-foreground mb-6 max-w-lg mx-auto">
-              Manuale dell'Idraulico Distratto (PDF, 200+ pagine) disponibile per download immediato.
+              Tra pochi istanti riceverai un'email a <span className="font-semibold text-foreground">{orderData.customerEmail}</span> con il link per scaricare:
             </p>
             
-            <button 
-              onClick={() => {
-                if (localStorage.getItem('ebook_downloaded')) return;
-                localStorage.setItem('ebook_downloaded', 'true');
-                
-                // Download ebook
-                const linkEbook = document.createElement('a');
-                linkEbook.href = '/ebook.pdf';
-                linkEbook.download = 'ebook.pdf';
-                linkEbook.click();
-                
-                // Download bonus after small delay
-                setTimeout(() => {
-                  const linkBonus = document.createElement('a');
-                  linkBonus.href = '/bonus.pdf';
-                  linkBonus.download = 'bonus.pdf';
-                  linkBonus.click();
-                }, 500);
-                
-                // Disable button visually
-                const btn = document.querySelector('[data-download-btn]') as HTMLButtonElement;
-                if (btn) {
-                  btn.disabled = true;
-                  btn.textContent = '✓ DOWNLOAD COMPLETATO';
-                  btn.classList.remove('bg-primary', 'hover:bg-primary/90', 'hover:scale-[1.02]');
-                  btn.classList.add('bg-muted', 'cursor-not-allowed');
-                }
-              }}
-              disabled={typeof window !== 'undefined' && localStorage.getItem('ebook_downloaded') === 'true'}
-              data-download-btn
-              className={`inline-block w-[90%] max-w-[400px] font-semibold text-lg py-4 px-12 rounded-xl shadow-elevated transition-all duration-300 ${
-                typeof window !== 'undefined' && localStorage.getItem('ebook_downloaded') === 'true'
-                  ? 'bg-muted text-muted-foreground cursor-not-allowed'
-                  : 'bg-primary hover:bg-primary/90 text-primary-foreground hover:scale-[1.02]'
-              }`}
-            >
-              {typeof window !== 'undefined' && localStorage.getItem('ebook_downloaded') === 'true' 
-                ? '✓ DOWNLOAD COMPLETATO' 
-                : 'SCARICA EBOOK + BONUS PDF ORA'}
-            </button>
+            <div className="bg-card rounded-xl p-5 max-w-md mx-auto mb-6 shadow-soft">
+              <ul className="text-left text-[15px] leading-8 text-muted-foreground">
+                <li className="flex items-center gap-2">
+                  <span className="text-primary">✓</span> 
+                  <span><strong>Manuale dell'Idraulico Distratto</strong> (PDF, 200+ pagine)</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-primary">✓</span> 
+                  <span><strong>BONUS: Checklist Operativa</strong> (PDF)</span>
+                </li>
+              </ul>
+            </div>
             
-            <p className="text-[13px] text-muted-foreground mt-4">
-              ✓ Download istantaneo • ✓ Formato PDF • ✓ Link backup via email
-            </p>
+            <div className="bg-secondary/50 rounded-lg p-4 max-w-md mx-auto">
+              <p className="text-sm text-muted-foreground">
+                💡 <strong>Non trovi l'email?</strong> Controlla la cartella spam o promozioni. 
+                Se dopo 10 minuti non è arrivata, contattaci a <a href="mailto:supporto@example.com" className="text-primary underline hover:no-underline">supporto@example.com</a>
+              </p>
+            </div>
           </div>
         </section>
 
