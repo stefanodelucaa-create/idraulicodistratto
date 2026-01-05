@@ -174,13 +174,8 @@ export default function ThankYou() {
 
         {/* SECTION 2 - TRANSITION DIVIDER */}
         <div className="relative my-12 md:my-16 text-center">
-          {/* Big Title */}
-          <h2 className="font-bold text-2xl md:text-4xl text-primary mb-6 animate-pulse">
-            🎁 ABBIAMO UN REGALO PER TE 🎁
-          </h2>
-          
           {/* Glow lines */}
-          <div className="relative">
+          <div className="relative mb-6">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
             </div>
@@ -203,6 +198,11 @@ export default function ThankYou() {
               </div>
             </div>
           </div>
+          
+          {/* Big Title */}
+          <h2 className="font-bold text-2xl md:text-4xl text-primary animate-pulse">
+            🎁 ABBIAMO UN REGALO PER TE 🎁
+          </h2>
         </div>
 
         {/* SECTION 4 - UPSELL OFFER */}
