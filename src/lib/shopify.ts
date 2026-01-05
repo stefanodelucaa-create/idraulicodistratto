@@ -99,43 +99,15 @@ const STOREFRONT_QUERY = `
   }
 `;
 
-const CART_CREATE_MUTATION = `
-  mutation cartCreate($input: CartInput!) {
-    cartCreate(input: $input) {
-      cart {
+const CHECKOUT_CREATE_MUTATION = `
+  mutation checkoutCreate($input: CheckoutCreateInput!) {
+    checkoutCreate(input: $input) {
+      checkout {
         id
-        checkoutUrl
-        totalQuantity
-        cost {
-          totalAmount {
-            amount
-            currencyCode
-          }
-        }
-        lines(first: 100) {
-          edges {
-            node {
-              id
-              quantity
-              merchandise {
-                ... on ProductVariant {
-                  id
-                  title
-                  price {
-                    amount
-                    currencyCode
-                  }
-                  product {
-                    title
-                    handle
-                  }
-                }
-              }
-            }
-          }
-        }
+        webUrl
       }
-      userErrors {
+      checkoutUserErrors {
+        code
         field
         message
       }
@@ -204,32 +176,30 @@ export interface CartItem {
 
 export async function createStorefrontCheckout(items: CartItem[]): Promise<string> {
   try {
-    const lines = items.map(item => ({
+    const lineItems = items.map(item => ({
       quantity: item.quantity,
-      merchandiseId: item.variantId,
+      variantId: item.variantId,
     }));
 
-    const cartData = await storefrontApiRequest(CART_CREATE_MUTATION, {
-      input: { lines },
+    const checkoutData = await storefrontApiRequest(CHECKOUT_CREATE_MUTATION, {
+      input: { lineItems },
     });
 
-    if (!cartData) {
+    if (!checkoutData) {
       throw new Error('Failed to create checkout');
     }
 
-    if (cartData.data.cartCreate.userErrors.length > 0) {
-      throw new Error(`Cart creation failed: ${cartData.data.cartCreate.userErrors.map((e: { message: string }) => e.message).join(', ')}`);
+    if (checkoutData.data.checkoutCreate.checkoutUserErrors.length > 0) {
+      throw new Error(`Checkout creation failed: ${checkoutData.data.checkoutCreate.checkoutUserErrors.map((e: { message: string }) => e.message).join(', ')}`);
     }
 
-    const cart = cartData.data.cartCreate.cart;
+    const checkout = checkoutData.data.checkoutCreate.checkout;
     
-    if (!cart.checkoutUrl) {
+    if (!checkout.webUrl) {
       throw new Error('No checkout URL returned from Shopify');
     }
 
-    const url = new URL(cart.checkoutUrl);
-    url.searchParams.set('channel', 'online_store');
-    return url.toString();
+    return checkout.webUrl;
   } catch (error) {
     console.error('Error creating storefront checkout:', error);
     throw error;
