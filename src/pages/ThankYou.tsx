@@ -78,7 +78,7 @@ export default function ThankYou() {
     upsell: false
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [countdown, setCountdown] = useState({ minutes: 10, seconds: 0 });
+  const [countdown, setCountdown] = useState({ minutes: 5, seconds: 0 });
   const orderData = getOrderData();
 
   useEffect(() => {
