@@ -167,15 +167,45 @@ function extractVariantId(graphqlId: string): string {
 }
 
 export async function createStorefrontCheckout(items: CartItem[]): Promise<string> {
-  // Build direct checkout URL using variant IDs
-  // Format: /cart/{variant_id}:{quantity},{variant_id}:{quantity}
-  const cartItems = items.map(item => {
-    const variantId = extractVariantId(item.variantId);
-    return `${variantId}:${item.quantity}`;
-  }).join(',');
+  const CART_CREATE_MUTATION = `
+    mutation cartCreate($input: CartInput!) {
+      cartCreate(input: $input) {
+        cart {
+          checkoutUrl
+        }
+        userErrors {
+          field
+          message
+        }
+      }
+    }
+  `;
 
-  // Use the custom domain for checkout
-  const checkoutUrl = `https://${SHOPIFY_CUSTOM_DOMAIN}/cart/${cartItems}`;
-  
-  return checkoutUrl;
+  const lines = items.map((item) => ({
+    quantity: item.quantity,
+    merchandiseId: item.variantId,
+  }));
+
+  const cartData = await storefrontApiRequest(CART_CREATE_MUTATION, {
+    input: { lines },
+  });
+
+  if (!cartData) {
+    throw new Error("Failed to create cart");
+  }
+
+  const userErrors = cartData.data?.cartCreate?.userErrors ?? [];
+  if (userErrors.length > 0) {
+    throw new Error(userErrors.map((e: { message: string }) => e.message).join(", "));
+  }
+
+  const checkoutUrl: string | undefined = cartData.data?.cartCreate?.cart?.checkoutUrl;
+  if (!checkoutUrl) {
+    throw new Error("No checkout URL returned from Shopify");
+  }
+
+  const url = new URL(checkoutUrl);
+  url.searchParams.set("channel", "online_store");
+  return url.toString();
 }
+
