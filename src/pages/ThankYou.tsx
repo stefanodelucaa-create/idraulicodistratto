@@ -185,13 +185,13 @@ export default function ThankYou() {
           {/* Badge */}
           <div className="relative flex justify-center">
             <div className="bg-gradient-to-r from-primary via-accent to-primary p-[2px] rounded-full shadow-glow animate-[subtle-pulse_2s_ease-in-out_infinite]">
-              <div className="bg-background px-6 md:px-10 py-3 md:py-4 rounded-full">
-                <span className="font-bold text-base md:text-xl text-primary flex items-center gap-2 md:gap-3">
-                  <span className="text-xl md:text-2xl">🚨</span>
-                  <Clock className="w-5 h-5 md:w-6 md:h-6 text-accent animate-pulse" />
+            <div className="bg-background px-4 md:px-10 py-3 md:py-4 rounded-full">
+                <span className="font-bold text-sm md:text-xl text-primary flex items-center justify-center gap-1.5 md:gap-3 text-center">
+                  <span className="text-lg md:text-2xl">🚨</span>
+                  <Clock className="w-4 h-4 md:w-6 md:h-6 text-accent animate-pulse flex-shrink-0" />
                   <span className="hidden sm:inline">ASPETTA! Non Chiudere Ancora...</span>
-                  <span className="sm:hidden">ASPETTA! Non Chiudere...</span>
-                  <span className="text-xl md:text-2xl">🚨</span>
+                  <span className="sm:hidden">ASPETTA!</span>
+                  <span className="text-lg md:text-2xl">🚨</span>
                 </span>
               </div>
             </div>
