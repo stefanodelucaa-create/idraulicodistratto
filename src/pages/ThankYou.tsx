@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Check, ChevronDown, Download, Star, X, Clock, Shield, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -442,14 +443,14 @@ export default function ThankYou() {
         {/* FOOTER */}
         <footer className="bg-foreground text-muted rounded-2xl p-8 mt-12 text-center text-sm">
           <p className="mb-4">
-            © 2026 Manuale dell'Idraulico Distratto. Tutti i diritti riservati.
+            © {new Date().getFullYear()} Manuale dell'Idraulico Distratto. Tutti i diritti riservati.
           </p>
           <p className="mb-4">
-            <a href="#" className="text-accent hover:underline">Privacy Policy</a>
+            <Link to="/privacy-policy" className="text-accent hover:underline">Privacy Policy</Link>
             {" • "}
-            <a href="#" className="text-accent hover:underline">Termini e Condizioni</a>
+            <Link to="/termini-condizioni" className="text-accent hover:underline">Termini e Condizioni</Link>
             {" • "}
-            <a href="#" className="text-accent hover:underline">Contatti</a>
+            <Link to="/contatti" className="text-accent hover:underline">Contatti</Link>
           </p>
           <p className="text-muted-foreground/70">
             Hai domande? Rispondi all'email di conferma ricevuta.
