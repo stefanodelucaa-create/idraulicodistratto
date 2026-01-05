@@ -22,17 +22,17 @@ const LIFETIME_VARIANT_ID = "gid://shopify/ProductVariant/56481765949784";
 
 const testimonials = [
   {
-    name: "Marco P.",
+    name: "Paolo M.",
     location: "Bologna",
     text: "Ho preso Lifetime Access al lancio e già ricevuto 2 aggiornamenti con nuovi capitoli. Vale ogni centesimo!"
   },
   {
-    name: "Luca T.",
+    name: "Simone D.",
     location: "Milano",
     text: "Ogni aggiornamento aggiunge tecniche nuove che non trovi altrove. Miglior investimento fatto!"
   },
   {
-    name: "Giulia R.",
+    name: "Alessia B.",
     location: "Roma",
     text: "Aggiornamenti gratuiti = niente stress di restare indietro. Lo consiglio a tutti!"
   }
