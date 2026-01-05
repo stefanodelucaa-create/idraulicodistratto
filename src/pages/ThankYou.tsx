@@ -78,6 +78,7 @@ export default function ThankYou() {
     upsell: false
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [countdown, setCountdown] = useState({ minutes: 10, seconds: 0 });
   const orderData = getOrderData();
 
   useEffect(() => {
@@ -85,6 +86,24 @@ export default function ThankYou() {
     setTimeout(() => setIsVisible(prev => ({ ...prev, hero: true })), 100);
     setTimeout(() => setIsVisible(prev => ({ ...prev, download: true })), 500);
     setTimeout(() => setIsVisible(prev => ({ ...prev, upsell: true })), 1000);
+  }, []);
+
+  // Countdown timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown(prev => {
+        if (prev.minutes === 0 && prev.seconds === 0) {
+          clearInterval(timer);
+          return prev;
+        }
+        if (prev.seconds === 0) {
+          return { minutes: prev.minutes - 1, seconds: 59 };
+        }
+        return { ...prev, seconds: prev.seconds - 1 };
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
   }, []);
 
   const handleUpsellPurchase = async () => {
@@ -306,10 +325,20 @@ export default function ThankYou() {
                 <span className="text-primary">✓</span> Garanzia 60 giorni
               </p>
 
-              {/* Scarcity Box */}
+              {/* Scarcity Box with Countdown */}
               <div className="bg-destructive/10 rounded-lg p-5 text-center mt-6">
+                {/* Countdown Timer */}
+                <div className="flex items-center justify-center gap-3 mb-3">
+                  <div className="bg-destructive text-destructive-foreground font-bold text-2xl md:text-3xl px-4 py-2 rounded-lg min-w-[60px]">
+                    {String(countdown.minutes).padStart(2, '0')}
+                  </div>
+                  <span className="text-destructive font-bold text-2xl">:</span>
+                  <div className="bg-destructive text-destructive-foreground font-bold text-2xl md:text-3xl px-4 py-2 rounded-lg min-w-[60px]">
+                    {String(countdown.seconds).padStart(2, '0')}
+                  </div>
+                </div>
                 <p className="font-semibold text-base text-destructive">
-                  ⏰ ATTENZIONE: Questa offerta è valida SOLO ORA. Quando chiudi questa pagina, scompare per sempre.
+                  ⏰ ATTENZIONE: Questa offerta scade tra pochi minuti. Quando il timer arriva a zero, scompare per sempre.
                 </p>
               </div>
 
