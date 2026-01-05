@@ -221,7 +221,7 @@ export default function ThankYou() {
           }`}
         >
           {/* Badge */}
-          <div className="absolute -top-4 right-4 md:right-8 bg-[#FF6B35] text-white font-bold text-xs md:text-sm uppercase px-4 md:px-5 py-2 rounded-full">
+          <div className="absolute -top-4 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-8 bg-[#FF6B35] text-white font-bold text-xs md:text-sm uppercase px-4 md:px-5 py-2 rounded-full">
             🔥 SOLO QUI
           </div>
 
