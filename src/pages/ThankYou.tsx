@@ -173,26 +173,33 @@ export default function ThankYou() {
         </section>
 
         {/* SECTION 2 - TRANSITION DIVIDER */}
-        <div className="relative my-12 md:my-16">
-          {/* Glow lines */}
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
-          </div>
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
-          </div>
+        <div className="relative my-12 md:my-16 text-center">
+          {/* Big Title */}
+          <h2 className="font-bold text-2xl md:text-4xl text-primary mb-6 animate-pulse">
+            🎁 ABBIAMO UN REGALO PER TE 🎁
+          </h2>
           
-          {/* Badge */}
-          <div className="relative flex justify-center">
-            <div className="bg-gradient-to-r from-primary via-accent to-primary p-[2px] rounded-full shadow-glow animate-[subtle-pulse_2s_ease-in-out_infinite]">
-            <div className="bg-background px-4 md:px-10 py-3 md:py-4 rounded-full">
-                <span className="font-bold text-sm md:text-xl text-primary flex items-center justify-center gap-1.5 md:gap-3 text-center">
-                  <span className="text-lg md:text-2xl">🚨</span>
-                  <Clock className="w-4 h-4 md:w-6 md:h-6 text-accent animate-pulse flex-shrink-0" />
-                  <span className="hidden sm:inline">ASPETTA! Non Chiudere Ancora...</span>
-                  <span className="sm:hidden">ASPETTA!</span>
-                  <span className="text-lg md:text-2xl">🚨</span>
-                </span>
+          {/* Glow lines */}
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
+            </div>
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+            </div>
+            
+            {/* Badge */}
+            <div className="relative flex justify-center">
+              <div className="bg-gradient-to-r from-primary via-accent to-primary p-[2px] rounded-full shadow-glow animate-[subtle-pulse_2s_ease-in-out_infinite]">
+                <div className="bg-background px-4 md:px-10 py-3 md:py-4 rounded-full">
+                  <span className="font-bold text-sm md:text-xl text-primary flex items-center justify-center gap-1.5 md:gap-3 text-center">
+                    <span className="text-lg md:text-2xl">🚨</span>
+                    <Clock className="w-4 h-4 md:w-6 md:h-6 text-accent animate-pulse flex-shrink-0" />
+                    <span className="hidden sm:inline">ASPETTA! Non Chiudere Ancora...</span>
+                    <span className="sm:hidden">ASPETTA!</span>
+                    <span className="text-lg md:text-2xl">🚨</span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
