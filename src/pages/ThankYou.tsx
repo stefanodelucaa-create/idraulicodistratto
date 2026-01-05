@@ -172,44 +172,7 @@ export default function ThankYou() {
           </div>
         </section>
 
-        {/* SECTION 2 - EMAIL DELIVERY NOTICE */}
-        <section 
-          className={`rounded-2xl p-8 md:p-10 mb-8 border-l-4 border-primary bg-gradient-to-b from-primary/10 to-primary/20 transition-all duration-500 ${
-            isVisible.download ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <div className="text-center">
-            <div className="text-5xl md:text-6xl mb-4">📧</div>
-            <h2 className="font-semibold text-xl md:text-2xl text-primary mb-3">
-              Il Tuo Ebook Sta Arrivando!
-            </h2>
-            <p className="text-base text-muted-foreground mb-6 max-w-lg mx-auto">
-              Tra pochi istanti riceverai un'email a <span className="font-semibold text-foreground">{orderData.customerEmail}</span> con il link per scaricare:
-            </p>
-            
-            <div className="bg-card rounded-xl p-5 max-w-md mx-auto mb-6 shadow-soft">
-              <ul className="text-left text-[15px] leading-8 text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <span className="text-primary">✓</span> 
-                  <span><strong>Manuale dell'Idraulico Distratto</strong> (PDF, 200+ pagine)</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary">✓</span> 
-                  <span><strong>BONUS: Checklist Operativa</strong> (PDF)</span>
-                </li>
-              </ul>
-            </div>
-            
-            <div className="bg-secondary/50 rounded-lg p-4 max-w-md mx-auto">
-              <p className="text-sm text-muted-foreground">
-                💡 <strong>Non trovi l'email?</strong> Controlla la cartella spam o promozioni. 
-                Se dopo 10 minuti non è arrivata, contattaci a <a href="mailto:info@idraulicodistratto.com" className="text-primary underline hover:no-underline">info@idraulicodistratto.com</a>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 3 - TRANSITION DIVIDER */}
+        {/* SECTION 2 - TRANSITION DIVIDER */}
         <div className="relative my-16 md:my-16">
           <div className="h-0.5 bg-border"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-4 md:px-8 py-2 max-w-[90%] md:max-w-none">
@@ -385,6 +348,43 @@ export default function ThankYou() {
               </AccordionItem>
             ))}
           </Accordion>
+        </section>
+
+        {/* SECTION 7 - EMAIL DELIVERY NOTICE */}
+        <section 
+          className={`rounded-2xl p-8 md:p-10 mt-12 border-l-4 border-primary bg-gradient-to-b from-primary/10 to-primary/20 transition-all duration-500 ${
+            isVisible.download ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <div className="text-center">
+            <div className="text-5xl md:text-6xl mb-4">📧</div>
+            <h2 className="font-semibold text-xl md:text-2xl text-primary mb-3">
+              Il Tuo Ebook Sta Arrivando!
+            </h2>
+            <p className="text-base text-muted-foreground mb-6 max-w-lg mx-auto">
+              Tra pochi istanti riceverai un'email a <span className="font-semibold text-foreground">{orderData.customerEmail}</span> con il link per scaricare:
+            </p>
+            
+            <div className="bg-card rounded-xl p-5 max-w-md mx-auto mb-6 shadow-soft">
+              <ul className="text-left text-[15px] leading-8 text-muted-foreground">
+                <li className="flex items-center gap-2">
+                  <span className="text-primary">✓</span> 
+                  <span><strong>Manuale dell'Idraulico Distratto</strong> (PDF, 200+ pagine)</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-primary">✓</span> 
+                  <span><strong>BONUS: Checklist Operativa</strong> (PDF)</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="bg-secondary/50 rounded-lg p-4 max-w-md mx-auto">
+              <p className="text-sm text-muted-foreground">
+                💡 <strong>Non trovi l'email?</strong> Controlla la cartella spam o promozioni. 
+                Se dopo 10 minuti non è arrivata, contattaci a <a href="mailto:info@idraulicodistratto.com" className="text-primary underline hover:no-underline">info@idraulicodistratto.com</a>
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* FOOTER */}
