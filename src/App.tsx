@@ -10,6 +10,9 @@ import IndexTech from "./pages/IndexTech";
 import IndexHybrid from "./pages/IndexHybrid";
 import IndexTripleHybrid from "./pages/IndexTripleHybrid";
 import ThankYou from "./pages/ThankYou";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsConditions from "./pages/TermsConditions";
+import Contatti from "./pages/Contatti";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +31,9 @@ const App = () => (
           <Route path="/v5" element={<IndexHybrid />} />
           <Route path="/v6" element={<IndexTripleHybrid />} />
           <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/termini-condizioni" element={<TermsConditions />} />
+          <Route path="/contatti" element={<Contatti />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
