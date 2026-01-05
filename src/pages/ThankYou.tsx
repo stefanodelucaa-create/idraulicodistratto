@@ -170,7 +170,7 @@ export default function ThankYou() {
           }`}
         >
           <div className="text-center">
-            <div className="text-7xl md:text-8xl mb-6 animate-bounce">🎉</div>
+            <div className="text-7xl md:text-8xl mb-6">🎉</div>
             <h1 className="font-bold text-[26px] md:text-[32px] text-foreground mb-6">
               Grazie {orderData.customerName}! Il Tuo Ordine è Confermato
             </h1>
