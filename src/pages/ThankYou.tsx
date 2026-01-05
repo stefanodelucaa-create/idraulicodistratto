@@ -203,7 +203,7 @@ export default function ThankYou() {
             <div className="bg-secondary/50 rounded-lg p-4 max-w-md mx-auto">
               <p className="text-sm text-muted-foreground">
                 💡 <strong>Non trovi l'email?</strong> Controlla la cartella spam o promozioni. 
-                Se dopo 10 minuti non è arrivata, contattaci a <a href="mailto:supporto@example.com" className="text-primary underline hover:no-underline">supporto@example.com</a>
+                Se dopo 10 minuti non è arrivata, contattaci a <a href="mailto:info@idraulicodistratto.com" className="text-primary underline hover:no-underline">info@idraulicodistratto.com</a>
               </p>
             </div>
           </div>
