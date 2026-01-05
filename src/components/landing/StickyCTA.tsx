@@ -33,7 +33,7 @@ export const StickyCTA = ({ onBuyClick, price }: StickyCTAProps) => {
       <div className="h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
       
       <div 
-        className="bg-gradient-to-b from-card to-background backdrop-blur-xl px-4 py-4 safe-area-pb"
+        className="bg-gradient-to-b from-card to-background backdrop-blur-xl px-4 pt-3 pb-5 safe-area-pb"
         style={{ boxShadow: "0 -10px 40px -10px hsl(32 80% 35% / 0.15)" }}
       >
         {/* Single row layout: Price info + CTA */}
