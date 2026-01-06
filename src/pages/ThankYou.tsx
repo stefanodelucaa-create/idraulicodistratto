@@ -109,56 +109,9 @@ export default function ThankYou() {
   }, []);
 
   const handleUpsellPurchase = async () => {
-    setIsLoading(true);
-    try {
-      // Create a cart item for the Lifetime Access upsell
-      const mockProduct: ShopifyProduct = {
-        node: {
-          id: "gid://shopify/Product/15545650151768",
-          title: "Lifetime Access - Aggiornamenti Illimitati",
-          description: "",
-          handle: "lifetime-access",
-          priceRange: {
-            minVariantPrice: {
-              amount: "12.00",
-              currencyCode: "EUR"
-            }
-          },
-          images: { edges: [] },
-          variants: {
-            edges: [{
-              node: {
-                id: LIFETIME_VARIANT_ID,
-                title: "Default",
-                price: { amount: "12.00", currencyCode: "EUR" },
-                availableForSale: true,
-                selectedOptions: []
-              }
-            }]
-          },
-          options: []
-        }
-      };
-
-      const cartItem: CartItem = {
-        product: mockProduct,
-        variantId: LIFETIME_VARIANT_ID,
-        variantTitle: "Default",
-        price: { amount: "12.00", currencyCode: "EUR" },
-        quantity: 1,
-        selectedOptions: []
-      };
-
-      const checkoutUrl = await createStorefrontCheckout([cartItem]);
-      window.open(checkoutUrl, '_blank');
-    } catch (error) {
-      console.error('Upsell checkout error:', error);
-      toast.error("Errore durante il checkout", {
-        description: "Riprova tra qualche secondo"
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    toast.info("Checkout temporaneamente disattivato", {
+      description: "Sto scollegando completamente il carrello dai pulsanti. Dimmi quando vuoi reintegrare il checkout Shopify.",
+    });
   };
 
   return (
