@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { createStorefrontCheckout, CartItem, ShopifyProduct } from "@/lib/shopify";
 import { toast } from "sonner";
 import ebookBaseCover from "@/assets/ebook-base-cover.png";
+import lifetimeAccessCover from "@/assets/lifetime-access-cover.jpeg";
 
 // Simulated order data (in production, this comes from Shopify Liquid variables)
 const getOrderData = () => {
@@ -254,9 +255,11 @@ export default function ThankYou() {
                 {/* Lifetime Ebook (glowing) */}
                 <div className="relative">
                   <div className="absolute inset-0 bg-accent blur-xl opacity-40 rounded-lg"></div>
-                  <div className="relative w-28 md:w-36 h-36 md:h-48 bg-gradient-to-br from-accent to-primary rounded-lg shadow-xl flex items-center justify-center border-2 border-accent">
-                    <span className="text-accent-foreground text-xs md:text-sm font-bold text-center px-2">LIFETIME<br/>ACCESS</span>
-                  </div>
+                  <img 
+                    src={lifetimeAccessCover} 
+                    alt="Lifetime Access - Aggiornamenti Illimitati" 
+                    className="relative w-32 md:w-44 h-auto rounded-lg shadow-xl border-2 border-accent"
+                  />
                 </div>
               </div>
               
