@@ -52,24 +52,26 @@ const Index = () => {
       selectedOptions: variant.selectedOptions || [],
     };
 
-    // Open popup synchronously to avoid browser blocking
-    const popup = window.open("about:blank", "_blank");
-
     try {
       toast.loading("Preparando il checkout...", { id: "checkout" });
       const checkoutUrl = await createStorefrontCheckout([cartItem]);
       toast.dismiss("checkout");
 
-      if (popup) {
-        popup.location.href = checkoutUrl;
-      } else {
-        window.location.href = checkoutUrl;
-      }
+      // DEBUG: mostra l'URL generato
+      console.log("🔗 Checkout URL:", checkoutUrl);
+      toast.info("DEBUG - URL Checkout", { 
+        description: checkoutUrl,
+        duration: 10000,
+      });
+
+      // Delay di 3 secondi per leggere l'URL prima del redirect
+      setTimeout(() => {
+        window.open(checkoutUrl, "_blank");
+      }, 3000);
     } catch (error) {
       toast.dismiss("checkout");
       toast.error("Checkout non riuscito", { description: "Riprova tra qualche secondo." });
       console.error("Checkout error:", error);
-      if (popup) popup.close();
     }
   };
 
