@@ -60,17 +60,28 @@ const Index = () => {
       selectedOptions: variant.selectedOptions || [],
     };
 
+    // Open the tab synchronously to avoid popup blockers (window.open after await may be blocked)
+    const popup = window.open("", "_blank", "noopener,noreferrer");
+
     try {
       toast.loading("Preparando il checkout...", { id: "checkout" });
       const checkoutUrl = await createStorefrontCheckout([cartItem]);
       toast.dismiss("checkout");
-      window.open(checkoutUrl, '_blank');
+
+      if (popup) {
+        popup.location.href = checkoutUrl;
+      } else {
+        window.open(checkoutUrl, "_blank");
+      }
     } catch (error) {
       toast.dismiss("checkout");
       toast.error("Errore durante il checkout", {
-        description: "Riprova tra qualche momento.",
+        description: popup
+          ? "Riprova tra qualche momento."
+          : "Consenti i popup e riprova.",
       });
       console.error("Checkout error:", error);
+      if (popup) popup.close();
     }
   };
 
