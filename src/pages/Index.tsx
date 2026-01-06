@@ -61,24 +61,26 @@ const Index = () => {
     };
 
     // Open the tab synchronously to avoid popup blockers (window.open after await may be blocked)
-    const popup = window.open("", "_blank", "noopener,noreferrer");
+    const popup = window.open("about:blank", "_blank");
 
     try {
       toast.loading("Preparando il checkout...", { id: "checkout" });
       const checkoutUrl = await createStorefrontCheckout([cartItem]);
       toast.dismiss("checkout");
 
+      if (!checkoutUrl || !/^https?:\/\//i.test(checkoutUrl)) {
+        throw new Error(`Invalid checkoutUrl: ${checkoutUrl}`);
+      }
+
       if (popup) {
-        popup.location.href = checkoutUrl;
+        popup.location.replace(checkoutUrl);
       } else {
-        window.open(checkoutUrl, "_blank");
+        window.location.href = checkoutUrl;
       }
     } catch (error) {
       toast.dismiss("checkout");
-      toast.error("Errore durante il checkout", {
-        description: popup
-          ? "Riprova tra qualche momento."
-          : "Consenti i popup e riprova.",
+      toast.error("Checkout non riuscito", {
+        description: "Se vedi una scheda vuota, il link non è stato generato: riprova e poi mandami lo screenshot dell’errore.",
       });
       console.error("Checkout error:", error);
       if (popup) popup.close();
