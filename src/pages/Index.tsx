@@ -31,48 +31,8 @@ const Index = () => {
     loadProduct();
   }, []);
 
-  const handleBuyClick = async () => {
-    if (!product) {
-      toast.error("Prodotto non disponibile", { description: "Riprova tra qualche momento." });
-      return;
-    }
-
-    const variant = product.node.variants.edges[0]?.node;
-    if (!variant) {
-      toast.error("Variante non disponibile");
-      return;
-    }
-
-    const cartItem: CartItem = {
-      product,
-      variantId: variant.id,
-      variantTitle: variant.title,
-      price: variant.price,
-      quantity: 1,
-      selectedOptions: variant.selectedOptions || [],
-    };
-
-    try {
-      toast.loading("Preparando il checkout...", { id: "checkout" });
-      const checkoutUrl = await createStorefrontCheckout([cartItem]);
-      toast.dismiss("checkout");
-
-      // DEBUG: mostra l'URL generato
-      console.log("🔗 Checkout URL:", checkoutUrl);
-      toast.info("DEBUG - URL Checkout", { 
-        description: checkoutUrl,
-        duration: 10000,
-      });
-
-      // Delay di 3 secondi per leggere l'URL prima del redirect
-      setTimeout(() => {
-        window.open(checkoutUrl, "_blank");
-      }, 3000);
-    } catch (error) {
-      toast.dismiss("checkout");
-      toast.error("Checkout non riuscito", { description: "Riprova tra qualche secondo." });
-      console.error("Checkout error:", error);
-    }
+  const handleBuyClick = () => {
+    window.open("https://idraulicodistratto.lovable.app/cart/56459385897304:1?checkout", "_blank");
   };
 
   const originalPrice = "€79";
