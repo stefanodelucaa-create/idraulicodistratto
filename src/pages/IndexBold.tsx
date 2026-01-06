@@ -116,31 +116,12 @@ const IndexBold = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleBuyClick = async () => {
-    if (!product) {
-      toast.error("Prodotto non disponibile");
-      return;
-    }
-    const variant = product.node.variants.edges[0]?.node;
-    if (!variant) return;
-
-    const cartItem: CartItem = {
-      product,
-      variantId: variant.id,
-      variantTitle: variant.title,
-      price: variant.price,
-      quantity: 1,
-      selectedOptions: variant.selectedOptions || [],
-    };
-
-    try {
-      toast.loading("Preparando il checkout...", { id: "checkout" });
-      const checkoutUrl = await createStorefrontCheckout([cartItem]);
-      toast.dismiss("checkout");
-      window.open(checkoutUrl, '_blank');
-    } catch (error) {
-      toast.dismiss("checkout");
-      toast.error("Errore durante il checkout");
+  const handleBuyClick = () => {
+    const el = document.getElementById("acquista");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.location.hash = "acquista";
     }
   };
 
