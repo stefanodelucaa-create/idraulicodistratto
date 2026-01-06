@@ -205,6 +205,11 @@ export async function createStorefrontCheckout(items: CartItem[]): Promise<strin
   }
 
   const url = new URL(checkoutUrl);
+
+  // Force permanent domain to avoid custom-domain cart/checkout issues
+  url.protocol = "https:";
+  url.hostname = SHOPIFY_STORE_PERMANENT_DOMAIN;
+
   url.searchParams.set("channel", "online_store");
   return url.toString();
 }
