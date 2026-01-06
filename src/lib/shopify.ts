@@ -206,7 +206,13 @@ export async function createStorefrontCheckout(items: CartItem[]): Promise<strin
 
   const url = new URL(checkoutUrl);
 
-  // Force permanent domain to avoid custom-domain cart/checkout issues
+  // Some Shopify setups return a cart permalink (e.g. /cart/c/...) instead of a /checkouts/... URL.
+  // In that case, force direct checkout by appending /checkout.
+  if (url.pathname.startsWith("/cart/c/") && !url.pathname.endsWith("/checkout")) {
+    url.pathname = `${url.pathname.replace(/\/+$/, "")}/checkout`;
+  }
+
+  // Prefer permanent domain to reduce custom-domain checkout edge cases.
   url.protocol = "https:";
   url.hostname = SHOPIFY_STORE_PERMANENT_DOMAIN;
 
