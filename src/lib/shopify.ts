@@ -212,10 +212,9 @@ export async function createStorefrontCheckout(items: CartItem[]): Promise<strin
     url.pathname = `${url.pathname.replace(/\/+$/, "")}/checkout`;
   }
 
-  // If Shopify returns the shop's custom domain but that domain points to this Lovable site,
-  // the user will bounce back here. Force the permanent *.myshopify.com domain.
+  // Use custom domain with www prefix
   url.protocol = "https:";
-  url.hostname = SHOPIFY_STORE_PERMANENT_DOMAIN;
+  url.hostname = `www.${SHOPIFY_CUSTOM_DOMAIN}`;
 
   // Some cart permalinks include a `key` query param that is tied to the custom domain.
   // Removing it prevents Shopify from redirecting back to the custom domain in some setups.
