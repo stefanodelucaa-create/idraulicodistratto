@@ -75,6 +75,25 @@ const benefits = [
 ];
 
 export default function ThankYou() {
+  // Add noindex meta tag to prevent Google indexing
+  useEffect(() => {
+    // Set noindex meta tag
+    let metaRobots = document.querySelector('meta[name="robots"]') as HTMLMetaElement;
+    if (!metaRobots) {
+      metaRobots = document.createElement('meta');
+      metaRobots.name = 'robots';
+      document.head.appendChild(metaRobots);
+    }
+    metaRobots.content = 'noindex, nofollow';
+    
+    // Cleanup on unmount
+    return () => {
+      if (metaRobots) {
+        metaRobots.content = 'index, follow';
+      }
+    };
+  }, []);
+
   const [isVisible, setIsVisible] = useState({
     hero: false,
     download: false,
