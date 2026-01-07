@@ -32,7 +32,7 @@ const Index = () => {
   }, []);
 
   const handleBuyClick = () => {
-    window.open("https://www.idraulicodistratto.lovable.app/cart/56459385897304:1?checkout", "_blank");
+    window.open("https://www.idraulicodistratto.com/cart/56459385897304:1?checkout", "_blank");
   };
 
   const originalPrice = "€79";
