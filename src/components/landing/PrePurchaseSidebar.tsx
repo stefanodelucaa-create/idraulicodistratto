@@ -187,15 +187,6 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
                 </div>
               </div>
 
-              {/* Warning Box */}
-              <div className="bg-secondary/70 border-l-4 border-accent rounded-lg p-3 mb-4">
-                <p className="font-semibold text-sm text-secondary-foreground mb-1">⚠️ Con la versione BASE:</p>
-                <ul className="text-xs leading-5 text-secondary-foreground space-y-0.5">
-                  <li><span className="text-destructive">❌</span> NON ricevi aggiornamenti futuri</li>
-                  <li><span className="text-destructive">❌</span> NON hai supporto prioritario</li>
-                  <li><span className="text-destructive">❌</span> Dovresti ricomprare ogni update!</li>
-                </ul>
-              </div>
 
               {/* Benefits Full List */}
               <div className="bg-accent/10 rounded-lg p-4 mb-4 border border-accent/30">
