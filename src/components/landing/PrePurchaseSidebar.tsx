@@ -116,22 +116,26 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
         <div className="px-6 py-6 space-y-6">
           {/* Product Card - Ebook Base */}
           <div className="bg-card rounded-xl p-4 shadow-soft border border-border">
-            <div className="flex gap-4">
-              <img 
-                src={ebookMockup} 
-                alt="Manuale dell'Idraulico Distratto" 
-                className="w-20 h-auto rounded-lg shadow-md"
-              />
-              <div className="flex-1">
-                <h3 className="font-bold text-base text-foreground mb-1">
+            <div className="flex flex-col sm:flex-row gap-4">
+              {/* Image - centered and larger on mobile */}
+              <div className="flex justify-center sm:justify-start flex-shrink-0">
+                <img 
+                  src={ebookMockup} 
+                  alt="Manuale dell'Idraulico Distratto" 
+                  className="w-28 sm:w-20 h-auto rounded-lg shadow-md"
+                />
+              </div>
+              {/* Content - centered on mobile */}
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="font-bold text-lg sm:text-base text-foreground mb-1">
                   Manuale dell'Idraulico Distratto
                 </h3>
                 <p className="text-sm text-muted-foreground mb-2">
                   Ebook completo + Bonus
                 </p>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-xs text-muted-foreground line-through">€79</span>
-                  <span className="text-xl font-bold text-primary">€{basePrice}</span>
+                <div className="flex items-baseline gap-2 justify-center sm:justify-start">
+                  <span className="text-sm text-muted-foreground line-through">€79</span>
+                  <span className="text-2xl sm:text-xl font-bold text-primary">€{basePrice}</span>
                 </div>
               </div>
             </div>
