@@ -106,11 +106,21 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
       >
         {/* Header */}
         <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border px-6 py-4">
-          <SheetHeader>
-            <SheetTitle className="text-xl font-bold text-foreground flex items-center gap-2">
-              🛒 Il Tuo Carrello
-            </SheetTitle>
-          </SheetHeader>
+          <div className="flex items-center justify-between">
+            <button 
+              onClick={onClose}
+              className="p-2 -ml-2 rounded-full hover:bg-secondary transition-colors"
+              aria-label="Chiudi carrello"
+            >
+              <X className="w-5 h-5 text-muted-foreground" />
+            </button>
+            <SheetHeader className="flex-1 text-center">
+              <SheetTitle className="text-xl font-bold text-foreground">
+                🛒 Il Tuo Carrello
+              </SheetTitle>
+            </SheetHeader>
+            <div className="w-9" /> {/* Spacer for centering */}
+          </div>
         </div>
 
         <div className="px-6 py-6 space-y-6">
