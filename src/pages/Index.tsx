@@ -12,10 +12,16 @@ import { FAQ } from "@/components/landing/FAQ";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 import { StickyCTA } from "@/components/landing/StickyCTA";
+import { PrePurchaseSidebar } from "@/components/landing/PrePurchaseSidebar";
 import { fetchProducts, ShopifyProduct, createStorefrontCheckout, CartItem } from "@/lib/shopify";
+
+// Variant IDs for Shopify checkout
+const BASE_VARIANT_ID = "56459385897304";
+const LIFETIME_VARIANT_ID = "56481765949784";
 
 const Index = () => {
   const [product, setProduct] = useState<ShopifyProduct | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     const loadProduct = async () => {
@@ -32,7 +38,22 @@ const Index = () => {
   }, []);
 
   const handleBuyClick = () => {
-    window.open("https://www.idraulicodistratto.com/cart/56459385897304:1?checkout", "_blank");
+    setIsSidebarOpen(true);
+  };
+
+  const handleCheckout = (includeLifetime: boolean) => {
+    let checkoutUrl: string;
+    
+    if (includeLifetime) {
+      // Both products in cart
+      checkoutUrl = `https://www.idraulicodistratto.com/cart/${BASE_VARIANT_ID}:1,${LIFETIME_VARIANT_ID}:1?checkout`;
+    } else {
+      // Only base ebook
+      checkoutUrl = `https://www.idraulicodistratto.com/cart/${BASE_VARIANT_ID}:1?checkout`;
+    }
+    
+    window.open(checkoutUrl, "_blank");
+    setIsSidebarOpen(false);
   };
 
   const originalPrice = "€79";
@@ -52,6 +73,13 @@ const Index = () => {
       <FinalCTA onBuyClick={handleBuyClick} price={price} originalPrice={originalPrice} />
       <Footer />
       <StickyCTA onBuyClick={handleBuyClick} price={price} />
+      
+      {/* Pre-Purchase Sidebar Cart */}
+      <PrePurchaseSidebar 
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+        onCheckout={handleCheckout}
+      />
     </main>
   );
 };
