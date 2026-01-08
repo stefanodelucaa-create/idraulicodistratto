@@ -15,29 +15,43 @@ interface PrePurchaseSidebarProps {
 const benefits = [
   {
     icon: "🔓",
-    title: "Aggiornamenti FOREVER",
-    description: "Tutte le versioni future (v2.0, v3.0...) gratis"
+    title: "Aggiornamenti illimitati FOREVER",
+    description: "Tutte le versioni future (v2.0, v3.0, v4.0...) automatiche via email"
   },
   {
     icon: "🎁",
-    title: "Early access prodotti futuri",
-    description: "Sconti 20% su tutto ciò che creerò"
+    title: "Early access futuri prodotti",
+    description: "Sconti 20% su tutto ciò che creo dopo questo ebook"
   },
   {
     icon: "📧",
-    title: "Supporto prioritario",
-    description: "Risposte rapide alle tue domande"
+    title: "Supporto prioritario via email",
+    description: "Risposte rapide alle tue domande specifiche"
+  },
+  {
+    icon: "📚",
+    title: "Nuovi capitoli esclusivi",
+    description: "Contenuti aggiuntivi riservati solo ai Lifetime Members"
+  },
+  {
+    icon: "💡",
+    title: "Casi studio reali",
+    description: "Esempi pratici aggiunti con ogni aggiornamento"
   }
 ];
 
 const testimonials = [
   {
     name: "Paolo M.",
-    text: "Ho preso Lifetime al lancio e già ricevuto 2 aggiornamenti!"
+    text: "Ho preso Lifetime al lancio e già ricevuto 2 aggiornamenti con nuovi capitoli!"
   },
   {
     name: "Simone D.",
-    text: "Ogni aggiornamento aggiunge tecniche nuove. Vale tutto!"
+    text: "Ogni aggiornamento aggiunge tecniche nuove che non trovi altrove."
+  },
+  {
+    name: "Alessia B.",
+    text: "Aggiornamenti gratuiti = niente stress di restare indietro!"
   }
 ];
 
@@ -49,6 +63,10 @@ const faqs = [
   {
     question: "Gli aggiornamenti sono davvero gratis?",
     answer: "Sì, tutti i futuri update dell'ebook sono inclusi per sempre."
+  },
+  {
+    question: "E se non mi piace?",
+    answer: "Hai 60 giorni per richiedere rimborso completo, senza domande."
   }
 ];
 
@@ -139,48 +157,76 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
                 </span>
               </div>
 
-              <div className="flex gap-4 mb-4">
-                <img 
-                  src={lifetimeAccessCover} 
-                  alt="Lifetime Access" 
-                  className="w-16 h-auto rounded-lg shadow-md border border-accent/50"
-                />
-                <div className="flex-1">
-                  <h4 className="font-bold text-base text-foreground mb-1">
+              {/* Header with image - Mobile optimized */}
+              <div className="flex flex-col sm:flex-row gap-4 mb-5">
+                {/* Image container - centered on mobile, left on desktop */}
+                <div className="flex justify-center sm:justify-start flex-shrink-0">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-accent/30 blur-xl rounded-lg"></div>
+                    <img 
+                      src={lifetimeAccessCover} 
+                      alt="Lifetime Access" 
+                      className="relative w-24 sm:w-20 h-auto rounded-lg shadow-lg border-2 border-accent/50"
+                    />
+                  </div>
+                </div>
+                
+                {/* Text content - centered on mobile */}
+                <div className="flex-1 text-center sm:text-left">
+                  <h4 className="font-bold text-lg text-foreground mb-1">
                     🚀 Aggiungi Lifetime Access
                   </h4>
-                  <p className="text-xs text-muted-foreground mb-2">
+                  <p className="text-sm text-muted-foreground mb-2">
                     Aggiornamenti illimitati per sempre
                   </p>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-xs text-muted-foreground line-through">€97</span>
-                    <span className="text-lg font-bold text-accent">+€{lifetimePrice}</span>
+                  <div className="flex items-baseline gap-2 justify-center sm:justify-start">
+                    <span className="text-sm text-muted-foreground line-through">€97</span>
+                    <span className="text-xl font-bold text-accent">+€{lifetimePrice}</span>
+                    <span className="text-xs text-muted-foreground">(solo oggi)</span>
                   </div>
                 </div>
               </div>
 
-              {/* Benefits Quick List */}
-              <div className="space-y-2 mb-4">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start gap-2 text-sm">
-                    <span className="text-base">{benefit.icon}</span>
-                    <span className="text-muted-foreground">{benefit.title}</span>
-                  </div>
-                ))}
+              {/* Warning Box */}
+              <div className="bg-secondary/70 border-l-4 border-accent rounded-lg p-3 mb-4">
+                <p className="font-semibold text-sm text-secondary-foreground mb-1">⚠️ Con la versione BASE:</p>
+                <ul className="text-xs leading-5 text-secondary-foreground space-y-0.5">
+                  <li><span className="text-destructive">❌</span> NON ricevi aggiornamenti futuri</li>
+                  <li><span className="text-destructive">❌</span> NON hai supporto prioritario</li>
+                  <li><span className="text-destructive">❌</span> Dovresti ricomprare ogni update!</li>
+                </ul>
+              </div>
+
+              {/* Benefits Full List */}
+              <div className="bg-accent/10 rounded-lg p-4 mb-4 border border-accent/30">
+                <h5 className="font-bold text-sm text-primary mb-3 text-center">
+                  ✅ CON LIFETIME ACCESS OTTIENI:
+                </h5>
+                <div className="space-y-3">
+                  {benefits.map((benefit, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <span className="text-lg flex-shrink-0">{benefit.icon}</span>
+                      <div>
+                        <p className="font-semibold text-sm text-foreground">{benefit.title}</p>
+                        <p className="text-xs text-muted-foreground">{benefit.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* Toggle Button */}
               <button
                 onClick={() => setIncludeLifetime(!includeLifetime)}
-                className={`w-full py-3 px-4 rounded-lg font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 ${
+                className={`w-full py-3.5 px-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center justify-center gap-2 ${
                   includeLifetime
-                    ? 'bg-accent text-accent-foreground'
-                    : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                    ? 'bg-accent text-accent-foreground shadow-glow'
+                    : 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg'
                 }`}
               >
                 {includeLifetime ? (
                   <>
-                    <Check className="w-4 h-4" />
+                    <Check className="w-5 h-5" />
                     Aggiunto al carrello!
                   </>
                 ) : (
