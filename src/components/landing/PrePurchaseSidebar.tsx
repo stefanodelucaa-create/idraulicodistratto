@@ -71,7 +71,7 @@ const faqs = [
 ];
 
 export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseSidebarProps) => {
-  const [countdown, setCountdown] = useState({ minutes: 10, seconds: 0 });
+  const [countdown, setCountdown] = useState({ minutes: 5, seconds: 0 });
   const [includeLifetime, setIncludeLifetime] = useState(false);
 
   // Countdown timer
