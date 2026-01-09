@@ -14,7 +14,6 @@ import { Footer } from "@/components/landing/Footer";
 import { StickyCTA } from "@/components/landing/StickyCTA";
 import { PrePurchaseSidebar } from "@/components/landing/PrePurchaseSidebar";
 import { fetchProducts, ShopifyProduct, createStorefrontCheckout, CartItem } from "@/lib/shopify";
-import { trackAddToCart, trackInitiateCheckout } from "@/hooks/useMetaPixel";
 
 // Variant IDs for Shopify checkout
 const BASE_VARIANT_ID = "56459385897304";
@@ -39,14 +38,10 @@ const Index = () => {
   }, []);
 
   const handleBuyClick = () => {
-    trackAddToCart("37", "EUR");
     setIsSidebarOpen(true);
   };
 
   const handleCheckout = (includeLifetime: boolean) => {
-    const totalPrice = includeLifetime ? "49" : "37";
-    trackInitiateCheckout(totalPrice, "EUR");
-    
     let checkoutUrl: string;
     
     if (includeLifetime) {
