@@ -13,31 +13,11 @@ interface PrePurchaseSidebarProps {
 }
 
 const benefits = [
-  {
-    icon: "🔓",
-    title: "Aggiornamenti illimitati FOREVER",
-    description: "Tutte le versioni future (v2.0, v3.0, v4.0...) automatiche via email"
-  },
-  {
-    icon: "🎁",
-    title: "Early access futuri prodotti",
-    description: "Sconti 20% su tutto ciò che creo dopo questo ebook"
-  },
-  {
-    icon: "📧",
-    title: "Supporto prioritario via email",
-    description: "Risposte rapide alle tue domande specifiche"
-  },
-  {
-    icon: "📚",
-    title: "Nuovi capitoli esclusivi",
-    description: "Contenuti aggiuntivi riservati solo ai Lifetime Members"
-  },
-  {
-    icon: "💡",
-    title: "Casi studio reali",
-    description: "Esempi pratici aggiunti con ogni aggiornamento"
-  }
+  { icon: "🔓", title: "Aggiornamenti illimitati FOREVER" },
+  { icon: "🎁", title: "20% di sconto sui futuri prodotti" },
+  { icon: "📧", title: "Supporto prioritario via email" },
+  { icon: "📚", title: "Nuovi capitoli esclusivi" },
+  { icon: "💡", title: "Casi studio reali" }
 ];
 
 const testimonials = [
@@ -207,14 +187,11 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
                 <h5 className="font-bold text-sm text-primary mb-3 text-center">
                   ✅ CON LIFETIME ACCESS OTTIENI:
                 </h5>
-                <div className="space-y-3">
+                <div className="space-y-2">
                   {benefits.map((benefit, index) => (
-                    <div key={index} className="flex items-start gap-3">
+                    <div key={index} className="flex items-center gap-3">
                       <span className="text-lg flex-shrink-0">{benefit.icon}</span>
-                      <div>
-                        <p className="font-semibold text-sm text-foreground">{benefit.title}</p>
-                        <p className="text-xs text-muted-foreground">{benefit.description}</p>
-                      </div>
+                      <p className="font-semibold text-sm text-foreground">{benefit.title}</p>
                     </div>
                   ))}
                 </div>
