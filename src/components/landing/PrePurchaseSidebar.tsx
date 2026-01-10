@@ -138,7 +138,7 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
               : 'border-border bg-card hover:border-accent/50'
           }`}>
             {/* Badge */}
-            <div className="absolute -top-3 left-4 bg-accent text-accent-foreground font-bold text-xs uppercase px-3 py-1 rounded-full">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground font-bold text-xs uppercase px-3 py-1 rounded-full whitespace-nowrap">
               🔥 Offerta Speciale
             </div>
 
