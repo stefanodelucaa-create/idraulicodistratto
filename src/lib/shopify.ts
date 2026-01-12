@@ -166,6 +166,39 @@ function extractVariantId(graphqlId: string): string {
   return match ? match[1] : graphqlId;
 }
 
+// Allowed domains for checkout URL validation
+const ALLOWED_CHECKOUT_DOMAINS = [
+  `www.${SHOPIFY_CUSTOM_DOMAIN}`,
+  SHOPIFY_CUSTOM_DOMAIN,
+  SHOPIFY_STORE_PERMANENT_DOMAIN,
+];
+
+// Validate checkout URL to prevent open redirect attacks
+function validateCheckoutUrl(url: URL): void {
+  // Ensure protocol is HTTPS
+  if (url.protocol !== 'https:') {
+    throw new Error('Invalid checkout URL: must use HTTPS');
+  }
+  
+  // Validate hostname against allowed domains
+  const hostname = url.hostname.toLowerCase();
+  const isAllowedDomain = ALLOWED_CHECKOUT_DOMAINS.some(
+    domain => hostname === domain.toLowerCase() || hostname.endsWith(`.${domain.toLowerCase()}`)
+  );
+  
+  if (!isAllowedDomain) {
+    throw new Error('Invalid checkout URL: unauthorized domain');
+  }
+  
+  // Ensure pathname looks like a valid Shopify checkout path
+  const validPaths = ['/checkouts/', '/cart/c/', '/cart/'];
+  const hasValidPath = validPaths.some(path => url.pathname.startsWith(path));
+  
+  if (!hasValidPath) {
+    throw new Error('Invalid checkout URL: unexpected path');
+  }
+}
+
 export async function createStorefrontCheckout(items: CartItem[]): Promise<string> {
   const CART_CREATE_MUTATION = `
     mutation cartCreate($input: CartInput!) {
@@ -204,7 +237,13 @@ export async function createStorefrontCheckout(items: CartItem[]): Promise<strin
     throw new Error("No checkout URL returned from Shopify");
   }
 
-  const url = new URL(checkoutUrl);
+  // Parse and validate the URL from Shopify API
+  let url: URL;
+  try {
+    url = new URL(checkoutUrl);
+  } catch {
+    throw new Error("Invalid checkout URL format from Shopify");
+  }
 
   // Some Shopify setups return a cart permalink (e.g. /cart/c/...) instead of a /checkouts/... URL.
   // In that case, force direct checkout by appending /checkout.
@@ -215,6 +254,9 @@ export async function createStorefrontCheckout(items: CartItem[]): Promise<strin
   // Use custom domain with www prefix
   url.protocol = "https:";
   url.hostname = `www.${SHOPIFY_CUSTOM_DOMAIN}`;
+
+  // Validate the final URL before returning
+  validateCheckoutUrl(url);
 
   // Some cart permalinks include a `key` query param that is tied to the custom domain.
   // Removing it prevents Shopify from redirecting back to the custom domain in some setups.
