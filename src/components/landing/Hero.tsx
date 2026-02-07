@@ -14,7 +14,7 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
     <section className="min-h-screen bg-hero relative overflow-hidden">
       {/* Announcement bar */}
       <div className="bg-primary text-primary-foreground py-3 sm:py-3.5 text-center text-sm sm:text-base font-semibold px-4 sm:px-6">
-        🎁 Offerta Lancio: 6 Bonus (valore €125) inclusi GRATIS + 53% di sconto!
+        🎁 Offerta Lancio: 6 Bonus (valore €125) inclusi GRATIS + 63% di sconto!
       </div>
 
       {/* Subtle background pattern */}
@@ -110,9 +110,9 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
                 <span className="text-sm text-muted-foreground line-through">Prezzo normale: €79</span>
                 <div className="flex items-center justify-center gap-3">
                   <span className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">{price}</span>
-                  <span className="bg-gradient-to-r from-primary to-accent text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full shadow-lg shadow-primary/20">-53%</span>
+                  <span className="bg-gradient-to-r from-primary to-accent text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full shadow-lg shadow-primary/20">-63%</span>
                 </div>
-                <span className="text-sm text-primary font-semibold">Risparmi: €42</span>
+                <span className="text-sm text-primary font-semibold">Risparmi: €50</span>
               </div>
 
               {/* CTA Button */}

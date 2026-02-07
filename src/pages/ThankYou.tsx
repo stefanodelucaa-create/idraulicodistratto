@@ -16,7 +16,7 @@ const getOrderData = () => {
     customerEmail: params.get('email') || 'cliente@email.com',
     orderNumber: params.get('order') || '1001',
     orderDate: params.get('date') || new Date().toLocaleDateString('it-IT'),
-    totalPaid: '€37,00'
+    totalPaid: '€29,00'
   };
 };
 
@@ -303,7 +303,7 @@ export default function ThankYou() {
                 <ul className="text-[15px] leading-7 text-secondary-foreground">
                   <li><span className="text-destructive">❌</span> NON ricevi aggiornamenti futuri (v2.0, v3.0...)</li>
                   <li><span className="text-destructive">❌</span> NON hai supporto prioritario via email</li>
-                  <li><span className="text-destructive">❌</span> Dovresti ricomprare ogni update a €37!</li>
+                  <li><span className="text-destructive">❌</span> Dovresti ricomprare ogni update a €29!</li>
                 </ul>
               </div>
 

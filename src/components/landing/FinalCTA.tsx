@@ -40,7 +40,7 @@ export const FinalCTA = ({ onBuyClick, price, originalPrice }: FinalCTAProps) =>
               <span className="text-base sm:text-lg md:text-xl text-primary-foreground/80">Oggi solo:</span>
               <div className="flex items-center gap-2 sm:gap-3">
                 <span className="text-3xl sm:text-4xl md:text-5xl font-bold">{price}</span>
-                <span className="bg-accent text-accent-foreground text-xs sm:text-sm font-bold px-2 sm:px-3 py-1 rounded">-53%</span>
+                <span className="bg-accent text-accent-foreground text-xs sm:text-sm font-bold px-2 sm:px-3 py-1 rounded">-63%</span>
               </div>
             </div>
 

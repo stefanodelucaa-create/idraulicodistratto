@@ -74,7 +74,7 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
     return () => clearInterval(timer);
   }, [isOpen]);
 
-  const basePrice = 37;
+  const basePrice = 29;
   const lifetimePrice = 12;
   const totalPrice = includeLifetime ? basePrice + lifetimePrice : basePrice;
 
