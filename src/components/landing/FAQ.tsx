@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     question: "Ci sono costi nascosti o abbonamenti?",
-    answer: "No. Paghi €37 una volta sola e hai accesso a vita a tutto il materiale. Nessun abbonamento, nessun costo ricorrente, nessun 'upsell' forzato dopo l'acquisto."
+    answer: "No. Paghi €29 una volta sola e hai accesso a vita a tutto il materiale. Nessun abbonamento, nessun costo ricorrente, nessun 'upsell' forzato dopo l'acquisto."
   },
   {
     question: "Posso ottenere il rimborso se non fa per me?",

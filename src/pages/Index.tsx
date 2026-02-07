@@ -41,12 +41,12 @@ const Index = () => {
   }, []);
 
   const handleBuyClick = () => {
-    trackAddToCart("37", "EUR");
+    trackAddToCart("29", "EUR");
     setIsSidebarOpen(true);
   };
 
   const handleCheckout = (includeLifetime: boolean) => {
-    const totalPrice = includeLifetime ? "49" : "37";
+    const totalPrice = includeLifetime ? "41" : "29";
     trackInitiateCheckout(totalPrice, "EUR");
     
     let checkoutUrl: string;
@@ -62,7 +62,7 @@ const Index = () => {
   };
 
   const originalPrice = "€79";
-  const price = "€37";
+  const price = "€29";
 
   return (
     <main className="min-h-screen">

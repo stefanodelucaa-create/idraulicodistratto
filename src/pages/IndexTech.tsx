@@ -61,7 +61,7 @@ const IndexTech = () => {
     }
   };
 
-  const price = "€37";
+  const price = "€29";
 
   return (
     <div className="min-h-screen bg-slate-950 text-white overflow-hidden" style={{ fontFamily: "'DM Sans', sans-serif" }}>

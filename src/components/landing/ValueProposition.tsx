@@ -152,7 +152,7 @@ export const ValueProposition = ({ onBuyClick }: ValuePropositionProps) => {
               </div>
               <div className="flex flex-col items-center gap-1 pt-2">
                 <span className="text-foreground font-bold text-xl sm:text-2xl">Oggi paghi solo:</span>
-                <span className="font-bold text-3xl sm:text-4xl md:text-5xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">€37</span>
+                <span className="font-bold text-3xl sm:text-4xl md:text-5xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">€29</span>
               </div>
             </div>
 
@@ -172,7 +172,7 @@ export const ValueProposition = ({ onBuyClick }: ValuePropositionProps) => {
                 onClick={onBuyClick}
                 className="relative group min-h-[56px] sm:min-h-[60px] w-full text-lg sm:text-xl md:text-2xl font-bold shadow-lg shadow-primary/25"
               >
-                Ottieni Tutto a €37
+                Ottieni Tutto a €29
                 <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-1" />
               </Button>
             )}

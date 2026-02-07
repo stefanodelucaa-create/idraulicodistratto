@@ -150,7 +150,7 @@ const IndexDark = () => {
     }
   };
 
-  const price = "€37";
+  const price = "€29";
   const originalPrice = "€79";
   const bonusTotal = bonuses.reduce((sum, b) => sum + b.value, 0);
 

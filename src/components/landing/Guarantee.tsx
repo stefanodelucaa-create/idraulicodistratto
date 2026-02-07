@@ -21,7 +21,7 @@ export const Guarantee = () => {
                   Rischio Zero per Te
                 </p>
                 <p className="mt-3 text-sm md:text-base text-muted-foreground">
-                  Prova la guida con calma: l'investimento è di <span className="font-bold text-foreground">€37</span> e hai 60 giorni per decidere.
+                  Prova la guida con calma: l'investimento è di <span className="font-bold text-foreground">€29</span> e hai 60 giorni per decidere.
                 </p>
               </div>
 
