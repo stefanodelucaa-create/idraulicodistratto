@@ -17,8 +17,8 @@ import { fetchProducts, ShopifyProduct, createStorefrontCheckout, CartItem } fro
 import { initClickTracking, trackAddToCart, trackInitiateCheckout } from "@/hooks/useMetaPixel";
 
 // Variant IDs for Shopify checkout
-const BASE_VARIANT_ID = "56459385897304";
-const LIFETIME_VARIANT_ID = "56481765949784";
+const BASE_VARIANT_ID = "53309200466259";
+const LIFETIME_VARIANT_ID = "53309201416531";
 
 const Index = () => {
   const [product, setProduct] = useState<ShopifyProduct | null>(null);
