@@ -1,10 +1,10 @@
 import { toast } from "sonner";
 
 const SHOPIFY_API_VERSION = '2025-07';
-const SHOPIFY_STORE_PERMANENT_DOMAIN = 'lovable-project-so83y.myshopify.com';
+const SHOPIFY_STORE_PERMANENT_DOMAIN = 'idraulicodistratto-eycbe.myshopify.com';
 const SHOPIFY_CUSTOM_DOMAIN = 'idraulicodistratto.com';
 const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
-const SHOPIFY_STOREFRONT_TOKEN = '1eaf820b143855d53db6c1dc7b05b749';
+const SHOPIFY_STOREFRONT_TOKEN = 'b9072e752894a3debb63f2833f90b54b';
 
 export interface ShopifyProduct {
   node: {
