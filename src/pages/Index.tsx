@@ -13,31 +13,15 @@ import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 import { StickyCTA } from "@/components/landing/StickyCTA";
 import { PrePurchaseSidebar } from "@/components/landing/PrePurchaseSidebar";
-import { fetchProducts, ShopifyProduct, createStorefrontCheckout, CartItem } from "@/lib/shopify";
+import { supabase } from "@/integrations/supabase/client";
 import { initClickTracking, trackAddToCart, trackInitiateCheckout } from "@/hooks/useMetaPixel";
 
-// Variant IDs for Shopify checkout
-const BASE_VARIANT_ID = "53309200466259";
-const LIFETIME_VARIANT_ID = "53309201416531";
-
 const Index = () => {
-  const [product, setProduct] = useState<ShopifyProduct | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
 
   useEffect(() => {
     initClickTracking();
-    
-    const loadProduct = async () => {
-      try {
-        const products = await fetchProducts(1);
-        if (products.length > 0) {
-          setProduct(products[0]);
-        }
-      } catch (error) {
-        console.error("Failed to load product:", error);
-      }
-    };
-    loadProduct();
   }, []);
 
   const handleBuyClick = () => {
@@ -45,20 +29,26 @@ const Index = () => {
     setIsSidebarOpen(true);
   };
 
-  const handleCheckout = (includeLifetime: boolean) => {
+  const handleCheckout = async (includeLifetime: boolean) => {
     const totalPrice = includeLifetime ? "41" : "29";
     trackInitiateCheckout(totalPrice, "EUR");
+    setIsCheckingOut(true);
     
-    let checkoutUrl: string;
-    
-    if (includeLifetime) {
-      checkoutUrl = `https://www.idraulicodistratto.com/cart/${BASE_VARIANT_ID}:1,${LIFETIME_VARIANT_ID}:1?checkout`;
-    } else {
-      checkoutUrl = `https://www.idraulicodistratto.com/cart/${BASE_VARIANT_ID}:1?checkout`;
+    try {
+      const { data, error } = await supabase.functions.invoke('create-checkout', {
+        body: { includeLifetime },
+      });
+      
+      if (error) throw error;
+      if (data?.url) {
+        window.location.href = data.url;
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      toast.error("Errore durante il checkout. Riprova.");
+    } finally {
+      setIsCheckingOut(false);
     }
-    
-    window.open(checkoutUrl, "_blank");
-    setIsSidebarOpen(false);
   };
 
   const originalPrice = "€79";
