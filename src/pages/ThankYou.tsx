@@ -86,14 +86,57 @@ export default function ThankYou() {
     };
   }, []);
 
+  const [searchParams] = useSearchParams();
   const [isVisible, setIsVisible] = useState({
     hero: false,
     download: false,
     upsell: false
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(true);
   const [countdown, setCountdown] = useState({ minutes: 5, seconds: 0 });
-  const orderData = getOrderData();
+  const [orderData, setOrderData] = useState<OrderData>({
+    customerName: "Cliente",
+    customerEmail: "",
+    amountTotal: "€29,00",
+    orderDate: new Date().toLocaleDateString("it-IT"),
+    downloadUrl: null,
+    includesLifetime: false,
+  });
+
+  // Verify Stripe session and get download URL
+  useEffect(() => {
+    const sessionId = searchParams.get("session_id");
+    if (!sessionId) {
+      setIsVerifying(false);
+      return;
+    }
+
+    const verifyPayment = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke("verify-session", {
+          body: { session_id: sessionId },
+        });
+        if (error) throw error;
+        if (data?.success) {
+          setOrderData({
+            customerName: data.customerName || "Cliente",
+            customerEmail: data.customerEmail || "",
+            amountTotal: `€${((data.amountTotal || 0) / 100).toFixed(2).replace(".", ",")}`,
+            orderDate: new Date().toLocaleDateString("it-IT"),
+            downloadUrl: data.downloadUrl || null,
+            includesLifetime: data.includesLifetime || false,
+          });
+        }
+      } catch (err) {
+        console.error("Payment verification error:", err);
+        toast.error("Errore nella verifica del pagamento");
+      } finally {
+        setIsVerifying(false);
+      }
+    };
+    verifyPayment();
+  }, [searchParams]);
 
   useEffect(() => {
     // Staggered animations
