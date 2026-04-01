@@ -102,6 +102,7 @@ export default function ThankYou() {
     amountTotal: "€29,00",
     orderDate: new Date().toLocaleDateString("it-IT"),
     downloadUrl: null,
+    bonusDownloadUrl: null,
     includesLifetime: false,
   });
 
