@@ -7,21 +7,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import ebookBaseCover from "@/assets/ebook-base-cover.png";
 import lifetimeAccessCover from "@/assets/lifetime-access-cover.jpeg";
-// Simulated order data (in production, this comes from Shopify Liquid variables)
-const getOrderData = () => {
-  const params = new URLSearchParams(window.location.search);
-  return {
-    customerName: params.get('name') || 'Cliente',
-    customerEmail: params.get('email') || 'cliente@email.com',
-    orderNumber: params.get('order') || '1001',
-    orderDate: params.get('date') || new Date().toLocaleDateString('it-IT'),
-    totalPaid: '€29,00'
-  };
-};
-
-// Lifetime Access product variant ID (from Shopify)
-const LIFETIME_VARIANT_ID = "gid://shopify/ProductVariant/56481765949784";
-
+interface OrderData {
+  customerName: string;
+  customerEmail: string;
+  amountTotal: string;
+  orderDate: string;
+  downloadUrl: string | null;
+  includesLifetime: boolean;
+}
 const testimonials = [
   {
     name: "Paolo M.",
