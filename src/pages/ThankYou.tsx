@@ -13,6 +13,7 @@ interface OrderData {
   amountTotal: string;
   orderDate: string;
   downloadUrl: string | null;
+  bonusDownloadUrl: string | null;
   includesLifetime: boolean;
 }
 const testimonials = [
