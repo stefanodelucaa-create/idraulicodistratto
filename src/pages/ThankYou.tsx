@@ -443,19 +443,32 @@ export default function ThankYou() {
             {orderData.downloadUrl ? (
               <>
                 <p className="text-base text-muted-foreground mb-6 max-w-lg mx-auto">
-                  Il tuo ebook è pronto! Clicca il pulsante qui sotto per scaricarlo subito.
+                  I tuoi file sono pronti! Clicca i pulsanti qui sotto per scaricarli subito.
                 </p>
-                <a
-                  href={orderData.downloadUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg py-4 px-8 rounded-xl shadow-glow hover:-translate-y-0.5 transition-all duration-300"
-                >
-                  <Download className="w-5 h-5" />
-                  Scarica il Manuale (PDF)
-                </a>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <a
+                    href={orderData.downloadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg py-4 px-8 rounded-xl shadow-glow hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    <Download className="w-5 h-5" />
+                    Scarica il Manuale (PDF)
+                  </a>
+                  {orderData.bonusDownloadUrl && (
+                    <a
+                      href={orderData.bonusDownloadUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg py-4 px-8 rounded-xl shadow-soft hover:-translate-y-0.5 transition-all duration-300"
+                    >
+                      <Download className="w-5 h-5" />
+                      Scarica il Bonus Checklist
+                    </a>
+                  )}
+                </div>
                 <p className="text-sm text-muted-foreground mt-4">
-                  ⏰ Il link è valido per 1 ora. Dopo la scadenza, ricarica questa pagina per ottenerne uno nuovo.
+                  ⏰ I link sono validi per 1 ora. Dopo la scadenza, ricarica questa pagina per ottenerne di nuovi.
                 </p>
               </>
             ) : (
