@@ -1,64 +1,15 @@
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, Star, BookOpen, Gift, Shield, Clock, Cpu, Zap, Layers, Sparkles, Target, Users, TrendingUp } from "lucide-react";
 import ebookMockup from "@/assets/ebook-mockup.png";
 import bonusMockup from "@/assets/bonus-mockup.png";
-import { fetchProducts, ShopifyProduct, createStorefrontCheckout, CartItem } from "@/lib/shopify";
+import { useStripeCheckout } from "@/hooks/useStripeCheckout";
 
 // Modern/Tech Style - Gradients, glassmorphism, futuristic aesthetic
 const IndexTech = () => {
-  const [product, setProduct] = useState<ShopifyProduct | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { startCheckout } = useStripeCheckout();
 
-  useEffect(() => {
-    const loadProduct = async () => {
-      try {
-        const products = await fetchProducts(1);
-        if (products.length > 0) {
-          setProduct(products[0]);
-        }
-      } catch (error) {
-        console.error("Failed to load product:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadProduct();
-  }, []);
-
-  const handleBuyClick = async () => {
-    if (!product) {
-      toast.error("Prodotto non disponibile");
-      return;
-    }
-    const variant = product.node.variants.edges[0]?.node;
-    if (!variant) return;
-
-    const cartItem: CartItem = {
-      product,
-      variantId: variant.id,
-      variantTitle: variant.title,
-      price: variant.price,
-      quantity: 1,
-      selectedOptions: variant.selectedOptions || [],
-    };
-
-    const popup = window.open("about:blank", "_blank");
-    try {
-      toast.loading("Preparando il checkout...", { id: "checkout" });
-      const checkoutUrl = await createStorefrontCheckout([cartItem]);
-      toast.dismiss("checkout");
-      if (popup) {
-        popup.location.href = checkoutUrl;
-      } else {
-        window.location.href = checkoutUrl;
-      }
-    } catch (error) {
-      toast.dismiss("checkout");
-      toast.error("Errore durante il checkout");
-      if (popup) popup.close();
-    }
+  const handleBuyClick = () => {
+    void startCheckout(false, true);
   };
 
   const price = "€29";

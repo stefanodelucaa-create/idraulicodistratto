@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { useCartStore } from "@/stores/cartStore";
-import { fetchProducts, ShopifyProduct, createStorefrontCheckout, CartItem } from "@/lib/shopify";
+import { useStripeCheckout } from "@/hooks/useStripeCheckout";
 import { 
   ArrowRight, CheckCircle, Shield, Clock, Brain, Target, Heart, Gift, 
   XCircle, X, MessageSquare, Book, FileText, ListChecks, Smartphone, 
@@ -23,88 +21,10 @@ import sezione3 from "@/assets/sezione-3.png";
 import sezione4 from "@/assets/sezione-4.png";
 import sezione5 from "@/assets/sezione-5.png";
 import sezione6 from "@/assets/sezione-6.png";
-
-// ============ DATA ============
-const painPoints = [
-  { title: "Sei nella tua testa invece che nel momento", description: "Durante il sesso pensi: 'Sto facendo bene? Dovrei cambiare? Quanto manca?' Invece di goderti le sensazioni, sei bloccato nel dialogo mentale." },
-  { title: "Il sesso è diventato un lavoro, non un piacere", description: "Vedi lo squirting come una 'missione da compiere', un obiettivo da conquistare. Ti sforzi per ore, ma ti senti sempre sotto esame." },
-  { title: "Lei si sente sotto pressione (anche se non te lo dice)", description: "La tua partner percepisce che vuoi ottenere un risultato. Inizia a pensare: 'Devo farcela per lui, se non succede sarà deluso'." },
-  { title: "Non sai più cosa è reale e cosa è finzione", description: "Porno e forum online ti hanno dato aspettative irreali: squirting in 5 minuti, ogni volta, con tutte." },
-  { title: "Conosci tecniche, ma non capisci perché funzionano", description: "Hai visto il famoso movimento 'vieni qui' con le dita, ma non hai una mappa chiara di ghiandole di Skene, punto G, clitoride interno." },
-  { title: "Non sai come parlarne senza creare imbarazzo", description: "Vorresti esplorare questo tema con la tua partner, ma non sai da dove iniziare senza creare pressione." },
-];
-
-const uniqueFeatures = [
-  { icon: Brain, title: "Psicologia Prima della Tecnica", description: "Circa il 70% dell'ebook è dedicato a mindset, ansia da prestazione e comunicazione." },
-  { icon: Target, title: "Anatomia Scientifica, non Porno-Fantascienza", description: "Capirai finalmente come è fatto davvero il corpo femminile: clitoride interno, punto G, ghiandole di Skene." },
-  { icon: MessageSquare, title: "Comunicazione Strutturata", description: "Script pronti all'uso, domande aperte, esempi di frasi da usare prima, durante e dopo." },
-];
-
-const sections = [
-  { image: sezione1, title: "Fondamenti Psicologici", subtitle: "3 capitoli per smontare l'ansia" },
-  { image: sezione2, title: "Anatomia Femminile Essenziale", subtitle: "Mappa completa del piacere" },
-  { image: sezione3, title: "Preparazione & Ambiente", subtitle: "Condizioni ideali" },
-  { image: sezione4, title: "Tecniche Step-by-Step", subtitle: "Dalla ricerca del punto G" },
-  { image: sezione5, title: "Scenari Avanzati", subtitle: "Penetrazione e oltre" },
-  { image: sezione6, title: "Oltre la Tecnica", subtitle: "Se non succede" },
-];
-
-const bonuses = [
-  { icon: ListChecks, title: "Checklist Complete", value: 19 },
-  { icon: MessageSquare, title: "FAQ Estese", value: 24 },
-  { icon: FileText, title: "Guida Rapida Problemi", value: 17 },
-  { icon: Heart, title: "Esercizi per Lei", value: 29 },
-  { icon: Smartphone, title: "App Utili Coppie", value: 15 },
-  { icon: LineChart, title: "Scheda Tracking", value: 21 },
-];
-
-const testimonials = [
-  { name: "Marco R.", location: "Milano", text: "La parte sulla psicologia mi ha aperto gli occhi. Ho capito che stavo mettendo pressione a entrambi senza rendermene conto.", rating: 5 },
-  { name: "Alessandro T.", location: "Roma", text: "Finalmente una guida che spiega il 'perché' dietro le tecniche. Capire l'anatomia reale ha fatto la differenza.", rating: 5 },
-  { name: "Luca M.", location: "Napoli", text: "Gli script per la comunicazione sono oro. Sapevo che dovevo parlarne ma non sapevo come.", rating: 5 },
-];
-
-const forYou = [
-  "Sei in una relazione con cui vuoi costruire vera intimità",
-  "Vuoi liberarti dall'ansia da prestazione",
-  "Sei disposto a comunicare apertamente",
-  "Vuoi capire il corpo femminile a livello profondo",
-  "Ti interessa il piacere di entrambi",
-];
-
-const notForYou = [
-  "Cerchi garanzie \"100% in 10 minuti\"",
-  "Non ti interessa comunicare",
-  "Vuoi solo qualcosa di rapido",
-  "Non accetti la variabilità anatomica",
-];
-
-const faqs = [
-  { question: "In cosa è diverso dai video online?", answer: "Questa guida è strutturata: 70% psicologia/comunicazione, 30% tecnica. Basata su ricerca scientifica." },
-  { question: "Quanto tempo serve per vedere risultati?", answer: "Alcuni riportano miglioramenti nella prima settimana. Per le tecniche, consigliamo 3-4 sessioni senza pressione." },
-  { question: "Posso leggerlo insieme alla mia partner?", answer: "Sì, e lo consigliamo. Molte sezioni sono pensate per essere condivise." },
-  { question: "Cosa succede dopo l'acquisto?", answer: "Ricevi immediatamente email con i link per scaricare tutto. Puoi iniziare entro 2 minuti." },
-  { question: "Posso ottenere il rimborso?", answer: "Sì. 60 giorni di garanzia completa. Tieni comunque i bonus." },
-];
-
+...
 const IndexBold = () => {
-  const [product, setProduct] = useState<ShopifyProduct | null>(null);
-  const [loading, setLoading] = useState(true);
   const [isStickyCTAVisible, setIsStickyCTAVisible] = useState(false);
-
-  useEffect(() => {
-    const loadProduct = async () => {
-      try {
-        const products = await fetchProducts(1);
-        if (products.length > 0) setProduct(products[0]);
-      } catch (error) {
-        console.error("Failed to load product:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadProduct();
-  }, []);
+  const { startCheckout } = useStripeCheckout();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -116,38 +36,8 @@ const IndexBold = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleBuyClick = async () => {
-    if (!product) {
-      toast.error("Prodotto non disponibile");
-      return;
-    }
-    const variant = product.node.variants.edges[0]?.node;
-    if (!variant) return;
-
-    const cartItem: CartItem = {
-      product,
-      variantId: variant.id,
-      variantTitle: variant.title,
-      price: variant.price,
-      quantity: 1,
-      selectedOptions: variant.selectedOptions || [],
-    };
-
-    const popup = window.open("about:blank", "_blank");
-    try {
-      toast.loading("Preparando il checkout...", { id: "checkout" });
-      const checkoutUrl = await createStorefrontCheckout([cartItem]);
-      toast.dismiss("checkout");
-      if (popup) {
-        popup.location.href = checkoutUrl;
-      } else {
-        window.location.href = checkoutUrl;
-      }
-    } catch (error) {
-      toast.dismiss("checkout");
-      toast.error("Errore durante il checkout");
-      if (popup) popup.close();
-    }
+  const handleBuyClick = () => {
+    void startCheckout(false, true);
   };
 
   const price = "€29";
