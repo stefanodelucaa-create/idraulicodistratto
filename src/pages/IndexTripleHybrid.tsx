@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { useCartStore } from "@/stores/cartStore";
-import { fetchProducts, ShopifyProduct, createStorefrontCheckout, CartItem } from "@/lib/shopify";
+import { useStripeCheckout } from "@/hooks/useStripeCheckout";
 import { 
   ArrowRight, CheckCircle, Shield, Clock, Brain, Target, Heart, Gift, 
   XCircle, X, MessageSquare, Book, FileText, ListChecks, Smartphone, 
@@ -73,7 +71,7 @@ const forYou = [
 ];
 
 const notForYou = [
-  "Cerchi garanzie \"100% in 10 minuti\"",
+  'Cerchi garanzie "100% in 10 minuti"',
   "Non ti interessa comunicare",
   "Vuoi solo qualcosa di rapido",
   "Non accetti la variabilità anatomica",
@@ -88,23 +86,8 @@ const faqs = [
 ];
 
 const IndexTripleHybrid = () => {
-  const [product, setProduct] = useState<ShopifyProduct | null>(null);
-  const [loading, setLoading] = useState(true);
   const [isStickyCTAVisible, setIsStickyCTAVisible] = useState(false);
-
-  useEffect(() => {
-    const loadProduct = async () => {
-      try {
-        const products = await fetchProducts(1);
-        if (products.length > 0) setProduct(products[0]);
-      } catch (error) {
-        console.error("Failed to load product:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadProduct();
-  }, []);
+  const { startCheckout } = useStripeCheckout();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -116,38 +99,8 @@ const IndexTripleHybrid = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleBuyClick = async () => {
-    if (!product) {
-      toast.error("Prodotto non disponibile");
-      return;
-    }
-    const variant = product.node.variants.edges[0]?.node;
-    if (!variant) return;
-
-    const cartItem: CartItem = {
-      product,
-      variantId: variant.id,
-      variantTitle: variant.title,
-      price: variant.price,
-      quantity: 1,
-      selectedOptions: variant.selectedOptions || [],
-    };
-
-    const popup = window.open("about:blank", "_blank");
-    try {
-      toast.loading("Preparando il checkout...", { id: "checkout" });
-      const checkoutUrl = await createStorefrontCheckout([cartItem]);
-      toast.dismiss("checkout");
-      if (popup) {
-        popup.location.href = checkoutUrl;
-      } else {
-        window.location.href = checkoutUrl;
-      }
-    } catch (error) {
-      toast.dismiss("checkout");
-      toast.error("Errore durante il checkout");
-      if (popup) popup.close();
-    }
+  const handleBuyClick = () => {
+    void startCheckout(false, true);
   };
 
   const price = "€29";
