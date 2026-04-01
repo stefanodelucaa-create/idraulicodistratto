@@ -1,28 +1,20 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Check, ChevronDown, Download, Star, X, Clock, Shield, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { createStorefrontCheckout, CartItem, ShopifyProduct } from "@/lib/shopify";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import ebookBaseCover from "@/assets/ebook-base-cover.png";
 import lifetimeAccessCover from "@/assets/lifetime-access-cover.jpeg";
-
-// Simulated order data (in production, this comes from Shopify Liquid variables)
-const getOrderData = () => {
-  const params = new URLSearchParams(window.location.search);
-  return {
-    customerName: params.get('name') || 'Cliente',
-    customerEmail: params.get('email') || 'cliente@email.com',
-    orderNumber: params.get('order') || '1001',
-    orderDate: params.get('date') || new Date().toLocaleDateString('it-IT'),
-    totalPaid: '€29,00'
-  };
-};
-
-// Lifetime Access product variant ID (from Shopify)
-const LIFETIME_VARIANT_ID = "gid://shopify/ProductVariant/56481765949784";
-
+interface OrderData {
+  customerName: string;
+  customerEmail: string;
+  amountTotal: string;
+  orderDate: string;
+  downloadUrl: string | null;
+  includesLifetime: boolean;
+}
 const testimonials = [
   {
     name: "Paolo M.",
@@ -94,14 +86,57 @@ export default function ThankYou() {
     };
   }, []);
 
+  const [searchParams] = useSearchParams();
   const [isVisible, setIsVisible] = useState({
     hero: false,
     download: false,
     upsell: false
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(true);
   const [countdown, setCountdown] = useState({ minutes: 5, seconds: 0 });
-  const orderData = getOrderData();
+  const [orderData, setOrderData] = useState<OrderData>({
+    customerName: "Cliente",
+    customerEmail: "",
+    amountTotal: "€29,00",
+    orderDate: new Date().toLocaleDateString("it-IT"),
+    downloadUrl: null,
+    includesLifetime: false,
+  });
+
+  // Verify Stripe session and get download URL
+  useEffect(() => {
+    const sessionId = searchParams.get("session_id");
+    if (!sessionId) {
+      setIsVerifying(false);
+      return;
+    }
+
+    const verifyPayment = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke("verify-session", {
+          body: { session_id: sessionId },
+        });
+        if (error) throw error;
+        if (data?.success) {
+          setOrderData({
+            customerName: data.customerName || "Cliente",
+            customerEmail: data.customerEmail || "",
+            amountTotal: `€${((data.amountTotal || 0) / 100).toFixed(2).replace(".", ",")}`,
+            orderDate: new Date().toLocaleDateString("it-IT"),
+            downloadUrl: data.downloadUrl || null,
+            includesLifetime: data.includesLifetime || false,
+          });
+        }
+      } catch (err) {
+        console.error("Payment verification error:", err);
+        toast.error("Errore nella verifica del pagamento");
+      } finally {
+        setIsVerifying(false);
+      }
+    };
+    verifyPayment();
+  }, [searchParams]);
 
   useEffect(() => {
     // Staggered animations
@@ -131,44 +166,12 @@ export default function ThankYou() {
   const handleUpsellPurchase = async () => {
     setIsLoading(true);
     try {
-      const mockProduct: ShopifyProduct = {
-        node: {
-          id: "gid://shopify/Product/15545650151768",
-          title: "Lifetime Access - Aggiornamenti Illimitati",
-          description: "",
-          handle: "lifetime-access",
-          priceRange: { minVariantPrice: { amount: "12.00", currencyCode: "EUR" } },
-          images: { edges: [] },
-          variants: {
-            edges: [{
-              node: {
-                id: LIFETIME_VARIANT_ID,
-                title: "Default",
-                price: { amount: "12.00", currencyCode: "EUR" },
-                availableForSale: true,
-                selectedOptions: []
-              }
-            }]
-          },
-          options: []
-        }
-      };
-
-      const cartItem: CartItem = {
-        product: mockProduct,
-        variantId: LIFETIME_VARIANT_ID,
-        variantTitle: "Default",
-        price: { amount: "12.00", currencyCode: "EUR" },
-        quantity: 1,
-        selectedOptions: []
-      };
-
-      const popup = window.open("about:blank", "_blank");
-      const checkoutUrl = await createStorefrontCheckout([cartItem]);
-      if (popup) {
-        popup.location.href = checkoutUrl;
-      } else {
-        window.location.href = checkoutUrl;
+      const { data, error } = await supabase.functions.invoke("create-checkout", {
+        body: { includeLifetime: true },
+      });
+      if (error) throw error;
+      if (data?.url) {
+        window.location.href = data.url;
       }
     } catch (error) {
       console.error("Upsell checkout error:", error);
@@ -197,8 +200,8 @@ export default function ThankYou() {
             <div className="bg-secondary rounded-xl p-5 max-w-md mx-auto mb-6">
               <div className="text-left text-[15px] leading-8 text-muted-foreground">
                 <p>📧 Email: {orderData.customerEmail}</p>
-                <p>🔢 Ordine: #{orderData.orderNumber}</p>
-                <p>💳 Totale pagato: {orderData.totalPaid}</p>
+                <p>💳 Totale pagato: {orderData.amountTotal}</p>
+                <p>📅 Data: {orderData.orderDate}</p>
                 <p>📅 Data: {orderData.orderDate}</p>
               </div>
             </div>
@@ -429,31 +432,40 @@ export default function ThankYou() {
           }`}
         >
           <div className="text-center">
-            <div className="text-5xl md:text-6xl mb-4">📧</div>
+            <div className="text-5xl md:text-6xl mb-4">📥</div>
             <h2 className="font-semibold text-xl md:text-2xl text-primary mb-3">
-              Il Tuo Ebook Sta Arrivando!
+              {isVerifying ? "Verifica pagamento in corso..." : "Scarica il Tuo Ebook!"}
             </h2>
-            <p className="text-base text-muted-foreground mb-6 max-w-lg mx-auto">
-              Tra pochi istanti riceverai un'email a <span className="font-semibold text-foreground">{orderData.customerEmail}</span> con il link per scaricare:
-            </p>
             
-            <div className="bg-card rounded-xl p-5 max-w-md mx-auto mb-6 shadow-soft">
-              <ul className="text-left text-[15px] leading-8 text-muted-foreground">
-                <li className="flex items-center gap-2">
-                  <span className="text-primary">✓</span> 
-                  <span><strong>Manuale dell'Idraulico Distratto</strong> (PDF, 200+ pagine)</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-primary">✓</span> 
-                  <span><strong>BONUS: Checklist Operativa</strong> (PDF)</span>
-                </li>
-              </ul>
-            </div>
+            {orderData.downloadUrl ? (
+              <>
+                <p className="text-base text-muted-foreground mb-6 max-w-lg mx-auto">
+                  Il tuo ebook è pronto! Clicca il pulsante qui sotto per scaricarlo subito.
+                </p>
+                <a
+                  href={orderData.downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg py-4 px-8 rounded-xl shadow-glow hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  <Download className="w-5 h-5" />
+                  Scarica il Manuale (PDF)
+                </a>
+                <p className="text-sm text-muted-foreground mt-4">
+                  ⏰ Il link è valido per 1 ora. Dopo la scadenza, ricarica questa pagina per ottenerne uno nuovo.
+                </p>
+              </>
+            ) : (
+              <p className="text-base text-muted-foreground mb-6 max-w-lg mx-auto">
+                {isVerifying 
+                  ? "Stiamo verificando il tuo pagamento..." 
+                  : "Riceverai un'email con il link per il download a " + orderData.customerEmail}
+              </p>
+            )}
             
-            <div className="bg-secondary/50 rounded-lg p-4 max-w-md mx-auto">
+            <div className="bg-secondary/50 rounded-lg p-4 max-w-md mx-auto mt-6">
               <p className="text-sm text-muted-foreground">
-                💡 <strong>Non trovi l'email?</strong> Controlla la cartella spam o promozioni. 
-                Se dopo 10 minuti non è arrivata, contattaci a <a href="mailto:info@idraulicodistratto.com" className="text-primary underline hover:no-underline">info@idraulicodistratto.com</a>
+                💡 <strong>Hai bisogno di aiuto?</strong> Contattaci a <a href="mailto:info@idraulicodistratto.com" className="text-primary underline hover:no-underline">info@idraulicodistratto.com</a>
               </p>
             </div>
           </div>
