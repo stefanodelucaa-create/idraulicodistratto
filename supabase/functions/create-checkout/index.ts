@@ -37,6 +37,7 @@ serve(async (req) => {
       success_url: `${origin}/thank-you?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/`,
       payment_method_types: ["card"],
+      allow_promotion_codes: true,
       locale: "it",
     });
 
