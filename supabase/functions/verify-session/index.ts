@@ -75,10 +75,14 @@ serve(async (req) => {
       order = newOrder;
     }
 
-    // Generate signed URL for ebook download (valid 1 hour)
-    const { data: signedUrl } = await supabase.storage
+    // Generate signed URLs for downloads (valid 1 hour)
+    const { data: ebookUrl } = await supabase.storage
       .from("ebooks")
       .createSignedUrl("manuale-idraulico-distratto.pdf", 3600);
+
+    const { data: bonusUrl } = await supabase.storage
+      .from("ebooks")
+      .createSignedUrl("bonus-checklist.pdf", 3600);
 
     return new Response(
       JSON.stringify({
@@ -86,7 +90,8 @@ serve(async (req) => {
         customerName: session.customer_details?.name || "Cliente",
         customerEmail: session.customer_details?.email || "",
         amountTotal: session.amount_total,
-        downloadUrl: signedUrl?.signedUrl || null,
+        downloadUrl: ebookUrl?.signedUrl || null,
+        bonusDownloadUrl: bonusUrl?.signedUrl || null,
         includesLifetime: order?.includes_lifetime || false,
       }),
       {
