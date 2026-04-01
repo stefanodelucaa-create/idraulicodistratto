@@ -127,6 +127,7 @@ export default function ThankYou() {
             amountTotal: `€${((data.amountTotal || 0) / 100).toFixed(2).replace(".", ",")}`,
             orderDate: new Date().toLocaleDateString("it-IT"),
             downloadUrl: data.downloadUrl || null,
+            bonusDownloadUrl: data.bonusDownloadUrl || null,
             includesLifetime: data.includesLifetime || false,
           });
         }
