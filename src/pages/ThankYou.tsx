@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Check, ChevronDown, Download, Star, X, Clock, Shield, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { createStorefrontCheckout, CartItem, ShopifyProduct } from "@/lib/shopify";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import ebookBaseCover from "@/assets/ebook-base-cover.png";
 import lifetimeAccessCover from "@/assets/lifetime-access-cover.jpeg";
-
 // Simulated order data (in production, this comes from Shopify Liquid variables)
 const getOrderData = () => {
   const params = new URLSearchParams(window.location.search);
