@@ -200,8 +200,8 @@ export default function ThankYou() {
             <div className="bg-secondary rounded-xl p-5 max-w-md mx-auto mb-6">
               <div className="text-left text-[15px] leading-8 text-muted-foreground">
                 <p>📧 Email: {orderData.customerEmail}</p>
-                <p>🔢 Ordine: #{orderData.orderNumber}</p>
-                <p>💳 Totale pagato: {orderData.totalPaid}</p>
+                <p>💳 Totale pagato: {orderData.amountTotal}</p>
+                <p>📅 Data: {orderData.orderDate}</p>
                 <p>📅 Data: {orderData.orderDate}</p>
               </div>
             </div>
