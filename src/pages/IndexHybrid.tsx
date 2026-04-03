@@ -205,7 +205,7 @@ const IndexHybrid = () => {
                   onClick={handleBuyClick}
                   className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground text-base sm:text-lg md:text-xl lg:text-2xl font-bold py-5 sm:py-6 md:py-7 rounded-xl sm:rounded-2xl group shadow-[0_10px_30px_-5px_rgba(234,88,12,0.4)] min-h-[56px] sm:min-h-[60px]"
                 >
-                  Ottieni Tutto a {price}
+                  Sblocca il Piacere Completo a {price}
                   <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
 
