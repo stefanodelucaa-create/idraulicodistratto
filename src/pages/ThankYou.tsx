@@ -54,6 +54,16 @@ export default function ThankYou() {
         });
         if (error) throw error;
         if (data?.success) {
+          // Track Purchase conversion on Meta Pixel
+          const amountEur = ((data.amountTotal || 0) / 100).toFixed(2);
+          if (typeof window !== 'undefined' && window.fbq) {
+            window.fbq('track', 'Purchase', {
+              value: amountEur,
+              currency: 'EUR',
+              content_type: 'product',
+              content_name: 'Manuale Idraulico Distratto',
+            });
+          }
           setOrderData({
             customerName: data.customerName || "Cliente",
             customerEmail: data.customerEmail || "",
