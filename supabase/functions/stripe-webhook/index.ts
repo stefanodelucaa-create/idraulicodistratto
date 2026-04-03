@@ -11,6 +11,8 @@ const supabase = createClient(
   Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
 );
 
+const LIFETIME_PRICE_ID = "price_1TH5GeRryg4tt4sINoVbOH3K";
+
 serve(async (req) => {
   const signature = req.headers.get("stripe-signature");
   const body = await req.text();
@@ -22,7 +24,6 @@ serve(async (req) => {
     if (endpointSecret && signature) {
       event = await stripe.webhooks.constructEventAsync(body, signature, endpointSecret);
     } else {
-      // Fallback: parse without signature verification (dev mode)
       event = JSON.parse(body);
     }
   } catch (err) {
@@ -36,7 +37,7 @@ serve(async (req) => {
     // Determine if lifetime was included by checking line items
     const lineItems = await stripe.checkout.sessions.listLineItems(session.id);
     const includesLifetime = lineItems.data.some(
-      (item) => item.price?.id === "price_1TH5GeRryg4tt4sINoVbOH3K"
+      (item) => item.price?.id === LIFETIME_PRICE_ID
     );
 
     // Insert order record
@@ -57,6 +58,39 @@ serve(async (req) => {
     }
 
     console.log(`Order created for session ${session.id}`);
+
+    // Generate signed download URLs (valid 1 hour)
+    const { data: ebookUrl } = await supabase.storage
+      .from("ebooks")
+      .createSignedUrl("manuale-idraulico-distratto.pdf", 3600);
+
+    const { data: bonusUrl } = await supabase.storage
+      .from("ebooks")
+      .createSignedUrl("bonus-checklist.pdf", 3600);
+
+    // Send post-purchase email with download links
+    const customerEmail = session.customer_details?.email;
+    if (customerEmail) {
+      try {
+        await supabase.functions.invoke("send-transactional-email", {
+          body: {
+            templateName: "purchase-confirmation",
+            recipientEmail: customerEmail,
+            idempotencyKey: `purchase-confirm-${session.id}`,
+            templateData: {
+              customerName: session.customer_details?.name || undefined,
+              downloadUrl: ebookUrl?.signedUrl || undefined,
+              bonusDownloadUrl: bonusUrl?.signedUrl || undefined,
+              includesLifetime,
+            },
+          },
+        });
+        console.log(`Purchase confirmation email queued for ${customerEmail}`);
+      } catch (emailError) {
+        // Non-fatal: order is already saved, log and continue
+        console.error("Failed to send purchase email:", emailError);
+      }
+    }
   }
 
   return new Response(JSON.stringify({ received: true }), {
