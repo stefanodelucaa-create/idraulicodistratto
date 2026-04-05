@@ -340,7 +340,7 @@ const IndexBold = () => {
 
           {/* Value Stack CTA */}
           <div className="mt-12 max-w-2xl mx-auto">
-            <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-6 sm:p-8 border-2 border-red-600/50 text-center">
+            <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-5 sm:p-8 border-2 border-red-600/50 text-center">
               <div className="space-y-2 mb-6 text-gray-400">
                 <div>Valore Ebook: <span className="text-white">€79</span></div>
                 <div>Valore 6 Bonus: <span className="text-white">€{bonusTotal}</span></div>
