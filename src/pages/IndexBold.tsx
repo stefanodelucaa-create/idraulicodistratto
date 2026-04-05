@@ -151,7 +151,7 @@ const IndexBold = () => {
               </div>
 
               {/* Price Block */}
-              <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-6 border-2 border-red-600/50">
+              <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-4 sm:p-6 border-2 border-red-600/50">
                 <div className="flex items-center justify-center gap-4 mb-4">
                   <span className="text-2xl text-gray-400 line-through">{originalPrice}</span>
                   <span className="text-5xl font-black text-white">{price}</span>
