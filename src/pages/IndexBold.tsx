@@ -559,7 +559,7 @@ const IndexBold = () => {
           <div className="bg-black/95 backdrop-blur-lg border-t border-red-600/50 px-4 py-3">
             <div className="flex items-center justify-between gap-3">
               <div className="flex flex-col">
-                <span className="text-xs text-gray-500 line-through">€79</span>
+                <span className="text-xs text-gray-500 line-through">€99</span>
                 <span className="text-xl font-bold text-white">{price}</span>
               </div>
               <Button onClick={handleBuyClick} className="flex-1 max-w-[200px] bg-red-600 hover:bg-red-700 text-white font-bold py-4 group">
