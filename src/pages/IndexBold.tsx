@@ -23,13 +23,32 @@ import sezione5 from "@/assets/sezione-5.png";
 import sezione6 from "@/assets/sezione-6.png";
 
 // ============ DATA ============
-const painPoints = [
-  { title: "Sei nella tua testa invece che nel momento", description: "Durante il sesso pensi: 'Sto facendo bene? Dovrei cambiare? Quanto manca?' Invece di goderti le sensazioni, sei bloccato nel dialogo mentale." },
-  { title: "Il sesso è diventato un lavoro, non un piacere", description: "Vedi lo squirting come una 'missione da compiere', un obiettivo da conquistare. Ti sforzi per ore, ma ti senti sempre sotto esame." },
-  { title: "Lei si sente sotto pressione (anche se non te lo dice)", description: "La tua partner percepisce che vuoi ottenere un risultato. Inizia a pensare: 'Devo farcela per lui, se non succede sarà deluso'." },
-  { title: "Non sai più cosa è reale e cosa è finzione", description: "Porno e forum online ti hanno dato aspettative irreali: squirting in 5 minuti, ogni volta, con tutte." },
-  { title: "Conosci tecniche, ma non capisci perché funzionano", description: "Hai visto il famoso movimento 'vieni qui' con le dita, ma non hai una mappa chiara di ghiandole di Skene, punto G, clitoride interno." },
-  { title: "Non sai come parlarne senza creare imbarazzo", description: "Vorresti esplorare questo tema con la tua partner, ma non sai da dove iniziare senza creare pressione." },
+const beforeAfter = [
+  { before: "Non sai se sta fingendo o se le è piaciuto davvero", after: "Sai esattamente quali segnali leggere per decifrare il suo corpo e le sue sensazioni" },
+  { before: 'Durante il sesso hai mille pensieri ("Sto facendo bene? Quanto manca?")', after: "Sei completamente presente e riesci a goderti ogni secondo" },
+  { before: "Cerchi risposte ai tuoi dubbi alle 2 di notte tra mille forum e siti poco affidabili", after: "Sai di avere nello stesso posto tutte le info che ti servono + step pratici da seguire" },
+  { before: "Non sei mai riuscito a farla squirtare e ti sei arreso all'idea di non farlo mai", after: "Riesci a farla squirtare mentre continui a goderti il momento" },
+  { before: "Hai paura di non reggere il confronto con le sue esperienze passate", after: "Hai massima sicurezza in te stesso per le tue capacità (e lei se ne accorge)" },
+  { before: "Quando gli amici parlano di sesso vorresti cambiare discorso", after: "Non sei più quello che ascolta storie sul sesso, ma quello che le racconta" },
+  { before: "Non sai dove mettere le mani e in che modo", after: "Sai esattamente dove toccare, in che modo e in quale sequenza" },
+  { before: "Non distingui più tra la realtà e la finzione dei porno", after: "Conosci le basi dell'anatomia femminile e sai perfettamente cosa è reale e cosa no" },
+  { before: "Vivi il sesso come un esame da superare", after: "Entrambi riuscite a godervi appieno il rapporto" },
+];
+
+const bulletPoints = [
+  "I 2 punti specifici del suo corpo che la faranno impazzire ogni singola volta – con illustrazioni e spiegazioni pratiche…",
+  "Quali sono i 12 errori più commessi tra le lenzuola e come evitarli definitivamente…",
+  "La verità sullo squirting: perché NON è quello che ti hanno sempre raccontato…",
+  "7 Segnali di Eccitazione che nessuno può fingere e che ti sveleranno il suo REALE livello di coinvolgimento…",
+  "Le 5 posizioni anatomiche più efficaci per stimolarla nei punti giusti…",
+  "Come impostare le condizioni ottimali per un rapporto appagante e soddisfacente al 100%...",
+  "6 Tecniche Avanzate per fare in modo che qualunque ragazza si ricordi di te per tutta la vita…",
+  "L'anatomia del piacere femminile che ti renderà l'amante più esperto che lei abbia mai visto in vita sua…",
+  "Il singolo errore che bloccherà il suo squirting vanificando tutti i tuoi sforzi…",
+  "Perché il 40% del risultato si decide ancora prima di toccarla, e come sfruttarlo a tuo vantaggio…",
+  "Come gestire eventuali tentativi \"meno riusciti\" per viverla entrambi senza la minima ansia, stress e frustrazione…",
+  "5 Metodi Scientifici per scacciare l'ansia da prestazione una volta per tutte…",
+  "I Fondamenti Psicologici che ti permetteranno di goderti appieno il sesso – prima, durante e dopo…",
 ];
 
 const uniqueFeatures = [
@@ -48,41 +67,29 @@ const sections = [
 ];
 
 const bonuses = [
-  { icon: ListChecks, title: "Checklist Complete", value: 19 },
-  { icon: MessageSquare, title: "FAQ Estese", value: 24 },
-  { icon: FileText, title: "Guida Rapida Problemi", value: 17 },
-  { icon: Heart, title: "Esercizi per Lei", value: 29 },
-  { icon: Smartphone, title: "App Utili Coppie", value: 15 },
-  { icon: LineChart, title: "Scheda Tracking", value: 21 },
+  { icon: ListChecks, title: "Checklist Completa per Ogni Situazione", value: 19, description: "Una lista precompilata – segnali da osservare, errori da evitare – che ti aiuterà a concentrarti su quello che stai facendo, invece di dover pensare se ti sei scordato qualcosa." },
+  { icon: MessageSquare, title: "FAQ Estese con Risposte Complete", value: 24, description: "Ci hai provato più volte e non succede nulla. Lei sente dolore e non capisci perché. Ha paura di \"fare pipì\" e si blocca. Qui le risolverai tutte, una per una." },
+  { icon: FileText, title: "Guida Rapida Risoluzione Problemi", value: 17, description: "Funziona come una mappa decisionale immediata: succede X, fai Y. Tienila a portata di mano per i momenti in cui qualcosa va storto." },
+  { icon: Heart, title: "Esercizi Pratici per Lei", value: 29, description: "Il 40% del risultato dipende da quanto lei riesce ad abbandonarsi. Questa mini guida la aiuta a sviluppare consapevolezza corporea e rimuovere le inibizioni." },
+  { icon: Smartphone, title: "App Utili per Coppie", value: 15, description: "La sessione perfetta si costruisce anche fuori dal letto. Selezione ragionata di app per creare anticipazione e migliorare la comunicazione." },
+  { icon: LineChart, title: "Scheda di Tracking Progressi", value: 21, description: "Tieni traccia di cosa funziona, dei feedback di lei e dei cambiamenti nel tempo – così ogni sessione costruisce sulla precedente." },
 ];
 
 const testimonials = [
-  { name: "Marco R.", location: "Milano", text: "La parte sulla psicologia mi ha aperto gli occhi. Ho capito che stavo mettendo pressione a entrambi senza rendermene conto.", rating: 5 },
-  { name: "Alessandro T.", location: "Roma", text: "Finalmente una guida che spiega il 'perché' dietro le tecniche. Capire l'anatomia reale ha fatto la differenza.", rating: 5 },
-  { name: "Luca M.", location: "Napoli", text: "Gli script per la comunicazione sono oro. Sapevo che dovevo parlarne ma non sapevo come.", rating: 5 },
-];
-
-const forYou = [
-  "Sei in una relazione con cui vuoi costruire vera intimità",
-  "Vuoi liberarti dall'ansia da prestazione",
-  "Sei disposto a comunicare apertamente",
-  "Vuoi capire il corpo femminile a livello profondo",
-  "Ti interessa il piacere di entrambi",
-];
-
-const notForYou = [
-  'Cerchi garanzie "100% in 10 minuti"',
-  "Non ti interessa comunicare",
-  "Vuoi solo qualcosa di rapido",
-  "Non accetti la variabilità anatomica",
+  { name: "Luca M.", location: "34 anni, Torino", text: "Ero scettico, mi sembrava roba da disperati. L'ho comprato alle 11 di sera quasi per scommessa con me stesso. La parte sulla psicologia mi ha spiazzato perché non mi aspettavo che il problema fosse lì.", rating: 5 },
+  { name: "Davide R.", location: "27 anni, Assago", text: "Sono single, quindi il contesto è diverso da chi ha una relazione fissa. Ma quello che ho trovato utile è soprattutto la parte sull'anatomia. Avevo delle lacune enormi che non avevo mai ammesso neanche a me.", rating: 5 },
+  { name: "Marco T.", location: "41 anni, Imola", text: "Dopo 10 anni insieme mia moglie e io eravamo finiti in quel loop in cui il sesso funziona ma non è più niente di speciale. La cosa che mi ha colpito di più è stata la parte sulla comunicazione.", rating: 5 },
+  { name: "Filippo C.", location: "25 anni, Udine", text: "La parte che mi ha aiutato di più non è quella sulle tecniche. È quella su come parlarne con lei. Non avevo idea di come si apre quel tipo di conversazione senza sembrare un cretino.", rating: 5 },
+  { name: "Matteo B.", location: "29 anni, Treviglio", text: "Avevo già provato a cercare roba simile online. Forum, video, articoli. Il problema è che sono tutti pezzi scollegati. Qui per la prima volta ho trovato tutto in un posto solo, in un ordine che ha senso.", rating: 5 },
+  { name: "Riccardo V.", location: "41 anni, Venezia", text: "Lo compri con un po' di imbarazzo, inutile negarlo. Ma poi lo apri e capisci subito che non è la solita roba. È scritto seriamente, ci sono fonti, ci sono spiegazioni vere. Mia moglie ha notato che qualcosa è cambiato in me.", rating: 5 },
 ];
 
 const faqs = [
-  { question: "In cosa è diverso dai video online?", answer: "Questa guida è strutturata: 70% psicologia/comunicazione, 30% tecnica. Basata su ricerca scientifica." },
-  { question: "Quanto tempo serve per vedere risultati?", answer: "Alcuni riportano miglioramenti nella prima settimana. Per le tecniche, consigliamo 3-4 sessioni senza pressione." },
-  { question: "Posso leggerlo insieme alla mia partner?", answer: "Sì, e lo consigliamo. Molte sezioni sono pensate per essere condivise." },
+  { question: "In cosa è diverso dai video online?", answer: "Questa guida è strutturata: 70% psicologia/comunicazione, 30% tecnica. Basata su ricerca scientifica, non su consigli da forum." },
+  { question: "Quanto tempo serve per vedere risultati?", answer: "Alcuni riportano miglioramenti nella prima settimana. Le strategie sono progettate per essere usate già dalla prossima occasione." },
+  { question: "Posso leggerlo insieme alla mia partner?", answer: "Sì, e lo consigliamo. Il BONUS #4 è pensato apposta per essere condiviso con lei." },
   { question: "Cosa succede dopo l'acquisto?", answer: "Ricevi immediatamente email con i link per scaricare tutto. Puoi iniziare entro 2 minuti." },
-  { question: "Posso ottenere il rimborso?", answer: "Sì. 60 giorni di garanzia completa. Tieni comunque i bonus." },
+  { question: "Posso ottenere il rimborso?", answer: "Sì. Hai 60 giorni interi per provare il protocollo. Se non sei soddisfatto, rimborso completo senza domande." },
 ];
 
 const IndexBold = () => {
