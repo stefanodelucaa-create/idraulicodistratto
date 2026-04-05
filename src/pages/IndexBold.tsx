@@ -326,12 +326,15 @@ const IndexBold = () => {
                 <h3 className="text-xl font-bold text-white">6 Bonus GRATIS</h3>
               </div>
               {bonuses.map((bonus, i) => (
-                <div key={i} className="bg-gray-900/50 rounded-xl p-4 border border-gray-800 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <bonus.icon className="w-5 h-5 text-red-500" />
-                    <span className="text-white font-medium">{bonus.title}</span>
+                <div key={i} className="bg-gray-900/50 rounded-xl p-4 border border-gray-800">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <bonus.icon className="w-5 h-5 text-red-500" />
+                      <span className="text-white font-medium text-sm sm:text-base">{bonus.title}</span>
+                    </div>
+                    <span className="text-red-500 font-bold text-sm">€{bonus.value}</span>
                   </div>
-                  <span className="text-red-500 font-bold">€{bonus.value}</span>
+                  <p className="text-gray-500 text-xs sm:text-sm leading-relaxed pl-8">{bonus.description}</p>
                 </div>
               ))}
             </div>
