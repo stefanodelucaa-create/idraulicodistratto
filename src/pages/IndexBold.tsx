@@ -209,7 +209,7 @@ const IndexBold = () => {
                     <XCircle className="w-5 h-5 text-red-500" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-2">{point.title}</h3>
+                    <h3 className="text-base sm:text-lg font-bold text-white mb-2">{point.title}</h3>
                     <p className="text-gray-400 text-sm leading-relaxed">{point.description}</p>
                   </div>
                 </div>
