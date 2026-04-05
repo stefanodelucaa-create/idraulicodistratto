@@ -139,7 +139,7 @@ const IndexBold = () => {
                 <span className="text-red-500 block">DEL PIACERE</span>
               </h1>
 
-              <p className="text-base sm:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0">
+              <p className="text-base sm:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 Scopri i "Giusti Tasti" da Toccare per Portare il Sesso al Livello Superiore e Farla Squirtare Ogni Volta che Vuoi… <span className="text-red-400 font-semibold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
