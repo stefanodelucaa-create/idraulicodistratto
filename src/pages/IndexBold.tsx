@@ -167,10 +167,10 @@ const IndexBold = () => {
                 
                 <Button 
                   onClick={handleBuyClick}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white text-base sm:text-lg font-bold py-5 sm:py-6 rounded-xl group"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white text-sm sm:text-lg font-bold py-5 sm:py-6 rounded-xl group whitespace-normal leading-tight"
                 >
-                  🔥 OTTIENI ACCESSO IMMEDIATO
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  Sì, Voglio il Protocollo + TUTTI i BONUS
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                 </Button>
 
                 <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-400">
