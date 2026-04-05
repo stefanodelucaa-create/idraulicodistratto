@@ -435,7 +435,7 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6 max-w-3xl">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">❓ FAQ</span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">Domande Frequenti</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white">Domande Frequenti</h2>
           </div>
 
           <Accordion type="single" collapsible className="space-y-3">
