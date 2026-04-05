@@ -457,10 +457,13 @@ const IndexBold = () => {
               <div className="w-20 h-20 rounded-full bg-red-600/20 flex items-center justify-center mx-auto mb-6">
                 <Shield className="w-10 h-10 text-red-500" />
               </div>
-              <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">Garanzia 60 Giorni</h2>
-              <p className="text-xl text-red-500 font-bold mb-4">RISCHIO ZERO</p>
-              <p className="text-gray-400 mb-8 max-w-xl mx-auto">
-                Prova la guida con calma. Se non fa per te, rimborso completo. E tieni comunque tutti i bonus.
+              <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">"L'Hai Soddisfatta o Ti Rimborsiamo"</h2>
+              <p className="text-xl text-red-500 font-bold mb-4">GARANZIA DEL 100%</p>
+              <p className="text-gray-400 mb-4 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+                Il rischio di questo acquisto è tutto nostro, non tuo. Hai <span className="text-white font-bold">60 giorni interi</span> per leggere il protocollo, applicare quello che trovi e vedere con i tuoi occhi cosa cambia.
+              </p>
+              <p className="text-gray-400 mb-8 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+                Se non sei soddisfatto – per qualsiasi motivo, anche uno che non ci vuoi spiegare – ti rimborsiamo il 100%. Senza domande. Senza moduli da compilare.
               </p>
 
               <div className="grid grid-cols-3 gap-3 sm:gap-4">
