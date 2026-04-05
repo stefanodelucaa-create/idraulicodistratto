@@ -275,10 +275,10 @@ const IndexBold = () => {
                 <div className="bg-gradient-to-br from-red-900/30 to-gray-900 p-6 flex justify-center">
                   <img src={section.image} alt={section.title} className="w-32 h-auto rounded-lg shadow-lg group-hover:scale-105 transition-transform" loading="lazy" />
                 </div>
-                <div className="p-5">
-                  <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">PARTE {i + 1}</span>
-                  <h3 className="text-lg font-bold text-white mt-2">{section.title}</h3>
-                  <p className="text-red-400 text-sm">{section.subtitle}</p>
+                <div className="p-3 sm:p-5">
+                  <span className="bg-red-600 text-white text-[10px] sm:text-xs font-bold px-2 py-0.5 sm:py-1 rounded">PARTE {i + 1}</span>
+                  <h3 className="text-sm sm:text-lg font-bold text-white mt-2">{section.title}</h3>
+                  <p className="text-red-400 text-xs sm:text-sm">{section.subtitle}</p>
                 </div>
               </div>
             ))}
