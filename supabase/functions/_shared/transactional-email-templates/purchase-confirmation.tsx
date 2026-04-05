@@ -62,7 +62,7 @@ const PurchaseConfirmationEmail = ({
         </Text>
 
         <Text style={smallText}>
-          💡 Hai bisogno di aiuto? Rispondi a questa email o contattaci a info@manualeidraulicodistratto.com
+          💡 Hai bisogno di aiuto? Rispondi a questa email o contattaci a idraulicodistratto@gmail.com
         </Text>
 
         <Text style={footer}>

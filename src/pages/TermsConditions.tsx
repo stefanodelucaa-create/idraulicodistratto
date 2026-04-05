@@ -68,7 +68,7 @@ export default function TermsConditions() {
               entro 60 giorni dalla data di acquisto, senza dover fornire alcuna spiegazione.
             </p>
             <p className="mt-3">
-              Per richiedere il rimborso, contattaci a: <a href="mailto:info@manualeidraulicodistratto.com" className="text-primary hover:underline">info@manualeidraulicodistratto.com</a>
+              Per richiedere il rimborso, contattaci a: <a href="mailto:idraulicodistratto@gmail.com" className="text-primary hover:underline">idraulicodistratto@gmail.com</a>
             </p>
           </section>
 
@@ -137,7 +137,7 @@ export default function TermsConditions() {
             <h2 className="text-xl font-semibold text-foreground mt-8 mb-4">11. Contatti</h2>
             <p>
               Per qualsiasi domanda relativa a questi Termini e Condizioni, contattaci a: <br />
-              <a href="mailto:info@manualeidraulicodistratto.com" className="text-primary hover:underline">info@manualeidraulicodistratto.com</a>
+              <a href="mailto:idraulicodistratto@gmail.com" className="text-primary hover:underline">idraulicodistratto@gmail.com</a>
             </p>
           </section>
         </div>

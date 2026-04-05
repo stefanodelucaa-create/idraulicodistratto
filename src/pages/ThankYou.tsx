@@ -169,7 +169,7 @@ export default function ThankYou() {
 
             <div className="bg-secondary/50 rounded-lg p-4 max-w-md mx-auto mt-6">
               <p className="text-sm text-muted-foreground">
-                💡 <strong>Hai bisogno di aiuto?</strong> Contattaci a <a href="mailto:info@manualeidraulicodistratto.com" className="text-primary underline hover:no-underline">info@manualeidraulicodistratto.com</a>
+                💡 <strong>Hai bisogno di aiuto?</strong> Contattaci a <a href="mailto:idraulicodistratto@gmail.com" className="text-primary underline hover:no-underline">idraulicodistratto@gmail.com</a>
               </p>
             </div>
           </div>
