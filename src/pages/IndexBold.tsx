@@ -284,8 +284,8 @@ const IndexBold = () => {
             ))}
           </div>
 
-          <div className="mt-10 bg-red-600/10 border border-red-600/30 rounded-2xl p-6 text-center max-w-3xl mx-auto">
-            <p className="text-white font-medium text-lg">
+          <div className="mt-10 bg-red-600/10 border border-red-600/30 rounded-2xl p-4 sm:p-6 text-center max-w-3xl mx-auto">
+            <p className="text-white font-medium text-sm sm:text-lg">
               <span className="text-red-500 font-bold">200+ pagine</span>, <span className="text-red-500 font-bold">25 capitoli</span>, <span className="text-red-500 font-bold">50+ esercizi</span>
             </p>
           </div>
