@@ -315,7 +315,7 @@ const IndexBold = () => {
                 </div>
               </div>
               <div className="bg-red-600/10 rounded-xl p-4 text-center">
-                <span className="text-xl font-bold text-red-500">Valore: €79</span>
+                <span className="text-xl font-bold text-red-500">Valore: €99</span>
               </div>
             </div>
 
