@@ -505,7 +505,7 @@ const IndexBold = () => {
               </Button>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-red-200">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-red-200">
               <span className="flex items-center gap-2"><Shield className="w-4 h-4" /> Pagamento Sicuro</span>
               <span className="flex items-center gap-2"><Download className="w-4 h-4" /> Download Immediato</span>
               <span className="flex items-center gap-2"><Clock className="w-4 h-4" /> Garanzia 60 Giorni</span>
