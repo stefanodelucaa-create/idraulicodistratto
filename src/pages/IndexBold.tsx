@@ -139,7 +139,7 @@ const IndexBold = () => {
                     src={protocolloCover} 
                     alt="Il Protocollo del Piacere" 
                     loading="eager"
-                    className="relative w-48 sm:w-56 md:w-64 lg:w-72 drop-shadow-2xl"
+                    className="relative w-64 sm:w-72 md:w-80 lg:w-96 drop-shadow-2xl"
                     style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.4))" }}
                   />
                 </div>
