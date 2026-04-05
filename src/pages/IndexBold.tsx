@@ -246,7 +246,7 @@ const IndexBold = () => {
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {uniqueFeatures.map((feature, i) => (
-              <div key={i} className="bg-black/50 rounded-2xl p-6 sm:p-8 border border-gray-800 text-center hover:border-red-600/50 transition-all">
+              <div key={i} className="bg-black/50 rounded-2xl p-5 sm:p-8 border border-gray-800 text-center hover:border-red-600/50 transition-all">
                 <div className="w-16 h-16 rounded-2xl bg-red-600/20 flex items-center justify-center mx-auto mb-5">
                   <feature.icon className="w-8 h-8 text-red-500" />
                 </div>
