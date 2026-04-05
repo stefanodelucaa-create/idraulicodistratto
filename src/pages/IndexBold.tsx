@@ -310,7 +310,7 @@ const IndexBold = () => {
                   <Book className="w-7 h-7 text-red-500" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">Manuale Completo</h3>
+                  <h3 className="text-xl font-bold text-white">Il Protocollo del Piacere</h3>
                   <p className="text-red-500 font-medium">200+ pagine, 25 capitoli</p>
                 </div>
               </div>
