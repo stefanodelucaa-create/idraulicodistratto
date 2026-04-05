@@ -388,43 +388,41 @@ const IndexBold = () => {
         </div>
       </section>
 
-      {/* IS FOR YOU */}
+      {/* PRIMA vs DOPO */}
       <section className="py-16 sm:py-20 bg-black">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-4xl font-black text-white">Per Chi è Questa Guida</h2>
+            <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
+              🔄 TRASFORMAZIONE
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-black text-white">
+              Prima vs Dopo
+              <span className="text-red-500 block">il Protocollo del Piacere</span>
+            </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            <div className="bg-green-900/20 rounded-2xl p-6 sm:p-8 border-2 border-green-600/30">
-              <div className="flex items-center gap-3 mb-6">
-                <CheckCircle className="w-6 h-6 text-green-500" />
-                <h3 className="text-xl font-bold text-white">È per te se...</h3>
-              </div>
-              <ul className="space-y-4">
-                {forYou.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300">{item}</span>
-                  </li>
-                ))}
-              </ul>
+          <div className="max-w-4xl mx-auto space-y-3">
+            {/* Header */}
+            <div className="hidden sm:grid grid-cols-2 gap-3 mb-2">
+              <div className="text-center font-bold text-red-500 text-sm uppercase tracking-wide">❌ Prima</div>
+              <div className="text-center font-bold text-green-500 text-sm uppercase tracking-wide">✅ Dopo</div>
             </div>
-
-            <div className="bg-red-900/20 rounded-2xl p-6 sm:p-8 border border-red-900/30">
-              <div className="flex items-center gap-3 mb-6">
-                <XCircle className="w-6 h-6 text-red-500" />
-                <h3 className="text-xl font-bold text-white">Non è per te se...</h3>
+            {beforeAfter.map((item, i) => (
+              <div key={i} className="grid sm:grid-cols-2 gap-2 sm:gap-3">
+                <div className="bg-red-900/20 rounded-xl p-3 sm:p-4 border border-red-900/30">
+                  <div className="flex items-start gap-2">
+                    <XCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-400 text-xs sm:text-sm">{item.before}</span>
+                  </div>
+                </div>
+                <div className="bg-green-900/20 rounded-xl p-3 sm:p-4 border border-green-900/30">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-300 text-xs sm:text-sm">{item.after}</span>
+                  </div>
+                </div>
               </div>
-              <ul className="space-y-4">
-                {notForYou.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <XCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-500">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
       </section>
