@@ -485,9 +485,9 @@ const IndexBold = () => {
       <section className="py-16 sm:py-20 bg-gradient-to-b from-red-900 to-red-950">
         <div className="container px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
               È ORA DI AGIRE.
-              <span className="block text-red-300">Non Domani. ADESSO.</span>
+              <span className="block text-red-300 text-xl sm:text-3xl lg:text-4xl">Non Domani. ADESSO.</span>
             </h2>
             <p className="text-lg text-red-100/80 mb-8 max-w-xl mx-auto">
               Puoi continuare come prima, o puoi cambiare. La scelta è tua.
