@@ -299,7 +299,7 @@ const IndexBold = () => {
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
               🎁 COSA RICEVI
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">Oltre all'Ebook</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white">Oltre all'Ebook</h2>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
