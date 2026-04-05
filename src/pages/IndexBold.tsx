@@ -305,7 +305,7 @@ const IndexBold = () => {
           <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Main Ebook */}
             <div className="bg-gradient-to-br from-red-900/30 to-gray-900 rounded-2xl p-6 sm:p-8 border-2 border-red-600/50 relative">
-              <div className="absolute top-0 right-0 bg-red-600 text-white px-4 py-1 text-sm font-bold rounded-bl-xl">PRINCIPALE</div>
+              <div className="absolute top-0 right-0 bg-red-600 text-white px-3 sm:px-4 py-1 text-xs sm:text-sm font-bold rounded-bl-xl">PRINCIPALE</div>
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-14 h-14 rounded-xl bg-red-600/20 flex items-center justify-center">
                   <Book className="w-7 h-7 text-red-500" />
