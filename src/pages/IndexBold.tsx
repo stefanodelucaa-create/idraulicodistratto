@@ -13,8 +13,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import ebookMockup from "@/assets/ebook-mockup.png";
-import bonusMockup from "@/assets/bonus-mockup.png";
+import protocolloCover from "@/assets/protocollo-cover.png";
 import sezione1 from "@/assets/sezione-1.png";
 import sezione2 from "@/assets/sezione-2.png";
 import sezione3 from "@/assets/sezione-3.png";
@@ -127,11 +126,23 @@ const IndexBold = () => {
         <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/20 rounded-full blur-3xl" />
         
         <div className="container relative z-10 px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Content */}
-            <div className="text-center lg:text-left space-y-6">
+          <div className="max-w-2xl mx-auto text-center space-y-6">
               <div className="inline-block bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide">
                 Offerta di Lancio – 71% di sconto
+              </div>
+
+              {/* Cover Image */}
+              <div className="flex justify-center">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-red-600/20 rounded-3xl blur-3xl scale-90" />
+                  <img 
+                    src={protocolloCover} 
+                    alt="Il Protocollo del Piacere" 
+                    loading="eager"
+                    className="relative w-48 sm:w-56 md:w-64 lg:w-72 drop-shadow-2xl"
+                    style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.4))" }}
+                  />
+                </div>
               </div>
               
               <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
@@ -139,18 +150,18 @@ const IndexBold = () => {
                 <span className="text-red-500 block">DEL PIACERE</span>
               </h1>
 
-              <p className="text-base sm:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-base sm:text-xl text-gray-300 max-w-xl mx-auto leading-relaxed">
                 Scopri i "Giusti Tasti" da Toccare per Portare il Sesso al Livello Superiore e Farla Squirtare Ogni Volta che Vuoi… <span className="text-red-400 font-semibold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
-              <div className="space-y-3">
+              <div className="space-y-3 inline-block text-left">
                 {[
                   { icon: FileText, text: "Strategie pratiche che potrai usare già dalla prossima occasione" },
                   { icon: Target, text: "Basato su riferimenti anatomici scientificamente accurati" },
                   { icon: Gift, text: "In REGALO 6 BONUS Esclusivi dal Valore Totale di €138" },
                   { icon: Shield, text: 'Garanzia 60 giorni "L\'hai Soddisfatta o ti Rimborsiamo"' },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 justify-center lg:justify-start">
+                  <div key={i} className="flex items-center gap-3">
                     <item.icon className="w-5 h-5 text-red-500 flex-shrink-0" />
                     <span className="text-gray-200 font-medium text-base">{item.text}</span>
                   </div>
@@ -179,16 +190,6 @@ const IndexBold = () => {
                   <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" /> Garanzia 60 giorni</span>
                 </div>
               </div>
-            </div>
-
-            {/* Product Images */}
-            <div className="relative flex justify-center pb-4 px-4">
-              <div className="absolute inset-0 bg-red-600/20 rounded-full blur-3xl scale-75" />
-              <div className="relative flex items-start justify-center max-w-[340px] sm:max-w-none mx-auto">
-                <img src={ebookMockup} alt="Ebook" className="w-48 sm:w-72 lg:w-80 drop-shadow-2xl relative z-10" />
-                <img src={bonusMockup} alt="Bonus" className="w-40 sm:w-56 lg:w-64 drop-shadow-xl -ml-28 sm:-ml-36 relative z-20 mt-[3.5rem] sm:mt-[5rem] lg:mt-[5.5rem]" />
-              </div>
-            </div>
           </div>
         </div>
       </section>
