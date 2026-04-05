@@ -230,29 +230,51 @@ const IndexBold = () => {
         </div>
       </section>
 
-      {/* WHY DIFFERENT */}
+      {/* NON TROVERAI NULLA DEL GENERE */}
       <section className="py-16 sm:py-20 bg-gray-900">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
-              💡 PERCHÉ È DIVERSA
+              💡 PERCHÉ È UNICO
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-white">
-              Non è l'Ennesima Guida
-              <span className="text-red-500 block">Trovata Online</span>
+              Non troverai nulla del genere
+              <span className="text-red-500 block">su internet (né da nessun'altra parte)…</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {uniqueFeatures.map((feature, i) => (
-              <div key={i} className="bg-black/50 rounded-2xl p-5 sm:p-8 border border-gray-800 text-center hover:border-red-600/50 transition-all">
-                <div className="w-16 h-16 rounded-2xl bg-red-600/20 flex items-center justify-center mx-auto mb-5">
-                  <feature.icon className="w-8 h-8 text-red-500" />
+          <div className="max-w-3xl mx-auto mb-10">
+            <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-6 text-center">
+              Se volessi provare a ricostruire questi contenuti da solo, dovresti mettere insieme:
+            </p>
+            <div className="space-y-3">
+              {[
+                "Manuali universitari di anatomia per comprendere a fondo il piacere femminile…",
+                "Un corso di terapia sessuale per smontare l'ansia da prestazione con metodi scientifici…",
+                "Un libro sulla comunicazione intima di coppia per sapere cosa dire – e cosa non dire…",
+                "Le tecniche pratiche di stimolazione sparse tra forum americani e libri in inglese…",
+                "Le pratiche di mindfulness e rilassamento che i terapeuti usano per aiutare entrambi…",
+                "E capire come incastrare tutto in una sequenza che funzioni nella realtà, non solo nella teoria.",
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3 bg-black/30 rounded-xl p-3 sm:p-4 border border-gray-800">
+                  <span className="text-red-500 font-bold text-lg flex-shrink-0">•</span>
+                  <span className="text-gray-300 text-xs sm:text-sm">{item}</span>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-3">{feature.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
+            <p className="text-gray-400 text-sm sm:text-base leading-relaxed mt-6 text-center">
+              Anche se tu riuscissi a trovare tutto, ci vorrebbero <span className="text-white font-bold">mesi</span>. E nel frattempo continueresti a fare esattamente quello che stai facendo adesso.
+            </p>
+            <p className="text-red-400 font-bold text-center mt-4 text-sm sm:text-base">
+              Oppure puoi ricevere tutto ciò in questo esatto momento – già tradotto in italiano, in sequenza, con illustrazioni e 6 BONUS in regalo – per soli {price} iva inclusa.
+            </p>
+          </div>
+
+          <div className="text-center">
+            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-8 text-sm sm:text-base group whitespace-normal">
+              Sì, Voglio il Protocollo + TUTTI i BONUS per soli {price}
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
+            </Button>
           </div>
         </div>
       </section>
