@@ -265,7 +265,7 @@ const IndexBold = () => {
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
               📚 CONTENUTI
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">6 Sezioni Complete</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">6 Sezioni Complete</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">Un percorso strutturato dalle basi psicologiche alle tecniche avanzate</p>
           </div>
 
