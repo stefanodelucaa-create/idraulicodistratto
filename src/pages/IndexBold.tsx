@@ -210,7 +210,7 @@ const IndexBold = () => {
             {bulletPoints.map((point, i) => (
               <div key={i} className="flex items-start gap-3 bg-gray-900/50 rounded-xl p-4 border border-gray-800">
                 <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-200 text-sm sm:text-base leading-relaxed">{point}</span>
+                <span className="text-gray-200 text-base leading-relaxed">{point}</span>
               </div>
             ))}
             <div className="bg-gray-900/50 rounded-xl p-4 border border-gray-800 text-center">
