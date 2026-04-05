@@ -344,15 +344,15 @@ const IndexBold = () => {
           <div className="mt-12 max-w-2xl mx-auto">
             <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-5 sm:p-8 border-2 border-red-600/50 text-center">
               <div className="space-y-2 mb-6 text-gray-400">
-                <div>Valore Ebook: <span className="text-white">€79</span></div>
+                <div>Valore Protocollo: <span className="text-white">€99</span></div>
                 <div>Valore 6 Bonus: <span className="text-white">€{bonusTotal}</span></div>
                 <div className="h-px bg-red-600/30 my-3" />
-                <div className="text-lg">Valore Totale: <span className="text-gray-500 line-through">€{79 + bonusTotal}</span></div>
+                <div className="text-lg">Valore Totale: <span className="text-gray-500 line-through">€{99 + bonusTotal}</span></div>
                 <div className="text-2xl sm:text-3xl font-black text-white">Oggi: <span className="text-red-500">{price}</span></div>
               </div>
-              <Button onClick={handleBuyClick} className="w-full bg-red-600 hover:bg-red-700 text-white text-base sm:text-lg font-bold py-5 sm:py-6 group">
-                🔥 OTTIENI TUTTO A {price}
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1" />
+              <Button onClick={handleBuyClick} className="w-full bg-red-600 hover:bg-red-700 text-white text-sm sm:text-base font-bold py-5 sm:py-6 group whitespace-normal leading-tight">
+                Sì, Voglio il Protocollo + TUTTI i BONUS (Valore €{99 + bonusTotal}) per soli {price}
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
               </Button>
             </div>
           </div>
