@@ -453,7 +453,7 @@ const IndexBold = () => {
       <section className="py-16 sm:py-20 bg-black">
         <div className="container px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-red-900/30 to-gray-900 rounded-3xl p-8 sm:p-12 border-2 border-red-600/50 text-center">
+            <div className="bg-gradient-to-br from-red-900/30 to-gray-900 rounded-3xl p-6 sm:p-12 border-2 border-red-600/50 text-center">
               <div className="w-20 h-20 rounded-full bg-red-600/20 flex items-center justify-center mx-auto mb-6">
                 <Shield className="w-10 h-10 text-red-500" />
               </div>
