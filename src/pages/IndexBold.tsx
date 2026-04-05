@@ -195,45 +195,37 @@ const IndexBold = () => {
         </div>
       </section>
 
-      {/* PAIN POINTS */}
+      {/* COSA SCOPRIRAI */}
       <section className="py-16 sm:py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-red-600/30">
-              ⚠️ ATTENZIONE
+              📖 CONTENUTI
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-white">
-              Ti Riconosci in Almeno Una
-              <span className="text-red-500 block">di Queste Situazioni?</span>
+              Ecco cosa scoprirai nel
+              <span className="text-red-500 block">Protocollo del Piacere:</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4 sm:gap-6 max-w-5xl mx-auto">
-            {painPoints.map((point, i) => (
-              <div key={i} className="bg-gray-900/80 rounded-xl p-4 sm:p-6 border border-red-900/30 hover:border-red-600/50 transition-all">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-red-600/20 flex items-center justify-center flex-shrink-0">
-                    <XCircle className="w-5 h-5 text-red-500" />
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-bold text-white mb-2">{point.title}</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">{point.description}</p>
-                  </div>
-                </div>
+          <div className="max-w-3xl mx-auto space-y-3">
+            {bulletPoints.map((point, i) => (
+              <div key={i} className="flex items-start gap-3 bg-gray-900/50 rounded-xl p-4 border border-gray-800">
+                <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-200 text-sm sm:text-base leading-relaxed">{point}</span>
               </div>
             ))}
+            <div className="bg-gray-900/50 rounded-xl p-4 border border-gray-800 text-center">
+              <p className="text-red-400 font-bold text-base sm:text-lg">E molto, molto altro…</p>
+              <p className="text-gray-400 text-sm mt-2">Oltre 200 pagine chiare e 25 capitoli guidati, 50+ esercizi pratici e illustrazioni per visualizzare e comprendere meglio.</p>
+            </div>
           </div>
 
-          <div className="mt-12 text-center">
-            <div className="bg-red-600/10 border-2 border-red-600/50 rounded-2xl p-6 max-w-2xl mx-auto">
-              <p className="text-white text-lg font-medium mb-4">
-                Se ti sei riconosciuto in almeno 2 punti,
-                <span className="text-red-500 font-bold"> questa guida è per te.</span>
-              </p>
-              <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 group">
-                Scopri la Soluzione <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1" />
-              </Button>
-            </div>
+          <div className="mt-10 text-center">
+            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-8 text-sm sm:text-base group whitespace-normal">
+              Sì, Voglio il Protocollo + TUTTI i BONUS (Valore €{99 + bonusTotal}) per soli {price}
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
+            </Button>
           </div>
         </div>
       </section>
