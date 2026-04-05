@@ -133,7 +133,7 @@ const IndexBold = () => {
                 <span className="text-red-400 block text-2xl sm:text-3xl lg:text-4xl mt-2">È Ora di Cambiare.</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-gray-300 max-w-xl">
+              <p className="text-base sm:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0">
                 La guida scientifica di <span className="text-red-500 font-bold">200+ pagine</span> che elimina l'ansia da prestazione e trasforma il sesso da missione a connessione.
               </p>
 
