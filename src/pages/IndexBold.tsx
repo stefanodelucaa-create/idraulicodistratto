@@ -269,7 +269,7 @@ const IndexBold = () => {
             <p className="text-gray-400 max-w-2xl mx-auto">Un percorso strutturato dalle basi psicologiche alle tecniche avanzate</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 max-w-6xl mx-auto">
             {sections.map((section, i) => (
               <div key={i} className="bg-gray-900/50 rounded-xl overflow-hidden border border-gray-800 hover:border-red-600/50 transition-all group">
                 <div className="bg-gradient-to-br from-red-900/30 to-gray-900 p-6 flex justify-center">
