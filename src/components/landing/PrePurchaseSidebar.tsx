@@ -118,7 +118,7 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
               {/* Content - centered on mobile */}
               <div className="flex-1 text-center sm:text-left">
                 <h3 className="font-bold text-lg sm:text-base text-foreground mb-1">
-                  Manuale dell'Idraulico Distratto
+                  Il Protocollo del Piacere
                 </h3>
                 <p className="text-sm text-muted-foreground mb-2">
                   Ebook completo + Bonus

@@ -543,7 +543,7 @@ const IndexBold = () => {
       <footer className="py-8 bg-black border-t border-gray-800">
         <div className="container px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
-            <p>© {new Date().getFullYear()} Manuale dell'Idraulico Distratto. Tutti i diritti riservati.</p>
+            <p>© {new Date().getFullYear()} Il Protocollo del Piacere. Tutti i diritti riservati.</p>
             <div className="flex items-center gap-6">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Termini</a>
