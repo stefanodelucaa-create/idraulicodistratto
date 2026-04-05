@@ -424,28 +424,31 @@ const IndexBold = () => {
             </h2>
           </div>
 
-          <div className="max-w-4xl mx-auto space-y-3">
-            {/* Header */}
-            <div className="hidden sm:grid grid-cols-2 gap-3 mb-2">
-              <div className="text-center font-bold text-red-500 text-sm uppercase tracking-wide">❌ Prima</div>
-              <div className="text-center font-bold text-green-500 text-sm uppercase tracking-wide">✅ Dopo</div>
-            </div>
-            {beforeAfter.map((item, i) => (
-              <div key={i} className="grid sm:grid-cols-2 gap-2 sm:gap-3">
-                <div className="bg-red-900/20 rounded-xl p-3 sm:p-4 border border-red-900/30">
-                  <div className="flex items-start gap-2">
-                    <XCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-400 text-sm sm:text-base">{item.before}</span>
-                  </div>
-                </div>
-                <div className="bg-green-900/20 rounded-xl p-3 sm:p-4 border border-green-900/30">
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300 text-sm sm:text-base">{item.after}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="max-w-4xl mx-auto overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th className="bg-red-900/40 text-red-500 font-bold text-sm sm:text-base uppercase tracking-wide py-3 px-4 border border-gray-700 w-1/2 text-center">
+                    <span className="flex items-center justify-center gap-2"><XCircle className="w-4 h-4" /> Prima</span>
+                  </th>
+                  <th className="bg-green-900/40 text-green-500 font-bold text-sm sm:text-base uppercase tracking-wide py-3 px-4 border border-gray-700 w-1/2 text-center">
+                    <span className="flex items-center justify-center gap-2"><CheckCircle className="w-4 h-4" /> Dopo</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {beforeAfter.map((item, i) => (
+                  <tr key={i} className={i % 2 === 0 ? "bg-gray-900/30" : "bg-gray-900/60"}>
+                    <td className="py-3 px-4 border border-gray-700/50 text-gray-400 text-sm sm:text-base align-top">
+                      {item.before}
+                    </td>
+                    <td className="py-3 px-4 border border-gray-700/50 text-gray-200 text-sm sm:text-base align-top">
+                      {item.after}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
