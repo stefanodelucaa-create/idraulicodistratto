@@ -131,17 +131,16 @@ const IndexBold = () => {
             {/* Content */}
             <div className="text-center lg:text-left space-y-6">
               <div className="inline-block bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide">
-                🔥 Best Seller 2024
+                🔥 Offerta di Lancio – 71% di sconto
               </div>
               
               <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
-                BASTA ANSIA.
-                <span className="text-red-500 block">BASTA PRESSIONE.</span>
-                <span className="text-red-400 block text-2xl sm:text-3xl lg:text-4xl mt-2">È Ora di Cambiare.</span>
+                IL PROTOCOLLO
+                <span className="text-red-500 block">DEL PIACERE</span>
               </h1>
 
               <p className="text-base sm:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0">
-                La guida scientifica di <span className="text-red-500 font-bold">200+ pagine</span> che elimina l'ansia da prestazione e trasforma il sesso da missione a connessione.
+                Scopri i "Giusti Tasti" da Toccare per Portare il Sesso al Livello Superiore e Farla Squirtare Ogni Volta che Vuoi… <span className="text-red-400 font-semibold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
               <div className="space-y-3">
