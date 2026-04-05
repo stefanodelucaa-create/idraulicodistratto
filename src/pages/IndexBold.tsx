@@ -117,8 +117,8 @@ const IndexBold = () => {
   return (
     <main className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* ANNOUNCEMENT BAR */}
-      <div className="bg-red-600 text-white py-2.5 sm:py-4 text-center text-xs sm:text-base font-bold px-3 sm:px-4 animate-pulse leading-tight">
-        ⚡ Offerta di Lancio – 71% di sconto + 6 Bonus GRATIS (valore €138) ⚡
+      <div className="bg-red-600 text-white py-2.5 sm:py-4 text-center text-sm sm:text-base font-bold px-3 sm:px-4 animate-pulse leading-tight">
+        Offerta di Lancio – 71% di sconto + 6 Bonus GRATIS (valore €138)
       </div>
 
       {/* HERO SECTION */}
@@ -131,7 +131,7 @@ const IndexBold = () => {
             {/* Content */}
             <div className="text-center lg:text-left space-y-6">
               <div className="inline-block bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide">
-                🔥 Offerta di Lancio – 71% di sconto
+                Offerta di Lancio – 71% di sconto
               </div>
               
               <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
@@ -139,7 +139,7 @@ const IndexBold = () => {
                 <span className="text-red-500 block">DEL PIACERE</span>
               </h1>
 
-              <p className="text-base sm:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0">
+              <p className="text-base sm:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 Scopri i "Giusti Tasti" da Toccare per Portare il Sesso al Livello Superiore e Farla Squirtare Ogni Volta che Vuoi… <span className="text-red-400 font-semibold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
@@ -152,7 +152,7 @@ const IndexBold = () => {
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 justify-center lg:justify-start">
                     <item.icon className="w-5 h-5 text-red-500 flex-shrink-0" />
-                    <span className="text-gray-200 font-medium text-sm sm:text-base">{item.text}</span>
+                    <span className="text-gray-200 font-medium text-base">{item.text}</span>
                   </div>
                 ))}
               </div>
@@ -198,7 +198,7 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-red-600/30">
-              📖 CONTENUTI
+              CONTENUTI
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-white">
               Ecco cosa scoprirai nel
@@ -210,7 +210,7 @@ const IndexBold = () => {
             {bulletPoints.map((point, i) => (
               <div key={i} className="flex items-start gap-3 bg-gray-900/50 rounded-xl p-4 border border-gray-800">
                 <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-200 text-sm sm:text-base leading-relaxed">{point}</span>
+                <span className="text-gray-200 text-base leading-relaxed">{point}</span>
               </div>
             ))}
             <div className="bg-gray-900/50 rounded-xl p-4 border border-gray-800 text-center">
@@ -233,7 +233,7 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
-              💡 PERCHÉ È UNICO
+              PERCHÉ È UNICO
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-white">
               Non troverai nulla del genere
@@ -256,7 +256,7 @@ const IndexBold = () => {
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 bg-black/30 rounded-xl p-3 sm:p-4 border border-gray-800">
                   <span className="text-red-500 font-bold text-lg flex-shrink-0">•</span>
-                  <span className="text-gray-300 text-xs sm:text-sm">{item}</span>
+                  <span className="text-gray-300 text-sm sm:text-base">{item}</span>
                 </div>
               ))}
             </div>
@@ -282,7 +282,7 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
-              📚 CONTENUTI
+              CONTENUTI
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">6 Sezioni Complete</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">Un percorso strutturato dalle basi psicologiche alle tecniche avanzate</p>
@@ -316,7 +316,7 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
-              🎁 COSA RICEVI
+              COSA RICEVI
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-white">Oltre all'Ebook</h2>
           </div>
@@ -384,7 +384,7 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
-              ⭐ TESTIMONIANZE
+              TESTIMONIANZE
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-white">Cosa Dice Chi Ha Acquistato Questo Protocollo?</h2>
           </div>
@@ -416,7 +416,7 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
-              🔄 TRASFORMAZIONE
+              TRASFORMAZIONE
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-white">
               Prima vs Dopo
@@ -424,28 +424,31 @@ const IndexBold = () => {
             </h2>
           </div>
 
-          <div className="max-w-4xl mx-auto space-y-3">
-            {/* Header */}
-            <div className="hidden sm:grid grid-cols-2 gap-3 mb-2">
-              <div className="text-center font-bold text-red-500 text-sm uppercase tracking-wide">❌ Prima</div>
-              <div className="text-center font-bold text-green-500 text-sm uppercase tracking-wide">✅ Dopo</div>
-            </div>
-            {beforeAfter.map((item, i) => (
-              <div key={i} className="grid sm:grid-cols-2 gap-2 sm:gap-3">
-                <div className="bg-red-900/20 rounded-xl p-3 sm:p-4 border border-red-900/30">
-                  <div className="flex items-start gap-2">
-                    <XCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-400 text-xs sm:text-sm">{item.before}</span>
-                  </div>
-                </div>
-                <div className="bg-green-900/20 rounded-xl p-3 sm:p-4 border border-green-900/30">
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300 text-xs sm:text-sm">{item.after}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="max-w-4xl mx-auto overflow-x-auto">
+            <table className="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th className="bg-red-900/40 text-red-500 font-bold text-sm sm:text-base uppercase tracking-wide py-3 px-4 border border-gray-700 w-1/2 text-center">
+                    <span className="flex items-center justify-center gap-2"><XCircle className="w-4 h-4" /> Prima</span>
+                  </th>
+                  <th className="bg-green-900/40 text-green-500 font-bold text-sm sm:text-base uppercase tracking-wide py-3 px-4 border border-gray-700 w-1/2 text-center">
+                    <span className="flex items-center justify-center gap-2"><CheckCircle className="w-4 h-4" /> Dopo</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {beforeAfter.map((item, i) => (
+                  <tr key={i} className={i % 2 === 0 ? "bg-gray-900/30" : "bg-gray-900/60"}>
+                    <td className="py-3 px-4 border border-gray-700/50 text-gray-400 text-sm sm:text-base align-top">
+                      {item.before}
+                    </td>
+                    <td className="py-3 px-4 border border-gray-700/50 text-gray-200 text-sm sm:text-base align-top">
+                      {item.after}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -454,7 +457,7 @@ const IndexBold = () => {
       <section className="py-16 sm:py-20 bg-gray-900">
         <div className="container px-4 sm:px-6 max-w-3xl">
           <div className="text-center mb-12">
-            <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">❓ FAQ</span>
+            <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">FAQ</span>
             <h2 className="text-2xl sm:text-4xl font-black text-white">Domande Frequenti</h2>
           </div>
 
