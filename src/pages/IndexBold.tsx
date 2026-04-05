@@ -489,11 +489,11 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
-              È ORA DI AGIRE.
-              <span className="block text-red-300 text-xl sm:text-3xl lg:text-4xl">Non Domani. ADESSO.</span>
+              Hai solo 2 possibilità:
+              <span className="block text-red-300 text-lg sm:text-2xl lg:text-3xl mt-2">O esci con un sistema che cambia la tua vita sessuale per sempre… o esci con gli stessi 29€ in tasca.</span>
             </h2>
-            <p className="text-lg text-red-100/80 mb-8 max-w-xl mx-auto">
-              Puoi continuare come prima, o puoi cambiare. La scelta è tua.
+            <p className="text-base sm:text-lg text-red-100/80 mb-8 max-w-xl mx-auto">
+              L'unico scenario in cui ci perdi, è quello in cui continui a fare quello che hai sempre fatto… aspettandoti come per magia dei risultati diversi.
             </p>
 
             <div className="bg-black/30 rounded-2xl p-5 sm:p-8 border border-red-600/30 mb-8">
