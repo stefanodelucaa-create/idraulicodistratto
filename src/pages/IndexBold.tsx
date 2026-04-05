@@ -175,12 +175,12 @@ const IndexBold = () => {
             </div>
 
             {/* Product Images */}
-            <div className="relative flex justify-center pb-8">
+            <div className="relative flex justify-center pb-8 px-4">
               <div className="absolute inset-0 bg-red-600/20 rounded-full blur-3xl scale-75" />
-              <div className="relative flex items-end justify-center">
-                <img src={ebookMockup} alt="Ebook" className="w-64 sm:w-72 lg:w-80 drop-shadow-2xl -ml-8 sm:ml-0" />
-                <div className="absolute bottom-0 -right-4 sm:-right-8">
-                  <img src={bonusMockup} alt="Bonus" className="w-44 sm:w-52 lg:w-56 drop-shadow-xl" />
+              <div className="relative flex items-end justify-center max-w-[320px] sm:max-w-none mx-auto">
+                <img src={ebookMockup} alt="Ebook" className="w-52 sm:w-72 lg:w-80 drop-shadow-2xl" />
+                <div className="absolute bottom-0 -right-2 sm:-right-8">
+                  <img src={bonusMockup} alt="Bonus" className="w-36 sm:w-52 lg:w-56 drop-shadow-xl" />
                 </div>
               </div>
             </div>
