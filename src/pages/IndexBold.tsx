@@ -564,7 +564,7 @@ const IndexBold = () => {
                 <span className="text-xl font-bold text-white">{price}</span>
               </div>
               <Button onClick={handleBuyClick} className="flex-1 max-w-[200px] bg-red-600 hover:bg-red-700 text-white font-bold py-4 group">
-                🔥 Accesso Immediato
+                Accesso Immediato
                 <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1" />
               </Button>
             </div>
