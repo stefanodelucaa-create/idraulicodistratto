@@ -23,13 +23,32 @@ import sezione5 from "@/assets/sezione-5.png";
 import sezione6 from "@/assets/sezione-6.png";
 
 // ============ DATA ============
-const painPoints = [
-  { title: "Sei nella tua testa invece che nel momento", description: "Durante il sesso pensi: 'Sto facendo bene? Dovrei cambiare? Quanto manca?' Invece di goderti le sensazioni, sei bloccato nel dialogo mentale." },
-  { title: "Il sesso è diventato un lavoro, non un piacere", description: "Vedi lo squirting come una 'missione da compiere', un obiettivo da conquistare. Ti sforzi per ore, ma ti senti sempre sotto esame." },
-  { title: "Lei si sente sotto pressione (anche se non te lo dice)", description: "La tua partner percepisce che vuoi ottenere un risultato. Inizia a pensare: 'Devo farcela per lui, se non succede sarà deluso'." },
-  { title: "Non sai più cosa è reale e cosa è finzione", description: "Porno e forum online ti hanno dato aspettative irreali: squirting in 5 minuti, ogni volta, con tutte." },
-  { title: "Conosci tecniche, ma non capisci perché funzionano", description: "Hai visto il famoso movimento 'vieni qui' con le dita, ma non hai una mappa chiara di ghiandole di Skene, punto G, clitoride interno." },
-  { title: "Non sai come parlarne senza creare imbarazzo", description: "Vorresti esplorare questo tema con la tua partner, ma non sai da dove iniziare senza creare pressione." },
+const beforeAfter = [
+  { before: "Non sai se sta fingendo o se le è piaciuto davvero", after: "Sai esattamente quali segnali leggere per decifrare il suo corpo e le sue sensazioni" },
+  { before: 'Durante il sesso hai mille pensieri ("Sto facendo bene? Quanto manca?")', after: "Sei completamente presente e riesci a goderti ogni secondo" },
+  { before: "Cerchi risposte ai tuoi dubbi alle 2 di notte tra mille forum e siti poco affidabili", after: "Sai di avere nello stesso posto tutte le info che ti servono + step pratici da seguire" },
+  { before: "Non sei mai riuscito a farla squirtare e ti sei arreso all'idea di non farlo mai", after: "Riesci a farla squirtare mentre continui a goderti il momento" },
+  { before: "Hai paura di non reggere il confronto con le sue esperienze passate", after: "Hai massima sicurezza in te stesso per le tue capacità (e lei se ne accorge)" },
+  { before: "Quando gli amici parlano di sesso vorresti cambiare discorso", after: "Non sei più quello che ascolta storie sul sesso, ma quello che le racconta" },
+  { before: "Non sai dove mettere le mani e in che modo", after: "Sai esattamente dove toccare, in che modo e in quale sequenza" },
+  { before: "Non distingui più tra la realtà e la finzione dei porno", after: "Conosci le basi dell'anatomia femminile e sai perfettamente cosa è reale e cosa no" },
+  { before: "Vivi il sesso come un esame da superare", after: "Entrambi riuscite a godervi appieno il rapporto" },
+];
+
+const bulletPoints = [
+  "I 2 punti specifici del suo corpo che la faranno impazzire ogni singola volta – con illustrazioni e spiegazioni pratiche…",
+  "Quali sono i 12 errori più commessi tra le lenzuola e come evitarli definitivamente…",
+  "La verità sullo squirting: perché NON è quello che ti hanno sempre raccontato…",
+  "7 Segnali di Eccitazione che nessuno può fingere e che ti sveleranno il suo REALE livello di coinvolgimento…",
+  "Le 5 posizioni anatomiche più efficaci per stimolarla nei punti giusti…",
+  "Come impostare le condizioni ottimali per un rapporto appagante e soddisfacente al 100%...",
+  "6 Tecniche Avanzate per fare in modo che qualunque ragazza si ricordi di te per tutta la vita…",
+  "L'anatomia del piacere femminile che ti renderà l'amante più esperto che lei abbia mai visto in vita sua…",
+  "Il singolo errore che bloccherà il suo squirting vanificando tutti i tuoi sforzi…",
+  "Perché il 40% del risultato si decide ancora prima di toccarla, e come sfruttarlo a tuo vantaggio…",
+  "Come gestire eventuali tentativi \"meno riusciti\" per viverla entrambi senza la minima ansia, stress e frustrazione…",
+  "5 Metodi Scientifici per scacciare l'ansia da prestazione una volta per tutte…",
+  "I Fondamenti Psicologici che ti permetteranno di goderti appieno il sesso – prima, durante e dopo…",
 ];
 
 const uniqueFeatures = [
@@ -48,41 +67,29 @@ const sections = [
 ];
 
 const bonuses = [
-  { icon: ListChecks, title: "Checklist Complete", value: 19 },
-  { icon: MessageSquare, title: "FAQ Estese", value: 24 },
-  { icon: FileText, title: "Guida Rapida Problemi", value: 17 },
-  { icon: Heart, title: "Esercizi per Lei", value: 29 },
-  { icon: Smartphone, title: "App Utili Coppie", value: 15 },
-  { icon: LineChart, title: "Scheda Tracking", value: 21 },
+  { icon: ListChecks, title: "Checklist Completa per Ogni Situazione", value: 19, description: "Una lista precompilata – segnali da osservare, errori da evitare – che ti aiuterà a concentrarti su quello che stai facendo, invece di dover pensare se ti sei scordato qualcosa." },
+  { icon: MessageSquare, title: "FAQ Estese con Risposte Complete", value: 24, description: "Ci hai provato più volte e non succede nulla. Lei sente dolore e non capisci perché. Ha paura di \"fare pipì\" e si blocca. Qui le risolverai tutte, una per una." },
+  { icon: FileText, title: "Guida Rapida Risoluzione Problemi", value: 17, description: "Funziona come una mappa decisionale immediata: succede X, fai Y. Tienila a portata di mano per i momenti in cui qualcosa va storto." },
+  { icon: Heart, title: "Esercizi Pratici per Lei", value: 29, description: "Il 40% del risultato dipende da quanto lei riesce ad abbandonarsi. Questa mini guida la aiuta a sviluppare consapevolezza corporea e rimuovere le inibizioni." },
+  { icon: Smartphone, title: "App Utili per Coppie", value: 15, description: "La sessione perfetta si costruisce anche fuori dal letto. Selezione ragionata di app per creare anticipazione e migliorare la comunicazione." },
+  { icon: LineChart, title: "Scheda di Tracking Progressi", value: 21, description: "Tieni traccia di cosa funziona, dei feedback di lei e dei cambiamenti nel tempo – così ogni sessione costruisce sulla precedente." },
 ];
 
 const testimonials = [
-  { name: "Marco R.", location: "Milano", text: "La parte sulla psicologia mi ha aperto gli occhi. Ho capito che stavo mettendo pressione a entrambi senza rendermene conto.", rating: 5 },
-  { name: "Alessandro T.", location: "Roma", text: "Finalmente una guida che spiega il 'perché' dietro le tecniche. Capire l'anatomia reale ha fatto la differenza.", rating: 5 },
-  { name: "Luca M.", location: "Napoli", text: "Gli script per la comunicazione sono oro. Sapevo che dovevo parlarne ma non sapevo come.", rating: 5 },
-];
-
-const forYou = [
-  "Sei in una relazione con cui vuoi costruire vera intimità",
-  "Vuoi liberarti dall'ansia da prestazione",
-  "Sei disposto a comunicare apertamente",
-  "Vuoi capire il corpo femminile a livello profondo",
-  "Ti interessa il piacere di entrambi",
-];
-
-const notForYou = [
-  'Cerchi garanzie "100% in 10 minuti"',
-  "Non ti interessa comunicare",
-  "Vuoi solo qualcosa di rapido",
-  "Non accetti la variabilità anatomica",
+  { name: "Luca M.", location: "34 anni, Torino", text: "Ero scettico, mi sembrava roba da disperati. L'ho comprato alle 11 di sera quasi per scommessa con me stesso. La parte sulla psicologia mi ha spiazzato perché non mi aspettavo che il problema fosse lì.", rating: 5 },
+  { name: "Davide R.", location: "27 anni, Assago", text: "Sono single, quindi il contesto è diverso da chi ha una relazione fissa. Ma quello che ho trovato utile è soprattutto la parte sull'anatomia. Avevo delle lacune enormi che non avevo mai ammesso neanche a me.", rating: 5 },
+  { name: "Marco T.", location: "41 anni, Imola", text: "Dopo 10 anni insieme mia moglie e io eravamo finiti in quel loop in cui il sesso funziona ma non è più niente di speciale. La cosa che mi ha colpito di più è stata la parte sulla comunicazione.", rating: 5 },
+  { name: "Filippo C.", location: "25 anni, Udine", text: "La parte che mi ha aiutato di più non è quella sulle tecniche. È quella su come parlarne con lei. Non avevo idea di come si apre quel tipo di conversazione senza sembrare un cretino.", rating: 5 },
+  { name: "Matteo B.", location: "29 anni, Treviglio", text: "Avevo già provato a cercare roba simile online. Forum, video, articoli. Il problema è che sono tutti pezzi scollegati. Qui per la prima volta ho trovato tutto in un posto solo, in un ordine che ha senso.", rating: 5 },
+  { name: "Riccardo V.", location: "41 anni, Venezia", text: "Lo compri con un po' di imbarazzo, inutile negarlo. Ma poi lo apri e capisci subito che non è la solita roba. È scritto seriamente, ci sono fonti, ci sono spiegazioni vere. Mia moglie ha notato che qualcosa è cambiato in me.", rating: 5 },
 ];
 
 const faqs = [
-  { question: "In cosa è diverso dai video online?", answer: "Questa guida è strutturata: 70% psicologia/comunicazione, 30% tecnica. Basata su ricerca scientifica." },
-  { question: "Quanto tempo serve per vedere risultati?", answer: "Alcuni riportano miglioramenti nella prima settimana. Per le tecniche, consigliamo 3-4 sessioni senza pressione." },
-  { question: "Posso leggerlo insieme alla mia partner?", answer: "Sì, e lo consigliamo. Molte sezioni sono pensate per essere condivise." },
+  { question: "In cosa è diverso dai video online?", answer: "Questa guida è strutturata: 70% psicologia/comunicazione, 30% tecnica. Basata su ricerca scientifica, non su consigli da forum." },
+  { question: "Quanto tempo serve per vedere risultati?", answer: "Alcuni riportano miglioramenti nella prima settimana. Le strategie sono progettate per essere usate già dalla prossima occasione." },
+  { question: "Posso leggerlo insieme alla mia partner?", answer: "Sì, e lo consigliamo. Il BONUS #4 è pensato apposta per essere condiviso con lei." },
   { question: "Cosa succede dopo l'acquisto?", answer: "Ricevi immediatamente email con i link per scaricare tutto. Puoi iniziare entro 2 minuti." },
-  { question: "Posso ottenere il rimborso?", answer: "Sì. 60 giorni di garanzia completa. Tieni comunque i bonus." },
+  { question: "Posso ottenere il rimborso?", answer: "Sì. Hai 60 giorni interi per provare il protocollo. Se non sei soddisfatto, rimborso completo senza domande." },
 ];
 
 const IndexBold = () => {
@@ -104,14 +111,14 @@ const IndexBold = () => {
   };
 
   const price = "€29";
-  const originalPrice = "€79";
+  const originalPrice = "€99";
   const bonusTotal = bonuses.reduce((sum, b) => sum + b.value, 0);
 
   return (
     <main className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* ANNOUNCEMENT BAR */}
       <div className="bg-red-600 text-white py-2.5 sm:py-4 text-center text-xs sm:text-base font-bold px-3 sm:px-4 animate-pulse leading-tight">
-        ⚡ OFFERTA LIMITATA: 53% di SCONTO + 6 Bonus GRATIS (valore €125) - SOLO OGGI! ⚡
+        ⚡ Offerta di Lancio – 71% di sconto + 6 Bonus GRATIS (valore €138) ⚡
       </div>
 
       {/* HERO SECTION */}
@@ -124,28 +131,28 @@ const IndexBold = () => {
             {/* Content */}
             <div className="text-center lg:text-left space-y-6">
               <div className="inline-block bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide">
-                🔥 Best Seller 2024
+                🔥 Offerta di Lancio – 71% di sconto
               </div>
               
               <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
-                BASTA ANSIA.
-                <span className="text-red-500 block">BASTA PRESSIONE.</span>
-                <span className="text-red-400 block text-2xl sm:text-3xl lg:text-4xl mt-2">È Ora di Cambiare.</span>
+                IL PROTOCOLLO
+                <span className="text-red-500 block">DEL PIACERE</span>
               </h1>
 
               <p className="text-base sm:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0">
-                La guida scientifica di <span className="text-red-500 font-bold">200+ pagine</span> che elimina l'ansia da prestazione e trasforma il sesso da missione a connessione.
+                Scopri i "Giusti Tasti" da Toccare per Portare il Sesso al Livello Superiore e Farla Squirtare Ogni Volta che Vuoi… <span className="text-red-400 font-semibold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
               <div className="space-y-3">
                 {[
-                  { icon: Brain, text: "70% psicologia, 30% tecnica" },
-                  { icon: Target, text: "Anatomia reale, non porno" },
-                  { icon: Heart, text: "Connessione, non performance" },
+                  { icon: FileText, text: "Strategie pratiche che potrai usare già dalla prossima occasione" },
+                  { icon: Target, text: "Basato su riferimenti anatomici scientificamente accurati" },
+                  { icon: Gift, text: "In REGALO 6 BONUS Esclusivi dal Valore Totale di €138" },
+                  { icon: Shield, text: 'Garanzia 60 giorni "L\'hai Soddisfatta o ti Rimborsiamo"' },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 justify-center lg:justify-start">
-                    <item.icon className="w-5 h-5 text-red-500" />
-                    <span className="text-gray-200 font-medium">{item.text}</span>
+                    <item.icon className="w-5 h-5 text-red-500 flex-shrink-0" />
+                    <span className="text-gray-200 font-medium text-sm sm:text-base">{item.text}</span>
                   </div>
                 ))}
               </div>
@@ -155,15 +162,15 @@ const IndexBold = () => {
                 <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
                   <span className="text-xl sm:text-2xl text-gray-400 line-through">{originalPrice}</span>
                   <span className="text-4xl sm:text-5xl font-black text-white">{price}</span>
-                  <span className="bg-red-600 text-white text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-53%</span>
+                  <span className="bg-red-600 text-white text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-71%</span>
                 </div>
                 
                 <Button 
                   onClick={handleBuyClick}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white text-base sm:text-lg font-bold py-5 sm:py-6 rounded-xl group"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white text-sm sm:text-lg font-bold py-5 sm:py-6 rounded-xl group whitespace-normal leading-tight"
                 >
-                  🔥 OTTIENI ACCESSO IMMEDIATO
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  Sì, Voglio il Protocollo + TUTTI i BONUS
+                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                 </Button>
 
                 <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-400">
@@ -188,72 +195,86 @@ const IndexBold = () => {
         </div>
       </section>
 
-      {/* PAIN POINTS */}
+      {/* COSA SCOPRIRAI */}
       <section className="py-16 sm:py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-red-600/30">
-              ⚠️ ATTENZIONE
+              📖 CONTENUTI
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-white">
-              Ti Riconosci in Almeno Una
-              <span className="text-red-500 block">di Queste Situazioni?</span>
+              Ecco cosa scoprirai nel
+              <span className="text-red-500 block">Protocollo del Piacere:</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4 sm:gap-6 max-w-5xl mx-auto">
-            {painPoints.map((point, i) => (
-              <div key={i} className="bg-gray-900/80 rounded-xl p-4 sm:p-6 border border-red-900/30 hover:border-red-600/50 transition-all">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-red-600/20 flex items-center justify-center flex-shrink-0">
-                    <XCircle className="w-5 h-5 text-red-500" />
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-bold text-white mb-2">{point.title}</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">{point.description}</p>
-                  </div>
-                </div>
+          <div className="max-w-3xl mx-auto space-y-3">
+            {bulletPoints.map((point, i) => (
+              <div key={i} className="flex items-start gap-3 bg-gray-900/50 rounded-xl p-4 border border-gray-800">
+                <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                <span className="text-gray-200 text-sm sm:text-base leading-relaxed">{point}</span>
               </div>
             ))}
+            <div className="bg-gray-900/50 rounded-xl p-4 border border-gray-800 text-center">
+              <p className="text-red-400 font-bold text-base sm:text-lg">E molto, molto altro…</p>
+              <p className="text-gray-400 text-sm mt-2">Oltre 200 pagine chiare e 25 capitoli guidati, 50+ esercizi pratici e illustrazioni per visualizzare e comprendere meglio.</p>
+            </div>
           </div>
 
-          <div className="mt-12 text-center">
-            <div className="bg-red-600/10 border-2 border-red-600/50 rounded-2xl p-6 max-w-2xl mx-auto">
-              <p className="text-white text-lg font-medium mb-4">
-                Se ti sei riconosciuto in almeno 2 punti,
-                <span className="text-red-500 font-bold"> questa guida è per te.</span>
-              </p>
-              <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 group">
-                Scopri la Soluzione <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1" />
-              </Button>
-            </div>
+          <div className="mt-10 text-center">
+            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-8 text-sm sm:text-base group whitespace-normal">
+              Sì, Voglio il Protocollo + TUTTI i BONUS (Valore €{99 + bonusTotal}) per soli {price}
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* WHY DIFFERENT */}
+      {/* NON TROVERAI NULLA DEL GENERE */}
       <section className="py-16 sm:py-20 bg-gray-900">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
-              💡 PERCHÉ È DIVERSA
+              💡 PERCHÉ È UNICO
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-white">
-              Non è l'Ennesima Guida
-              <span className="text-red-500 block">Trovata Online</span>
+              Non troverai nulla del genere
+              <span className="text-red-500 block">su internet (né da nessun'altra parte)…</span>
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {uniqueFeatures.map((feature, i) => (
-              <div key={i} className="bg-black/50 rounded-2xl p-5 sm:p-8 border border-gray-800 text-center hover:border-red-600/50 transition-all">
-                <div className="w-16 h-16 rounded-2xl bg-red-600/20 flex items-center justify-center mx-auto mb-5">
-                  <feature.icon className="w-8 h-8 text-red-500" />
+          <div className="max-w-3xl mx-auto mb-10">
+            <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-6 text-center">
+              Se volessi provare a ricostruire questi contenuti da solo, dovresti mettere insieme:
+            </p>
+            <div className="space-y-3">
+              {[
+                "Manuali universitari di anatomia per comprendere a fondo il piacere femminile…",
+                "Un corso di terapia sessuale per smontare l'ansia da prestazione con metodi scientifici…",
+                "Un libro sulla comunicazione intima di coppia per sapere cosa dire – e cosa non dire…",
+                "Le tecniche pratiche di stimolazione sparse tra forum americani e libri in inglese…",
+                "Le pratiche di mindfulness e rilassamento che i terapeuti usano per aiutare entrambi…",
+                "E capire come incastrare tutto in una sequenza che funzioni nella realtà, non solo nella teoria.",
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3 bg-black/30 rounded-xl p-3 sm:p-4 border border-gray-800">
+                  <span className="text-red-500 font-bold text-lg flex-shrink-0">•</span>
+                  <span className="text-gray-300 text-xs sm:text-sm">{item}</span>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-3">{feature.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
+            <p className="text-gray-400 text-sm sm:text-base leading-relaxed mt-6 text-center">
+              Anche se tu riuscissi a trovare tutto, ci vorrebbero <span className="text-white font-bold">mesi</span>. E nel frattempo continueresti a fare esattamente quello che stai facendo adesso.
+            </p>
+            <p className="text-red-400 font-bold text-center mt-4 text-sm sm:text-base">
+              Oppure puoi ricevere tutto ciò in questo esatto momento – già tradotto in italiano, in sequenza, con illustrazioni e 6 BONUS in regalo – per soli {price} iva inclusa.
+            </p>
+          </div>
+
+          <div className="text-center">
+            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-8 text-sm sm:text-base group whitespace-normal">
+              Sì, Voglio il Protocollo + TUTTI i BONUS per soli {price}
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
+            </Button>
           </div>
         </div>
       </section>
@@ -311,12 +332,12 @@ const IndexBold = () => {
                   <Book className="w-7 h-7 text-red-500" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">Manuale Completo</h3>
+                  <h3 className="text-xl font-bold text-white">Il Protocollo del Piacere</h3>
                   <p className="text-red-500 font-medium">200+ pagine, 25 capitoli</p>
                 </div>
               </div>
               <div className="bg-red-600/10 rounded-xl p-4 text-center">
-                <span className="text-xl font-bold text-red-500">Valore: €79</span>
+                <span className="text-xl font-bold text-red-500">Valore: €99</span>
               </div>
             </div>
 
@@ -327,12 +348,15 @@ const IndexBold = () => {
                 <h3 className="text-xl font-bold text-white">6 Bonus GRATIS</h3>
               </div>
               {bonuses.map((bonus, i) => (
-                <div key={i} className="bg-gray-900/50 rounded-xl p-4 border border-gray-800 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <bonus.icon className="w-5 h-5 text-red-500" />
-                    <span className="text-white font-medium">{bonus.title}</span>
+                <div key={i} className="bg-gray-900/50 rounded-xl p-4 border border-gray-800">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <bonus.icon className="w-5 h-5 text-red-500" />
+                      <span className="text-white font-medium text-sm sm:text-base">{bonus.title}</span>
+                    </div>
+                    <span className="text-red-500 font-bold text-sm">€{bonus.value}</span>
                   </div>
-                  <span className="text-red-500 font-bold">€{bonus.value}</span>
+                  <p className="text-gray-500 text-xs sm:text-sm leading-relaxed pl-8">{bonus.description}</p>
                 </div>
               ))}
             </div>
@@ -342,15 +366,15 @@ const IndexBold = () => {
           <div className="mt-12 max-w-2xl mx-auto">
             <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-5 sm:p-8 border-2 border-red-600/50 text-center">
               <div className="space-y-2 mb-6 text-gray-400">
-                <div>Valore Ebook: <span className="text-white">€79</span></div>
+                <div>Valore Protocollo: <span className="text-white">€99</span></div>
                 <div>Valore 6 Bonus: <span className="text-white">€{bonusTotal}</span></div>
                 <div className="h-px bg-red-600/30 my-3" />
-                <div className="text-lg">Valore Totale: <span className="text-gray-500 line-through">€{79 + bonusTotal}</span></div>
+                <div className="text-lg">Valore Totale: <span className="text-gray-500 line-through">€{99 + bonusTotal}</span></div>
                 <div className="text-2xl sm:text-3xl font-black text-white">Oggi: <span className="text-red-500">{price}</span></div>
               </div>
-              <Button onClick={handleBuyClick} className="w-full bg-red-600 hover:bg-red-700 text-white text-base sm:text-lg font-bold py-5 sm:py-6 group">
-                🔥 OTTIENI TUTTO A {price}
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1" />
+              <Button onClick={handleBuyClick} className="w-full bg-red-600 hover:bg-red-700 text-white text-sm sm:text-base font-bold py-5 sm:py-6 group whitespace-normal leading-tight">
+                Sì, Voglio il Protocollo + TUTTI i BONUS (Valore €{99 + bonusTotal}) per soli {price}
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
               </Button>
             </div>
           </div>
@@ -364,7 +388,7 @@ const IndexBold = () => {
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
               ⭐ TESTIMONIANZE
             </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-white">Cosa Dicono i Lettori</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white">Cosa Dice Chi Ha Acquistato Questo Protocollo?</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -389,43 +413,41 @@ const IndexBold = () => {
         </div>
       </section>
 
-      {/* IS FOR YOU */}
+      {/* PRIMA vs DOPO */}
       <section className="py-16 sm:py-20 bg-black">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-4xl font-black text-white">Per Chi è Questa Guida</h2>
+            <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
+              🔄 TRASFORMAZIONE
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-black text-white">
+              Prima vs Dopo
+              <span className="text-red-500 block">il Protocollo del Piacere</span>
+            </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            <div className="bg-green-900/20 rounded-2xl p-6 sm:p-8 border-2 border-green-600/30">
-              <div className="flex items-center gap-3 mb-6">
-                <CheckCircle className="w-6 h-6 text-green-500" />
-                <h3 className="text-xl font-bold text-white">È per te se...</h3>
-              </div>
-              <ul className="space-y-4">
-                {forYou.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300">{item}</span>
-                  </li>
-                ))}
-              </ul>
+          <div className="max-w-4xl mx-auto space-y-3">
+            {/* Header */}
+            <div className="hidden sm:grid grid-cols-2 gap-3 mb-2">
+              <div className="text-center font-bold text-red-500 text-sm uppercase tracking-wide">❌ Prima</div>
+              <div className="text-center font-bold text-green-500 text-sm uppercase tracking-wide">✅ Dopo</div>
             </div>
-
-            <div className="bg-red-900/20 rounded-2xl p-6 sm:p-8 border border-red-900/30">
-              <div className="flex items-center gap-3 mb-6">
-                <XCircle className="w-6 h-6 text-red-500" />
-                <h3 className="text-xl font-bold text-white">Non è per te se...</h3>
+            {beforeAfter.map((item, i) => (
+              <div key={i} className="grid sm:grid-cols-2 gap-2 sm:gap-3">
+                <div className="bg-red-900/20 rounded-xl p-3 sm:p-4 border border-red-900/30">
+                  <div className="flex items-start gap-2">
+                    <XCircle className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-400 text-xs sm:text-sm">{item.before}</span>
+                  </div>
+                </div>
+                <div className="bg-green-900/20 rounded-xl p-3 sm:p-4 border border-green-900/30">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-300 text-xs sm:text-sm">{item.after}</span>
+                  </div>
+                </div>
               </div>
-              <ul className="space-y-4">
-                {notForYou.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <XCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-500">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -457,10 +479,13 @@ const IndexBold = () => {
               <div className="w-20 h-20 rounded-full bg-red-600/20 flex items-center justify-center mx-auto mb-6">
                 <Shield className="w-10 h-10 text-red-500" />
               </div>
-              <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">Garanzia 60 Giorni</h2>
-              <p className="text-xl text-red-500 font-bold mb-4">RISCHIO ZERO</p>
-              <p className="text-gray-400 mb-8 max-w-xl mx-auto">
-                Prova la guida con calma. Se non fa per te, rimborso completo. E tieni comunque tutti i bonus.
+              <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">"L'Hai Soddisfatta o Ti Rimborsiamo"</h2>
+              <p className="text-xl text-red-500 font-bold mb-4">GARANZIA DEL 100%</p>
+              <p className="text-gray-400 mb-4 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+                Il rischio di questo acquisto è tutto nostro, non tuo. Hai <span className="text-white font-bold">60 giorni interi</span> per leggere il protocollo, applicare quello che trovi e vedere con i tuoi occhi cosa cambia.
+              </p>
+              <p className="text-gray-400 mb-8 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+                Se non sei soddisfatto – per qualsiasi motivo, anche uno che non ci vuoi spiegare – ti rimborsiamo il 100%. Senza domande. Senza moduli da compilare.
               </p>
 
               <div className="grid grid-cols-3 gap-3 sm:gap-4">
@@ -486,22 +511,22 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
-              È ORA DI AGIRE.
-              <span className="block text-red-300 text-xl sm:text-3xl lg:text-4xl">Non Domani. ADESSO.</span>
+              Hai solo 2 possibilità:
+              <span className="block text-red-300 text-lg sm:text-2xl lg:text-3xl mt-2">O esci con un sistema che cambia la tua vita sessuale per sempre… o esci con gli stessi 29€ in tasca.</span>
             </h2>
-            <p className="text-lg text-red-100/80 mb-8 max-w-xl mx-auto">
-              Puoi continuare come prima, o puoi cambiare. La scelta è tua.
+            <p className="text-base sm:text-lg text-red-100/80 mb-8 max-w-xl mx-auto">
+              L'unico scenario in cui ci perdi, è quello in cui continui a fare quello che hai sempre fatto… aspettandoti come per magia dei risultati diversi.
             </p>
 
             <div className="bg-black/30 rounded-2xl p-5 sm:p-8 border border-red-600/30 mb-8">
               <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
-                <span className="text-xl sm:text-2xl text-red-300 line-through">€204</span>
+                <span className="text-xl sm:text-2xl text-red-300 line-through">€{99 + bonusTotal}</span>
                 <span className="text-4xl sm:text-5xl font-black text-white">{price}</span>
-                <span className="bg-white text-red-600 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-53%</span>
+                <span className="bg-white text-red-600 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-71%</span>
               </div>
-              <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-lg sm:text-xl font-black py-6 sm:py-7 px-8 sm:px-12 group">
-                SÌ, VOGLIO INIZIARE ORA!
-                <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-1" />
+              <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-sm sm:text-lg font-black py-6 sm:py-7 px-6 sm:px-12 group whitespace-normal leading-tight">
+                Sì, Voglio il Protocollo + TUTTI i BONUS
+                <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-1 flex-shrink-0" />
               </Button>
             </div>
 
@@ -518,7 +543,7 @@ const IndexBold = () => {
       <footer className="py-8 bg-black border-t border-gray-800">
         <div className="container px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
-            <p>© {new Date().getFullYear()} Manuale dell'Idraulico Distratto. Tutti i diritti riservati.</p>
+            <p>© {new Date().getFullYear()} Il Protocollo del Piacere. Tutti i diritti riservati.</p>
             <div className="flex items-center gap-6">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Termini</a>
@@ -534,7 +559,7 @@ const IndexBold = () => {
           <div className="bg-black/95 backdrop-blur-lg border-t border-red-600/50 px-4 py-3">
             <div className="flex items-center justify-between gap-3">
               <div className="flex flex-col">
-                <span className="text-xs text-gray-500 line-through">€79</span>
+                <span className="text-xs text-gray-500 line-through">€99</span>
                 <span className="text-xl font-bold text-white">{price}</span>
               </div>
               <Button onClick={handleBuyClick} className="flex-1 max-w-[200px] bg-red-600 hover:bg-red-700 text-white font-bold py-4 group">
