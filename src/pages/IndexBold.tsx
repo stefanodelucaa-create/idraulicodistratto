@@ -457,7 +457,7 @@ const IndexBold = () => {
               <div className="w-20 h-20 rounded-full bg-red-600/20 flex items-center justify-center mx-auto mb-6">
                 <Shield className="w-10 h-10 text-red-500" />
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">Garanzia 60 Giorni</h2>
+              <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">Garanzia 60 Giorni</h2>
               <p className="text-xl text-red-500 font-bold mb-4">RISCHIO ZERO</p>
               <p className="text-gray-400 mb-8 max-w-xl mx-auto">
                 Prova la guida con calma. Se non fa per te, rimborso completo. E tieni comunque tutti i bonus.
