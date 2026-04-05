@@ -441,7 +441,7 @@ const IndexBold = () => {
                 <div className="bg-green-900/20 rounded-xl p-3 sm:p-4 border border-green-900/30">
                   <div className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-300 text-xs sm:text-sm">{item.after}</span>
+                    <span className="text-gray-300 text-sm sm:text-base">{item.after}</span>
                   </div>
                 </div>
               </div>
