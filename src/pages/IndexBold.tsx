@@ -166,10 +166,10 @@ const IndexBold = () => {
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
 
-                <div className="mt-4 flex flex-wrap justify-center gap-4 text-sm text-gray-400">
-                  <span className="flex items-center gap-1"><CheckCircle className="w-4 h-4 text-red-500" /> Download immediato</span>
-                  <span className="flex items-center gap-1"><Shield className="w-4 h-4 text-red-500" /> Pagamento sicuro</span>
-                  <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-red-500" /> Garanzia 60 giorni</span>
+                <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-400">
+                  <span className="flex items-center gap-1"><CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" /> Download immediato</span>
+                  <span className="flex items-center gap-1"><Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" /> Pagamento sicuro</span>
+                  <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" /> Garanzia 60 giorni</span>
                 </div>
               </div>
             </div>
