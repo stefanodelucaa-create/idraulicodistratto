@@ -424,25 +424,25 @@ const IndexBold = () => {
             </h2>
           </div>
 
-          <div className="max-w-4xl mx-auto overflow-x-auto">
+          <div className="max-w-4xl mx-auto overflow-hidden rounded-2xl border border-gray-700/50">
             <table className="w-full border-collapse">
               <thead>
                 <tr>
-                  <th className="bg-red-900/40 text-red-500 font-bold text-sm sm:text-base uppercase tracking-wide py-3 px-4 border border-gray-700 w-1/2 text-center">
-                    <span className="flex items-center justify-center gap-2"><XCircle className="w-4 h-4" /> Prima</span>
+                  <th className="bg-red-900/50 text-red-400 font-bold text-sm sm:text-base uppercase tracking-wider py-4 px-4 sm:px-6 w-1/2 text-center border-b border-gray-700/50">
+                    <span className="flex items-center justify-center gap-2"><X className="w-4 h-4" /> Prima</span>
                   </th>
-                  <th className="bg-green-900/40 text-green-500 font-bold text-sm sm:text-base uppercase tracking-wide py-3 px-4 border border-gray-700 w-1/2 text-center">
+                  <th className="bg-green-900/50 text-green-400 font-bold text-sm sm:text-base uppercase tracking-wider py-4 px-4 sm:px-6 w-1/2 text-center border-b border-gray-700/50">
                     <span className="flex items-center justify-center gap-2"><CheckCircle className="w-4 h-4" /> Dopo</span>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {beforeAfter.map((item, i) => (
-                  <tr key={i} className={i % 2 === 0 ? "bg-gray-900/30" : "bg-gray-900/60"}>
-                    <td className="py-3 px-4 border border-gray-700/50 text-gray-400 text-sm sm:text-base align-top">
+                  <tr key={i} className={`${i % 2 === 0 ? "bg-gray-900/20" : "bg-gray-900/50"} hover:bg-gray-800/50 transition-colors`}>
+                    <td className="py-3.5 px-4 sm:px-6 border-b border-r border-gray-700/30 text-gray-400 text-sm sm:text-base align-top leading-relaxed">
                       {item.before}
                     </td>
-                    <td className="py-3 px-4 border border-gray-700/50 text-gray-200 text-sm sm:text-base align-top">
+                    <td className="py-3.5 px-4 sm:px-6 border-b border-gray-700/30 text-gray-200 text-sm sm:text-base align-top leading-relaxed">
                       {item.after}
                     </td>
                   </tr>
