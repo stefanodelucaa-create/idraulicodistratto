@@ -440,7 +440,7 @@ const IndexBold = () => {
 
           <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={`faq-${i}`} className="bg-black/50 rounded-xl border border-gray-800 px-5">
+              <AccordionItem key={i} value={`faq-${i}`} className="bg-black/50 rounded-xl border border-gray-800 px-4 sm:px-5">
                 <AccordionTrigger className="text-left font-semibold text-white hover:text-red-500 py-5">{faq.question}</AccordionTrigger>
                 <AccordionContent className="text-gray-400 pb-5">{faq.answer}</AccordionContent>
               </AccordionItem>
