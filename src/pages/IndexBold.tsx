@@ -131,7 +131,7 @@ const IndexBold = () => {
             {/* Content */}
             <div className="text-center lg:text-left space-y-6">
               <div className="inline-block bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide">
-                🔥 Offerta di Lancio – 71% di sconto
+                Offerta di Lancio – 71% di sconto
               </div>
               
               <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
