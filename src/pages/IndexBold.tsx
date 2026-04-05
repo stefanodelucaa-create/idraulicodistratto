@@ -145,13 +145,14 @@ const IndexBold = () => {
 
               <div className="space-y-3">
                 {[
-                  { icon: Brain, text: "70% psicologia, 30% tecnica" },
-                  { icon: Target, text: "Anatomia reale, non porno" },
-                  { icon: Heart, text: "Connessione, non performance" },
+                  { icon: FileText, text: "Strategie pratiche che potrai usare già dalla prossima occasione" },
+                  { icon: Target, text: "Basato su riferimenti anatomici scientificamente accurati" },
+                  { icon: Gift, text: "In REGALO 6 BONUS Esclusivi dal Valore Totale di €138" },
+                  { icon: Shield, text: 'Garanzia 60 giorni "L\'hai Soddisfatta o ti Rimborsiamo"' },
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 justify-center lg:justify-start">
-                    <item.icon className="w-5 h-5 text-red-500" />
-                    <span className="text-gray-200 font-medium">{item.text}</span>
+                    <item.icon className="w-5 h-5 text-red-500 flex-shrink-0" />
+                    <span className="text-gray-200 font-medium text-sm sm:text-base">{item.text}</span>
                   </div>
                 ))}
               </div>
