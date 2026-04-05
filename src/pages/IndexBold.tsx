@@ -493,11 +493,11 @@ const IndexBold = () => {
               Puoi continuare come prima, o puoi cambiare. La scelta è tua.
             </p>
 
-            <div className="bg-black/30 rounded-2xl p-6 sm:p-8 border border-red-600/30 mb-8">
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <span className="text-2xl text-red-300 line-through">€204</span>
-                <span className="text-5xl font-black text-white">{price}</span>
-                <span className="bg-white text-red-600 text-sm font-bold px-3 py-1 rounded">-53%</span>
+            <div className="bg-black/30 rounded-2xl p-5 sm:p-8 border border-red-600/30 mb-8">
+              <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
+                <span className="text-xl sm:text-2xl text-red-300 line-through">€204</span>
+                <span className="text-4xl sm:text-5xl font-black text-white">{price}</span>
+                <span className="bg-white text-red-600 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-53%</span>
               </div>
               <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-xl font-black py-7 px-12 group">
                 SÌ, VOGLIO INIZIARE ORA!
