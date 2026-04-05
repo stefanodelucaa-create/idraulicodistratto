@@ -463,7 +463,7 @@ const IndexBold = () => {
                 Prova la guida con calma. Se non fa per te, rimborso completo. E tieni comunque tutti i bonus.
               </p>
 
-              <div className="grid md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4">
                 {[
                   { icon: RefreshCcw, title: "Rimborso Completo", desc: "Entro 60 giorni" },
                   { icon: Gift, title: "Tieni i Bonus", desc: "Anche se chiedi rimborso" },
