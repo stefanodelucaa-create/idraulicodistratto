@@ -127,7 +127,7 @@ const IndexBold = () => {
                 🔥 Best Seller 2024
               </div>
               
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
                 BASTA ANSIA.
                 <span className="text-red-500 block">BASTA PRESSIONE.</span>
                 <span className="text-red-400 block text-2xl sm:text-3xl lg:text-4xl mt-2">È Ora di Cambiare.</span>
