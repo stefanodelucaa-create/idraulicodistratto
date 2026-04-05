@@ -233,7 +233,7 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
-              💡 PERCHÉ È UNICO
+              PERCHÉ È UNICO
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-white">
               Non troverai nulla del genere
