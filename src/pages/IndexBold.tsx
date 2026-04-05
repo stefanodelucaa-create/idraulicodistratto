@@ -256,7 +256,7 @@ const IndexBold = () => {
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 bg-black/30 rounded-xl p-3 sm:p-4 border border-gray-800">
                   <span className="text-red-500 font-bold text-lg flex-shrink-0">•</span>
-                  <span className="text-gray-300 text-xs sm:text-sm">{item}</span>
+                  <span className="text-gray-300 text-sm sm:text-base">{item}</span>
                 </div>
               ))}
             </div>
