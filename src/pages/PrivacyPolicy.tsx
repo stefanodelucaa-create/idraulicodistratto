@@ -28,7 +28,7 @@ export default function PrivacyPolicy() {
             <p>
               Il titolare del trattamento dei dati personali è Manuale dell'Idraulico Distratto. 
               Per qualsiasi informazione relativa al trattamento dei tuoi dati personali, puoi contattarci 
-              all'indirizzo email: <a href="mailto:info@manualeidraulicodistratto.com" className="text-primary hover:underline">info@manualeidraulicodistratto.com</a>
+              all'indirizzo email: <a href="mailto:idraulicodistratto@gmail.com" className="text-primary hover:underline">idraulicodistratto@gmail.com</a>
             </p>
           </section>
 
@@ -94,7 +94,7 @@ export default function PrivacyPolicy() {
               <li>Revocare il consenso in qualsiasi momento</li>
             </ul>
             <p className="mt-3">
-              Per esercitare questi diritti, contattaci a: <a href="mailto:info@manualeidraulicodistratto.com" className="text-primary hover:underline">info@manualeidraulicodistratto.com</a>
+              Per esercitare questi diritti, contattaci a: <a href="mailto:idraulicodistratto@gmail.com" className="text-primary hover:underline">idraulicodistratto@gmail.com</a>
             </p>
           </section>
 

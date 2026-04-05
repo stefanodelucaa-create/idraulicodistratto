@@ -35,10 +35,10 @@ export default function Contatti() {
               </div>
             </div>
             <a 
-              href="mailto:info@manualeidraulicodistratto.com" 
+              href="mailto:idraulicodistratto@gmail.com" 
               className="text-primary hover:underline font-medium"
             >
-              info@manualeidraulicodistratto.com
+              idraulicodistratto@gmail.com
             </a>
           </div>
 
@@ -71,7 +71,7 @@ export default function Contatti() {
               <h3 className="font-medium text-foreground mb-2">Come posso richiedere un rimborso?</h3>
               <p className="text-muted-foreground text-[15px]">
                 Hai 60 giorni per richiedere un rimborso completo. Invia un'email a 
-                info@manualeidraulicodistratto.com con il numero d'ordine e riceverai il rimborso 
+                idraulicodistratto@gmail.com con il numero d'ordine e riceverai il rimborso 
                 entro 5-7 giorni lavorativi.
               </p>
             </div>
