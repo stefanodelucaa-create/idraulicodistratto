@@ -469,10 +469,10 @@ const IndexBold = () => {
                   { icon: Gift, title: "Tieni i Bonus", desc: "Anche se chiedi rimborso" },
                   { icon: Mail, title: "Nessuna Domanda", desc: "Basta una mail" },
                 ].map((item, i) => (
-                  <div key={i} className="bg-black/50 rounded-xl p-5">
-                    <item.icon className="w-7 h-7 text-red-500 mx-auto mb-3" />
-                    <h3 className="text-white font-bold mb-1">{item.title}</h3>
-                    <p className="text-gray-500 text-sm">{item.desc}</p>
+                  <div key={i} className="bg-black/50 rounded-xl p-3 sm:p-5">
+                    <item.icon className="w-6 h-6 sm:w-7 sm:h-7 text-red-500 mx-auto mb-2 sm:mb-3" />
+                    <h3 className="text-white font-bold text-sm sm:text-base mb-1">{item.title}</h3>
+                    <p className="text-gray-500 text-xs sm:text-sm">{item.desc}</p>
                   </div>
                 ))}
               </div>
