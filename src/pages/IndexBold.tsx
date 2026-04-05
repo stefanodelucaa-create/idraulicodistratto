@@ -186,7 +186,7 @@ const IndexBold = () => {
               <div className="absolute inset-0 bg-red-600/20 rounded-full blur-3xl scale-75" />
               <div className="relative flex items-start justify-center max-w-[340px] sm:max-w-none mx-auto">
                 <img src={ebookMockup} alt="Ebook" className="w-48 sm:w-72 lg:w-80 drop-shadow-2xl relative z-10" />
-                <img src={bonusMockup} alt="Bonus" className="w-40 sm:w-56 lg:w-64 drop-shadow-xl -ml-28 sm:-ml-36 relative z-20 mt-[calc(100%*48/80*1.41-100%*40/64*0.05)] sm:mt-0" style={{ marginTop: 'calc(12rem * 1.414 - 10rem * 1.414 + 0.5rem)' }} />
+                <img src={bonusMockup} alt="Bonus" className="w-40 sm:w-56 lg:w-64 drop-shadow-xl -ml-28 sm:-ml-36 relative z-20 mt-[3.5rem] sm:mt-[5rem] lg:mt-[5.5rem]" />
               </div>
             </div>
           </div>
