@@ -108,9 +108,9 @@ const IndexBold = () => {
   const bonusTotal = bonuses.reduce((sum, b) => sum + b.value, 0);
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* ANNOUNCEMENT BAR */}
-      <div className="bg-red-600 text-white py-3 sm:py-4 text-center text-sm sm:text-base font-bold px-4 animate-pulse">
+      <div className="bg-red-600 text-white py-2.5 sm:py-4 text-center text-xs sm:text-base font-bold px-3 sm:px-4 animate-pulse leading-tight">
         ⚡ OFFERTA LIMITATA: 53% di SCONTO + 6 Bonus GRATIS (valore €125) - SOLO OGGI! ⚡
       </div>
 
@@ -127,13 +127,13 @@ const IndexBold = () => {
                 🔥 Best Seller 2024
               </div>
               
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
                 BASTA ANSIA.
                 <span className="text-red-500 block">BASTA PRESSIONE.</span>
                 <span className="text-red-400 block text-2xl sm:text-3xl lg:text-4xl mt-2">È Ora di Cambiare.</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-gray-300 max-w-xl">
+              <p className="text-base sm:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0">
                 La guida scientifica di <span className="text-red-500 font-bold">200+ pagine</span> che elimina l'ansia da prestazione e trasforma il sesso da missione a connessione.
               </p>
 
@@ -151,36 +151,36 @@ const IndexBold = () => {
               </div>
 
               {/* Price Block */}
-              <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-6 border-2 border-red-600/50">
-                <div className="flex items-center justify-center gap-4 mb-4">
-                  <span className="text-2xl text-gray-400 line-through">{originalPrice}</span>
-                  <span className="text-5xl font-black text-white">{price}</span>
-                  <span className="bg-red-600 text-white text-sm font-bold px-3 py-1 rounded">-53%</span>
+              <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-4 sm:p-6 border-2 border-red-600/50">
+                <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
+                  <span className="text-xl sm:text-2xl text-gray-400 line-through">{originalPrice}</span>
+                  <span className="text-4xl sm:text-5xl font-black text-white">{price}</span>
+                  <span className="bg-red-600 text-white text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-53%</span>
                 </div>
                 
                 <Button 
                   onClick={handleBuyClick}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white text-lg font-bold py-6 rounded-xl group"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white text-base sm:text-lg font-bold py-5 sm:py-6 rounded-xl group"
                 >
                   🔥 OTTIENI ACCESSO IMMEDIATO
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
 
-                <div className="mt-4 flex flex-wrap justify-center gap-4 text-sm text-gray-400">
-                  <span className="flex items-center gap-1"><CheckCircle className="w-4 h-4 text-red-500" /> Download immediato</span>
-                  <span className="flex items-center gap-1"><Shield className="w-4 h-4 text-red-500" /> Pagamento sicuro</span>
-                  <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-red-500" /> Garanzia 60 giorni</span>
+                <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-400">
+                  <span className="flex items-center gap-1"><CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" /> Download immediato</span>
+                  <span className="flex items-center gap-1"><Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" /> Pagamento sicuro</span>
+                  <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" /> Garanzia 60 giorni</span>
                 </div>
               </div>
             </div>
 
             {/* Product Images */}
-            <div className="relative flex justify-center pb-8">
+            <div className="relative flex justify-center pb-8 px-4">
               <div className="absolute inset-0 bg-red-600/20 rounded-full blur-3xl scale-75" />
-              <div className="relative flex items-end justify-center">
-                <img src={ebookMockup} alt="Ebook" className="w-64 sm:w-72 lg:w-80 drop-shadow-2xl -ml-8 sm:ml-0" />
-                <div className="absolute bottom-0 -right-4 sm:-right-8">
-                  <img src={bonusMockup} alt="Bonus" className="w-44 sm:w-52 lg:w-56 drop-shadow-xl" />
+              <div className="relative flex items-end justify-center max-w-[320px] sm:max-w-none mx-auto">
+                <img src={ebookMockup} alt="Ebook" className="w-52 sm:w-72 lg:w-80 drop-shadow-2xl" />
+                <div className="absolute bottom-0 -right-2 sm:-right-8">
+                  <img src={bonusMockup} alt="Bonus" className="w-36 sm:w-52 lg:w-56 drop-shadow-xl" />
                 </div>
               </div>
             </div>
@@ -195,7 +195,7 @@ const IndexBold = () => {
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4 border border-red-600/30">
               ⚠️ ATTENZIONE
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-2xl sm:text-4xl font-black text-white">
               Ti Riconosci in Almeno Una
               <span className="text-red-500 block">di Queste Situazioni?</span>
             </h2>
@@ -203,13 +203,13 @@ const IndexBold = () => {
 
           <div className="grid md:grid-cols-2 gap-4 sm:gap-6 max-w-5xl mx-auto">
             {painPoints.map((point, i) => (
-              <div key={i} className="bg-gray-900/80 rounded-xl p-5 sm:p-6 border border-red-900/30 hover:border-red-600/50 transition-all">
+              <div key={i} className="bg-gray-900/80 rounded-xl p-4 sm:p-6 border border-red-900/30 hover:border-red-600/50 transition-all">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-lg bg-red-600/20 flex items-center justify-center flex-shrink-0">
                     <XCircle className="w-5 h-5 text-red-500" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-2">{point.title}</h3>
+                    <h3 className="text-base sm:text-lg font-bold text-white mb-2">{point.title}</h3>
                     <p className="text-gray-400 text-sm leading-relaxed">{point.description}</p>
                   </div>
                 </div>
@@ -238,7 +238,7 @@ const IndexBold = () => {
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
               💡 PERCHÉ È DIVERSA
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">
+            <h2 className="text-2xl sm:text-4xl font-black text-white">
               Non è l'Ennesima Guida
               <span className="text-red-500 block">Trovata Online</span>
             </h2>
@@ -246,11 +246,11 @@ const IndexBold = () => {
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {uniqueFeatures.map((feature, i) => (
-              <div key={i} className="bg-black/50 rounded-2xl p-6 sm:p-8 border border-gray-800 text-center hover:border-red-600/50 transition-all">
+              <div key={i} className="bg-black/50 rounded-2xl p-5 sm:p-8 border border-gray-800 text-center hover:border-red-600/50 transition-all">
                 <div className="w-16 h-16 rounded-2xl bg-red-600/20 flex items-center justify-center mx-auto mb-5">
                   <feature.icon className="w-8 h-8 text-red-500" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-3">{feature.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
               </div>
             ))}
@@ -265,27 +265,27 @@ const IndexBold = () => {
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
               📚 CONTENUTI
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">6 Sezioni Complete</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white mb-4">6 Sezioni Complete</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">Un percorso strutturato dalle basi psicologiche alle tecniche avanzate</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 max-w-6xl mx-auto">
             {sections.map((section, i) => (
               <div key={i} className="bg-gray-900/50 rounded-xl overflow-hidden border border-gray-800 hover:border-red-600/50 transition-all group">
                 <div className="bg-gradient-to-br from-red-900/30 to-gray-900 p-6 flex justify-center">
                   <img src={section.image} alt={section.title} className="w-32 h-auto rounded-lg shadow-lg group-hover:scale-105 transition-transform" loading="lazy" />
                 </div>
-                <div className="p-5">
-                  <span className="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded">PARTE {i + 1}</span>
-                  <h3 className="text-lg font-bold text-white mt-2">{section.title}</h3>
-                  <p className="text-red-400 text-sm">{section.subtitle}</p>
+                <div className="p-3 sm:p-5">
+                  <span className="bg-red-600 text-white text-[10px] sm:text-xs font-bold px-2 py-0.5 sm:py-1 rounded">PARTE {i + 1}</span>
+                  <h3 className="text-sm sm:text-lg font-bold text-white mt-2">{section.title}</h3>
+                  <p className="text-red-400 text-xs sm:text-sm">{section.subtitle}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-10 bg-red-600/10 border border-red-600/30 rounded-2xl p-6 text-center max-w-3xl mx-auto">
-            <p className="text-white font-medium text-lg">
+          <div className="mt-10 bg-red-600/10 border border-red-600/30 rounded-2xl p-4 sm:p-6 text-center max-w-3xl mx-auto">
+            <p className="text-white font-medium text-sm sm:text-lg">
               <span className="text-red-500 font-bold">200+ pagine</span>, <span className="text-red-500 font-bold">25 capitoli</span>, <span className="text-red-500 font-bold">50+ esercizi</span>
             </p>
           </div>
@@ -299,13 +299,13 @@ const IndexBold = () => {
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
               🎁 COSA RICEVI
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">Oltre all'Ebook</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white">Oltre all'Ebook</h2>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Main Ebook */}
             <div className="bg-gradient-to-br from-red-900/30 to-gray-900 rounded-2xl p-6 sm:p-8 border-2 border-red-600/50 relative">
-              <div className="absolute top-0 right-0 bg-red-600 text-white px-4 py-1 text-sm font-bold rounded-bl-xl">PRINCIPALE</div>
+              <div className="absolute top-0 right-0 bg-red-600 text-white px-3 sm:px-4 py-1 text-xs sm:text-sm font-bold rounded-bl-xl">PRINCIPALE</div>
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-14 h-14 rounded-xl bg-red-600/20 flex items-center justify-center">
                   <Book className="w-7 h-7 text-red-500" />
@@ -340,15 +340,15 @@ const IndexBold = () => {
 
           {/* Value Stack CTA */}
           <div className="mt-12 max-w-2xl mx-auto">
-            <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-6 sm:p-8 border-2 border-red-600/50 text-center">
+            <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-5 sm:p-8 border-2 border-red-600/50 text-center">
               <div className="space-y-2 mb-6 text-gray-400">
                 <div>Valore Ebook: <span className="text-white">€79</span></div>
                 <div>Valore 6 Bonus: <span className="text-white">€{bonusTotal}</span></div>
                 <div className="h-px bg-red-600/30 my-3" />
                 <div className="text-lg">Valore Totale: <span className="text-gray-500 line-through">€{79 + bonusTotal}</span></div>
-                <div className="text-3xl font-black text-white">Oggi: <span className="text-red-500">{price}</span></div>
+                <div className="text-2xl sm:text-3xl font-black text-white">Oggi: <span className="text-red-500">{price}</span></div>
               </div>
-              <Button onClick={handleBuyClick} className="w-full bg-red-600 hover:bg-red-700 text-white text-lg font-bold py-6 group">
+              <Button onClick={handleBuyClick} className="w-full bg-red-600 hover:bg-red-700 text-white text-base sm:text-lg font-bold py-5 sm:py-6 group">
                 🔥 OTTIENI TUTTO A {price}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1" />
               </Button>
@@ -364,7 +364,7 @@ const IndexBold = () => {
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">
               ⭐ TESTIMONIANZE
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">Cosa Dicono i Lettori</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white">Cosa Dicono i Lettori</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -393,7 +393,7 @@ const IndexBold = () => {
       <section className="py-16 sm:py-20 bg-black">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-black text-white">Per Chi è Questa Guida</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white">Per Chi è Questa Guida</h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
@@ -435,12 +435,12 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6 max-w-3xl">
           <div className="text-center mb-12">
             <span className="inline-block bg-red-600/20 text-red-500 px-4 py-2 rounded-full text-sm font-bold mb-4">❓ FAQ</span>
-            <h2 className="text-3xl sm:text-4xl font-black text-white">Domande Frequenti</h2>
+            <h2 className="text-2xl sm:text-4xl font-black text-white">Domande Frequenti</h2>
           </div>
 
           <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, i) => (
-              <AccordionItem key={i} value={`faq-${i}`} className="bg-black/50 rounded-xl border border-gray-800 px-5">
+              <AccordionItem key={i} value={`faq-${i}`} className="bg-black/50 rounded-xl border border-gray-800 px-4 sm:px-5">
                 <AccordionTrigger className="text-left font-semibold text-white hover:text-red-500 py-5">{faq.question}</AccordionTrigger>
                 <AccordionContent className="text-gray-400 pb-5">{faq.answer}</AccordionContent>
               </AccordionItem>
@@ -453,26 +453,26 @@ const IndexBold = () => {
       <section className="py-16 sm:py-20 bg-black">
         <div className="container px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-red-900/30 to-gray-900 rounded-3xl p-8 sm:p-12 border-2 border-red-600/50 text-center">
+            <div className="bg-gradient-to-br from-red-900/30 to-gray-900 rounded-3xl p-6 sm:p-12 border-2 border-red-600/50 text-center">
               <div className="w-20 h-20 rounded-full bg-red-600/20 flex items-center justify-center mx-auto mb-6">
                 <Shield className="w-10 h-10 text-red-500" />
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black text-white mb-3">Garanzia 60 Giorni</h2>
+              <h2 className="text-2xl sm:text-4xl font-black text-white mb-3">Garanzia 60 Giorni</h2>
               <p className="text-xl text-red-500 font-bold mb-4">RISCHIO ZERO</p>
               <p className="text-gray-400 mb-8 max-w-xl mx-auto">
                 Prova la guida con calma. Se non fa per te, rimborso completo. E tieni comunque tutti i bonus.
               </p>
 
-              <div className="grid md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4">
                 {[
                   { icon: RefreshCcw, title: "Rimborso Completo", desc: "Entro 60 giorni" },
                   { icon: Gift, title: "Tieni i Bonus", desc: "Anche se chiedi rimborso" },
                   { icon: Mail, title: "Nessuna Domanda", desc: "Basta una mail" },
                 ].map((item, i) => (
-                  <div key={i} className="bg-black/50 rounded-xl p-5">
-                    <item.icon className="w-7 h-7 text-red-500 mx-auto mb-3" />
-                    <h3 className="text-white font-bold mb-1">{item.title}</h3>
-                    <p className="text-gray-500 text-sm">{item.desc}</p>
+                  <div key={i} className="bg-black/50 rounded-xl p-3 sm:p-5">
+                    <item.icon className="w-6 h-6 sm:w-7 sm:h-7 text-red-500 mx-auto mb-2 sm:mb-3" />
+                    <h3 className="text-white font-bold text-sm sm:text-base mb-1">{item.title}</h3>
+                    <p className="text-gray-500 text-xs sm:text-sm">{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -485,27 +485,27 @@ const IndexBold = () => {
       <section className="py-16 sm:py-20 bg-gradient-to-b from-red-900 to-red-950">
         <div className="container px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white mb-6">
               È ORA DI AGIRE.
-              <span className="block text-red-300">Non Domani. ADESSO.</span>
+              <span className="block text-red-300 text-xl sm:text-3xl lg:text-4xl">Non Domani. ADESSO.</span>
             </h2>
             <p className="text-lg text-red-100/80 mb-8 max-w-xl mx-auto">
               Puoi continuare come prima, o puoi cambiare. La scelta è tua.
             </p>
 
-            <div className="bg-black/30 rounded-2xl p-6 sm:p-8 border border-red-600/30 mb-8">
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <span className="text-2xl text-red-300 line-through">€204</span>
-                <span className="text-5xl font-black text-white">{price}</span>
-                <span className="bg-white text-red-600 text-sm font-bold px-3 py-1 rounded">-53%</span>
+            <div className="bg-black/30 rounded-2xl p-5 sm:p-8 border border-red-600/30 mb-8">
+              <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
+                <span className="text-xl sm:text-2xl text-red-300 line-through">€204</span>
+                <span className="text-4xl sm:text-5xl font-black text-white">{price}</span>
+                <span className="bg-white text-red-600 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-53%</span>
               </div>
-              <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-xl font-black py-7 px-12 group">
+              <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-lg sm:text-xl font-black py-6 sm:py-7 px-8 sm:px-12 group">
                 SÌ, VOGLIO INIZIARE ORA!
                 <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-1" />
               </Button>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-red-200">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-red-200">
               <span className="flex items-center gap-2"><Shield className="w-4 h-4" /> Pagamento Sicuro</span>
               <span className="flex items-center gap-2"><Download className="w-4 h-4" /> Download Immediato</span>
               <span className="flex items-center gap-2"><Clock className="w-4 h-4" /> Garanzia 60 Giorni</span>
