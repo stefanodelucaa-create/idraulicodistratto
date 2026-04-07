@@ -337,7 +337,7 @@ const IndexBold = () => {
             {testimonials.map((t, i) => (
               <div key={i} className="bg-black/50 rounded-2xl p-6 border border-gray-800">
                 <Quote className="w-8 h-8 text-red-600/30 mb-4" />
-                <p className="text-gray-300 italic text-sm sm:text-base mb-5">"{t.text}"</p>
+                <p className="text-gray-300 italic text-base mb-5">"{t.text}"</p>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-semibold text-white">{t.name}</p>
