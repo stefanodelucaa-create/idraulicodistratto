@@ -248,7 +248,7 @@ const IndexBold = () => {
       <section className="py-16 sm:py-20 bg-black">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
               Non troverai nulla del genere
               <span className="text-red-500 block">su internet (né da nessun'altra parte)…</span>
             </h2>
