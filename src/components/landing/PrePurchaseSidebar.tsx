@@ -82,50 +82,48 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
     <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <SheetContent 
         side="right" 
-        className="w-full sm:max-w-lg overflow-y-auto p-0 bg-background border-l border-border"
+        className="w-full sm:max-w-lg overflow-y-auto p-0 bg-black border-l border-gray-800"
       >
         {/* Header */}
-        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur-sm border-b border-border px-6 py-4">
+        <div className="sticky top-0 z-10 bg-black/95 backdrop-blur-sm border-b border-gray-800 px-6 py-4">
           <div className="flex items-center justify-between">
             <button 
               onClick={onClose}
-              className="p-2 -ml-2 rounded-full hover:bg-secondary transition-colors"
+              className="p-2 -ml-2 rounded-full hover:bg-gray-800 transition-colors"
               aria-label="Chiudi carrello"
             >
-              <X className="w-5 h-5 text-muted-foreground" />
+              <X className="w-5 h-5 text-gray-400" />
             </button>
             <SheetHeader className="flex-1 text-center">
-              <SheetTitle className="text-xl font-bold text-foreground">
-                🛒 Il Tuo Carrello
+              <SheetTitle className="text-xl font-bold text-white">
+                Il Tuo Carrello
               </SheetTitle>
             </SheetHeader>
-            <div className="w-9" /> {/* Spacer for centering */}
+            <div className="w-9" />
           </div>
         </div>
 
         <div className="px-6 py-6 space-y-6">
           {/* Product Card - Ebook Base */}
-          <div className="bg-card rounded-xl p-4 shadow-soft border border-border">
+          <div className="bg-gray-900 rounded-xl p-4 border border-gray-800">
             <div className="flex flex-col sm:flex-row gap-4">
-              {/* Image - centered and larger on mobile */}
               <div className="flex justify-center sm:justify-start flex-shrink-0">
                 <img 
                   src={ebookMockup} 
-                  alt="Manuale dell'Idraulico Distratto" 
+                  alt="Il Protocollo del Piacere" 
                   className="w-28 sm:w-20 h-auto rounded-lg shadow-md"
                 />
               </div>
-              {/* Content - centered on mobile */}
               <div className="flex-1 text-center sm:text-left">
-                <h3 className="font-bold text-lg sm:text-base text-foreground mb-1">
+                <h3 className="font-bold text-lg sm:text-base text-white mb-1">
                   Il Protocollo del Piacere
                 </h3>
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-sm text-gray-400 mb-2">
                   Ebook completo + Bonus
                 </p>
                 <div className="flex items-baseline gap-2 justify-center sm:justify-start">
-                  <span className="text-sm text-muted-foreground line-through">€79</span>
-                  <span className="text-2xl sm:text-xl font-bold text-primary">€{basePrice}</span>
+                  <span className="text-sm text-gray-500 line-through">€79</span>
+                  <span className="text-2xl sm:text-xl font-bold text-red-500">€{basePrice}</span>
                 </div>
               </div>
             </div>
@@ -134,64 +132,61 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
           {/* Upsell Section - Lifetime Access */}
           <div className={`relative rounded-xl border-2 transition-all duration-300 ${
             includeLifetime 
-              ? 'border-accent bg-accent/10 shadow-glow' 
-              : 'border-border bg-card hover:border-accent/50'
+              ? 'border-red-500 bg-red-900/20 shadow-[0_0_30px_rgba(239,68,68,0.15)]' 
+              : 'border-gray-800 bg-gray-900 hover:border-red-500/50'
           }`}>
             {/* Badge */}
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground font-bold text-xs uppercase px-3 py-1 rounded-full whitespace-nowrap">
-              🔥 Offerta Speciale
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-red-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-full whitespace-nowrap">
+              Offerta Speciale
             </div>
 
             <div className="p-4 pt-6">
               {/* Countdown */}
-              <div className="flex items-center justify-center gap-2 mb-4 bg-destructive/10 rounded-lg py-2 px-3">
-                <Clock className="w-4 h-4 text-destructive" />
-                <span className="text-sm font-semibold text-destructive">
+              <div className="flex items-center justify-center gap-2 mb-4 bg-red-900/30 rounded-lg py-2 px-3 border border-red-800/50">
+                <Clock className="w-4 h-4 text-red-400" />
+                <span className="text-sm font-semibold text-red-400">
                   Offerta scade tra {String(countdown.minutes).padStart(2, '0')}:{String(countdown.seconds).padStart(2, '0')}
                 </span>
               </div>
 
-              {/* Header with image - Mobile optimized */}
+              {/* Header with image */}
               <div className="flex flex-col sm:flex-row gap-4 mb-5">
-                {/* Image container - centered on mobile, left on desktop */}
                 <div className="flex justify-center sm:justify-start flex-shrink-0">
                   <div className="relative">
-                    <div className="absolute inset-0 bg-accent/30 blur-xl rounded-lg"></div>
+                    <div className="absolute inset-0 bg-red-600/20 blur-xl rounded-lg"></div>
                     <img 
                       src={lifetimeAccessCover} 
                       alt="Lifetime Access" 
-                      className="relative w-24 sm:w-20 h-auto rounded-lg shadow-lg border-2 border-accent/50"
+                      className="relative w-24 sm:w-20 h-auto rounded-lg shadow-lg border-2 border-red-500/50"
                     />
                   </div>
                 </div>
                 
-                {/* Text content - centered on mobile */}
                 <div className="flex-1 text-center sm:text-left">
-                  <h4 className="font-bold text-lg text-foreground mb-1">
-                    🚀 Aggiungi Lifetime Access
+                  <h4 className="font-bold text-lg text-white mb-1">
+                    Aggiungi Lifetime Access
                   </h4>
-                  <p className="text-sm text-muted-foreground mb-2">
+                  <p className="text-sm text-gray-400 mb-2">
                     Aggiornamenti illimitati per sempre
                   </p>
                   <div className="flex items-baseline gap-2 justify-center sm:justify-start">
-                    <span className="text-sm text-muted-foreground line-through">€97</span>
-                    <span className="text-xl font-bold text-accent">+€{lifetimePrice}</span>
-                    <span className="text-xs text-muted-foreground">(solo oggi)</span>
+                    <span className="text-sm text-gray-500 line-through">€97</span>
+                    <span className="text-xl font-bold text-red-500">+€{lifetimePrice}</span>
+                    <span className="text-xs text-gray-500">(solo oggi)</span>
                   </div>
                 </div>
               </div>
 
-
               {/* Benefits Full List */}
-              <div className="bg-accent/10 rounded-lg p-4 mb-4 border border-accent/30">
-                <h5 className="font-bold text-sm text-primary mb-3 text-center">
-                  ✅ CON LIFETIME ACCESS OTTIENI:
+              <div className="bg-red-900/20 rounded-lg p-4 mb-4 border border-red-800/40">
+                <h5 className="font-bold text-sm text-red-400 mb-3 text-center uppercase tracking-wide">
+                  Con Lifetime Access ottieni:
                 </h5>
                 <div className="space-y-2">
                   {benefits.map((benefit, index) => (
                     <div key={index} className="flex items-center gap-3">
                       <span className="text-lg flex-shrink-0">{benefit.icon}</span>
-                      <p className="font-semibold text-sm text-foreground">{benefit.title}</p>
+                      <p className="font-semibold text-sm text-gray-200">{benefit.title}</p>
                     </div>
                   ))}
                 </div>
@@ -202,8 +197,8 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
                 onClick={() => setIncludeLifetime(!includeLifetime)}
                 className={`w-full py-3.5 px-4 rounded-xl font-bold text-base transition-all duration-300 flex items-center justify-center gap-2 ${
                   includeLifetime
-                    ? 'bg-accent text-accent-foreground shadow-glow'
-                    : 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg'
+                    ? 'bg-red-600 text-white shadow-[0_0_20px_rgba(239,68,68,0.3)]'
+                    : 'bg-white text-black hover:bg-gray-100 shadow-lg'
                 }`}
               >
                 {includeLifetime ? (
@@ -221,17 +216,17 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
           </div>
 
           {/* Social Proof Mini */}
-          <div className="bg-secondary/50 rounded-lg p-4">
+          <div className="bg-gray-900/80 rounded-lg p-4 border border-gray-800">
             <div className="flex items-center gap-1 mb-2">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3.5 h-3.5 fill-accent text-accent" />
+                <Star key={i} className="w-3.5 h-3.5 fill-red-500 text-red-500" />
               ))}
-              <span className="text-xs text-muted-foreground ml-1">4.9/5</span>
+              <span className="text-xs text-gray-500 ml-1">4.9/5</span>
             </div>
             <div className="space-y-2">
               {testimonials.map((t, i) => (
-                <p key={i} className="text-xs text-muted-foreground italic">
-                  "{t.text}" — <span className="font-medium">{t.name}</span>
+                <p key={i} className="text-xs text-gray-400 italic">
+                  "{t.text}" — <span className="font-medium text-gray-300">{t.name}</span>
                 </p>
               ))}
             </div>
@@ -240,11 +235,11 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
           {/* FAQ Accordion */}
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border-b border-border">
-                <AccordionTrigger className="text-sm font-medium py-3 hover:no-underline text-foreground">
+              <AccordionItem key={index} value={`item-${index}`} className="border-b border-gray-800">
+                <AccordionTrigger className="text-sm font-medium py-3 hover:no-underline text-gray-200">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground pb-3">
+                <AccordionContent className="text-sm text-gray-400 pb-3">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -253,37 +248,35 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
         </div>
 
         {/* Sticky Footer */}
-        <div className="sticky bottom-0 bg-background/95 backdrop-blur-sm border-t border-border px-6 py-4 space-y-3">
+        <div className="sticky bottom-0 bg-black/95 backdrop-blur-sm border-t border-gray-800 px-6 py-4 space-y-3">
           {/* Price Summary */}
           <div className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">Totale:</span>
+            <span className="text-gray-400">Totale:</span>
             <div className="flex items-baseline gap-2">
               {includeLifetime && (
-                <span className="text-xs text-muted-foreground line-through">€{79 + 97}</span>
+                <span className="text-xs text-gray-500 line-through">€{79 + 97}</span>
               )}
-              <span className="text-2xl font-bold text-primary">€{totalPrice}</span>
+              <span className="text-2xl font-bold text-white">€{totalPrice}</span>
             </div>
           </div>
 
           {/* CTA Button */}
-          <Button 
-            variant="cta"
-            size="lg"
+          <button 
             onClick={() => onCheckout(includeLifetime)}
-            className="w-full text-lg font-bold py-6 group"
+            className="w-full bg-red-600 hover:bg-red-700 text-white text-lg font-bold py-4 rounded-xl group transition-colors flex items-center justify-center"
           >
             Procedi al Checkout
             <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-          </Button>
+          </button>
 
           {/* Trust Badges */}
-          <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
+          <div className="flex items-center justify-center gap-4 text-xs text-gray-500">
             <span className="flex items-center gap-1">
-              <Shield className="w-3.5 h-3.5 text-primary" />
+              <Shield className="w-3.5 h-3.5 text-red-500" />
               SSL Sicuro
             </span>
             <span className="flex items-center gap-1">
-              <Check className="w-3.5 h-3.5 text-primary" />
+              <Check className="w-3.5 h-3.5 text-red-500" />
               Garanzia 60gg
             </span>
           </div>
