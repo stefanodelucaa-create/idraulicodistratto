@@ -273,13 +273,13 @@ const IndexBold = () => {
                 </div>
               ))}
             </div>
-            <p className="text-gray-400 text-sm sm:text-base leading-relaxed mt-6 text-center">
+            <p className="text-gray-400 text-base sm:text-lg leading-relaxed mt-6 text-center">
               Anche se tu riuscissi a trovare tutto, a filtrare le informazioni fake da quelle scientifiche, a mettere insieme i pezzi e a capire in quale ordine usarli… ci vorrebbero <span className="text-white font-bold">mesi</span>.
             </p>
-            <p className="text-gray-400 text-sm sm:text-base leading-relaxed mt-2 text-center">
+            <p className="text-gray-400 text-base sm:text-lg leading-relaxed mt-2 text-center">
               E nel frattempo continueresti a fare esattamente quello che stai facendo adesso.
             </p>
-            <p className="text-red-400 font-bold text-center mt-6 text-sm sm:text-base">
+            <p className="text-red-400 font-bold text-center mt-6 text-base sm:text-lg">
               Oppure puoi comodamente ricevere tutto ciò in questo esatto momento – già tradotto in italiano, in sequenza, con le illustrazioni e con 6 BONUS in regalo – per soli {price} iva inclusa.
             </p>
           </div>
