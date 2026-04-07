@@ -578,6 +578,12 @@ const IndexBold = () => {
           </div>
         </div>
       )}
+
+      <PrePurchaseSidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+        onCheckout={handleCheckout}
+      />
     </main>
   );
 };
