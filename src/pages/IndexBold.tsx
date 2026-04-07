@@ -177,7 +177,7 @@ const IndexBold = () => {
       <section className="py-10 sm:py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
               Ecco cosa scoprirai nel
               <span className="text-red-500 block">Protocollo del Piacere:</span>
             </h2>
