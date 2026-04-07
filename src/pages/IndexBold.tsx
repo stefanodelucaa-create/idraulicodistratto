@@ -366,7 +366,7 @@ const IndexBold = () => {
               </div>
               <h2 className="text-3xl sm:text-4xl font-black text-white mb-6">"L'Hai Soddisfatta o Ti Rimborsiamo"</h2>
               
-              <div className="text-left max-w-xl mx-auto space-y-4 text-gray-400 text-sm sm:text-base leading-relaxed">
+              <div className="text-left max-w-xl mx-auto space-y-4 text-gray-400 text-base sm:text-lg leading-relaxed">
                 <p>
                   Voglio essere chiaro su una cosa: il rischio di questo acquisto è tutto nostro, non tuo.
                 </p>
