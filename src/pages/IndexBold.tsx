@@ -209,7 +209,7 @@ const IndexBold = () => {
       <section className="py-16 sm:py-20 bg-gray-900">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
               Prima vs Dopo
               <span className="text-red-500 block">il Protocollo del Piacere</span>
             </h2>
