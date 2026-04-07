@@ -364,7 +364,7 @@ const IndexBold = () => {
               <div className="w-20 h-20 rounded-full bg-red-600/20 flex items-center justify-center mx-auto mb-6">
                 <Shield className="w-10 h-10 text-red-500" />
               </div>
-              <h2 className="text-2xl sm:text-4xl font-black text-white mb-6">"L'Hai Soddisfatta o Ti Rimborsiamo"</h2>
+              <h2 className="text-3xl sm:text-4xl font-black text-white mb-6">"L'Hai Soddisfatta o Ti Rimborsiamo"</h2>
               
               <div className="text-left max-w-xl mx-auto space-y-4 text-gray-400 text-sm sm:text-base leading-relaxed">
                 <p>
