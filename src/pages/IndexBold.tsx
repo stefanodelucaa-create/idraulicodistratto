@@ -191,8 +191,8 @@ const IndexBold = () => {
               </div>
             ))}
             <div className="bg-gray-900/50 rounded-xl p-4 border border-gray-800 text-center">
-              <p className="text-red-400 font-bold text-base sm:text-lg">E molto, molto altro…</p>
-              <p className="text-gray-400 text-sm mt-2">Oltre 200 pagine chiare e 25 capitoli guidati, 50+ esercizi pratici e illustrazioni per visualizzare e comprendere meglio.</p>
+              <p className="text-red-400 font-bold text-lg sm:text-xl">E molto, molto altro…</p>
+              <p className="text-gray-400 text-base mt-2">Oltre 200 pagine chiare e 25 capitoli guidati, 50+ esercizi pratici e illustrazioni per visualizzare e comprendere meglio.</p>
             </div>
           </div>
 
