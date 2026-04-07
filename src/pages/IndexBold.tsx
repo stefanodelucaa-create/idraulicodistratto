@@ -89,7 +89,7 @@ const IndexBold = () => {
   return (
     <main className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* ANNOUNCEMENT BAR */}
-      <div className="bg-red-600 text-white py-2.5 sm:py-4 text-center text-sm sm:text-base font-bold px-3 sm:px-4 animate-pulse leading-tight">
+      <div className="bg-red-600 text-white py-2.5 sm:py-4 text-center text-base sm:text-lg font-bold px-4 sm:px-6 animate-pulse leading-snug">
         Offerta di Lancio – 71% di sconto + 6 Bonus GRATIS (valore €138)
       </div>
 
@@ -118,16 +118,16 @@ const IndexBold = () => {
                 </div>
               </div>
               
-              <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
                 IL PROTOCOLLO
                 <span className="text-red-500 block">DEL PIACERE</span>
               </h1>
 
-              <p className="text-base sm:text-xl text-gray-300 max-w-xl mx-auto leading-relaxed">
+              <p className="text-lg sm:text-xl text-gray-300 max-w-xl mx-auto leading-relaxed">
                 Scopri i "Giusti Tasti" da Toccare per Portare il Sesso al Livello Superiore e Farla Squirtare Ogni Volta che Vuoi… <span className="text-red-400 font-semibold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
-              <p className="text-sm sm:text-base text-gray-400 max-w-xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-400 max-w-xl mx-auto leading-relaxed">
                 Il Protocollo Scientifico di oltre 200 pagine che ti mostrerà i segreti della psicologia sessuale, dell'anatomia femminile e della comunicazione intima per sbloccare il miglior sesso della sua (e della tua) vita
               </p>
 
@@ -156,9 +156,9 @@ const IndexBold = () => {
                 
                 <Button 
                   onClick={handleBuyClick}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white text-sm sm:text-lg font-bold py-5 sm:py-6 rounded-xl group whitespace-normal leading-tight"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white text-base sm:text-lg font-bold py-5 sm:py-6 rounded-xl group h-auto min-h-[56px]"
                 >
-                  Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS
+                  <span className="text-center leading-snug">Sì, Voglio il Protocollo<br className="sm:hidden" /> + TUTTI i BONUS</span>
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                 </Button>
                 <p className="text-gray-500 text-xs mt-2">(Valore complessivo €{99 + bonusTotal}) per soli {price}</p>
@@ -177,7 +177,7 @@ const IndexBold = () => {
       <section className="py-10 sm:py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
               Ecco cosa scoprirai nel
               <span className="text-red-500 block">Protocollo del Piacere:</span>
             </h2>
@@ -187,18 +187,18 @@ const IndexBold = () => {
             {bulletPoints.map((point, i) => (
               <div key={i} className="flex items-start gap-3 bg-gray-900/50 rounded-xl p-4 border border-gray-800">
                 <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-200 text-base leading-relaxed">{point}</span>
+                <span className="text-gray-200 text-base sm:text-lg leading-relaxed">{point}</span>
               </div>
             ))}
             <div className="bg-gray-900/50 rounded-xl p-4 border border-gray-800 text-center">
-              <p className="text-red-400 font-bold text-base sm:text-lg">E molto, molto altro…</p>
-              <p className="text-gray-400 text-sm mt-2">Oltre 200 pagine chiare e 25 capitoli guidati, 50+ esercizi pratici e illustrazioni per visualizzare e comprendere meglio.</p>
+              <p className="text-red-400 font-bold text-lg sm:text-xl">E molto, molto altro…</p>
+              <p className="text-gray-400 text-base mt-2">Oltre 200 pagine chiare e 25 capitoli guidati, 50+ esercizi pratici e illustrazioni per visualizzare e comprendere meglio.</p>
             </div>
           </div>
 
           <div className="mt-10 text-center">
-            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-8 text-sm sm:text-base group whitespace-normal">
-              Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS (Valore €{99 + bonusTotal}) per soli {price}
+            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-6 sm:px-8 text-base sm:text-lg group h-auto min-h-[56px]">
+              <span className="text-center leading-snug">Sì, Voglio il Protocollo + TUTTI i BONUS<br className="sm:hidden" /> per soli {price}</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
             </Button>
           </div>
@@ -209,7 +209,7 @@ const IndexBold = () => {
       <section className="py-16 sm:py-20 bg-gray-900">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
               Prima vs Dopo
               <span className="text-red-500 block">il Protocollo del Piacere</span>
             </h2>
@@ -248,14 +248,14 @@ const IndexBold = () => {
       <section className="py-16 sm:py-20 bg-black">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-4xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl font-black text-white">
               Non troverai nulla del genere
               <span className="text-red-500 block">su internet (né da nessun'altra parte)…</span>
             </h2>
           </div>
 
           <div className="max-w-3xl mx-auto mb-10">
-            <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-6 text-center">
+            <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-6 text-center">
               Se volessi provare a ricostruire questi contenuti da solo, dovresti mettere insieme:
             </p>
             <div className="space-y-3">
@@ -269,24 +269,24 @@ const IndexBold = () => {
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 bg-gray-900/30 rounded-xl p-3 sm:p-4 border border-gray-800">
                   <span className="text-red-500 font-bold text-lg flex-shrink-0">•</span>
-                  <span className="text-gray-300 text-sm sm:text-base">{item}</span>
+                  <span className="text-gray-300 text-base sm:text-lg">{item}</span>
                 </div>
               ))}
             </div>
-            <p className="text-gray-400 text-sm sm:text-base leading-relaxed mt-6 text-center">
+            <p className="text-gray-400 text-base sm:text-lg leading-relaxed mt-6 text-center">
               Anche se tu riuscissi a trovare tutto, a filtrare le informazioni fake da quelle scientifiche, a mettere insieme i pezzi e a capire in quale ordine usarli… ci vorrebbero <span className="text-white font-bold">mesi</span>.
             </p>
-            <p className="text-gray-400 text-sm sm:text-base leading-relaxed mt-2 text-center">
+            <p className="text-gray-400 text-base sm:text-lg leading-relaxed mt-2 text-center">
               E nel frattempo continueresti a fare esattamente quello che stai facendo adesso.
             </p>
-            <p className="text-red-400 font-bold text-center mt-6 text-sm sm:text-base">
+            <p className="text-red-400 font-bold text-center mt-6 text-base sm:text-lg">
               Oppure puoi comodamente ricevere tutto ciò in questo esatto momento – già tradotto in italiano, in sequenza, con le illustrazioni e con 6 BONUS in regalo – per soli {price} iva inclusa.
             </p>
           </div>
 
           <div className="text-center">
-            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-8 text-sm sm:text-base group whitespace-normal">
-              Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS (Valore €{99 + bonusTotal}) per soli {price}
+            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-6 sm:px-8 text-base sm:text-lg group h-auto min-h-[56px]">
+              <span className="text-center leading-snug">Sì, Voglio il Protocollo + TUTTI i BONUS<br className="sm:hidden" /> per soli {price}</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
             </Button>
           </div>
@@ -305,7 +305,7 @@ const IndexBold = () => {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
-                      <h3 className="text-lg font-bold text-white">BONUS #{i + 1} — {bonus.title}</h3>
+                      <h3 className="text-base sm:text-lg font-bold text-white">BONUS #{i + 1} — {bonus.title}</h3>
                       <span className="text-red-500 font-bold text-sm">(Valore €{bonus.value})</span>
                     </div>
                     <p className="text-gray-400 text-sm sm:text-base leading-relaxed">{bonus.description}</p>
@@ -316,8 +316,8 @@ const IndexBold = () => {
           </div>
 
           <div className="mt-10 text-center">
-            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-8 text-sm sm:text-base group whitespace-normal">
-              Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS (Valore €{99 + bonusTotal}) per soli {price}
+            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-6 sm:px-8 text-base sm:text-lg group h-auto min-h-[56px]">
+              <span className="text-center leading-snug">Sì, Voglio il Protocollo + TUTTI i BONUS<br className="sm:hidden" /> per soli {price}</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
             </Button>
           </div>
@@ -328,7 +328,7 @@ const IndexBold = () => {
       <section className="py-16 sm:py-20 bg-gray-900">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-4xl font-black text-white uppercase">
+            <h2 className="text-3xl sm:text-4xl font-black text-white uppercase">
               Cosa Dice Chi Ha Acquistato<br />Questo Protocollo Scientifico?
             </h2>
           </div>
@@ -337,7 +337,7 @@ const IndexBold = () => {
             {testimonials.map((t, i) => (
               <div key={i} className="bg-black/50 rounded-2xl p-6 border border-gray-800">
                 <Quote className="w-8 h-8 text-red-600/30 mb-4" />
-                <p className="text-gray-300 italic text-sm sm:text-base mb-5">"{t.text}"</p>
+                <p className="text-gray-300 italic text-base mb-5">"{t.text}"</p>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-semibold text-white">{t.name}</p>
@@ -360,13 +360,13 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="bg-gradient-to-br from-red-900/30 to-gray-900 rounded-3xl p-6 sm:p-12 border-2 border-red-600/50 text-center">
-              <p className="text-red-500 font-bold text-lg mb-2">GARANZIA DEL 100%</p>
+              <p className="text-red-500 font-bold text-xl mb-2">GARANZIA DEL 100%</p>
               <div className="w-20 h-20 rounded-full bg-red-600/20 flex items-center justify-center mx-auto mb-6">
                 <Shield className="w-10 h-10 text-red-500" />
               </div>
-              <h2 className="text-2xl sm:text-4xl font-black text-white mb-6">"L'Hai Soddisfatta o Ti Rimborsiamo"</h2>
+              <h2 className="text-3xl sm:text-4xl font-black text-white mb-6">"L'Hai Soddisfatta o Ti Rimborsiamo"</h2>
               
-              <div className="text-left max-w-xl mx-auto space-y-4 text-gray-400 text-sm sm:text-base leading-relaxed">
+              <div className="text-left max-w-xl mx-auto space-y-4 text-gray-400 text-base sm:text-lg leading-relaxed">
                 <p>
                   Voglio essere chiaro su una cosa: il rischio di questo acquisto è tutto nostro, non tuo.
                 </p>
@@ -405,8 +405,8 @@ const IndexBold = () => {
                 <span className="text-4xl sm:text-5xl font-black text-white">{price}</span>
                 <span className="bg-white text-red-600 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-71%</span>
               </div>
-              <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-sm sm:text-lg font-black py-6 sm:py-7 px-6 sm:px-12 group whitespace-normal leading-tight">
-                Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS
+              <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-base sm:text-lg font-black py-6 sm:py-7 px-6 sm:px-12 group h-auto min-h-[60px]">
+                <span className="text-center leading-snug">Sì, Voglio il Protocollo<br className="sm:hidden" /> + TUTTI i BONUS</span>
                 <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-1 flex-shrink-0" />
               </Button>
               <p className="text-red-200/60 text-xs mt-2">(Valore complessivo €{99 + bonusTotal}) per soli {price}</p>
