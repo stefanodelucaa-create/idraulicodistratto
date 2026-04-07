@@ -118,7 +118,7 @@ const IndexBold = () => {
                 </div>
               </div>
               
-              <h1 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
                 IL PROTOCOLLO
                 <span className="text-red-500 block">DEL PIACERE</span>
               </h1>
