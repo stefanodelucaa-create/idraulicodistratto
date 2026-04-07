@@ -127,7 +127,7 @@ const IndexBold = () => {
                 Scopri i "Giusti Tasti" da Toccare per Portare il Sesso al Livello Superiore e Farla Squirtare Ogni Volta che Vuoi… <span className="text-red-400 font-semibold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
-              <p className="text-sm sm:text-base text-gray-400 max-w-xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-400 max-w-xl mx-auto leading-relaxed">
                 Il Protocollo Scientifico di oltre 200 pagine che ti mostrerà i segreti della psicologia sessuale, dell'anatomia femminile e della comunicazione intima per sbloccare il miglior sesso della sua (e della tua) vita
               </p>
 
