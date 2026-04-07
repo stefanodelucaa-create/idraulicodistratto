@@ -255,7 +255,7 @@ const IndexBold = () => {
           </div>
 
           <div className="max-w-3xl mx-auto mb-10">
-            <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-6 text-center">
+            <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-6 text-center">
               Se volessi provare a ricostruire questi contenuti da solo, dovresti mettere insieme:
             </p>
             <div className="space-y-3">
