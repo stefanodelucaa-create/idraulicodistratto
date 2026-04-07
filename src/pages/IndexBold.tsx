@@ -14,6 +14,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import protocolloCover from "@/assets/protocollo-cover-transparent.png";
+import { PrePurchaseSidebar } from "@/components/landing/PrePurchaseSidebar";
 import sezione1 from "@/assets/sezione-1.png";
 import sezione2 from "@/assets/sezione-2.png";
 import sezione3 from "@/assets/sezione-3.png";
