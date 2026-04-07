@@ -156,7 +156,7 @@ const IndexBold = () => {
                 
                 <Button 
                   onClick={handleBuyClick}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white text-base sm:text-lg font-bold py-5 sm:py-6 rounded-xl group h-auto min-h-[56px]"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white text-sm sm:text-lg font-bold py-3.5 sm:py-6 rounded-xl group h-auto"
                 >
                   <span className="text-center leading-snug">Sì, Voglio il Protocollo<br className="sm:hidden" /> + TUTTI i BONUS</span>
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
@@ -197,7 +197,7 @@ const IndexBold = () => {
           </div>
 
           <div className="mt-10 text-center">
-            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-6 sm:px-8 text-base sm:text-lg group h-auto min-h-[56px]">
+            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 sm:py-5 px-5 sm:px-8 text-sm sm:text-lg group h-auto">
               <span className="text-center leading-snug">Sì, Voglio il Protocollo + TUTTI i BONUS<br className="sm:hidden" /> per soli {price}</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
             </Button>
@@ -285,7 +285,7 @@ const IndexBold = () => {
           </div>
 
           <div className="text-center">
-            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-6 sm:px-8 text-base sm:text-lg group h-auto min-h-[56px]">
+            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 sm:py-5 px-5 sm:px-8 text-sm sm:text-lg group h-auto">
               <span className="text-center leading-snug">Sì, Voglio il Protocollo + TUTTI i BONUS<br className="sm:hidden" /> per soli {price}</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
             </Button>
@@ -316,7 +316,7 @@ const IndexBold = () => {
           </div>
 
           <div className="mt-10 text-center">
-            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-6 sm:px-8 text-base sm:text-lg group h-auto min-h-[56px]">
+            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 sm:py-5 px-5 sm:px-8 text-sm sm:text-lg group h-auto">
               <span className="text-center leading-snug">Sì, Voglio il Protocollo + TUTTI i BONUS<br className="sm:hidden" /> per soli {price}</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
             </Button>
@@ -405,7 +405,7 @@ const IndexBold = () => {
                 <span className="text-4xl sm:text-5xl font-black text-white">{price}</span>
                 <span className="bg-white text-red-600 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-71%</span>
               </div>
-              <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-base sm:text-lg font-black py-6 sm:py-7 px-6 sm:px-12 group h-auto min-h-[60px]">
+              <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-sm sm:text-lg font-black py-4 sm:py-7 px-5 sm:px-12 group h-auto">
                 <span className="text-center leading-snug">Sì, Voglio il Protocollo<br className="sm:hidden" /> + TUTTI i BONUS</span>
                 <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-1 flex-shrink-0" />
               </Button>
