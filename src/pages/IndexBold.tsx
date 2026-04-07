@@ -328,7 +328,7 @@ const IndexBold = () => {
       <section className="py-16 sm:py-20 bg-gray-900">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-4xl font-black text-white uppercase">
+            <h2 className="text-3xl sm:text-4xl font-black text-white uppercase">
               Cosa Dice Chi Ha Acquistato<br />Questo Protocollo Scientifico?
             </h2>
           </div>
