@@ -14,6 +14,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import protocolloCover from "@/assets/protocollo-cover-transparent.png";
+import { PrePurchaseSidebar } from "@/components/landing/PrePurchaseSidebar";
 import sezione1 from "@/assets/sezione-1.png";
 import sezione2 from "@/assets/sezione-2.png";
 import sezione3 from "@/assets/sezione-3.png";
@@ -93,20 +94,25 @@ const faqs = [
 
 const IndexBold = () => {
   const [isStickyCTAVisible, setIsStickyCTAVisible] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { startCheckout } = useStripeCheckout();
 
   useEffect(() => {
     const handleScroll = () => {
-      const shouldShow = window.scrollY > 600;
-      const nearBottom = window.scrollY + window.innerHeight > document.documentElement.scrollHeight - 400;
-      setIsStickyCTAVisible(shouldShow && !nearBottom);
+      const heroHeight = window.innerHeight * 0.8;
+      const bottomThreshold = document.documentElement.scrollHeight - window.innerHeight - 200;
+      setIsStickyCTAVisible(window.scrollY > heroHeight && window.scrollY < bottomThreshold);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleBuyClick = () => {
-    void startCheckout(false, true);
+    setIsSidebarOpen(true);
+  };
+
+  const handleCheckout = (includeLifetime: boolean) => {
+    void startCheckout(includeLifetime, true);
   };
 
   const price = "€29";
@@ -572,6 +578,12 @@ const IndexBold = () => {
           </div>
         </div>
       )}
+
+      <PrePurchaseSidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+        onCheckout={handleCheckout}
+      />
     </main>
   );
 };
