@@ -160,7 +160,7 @@ const IndexBold = () => {
                 >
                   <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
                 </Button>
-                <p className="text-gray-500 text-xs mt-2">(Valore complessivo €{99 + bonusTotal}) per soli {price}</p>
+                
 
                 <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-400">
                   <span className="flex items-center gap-1"><CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" /> Download immediato</span>
@@ -404,7 +404,7 @@ const IndexBold = () => {
               <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-[13px] sm:text-xl font-black py-5 sm:py-7 px-4 sm:px-12 h-auto whitespace-normal">
                 <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
               </Button>
-              <p className="text-red-200/60 text-xs mt-2">(Valore complessivo €{99 + bonusTotal}) per soli {price}</p>
+              
             </div>
 
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-red-200">
