@@ -88,6 +88,10 @@ const IndexBold = () => {
 
   return (
     <main className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* ANNOUNCEMENT BAR */}
+      <div className="bg-red-600 text-white py-2.5 sm:py-4 text-center text-base sm:text-lg font-bold px-4 sm:px-6 animate-pulse leading-snug">
+        Offerta di Lancio – 71% di sconto + 6 Bonus GRATIS (valore €138)
+      </div>
 
       {/* ====== 1. HERO SECTION ====== */}
       <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden">
