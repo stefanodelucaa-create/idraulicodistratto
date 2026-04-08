@@ -215,22 +215,6 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
             </div>
           </div>
 
-          {/* Social Proof Mini */}
-          <div className="bg-gray-900/80 rounded-lg p-4 border border-gray-800">
-            <div className="flex items-center gap-1 mb-2">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3.5 h-3.5 fill-red-500 text-red-500" />
-              ))}
-              <span className="text-xs text-gray-500 ml-1">4.9/5</span>
-            </div>
-            <div className="space-y-2">
-              {testimonials.map((t, i) => (
-                <p key={i} className="text-xs text-gray-400 italic">
-                  "{t.text}" — <span className="font-medium text-gray-300">{t.name}</span>
-                </p>
-              ))}
-            </div>
-          </div>
 
           {/* FAQ Accordion */}
           <Accordion type="single" collapsible className="w-full">
