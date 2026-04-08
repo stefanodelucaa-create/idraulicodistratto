@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { X, Star, Clock, Shield, Check, ArrowRight } from "lucide-react";
+import { X, Clock, Shield, Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -20,20 +20,6 @@ const benefits = [
   { icon: "💡", title: "Casi studio reali" }
 ];
 
-const testimonials = [
-  {
-    name: "Paolo M.",
-    text: "Ho preso Lifetime al lancio e già ricevuto 2 aggiornamenti con nuovi capitoli!"
-  },
-  {
-    name: "Simone D.",
-    text: "Ogni aggiornamento aggiunge tecniche nuove che non trovi altrove."
-  },
-  {
-    name: "Alessia B.",
-    text: "Aggiornamenti gratuiti = niente stress di restare indietro!"
-  }
-];
 
 const faqs = [
   {
