@@ -78,7 +78,7 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
               className="p-2 -ml-2 rounded-full hover:bg-gray-800 transition-colors"
               aria-label="Chiudi carrello"
             >
-              <X className="w-5 h-5 text-gray-400" />
+              <X className="w-5 h-5 text-white/60" />
             </button>
             <SheetHeader className="flex-1 text-center">
               <SheetTitle className="text-xl font-bold text-white">
@@ -104,11 +104,11 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
                 <h3 className="font-bold text-lg sm:text-base text-white mb-1">
                   Il Protocollo del Piacere
                 </h3>
-                <p className="text-sm text-gray-400 mb-2">
+                <p className="text-sm text-white/70 font-medium mb-2">
                   Ebook completo + Bonus
                 </p>
                 <div className="flex items-baseline gap-2 justify-center sm:justify-start">
-                  <span className="text-sm text-gray-500 line-through">€79</span>
+                  <span className="text-sm text-white/50 line-through">€79</span>
                   <span className="text-2xl sm:text-xl font-bold text-red-500">€{basePrice}</span>
                 </div>
               </div>
@@ -152,13 +152,13 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
                   <h4 className="font-bold text-lg text-white mb-1">
                     Aggiungi Lifetime Access
                   </h4>
-                  <p className="text-sm text-gray-400 mb-2">
-                    Aggiornamenti illimitati per sempre
+                  <p className="text-sm text-white/70 font-medium mb-2">
+                    Aggiornamenti illimitati <span className="font-bold">per sempre</span>
                   </p>
                   <div className="flex items-baseline gap-2 justify-center sm:justify-start">
-                    <span className="text-sm text-gray-500 line-through">€97</span>
+                    <span className="text-sm text-white/50 line-through">€97</span>
                     <span className="text-xl font-bold text-red-500">+€{lifetimePrice}</span>
-                    <span className="text-xs text-gray-500">(solo oggi)</span>
+                    <span className="text-xs text-white/50 font-semibold">(solo oggi)</span>
                   </div>
                 </div>
               </div>
@@ -172,7 +172,7 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
                   {benefits.map((benefit, index) => (
                     <div key={index} className="flex items-center gap-3">
                       <span className="text-lg flex-shrink-0">{benefit.icon}</span>
-                      <p className="font-semibold text-sm text-gray-200">{benefit.title}</p>
+                      <p className="font-bold text-sm text-white">{benefit.title}</p>
                     </div>
                   ))}
                 </div>
@@ -206,10 +206,10 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`} className="border-b border-gray-800">
-                <AccordionTrigger className="text-sm font-medium py-3 hover:no-underline text-gray-200">
+                <AccordionTrigger className="text-sm font-bold py-3 hover:no-underline text-white">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-gray-400 pb-3">
+                <AccordionContent className="text-sm text-white/80 pb-3">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -221,10 +221,10 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
         <div className="sticky bottom-0 bg-black/95 backdrop-blur-sm border-t border-gray-800 px-6 py-4 space-y-3">
           {/* Price Summary */}
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-400">Totale:</span>
+            <span className="text-white/70 font-medium">Totale:</span>
             <div className="flex items-baseline gap-2">
               {includeLifetime && (
-                <span className="text-xs text-gray-500 line-through">€{79 + 97}</span>
+                <span className="text-xs text-white/50 line-through">€{79 + 97}</span>
               )}
               <span className="text-2xl font-bold text-white">€{totalPrice}</span>
             </div>
@@ -240,7 +240,7 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
           </button>
 
           {/* Trust Badges */}
-          <div className="flex items-center justify-center gap-4 text-xs text-gray-500">
+          <div className="flex items-center justify-center gap-4 text-xs text-white/60">
             <span className="flex items-center gap-1">
               <Shield className="w-3.5 h-3.5 text-red-500" />
               SSL Sicuro

@@ -123,12 +123,12 @@ const IndexBold = () => {
                 <span className="text-red-500 block">DEL PIACERE</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-gray-300 max-w-xl mx-auto leading-relaxed">
-                Scopri i "Giusti Tasti" da Toccare per Portare il Sesso al Livello Superiore e Farla Squirtare Ogni Volta che Vuoi… <span className="text-red-400 font-semibold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
+              <p className="text-lg sm:text-xl text-white max-w-xl mx-auto leading-relaxed">
+                Scopri i <span className="font-bold">"Giusti Tasti"</span> da Toccare per Portare il Sesso al Livello Superiore e <span className="font-bold">Farla Squirtare Ogni Volta che Vuoi</span>… <span className="text-red-400 font-bold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
-              <p className="text-base sm:text-lg text-gray-400 max-w-xl mx-auto leading-relaxed">
-                Il Protocollo Scientifico di oltre 200 pagine che ti mostrerà i segreti della psicologia sessuale, dell'anatomia femminile e della comunicazione intima per sbloccare il miglior sesso della sua (e della tua) vita
+              <p className="text-base sm:text-lg text-white/80 max-w-xl mx-auto leading-relaxed">
+                Il <span className="font-bold">Protocollo Scientifico</span> di oltre 200 pagine che ti mostrerà i segreti della psicologia sessuale, dell'anatomia femminile e della comunicazione intima per sbloccare il <span className="font-bold">miglior sesso della sua (e della tua) vita</span>
               </p>
 
               <div className="space-y-3 inline-block text-left">
@@ -140,16 +140,16 @@ const IndexBold = () => {
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <item.icon className="w-5 h-5 text-red-500 flex-shrink-0" />
-                    <span className="text-gray-200 font-medium text-base">{item.text}</span>
+                    <span className="text-white font-medium text-base">{item.text}</span>
                   </div>
                 ))}
               </div>
 
               {/* Price Block */}
               <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-4 sm:p-6 border-2 border-red-600/50">
-                <p className="text-gray-400 text-sm mb-1">Prezzo di Cartellino</p>
+                <p className="text-white/70 text-sm mb-1">Prezzo di Cartellino</p>
                 <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
-                  <span className="text-xl sm:text-2xl text-gray-400 line-through">{originalPrice}</span>
+                  <span className="text-xl sm:text-2xl text-white/50 line-through">{originalPrice}</span>
                   <span className="text-4xl sm:text-5xl font-black text-white">{price}</span>
                   <span className="bg-red-600 text-white text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-71%</span>
                 </div>
@@ -162,7 +162,7 @@ const IndexBold = () => {
                 </Button>
                 
 
-                <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-400">
+                <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-white/70">
                   <span className="flex items-center gap-1"><CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" /> Download immediato</span>
                   <span className="flex items-center gap-1"><Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" /> Pagamento sicuro</span>
                   <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" /> Garanzia 60 giorni</span>
@@ -186,12 +186,12 @@ const IndexBold = () => {
             {bulletPoints.map((point, i) => (
               <div key={i} className="flex items-start gap-3 bg-gray-900/50 rounded-xl p-4 border border-gray-800">
                 <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                <span className="text-gray-200 text-base sm:text-lg leading-relaxed">{point}</span>
+                <span className="text-white text-base sm:text-lg leading-relaxed">{point}</span>
               </div>
             ))}
             <div className="bg-gray-900/50 rounded-xl p-4 border border-gray-800 text-center">
               <p className="text-red-400 font-bold text-lg sm:text-xl">E molto, molto altro…</p>
-              <p className="text-gray-400 text-base mt-2">Oltre 200 pagine chiare e 25 capitoli guidati, 50+ esercizi pratici e illustrazioni per visualizzare e comprendere meglio.</p>
+              <p className="text-white/80 text-base mt-2">Oltre <span className="font-bold">200 pagine</span> chiare e <span className="font-bold">25 capitoli</span> guidati, <span className="font-bold">50+ esercizi pratici</span> e illustrazioni per visualizzare e comprendere meglio.</p>
             </div>
           </div>
 
@@ -228,10 +228,10 @@ const IndexBold = () => {
               <tbody>
                 {beforeAfter.map((item, i) => (
                   <tr key={i} className={`${i % 2 === 0 ? "bg-gray-900/20" : "bg-gray-900/50"} hover:bg-gray-800/50 transition-colors`}>
-                    <td className="py-3.5 px-4 sm:px-6 border-b border-r border-gray-700/30 text-gray-400 text-sm sm:text-base align-top leading-relaxed">
+                    <td className="py-3.5 px-4 sm:px-6 border-b border-r border-gray-700/30 text-white/70 text-sm sm:text-base align-top leading-relaxed">
                       {item.before}
                     </td>
-                    <td className="py-3.5 px-4 sm:px-6 border-b border-gray-700/30 text-gray-200 text-sm sm:text-base align-top leading-relaxed">
+                    <td className="py-3.5 px-4 sm:px-6 border-b border-gray-700/30 text-white text-sm sm:text-base align-top leading-relaxed font-medium">
                       {item.after}
                     </td>
                   </tr>
@@ -253,7 +253,7 @@ const IndexBold = () => {
           </div>
 
           <div className="max-w-3xl mx-auto mb-10">
-            <p className="text-gray-400 text-base sm:text-lg leading-relaxed mb-6 text-center">
+            <p className="text-white/80 text-base sm:text-lg leading-relaxed mb-6 text-center">
               Se volessi provare a ricostruire questi contenuti da solo, dovresti mettere insieme:
             </p>
             <div className="space-y-3">
@@ -267,15 +267,15 @@ const IndexBold = () => {
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 bg-gray-900/30 rounded-xl p-3 sm:p-4 border border-gray-800">
                   <span className="text-red-500 font-bold text-lg flex-shrink-0">•</span>
-                  <span className="text-gray-300 text-base sm:text-lg">{item}</span>
+                  <span className="text-white text-base sm:text-lg">{item}</span>
                 </div>
               ))}
             </div>
-            <p className="text-gray-400 text-base sm:text-lg leading-relaxed mt-6 text-center">
-              Anche se tu riuscissi a trovare tutto, a filtrare le informazioni fake da quelle scientifiche, a mettere insieme i pezzi e a capire in quale ordine usarli… ci vorrebbero <span className="text-white font-bold">mesi</span>.
+            <p className="text-white/80 text-base sm:text-lg leading-relaxed mt-6 text-center">
+              Anche se tu riuscissi a trovare tutto, a filtrare le informazioni fake da quelle scientifiche, a mettere insieme i pezzi e a capire in quale ordine usarli… ci vorrebbero <span className="font-bold">mesi</span>.
             </p>
-            <p className="text-gray-400 text-base sm:text-lg leading-relaxed mt-2 text-center">
-              E nel frattempo continueresti a fare esattamente quello che stai facendo adesso.
+            <p className="text-white/80 text-base sm:text-lg leading-relaxed mt-2 text-center">
+              E nel frattempo continueresti a fare <span className="font-bold">esattamente quello che stai facendo adesso</span>.
             </p>
             <p className="text-red-400 font-bold text-center mt-6 text-base sm:text-lg">
               Oppure puoi comodamente ricevere tutto ciò in questo esatto momento – già tradotto in italiano, in sequenza, con le illustrazioni e con 6 BONUS in regalo – per soli {price} iva inclusa.
@@ -305,7 +305,7 @@ const IndexBold = () => {
                       <h3 className="text-base sm:text-lg font-bold text-white">BONUS #{i + 1} — {bonus.title}</h3>
                       <span className="text-red-500 font-bold text-sm">(Valore €{bonus.value})</span>
                     </div>
-                    <p className="text-gray-400 text-sm sm:text-base leading-relaxed">{bonus.description}</p>
+                    <p className="text-white/80 text-sm sm:text-base leading-relaxed">{bonus.description}</p>
                   </div>
                 </div>
               </div>
@@ -333,11 +333,11 @@ const IndexBold = () => {
             {testimonials.map((t, i) => (
               <div key={i} className="bg-black/50 rounded-2xl p-6 border border-gray-800">
                 <Quote className="w-8 h-8 text-red-600/30 mb-4" />
-                <p className="text-gray-300 italic text-base mb-5">"{t.text}"</p>
+                <p className="text-white/90 italic text-base mb-5">"{t.text}"</p>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-semibold text-white">{t.name}</p>
-                    <p className="text-sm text-gray-500">{t.location}</p>
+                    <p className="text-sm text-white/60">{t.location}</p>
                   </div>
                   <div className="flex gap-0.5">
                     {Array.from({ length: t.rating }).map((_, j) => (
@@ -362,26 +362,26 @@ const IndexBold = () => {
               </div>
               <h2 className="text-3xl sm:text-4xl font-black text-white mb-6">"L'Hai Soddisfatta o Ti Rimborsiamo"</h2>
               
-              <div className="text-left max-w-xl mx-auto space-y-4 text-gray-400 text-base sm:text-lg leading-relaxed">
+              <div className="text-left max-w-xl mx-auto space-y-4 text-white/80 text-base sm:text-lg leading-relaxed">
                 <p>
-                  Voglio essere chiaro su una cosa: il rischio di questo acquisto è tutto nostro, non tuo.
+                  Voglio essere chiaro su una cosa: il rischio di questo acquisto è <span className="font-bold">tutto nostro</span>, non tuo.
                 </p>
                 <p>
-                  Hai <span className="text-white font-bold">60 giorni interi</span> per leggere il protocollo, applicare quello che trovi e vedere con i tuoi occhi cosa cambia. Sessanta giorni. Non una settimana. Sessanta giorni.
+                  Hai <span className="text-white font-bold">60 giorni interi</span> per leggere il protocollo, applicare quello che trovi e vedere con i tuoi occhi cosa cambia. <span className="font-bold">Sessanta giorni</span>. Non una settimana. Sessanta giorni.
                 </p>
                 <p>
-                  Se alla fine di questo periodo non sei soddisfatto del risultato – per qualsiasi motivo, anche uno che non mi vuoi spiegare – ti rimborsiamo il 100% di quello che hai speso. Senza domande. Senza moduli da compilare. Senza aspettare settimane.
+                  Se alla fine di questo periodo non sei soddisfatto del risultato – per <span className="font-bold">qualsiasi motivo</span>, anche uno che non mi vuoi spiegare – ti rimborsiamo il <span className="font-bold">100%</span> di quello che hai speso. Senza domande. Senza moduli da compilare. Senza aspettare settimane.
                 </p>
                 <p>
                   Questo significa che hai solo <span className="text-white font-bold">2 possibilità</span>: o esci da questa pagina con un sistema scientifico che cambia la tua vita sessuale per sempre… o esci con gli stessi 29€ in tasca.
                 </p>
-                <p>Non perdi niente in nessuno dei due casi.</p>
-                <p className="text-red-400 font-semibold">
+                <p className="font-bold">Non perdi niente in nessuno dei due casi.</p>
+                <p className="text-red-400 font-bold">
                   L'unico scenario in cui ci perdi, è quello in cui continui a fare quello che hai sempre fatto… aspettandoti come per magia dei risultati diversi.
                 </p>
               </div>
 
-              <div className="mt-8 flex items-center justify-center gap-4 text-xs sm:text-sm text-gray-500">
+              <div className="mt-8 flex items-center justify-center gap-4 text-xs sm:text-sm text-white/60">
                 <span className="flex items-center gap-1"><Shield className="w-4 h-4 text-red-500" /> Acquisto 100% sicuro</span>
                 <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-red-500" /> Garanzia di 60 giorni</span>
                 <span className="flex items-center gap-1"><CheckCircle className="w-4 h-4 text-red-500" /> Nessuna domanda</span>
@@ -397,7 +397,7 @@ const IndexBold = () => {
           <div className="max-w-3xl mx-auto text-center">
             <div className="bg-black/30 rounded-2xl p-5 sm:p-8 border border-red-600/30">
               <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
-                <span className="text-xl sm:text-2xl text-red-300 line-through">€{99 + bonusTotal}</span>
+                <span className="text-xl sm:text-2xl text-red-200/60 line-through">€{99 + bonusTotal}</span>
                 <span className="text-4xl sm:text-5xl font-black text-white">{price}</span>
                 <span className="bg-white text-red-600 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-71%</span>
               </div>
@@ -419,7 +419,7 @@ const IndexBold = () => {
       {/* FOOTER */}
       <footer className="py-8 bg-black border-t border-gray-800">
         <div className="container px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/40">
             <p>© {new Date().getFullYear()} Il Protocollo del Piacere. Tutti i diritti riservati.</p>
             <div className="flex items-center gap-6">
               <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
@@ -436,7 +436,7 @@ const IndexBold = () => {
           <div className="bg-black/95 backdrop-blur-lg border-t border-red-600/50 px-4 py-3">
             <div className="flex items-center justify-between gap-3">
               <div className="flex flex-col">
-                <span className="text-xs text-gray-500 line-through">€99</span>
+                <span className="text-xs text-white/50 line-through">€99</span>
                 <span className="text-xl font-bold text-white">{price}</span>
               </div>
               <Button onClick={handleBuyClick} className="flex-1 max-w-[200px] bg-red-600 hover:bg-red-700 text-white font-bold py-4 group">
