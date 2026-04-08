@@ -189,9 +189,21 @@ const IndexBold = () => {
                 <span className="text-white text-base sm:text-lg leading-relaxed">{point}</span>
               </div>
             ))}
-            <div className="bg-gray-900/50 rounded-xl p-4 border border-gray-800 text-center">
-              <p className="text-red-400 font-bold text-lg sm:text-xl">E molto, molto altro…</p>
-              <p className="text-white text-base mt-2">Oltre <span className="font-bold">200 pagine</span> chiare e <span className="font-bold">25 capitoli</span> guidati, <span className="font-bold">50+ esercizi pratici</span> e illustrazioni per visualizzare e comprendere meglio.</p>
+            <div className="bg-gray-900/50 rounded-xl p-4 border border-gray-800">
+              <p className="text-red-400 font-bold text-lg sm:text-xl text-center mb-3">E molto, molto altro…</p>
+              <div className="grid grid-cols-2 gap-3 text-left max-w-lg mx-auto">
+                {[
+                  { icon: Book, text: "Oltre 200 pagine chiare" },
+                  { icon: ListChecks, text: "25 capitoli guidati" },
+                  { icon: Target, text: "50+ esercizi pratici" },
+                  { icon: FileText, text: "Illustrazioni dettagliate" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-2">
+                    <item.icon className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-white font-medium text-sm sm:text-base">{item.text}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
