@@ -156,9 +156,9 @@ const IndexBold = () => {
                 
                 <Button 
                   onClick={handleBuyClick}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white text-base sm:text-xl font-bold py-3.5 sm:py-5 px-3 sm:px-6 rounded-xl group h-auto"
+                  className="w-full bg-red-600 hover:bg-red-700 text-white text-[13px] sm:text-xl font-bold py-5 sm:py-5 px-4 sm:px-6 rounded-xl group h-auto"
                 >
-<span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
+                  <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
                   <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform flex-shrink-0" />
                 </Button>
                 <p className="text-gray-500 text-xs mt-2">(Valore complessivo €{99 + bonusTotal}) per soli {price}</p>
@@ -197,8 +197,8 @@ const IndexBold = () => {
           </div>
 
           <div className="mt-10 text-center">
-            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 sm:py-5 px-5 sm:px-8 text-sm sm:text-lg group h-auto">
-<span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
+            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 sm:py-5 px-4 sm:px-8 text-[13px] sm:text-lg group h-auto">
+              <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
             </Button>
           </div>
@@ -285,8 +285,8 @@ const IndexBold = () => {
           </div>
 
           <div className="text-center">
-            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 sm:py-5 px-5 sm:px-8 text-sm sm:text-lg group h-auto">
-<span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
+            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 sm:py-5 px-4 sm:px-8 text-[13px] sm:text-lg group h-auto">
+              <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
             </Button>
           </div>
@@ -316,7 +316,7 @@ const IndexBold = () => {
           </div>
 
           <div className="mt-10 text-center">
-            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 sm:py-5 px-5 sm:px-8 text-sm sm:text-lg group h-auto">
+            <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 sm:py-5 px-4 sm:px-8 text-[13px] sm:text-lg group h-auto">
               <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
               <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 flex-shrink-0" />
             </Button>
@@ -405,7 +405,7 @@ const IndexBold = () => {
                 <span className="text-4xl sm:text-5xl font-black text-white">{price}</span>
                 <span className="bg-white text-red-600 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-71%</span>
               </div>
-              <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-base sm:text-xl font-black py-4 sm:py-7 px-3 sm:px-12 group h-auto">
+              <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-[13px] sm:text-xl font-black py-5 sm:py-7 px-4 sm:px-12 group h-auto">
                 <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
                 <ArrowRight className="w-6 h-6 ml-2 group-hover:translate-x-1 flex-shrink-0" />
               </Button>
