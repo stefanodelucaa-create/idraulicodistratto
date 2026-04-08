@@ -131,16 +131,16 @@ const IndexBold = () => {
                 Il <span className="font-bold">Protocollo Scientifico</span> di oltre 200 pagine che ti mostrerà i segreti della psicologia sessuale, dell'anatomia femminile e della comunicazione intima per sbloccare il <span className="font-bold">miglior sesso della sua (e della tua) vita</span>
               </p>
 
-              <div className="space-y-3 inline-block text-left">
+              <div className="grid grid-cols-2 gap-3 text-left max-w-xl mx-auto">
                 {[
                   { icon: FileText, text: "Strategie pratiche che potrai usare già dalla prossima occasione" },
                   { icon: Target, text: "Basato su riferimenti anatomici scientificamente accurati" },
                   { icon: Gift, text: "In REGALO 6 BONUS Esclusivi dal Valore Totale di €138" },
                   { icon: Shield, text: 'Garanzia 60 giorni "L\'hai Soddisfatta o ti Rimborsiamo"' },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <item.icon className="w-5 h-5 text-red-500 flex-shrink-0" />
-                    <span className="text-white font-medium text-base">{item.text}</span>
+                  <div key={i} className="flex items-start gap-2">
+                    <item.icon className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-white font-medium text-sm sm:text-base">{item.text}</span>
                   </div>
                 ))}
               </div>
