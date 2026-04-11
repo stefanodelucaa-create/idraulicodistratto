@@ -87,7 +87,6 @@ const faqs = [
 
 const IndexDark = () => {
   const [isStickyCTAVisible, setIsStickyCTAVisible] = useState(false);
-  const { startCheckout } = useStripeCheckout();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -100,7 +99,7 @@ const IndexDark = () => {
   }, []);
 
   const handleBuyClick = () => {
-    void startCheckout(false, true);
+    toast.info("Checkout non disponibile al momento.");
   };
 
   const price = "€29";
