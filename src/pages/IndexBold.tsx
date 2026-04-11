@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useStripeCheckout } from "@/hooks/useStripeCheckout";
+import { toast } from "sonner";
 import { 
   ArrowRight, CheckCircle, Shield, Clock, Target, Heart, Gift, 
   X, MessageSquare, FileText, ListChecks, Smartphone, 
@@ -62,8 +62,6 @@ const testimonials = [
 const IndexBold = () => {
   const [isStickyCTAVisible, setIsStickyCTAVisible] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { startCheckout } = useStripeCheckout();
-
   useEffect(() => {
     const handleScroll = () => {
       const heroHeight = window.innerHeight * 0.8;
@@ -78,8 +76,8 @@ const IndexBold = () => {
     setIsSidebarOpen(true);
   };
 
-  const handleCheckout = (includeLifetime: boolean) => {
-    void startCheckout(includeLifetime, true);
+  const handleCheckout = (_includeLifetime: boolean) => {
+    toast.info("Checkout non disponibile al momento.");
   };
 
   const price = "€29";

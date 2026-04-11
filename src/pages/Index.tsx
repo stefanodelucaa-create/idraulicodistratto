@@ -13,12 +13,10 @@ import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 import { StickyCTA } from "@/components/landing/StickyCTA";
 import { PrePurchaseSidebar } from "@/components/landing/PrePurchaseSidebar";
-import { supabase } from "@/integrations/supabase/client";
-import { initClickTracking, trackAddToCart, trackInitiateCheckout } from "@/hooks/useMetaPixel";
+import { initClickTracking, trackAddToCart } from "@/hooks/useMetaPixel";
 
 const Index = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isCheckingOut, setIsCheckingOut] = useState(false);
 
   useEffect(() => {
     initClickTracking();
@@ -29,26 +27,8 @@ const Index = () => {
     setIsSidebarOpen(true);
   };
 
-  const handleCheckout = async (includeLifetime: boolean) => {
-    const totalPrice = includeLifetime ? "41" : "29";
-    trackInitiateCheckout(totalPrice, "EUR");
-    setIsCheckingOut(true);
-    
-    try {
-      const { data, error } = await supabase.functions.invoke('create-checkout', {
-        body: { includeLifetime },
-      });
-      
-      if (error) throw error;
-      if (data?.url) {
-        window.location.href = data.url;
-      }
-    } catch (error) {
-      console.error("Checkout error:", error);
-      toast.error("Errore durante il checkout. Riprova.");
-    } finally {
-      setIsCheckingOut(false);
-    }
+  const handleCheckout = (_includeLifetime: boolean) => {
+    toast.info("Checkout non disponibile al momento.");
   };
 
   const originalPrice = "€79";

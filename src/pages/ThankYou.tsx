@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Download } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 interface OrderData {
@@ -42,46 +41,8 @@ export default function ThankYou() {
   });
 
   useEffect(() => {
-    const sessionId = searchParams.get("session_id");
-    if (!sessionId) {
-      setIsVerifying(false);
-      return;
-    }
-    const verifyPayment = async () => {
-      try {
-        const { data, error } = await supabase.functions.invoke("verify-session", {
-          body: { session_id: sessionId },
-        });
-        if (error) throw error;
-        if (data?.success) {
-          // Track Purchase conversion on Meta Pixel
-          const amountEur = ((data.amountTotal || 0) / 100).toFixed(2);
-          if (typeof window !== 'undefined' && window.fbq) {
-            window.fbq('track', 'Purchase', {
-              value: amountEur,
-              currency: 'EUR',
-              content_type: 'product',
-              content_name: 'Manuale Idraulico Distratto',
-            });
-          }
-          setOrderData({
-            customerName: data.customerName || "Cliente",
-            customerEmail: data.customerEmail || "",
-            amountTotal: `€${((data.amountTotal || 0) / 100).toFixed(2).replace(".", ",")}`,
-            orderDate: new Date().toLocaleDateString("it-IT"),
-            downloadUrl: data.downloadUrl || null,
-            bonusDownloadUrl: data.bonusDownloadUrl || null,
-            includesLifetime: data.includesLifetime || false,
-          });
-        }
-      } catch (err) {
-        console.error("Payment verification error:", err);
-        toast.error("Errore nella verifica del pagamento");
-      } finally {
-        setIsVerifying(false);
-      }
-    };
-    verifyPayment();
+    // Payment verification removed (Stripe integration removed)
+    setIsVerifying(false);
   }, [searchParams]);
 
   useEffect(() => {

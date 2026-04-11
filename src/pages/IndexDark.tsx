@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useStripeCheckout } from "@/hooks/useStripeCheckout";
+import { toast } from "sonner";
 import { 
   ArrowRight, CheckCircle, Shield, Clock, Brain, Target, Heart, Gift, 
   XCircle, X, MessageSquare, Book, FileText, ListChecks, Smartphone, 
@@ -87,7 +87,6 @@ const faqs = [
 
 const IndexDark = () => {
   const [isStickyCTAVisible, setIsStickyCTAVisible] = useState(false);
-  const { startCheckout } = useStripeCheckout();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -100,7 +99,7 @@ const IndexDark = () => {
   }, []);
 
   const handleBuyClick = () => {
-    void startCheckout(false, true);
+    toast.info("Checkout non disponibile al momento.");
   };
 
   const price = "€29";
