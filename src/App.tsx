@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useCartSync } from "@/hooks/useCartSync";
 import Index from "./pages/Index";
 import IndexBold from "./pages/IndexBold";
 import IndexDark from "./pages/IndexDark";
@@ -18,28 +19,35 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+function AppContent() {
+  useCartSync();
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/v2" element={<IndexBold />} />
+        <Route path="/v3" element={<IndexDark />} />
+        <Route path="/v4" element={<IndexTech />} />
+        <Route path="/v5" element={<IndexHybrid />} />
+        <Route path="/v6" element={<IndexTripleHybrid />} />
+        <Route path="/thank-you" element={<ThankYou />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/termini-condizioni" element={<TermsConditions />} />
+        <Route path="/contatti" element={<Contatti />} />
+        <Route path="/unsubscribe" element={<Unsubscribe />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/v2" element={<IndexBold />} />
-          <Route path="/v3" element={<IndexDark />} />
-          <Route path="/v4" element={<IndexTech />} />
-          <Route path="/v5" element={<IndexHybrid />} />
-          <Route path="/v6" element={<IndexTripleHybrid />} />
-          <Route path="/thank-you" element={<ThankYou />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/termini-condizioni" element={<TermsConditions />} />
-          <Route path="/contatti" element={<Contatti />} />
-          <Route path="/unsubscribe" element={<Unsubscribe />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <AppContent />
     </TooltipProvider>
   </QueryClientProvider>
 );
