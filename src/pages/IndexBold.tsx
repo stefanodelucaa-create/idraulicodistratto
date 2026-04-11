@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useCartStore } from "@/stores/cartStore";
+import { fetchProducts } from "@/lib/shopify";
 import { 
   ArrowRight, CheckCircle, Shield, Clock, Target, Heart, Gift, 
   X, MessageSquare, FileText, ListChecks, Smartphone, 
@@ -76,8 +78,37 @@ const IndexBold = () => {
     setIsSidebarOpen(true);
   };
 
-  const handleCheckout = (_includeLifetime: boolean) => {
-    toast.info("Checkout non disponibile al momento.");
+  const { addItem } = useCartStore();
+
+  const handleCheckout = async (_includeLifetime: boolean) => {
+    try {
+      const products = await fetchProducts(10);
+      if (products.length === 0) {
+        toast.error("Nessun prodotto disponibile.");
+        return;
+      }
+      const product = products[0];
+      const variant = product.node.variants.edges[0]?.node;
+      if (!variant) return;
+      await addItem({
+        product, variantId: variant.id, variantTitle: variant.title,
+        price: variant.price, quantity: 1, selectedOptions: variant.selectedOptions || [],
+      });
+      if (_includeLifetime && products.length > 1) {
+        const lp = products[1];
+        const lv = lp.node.variants.edges[0]?.node;
+        if (lv) await addItem({
+          product: lp, variantId: lv.id, variantTitle: lv.title,
+          price: lv.price, quantity: 1, selectedOptions: lv.selectedOptions || [],
+        });
+      }
+      const checkoutUrl = useCartStore.getState().getCheckoutUrl();
+      if (checkoutUrl) window.open(checkoutUrl, '_blank');
+      else toast.error("Errore nella creazione del checkout.");
+    } catch (error) {
+      console.error('Checkout error:', error);
+      toast.error("Errore durante il checkout.");
+    }
   };
 
   const price = "€29";
