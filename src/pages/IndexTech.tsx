@@ -2,14 +2,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle, Star, BookOpen, Gift, Shield, Clock, Cpu, Zap, Layers, Sparkles, Target, Users, TrendingUp } from "lucide-react";
 import ebookMockup from "@/assets/ebook-mockup.png";
 import bonusMockup from "@/assets/bonus-mockup.png";
-import { useStripeCheckout } from "@/hooks/useStripeCheckout";
+import { toast } from "sonner";
 
 // Modern/Tech Style - Gradients, glassmorphism, futuristic aesthetic
 const IndexTech = () => {
-  const { startCheckout } = useStripeCheckout();
-
   const handleBuyClick = () => {
-    void startCheckout(false, true);
+    toast.info("Checkout non disponibile al momento.");
   };
 
   const price = "€29";
