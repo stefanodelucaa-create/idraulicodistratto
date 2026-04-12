@@ -82,7 +82,7 @@ const IndexBold = () => {
 
   const handleCheckout = async (_includeLifetime: boolean) => {
     try {
-      const products = await fetchProducts(10);
+      const products = await fetchProducts(10, "title:Protocollo del Piacere");
       if (products.length === 0) {
         toast.error("Nessun prodotto disponibile.");
         return;
