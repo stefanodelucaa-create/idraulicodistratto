@@ -82,22 +82,22 @@ const IndexBold = () => {
 
   const handleCheckout = async (_includeLifetime: boolean) => {
     try {
-      const products = await fetchProducts(10, "title:Protocollo del Piacere");
-      if (products.length === 0) {
+      const allProducts = await fetchProducts(10);
+      const product = allProducts.find(p => p.node.handle === "protocollo-del-piacere") || allProducts[0];
+      if (!product) {
         toast.error("Nessun prodotto disponibile.");
         return;
       }
-      const product = products[0];
       const variant = product.node.variants.edges[0]?.node;
       if (!variant) return;
       await addItem({
         product, variantId: variant.id, variantTitle: variant.title,
         price: variant.price, quantity: 1, selectedOptions: variant.selectedOptions || [],
       });
-      if (_includeLifetime && products.length > 1) {
-        const lp = products[1];
-        const lv = lp.node.variants.edges[0]?.node;
-        if (lv) await addItem({
+      if (_includeLifetime) {
+        const lp = allProducts.find(p => p.node.handle !== "protocollo-del-piacere");
+        const lv = lp?.node.variants.edges[0]?.node;
+        if (lv && lp) await addItem({
           product: lp, variantId: lv.id, variantTitle: lv.title,
           price: lv.price, quantity: 1, selectedOptions: lv.selectedOptions || [],
         });
