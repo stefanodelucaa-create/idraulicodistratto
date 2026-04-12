@@ -94,10 +94,10 @@ const IndexBold = () => {
         product, variantId: variant.id, variantTitle: variant.title,
         price: variant.price, quantity: 1, selectedOptions: variant.selectedOptions || [],
       });
-      if (_includeLifetime && products.length > 1) {
-        const lp = products[1];
-        const lv = lp.node.variants.edges[0]?.node;
-        if (lv) await addItem({
+      if (_includeLifetime) {
+        const lp = allProducts.find(p => p.node.handle !== "protocollo-del-piacere");
+        const lv = lp?.node.variants.edges[0]?.node;
+        if (lv && lp) await addItem({
           product: lp, variantId: lv.id, variantTitle: lv.title,
           price: lv.price, quantity: 1, selectedOptions: lv.selectedOptions || [],
         });
