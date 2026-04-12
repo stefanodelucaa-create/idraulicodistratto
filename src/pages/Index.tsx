@@ -32,12 +32,11 @@ const Index = () => {
 
   const handleCheckout = async (_includeLifetime: boolean) => {
     try {
-      const products = await fetchProducts(10);
+      const products = await fetchProducts(10, "title:Protocollo del Piacere");
       if (products.length === 0) {
         toast.error("Nessun prodotto disponibile al momento.");
         return;
       }
-      // Add first product to cart
       const product = products[0];
       const variant = product.node.variants.edges[0]?.node;
       if (!variant) {
