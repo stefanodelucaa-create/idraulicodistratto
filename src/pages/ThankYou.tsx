@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Download } from "lucide-react";
 import { toast } from "sonner";
+import { trackPurchase } from "@/hooks/useMetaPixel";
 
 interface OrderData {
   customerName: string;
@@ -40,9 +41,18 @@ export default function ThankYou() {
     includesLifetime: false,
   });
 
+  const purchaseTracked = useRef(false);
+
   useEffect(() => {
     // Payment verification removed (Stripe integration removed)
     setIsVerifying(false);
+
+    // Track Purchase event once
+    if (!purchaseTracked.current) {
+      purchaseTracked.current = true;
+      const value = searchParams.get('amount') || '29';
+      trackPurchase(value, 'EUR', 'Il Protocollo del Piacere');
+    }
   }, [searchParams]);
 
   useEffect(() => {

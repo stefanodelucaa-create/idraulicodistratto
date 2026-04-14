@@ -13,7 +13,7 @@ import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 import { StickyCTA } from "@/components/landing/StickyCTA";
 import { PrePurchaseSidebar } from "@/components/landing/PrePurchaseSidebar";
-import { initClickTracking, trackAddToCart } from "@/hooks/useMetaPixel";
+import { initClickTracking, trackAddToCart, trackInitiateCheckout, trackViewContent } from "@/hooks/useMetaPixel";
 import { useCartStore } from "@/stores/cartStore";
 import { fetchProducts } from "@/lib/shopify";
 
@@ -23,6 +23,7 @@ const Index = () => {
 
   useEffect(() => {
     initClickTracking();
+    trackViewContent('Il Protocollo del Piacere', '29', 'EUR');
   }, []);
 
   const handleBuyClick = () => {
@@ -31,6 +32,7 @@ const Index = () => {
   };
 
   const handleCheckout = async (_includeLifetime: boolean) => {
+    trackInitiateCheckout(_includeLifetime ? "41" : "29", "EUR");
     try {
       const allProducts = await fetchProducts(10);
       const product = allProducts.find(p => p.node.handle === "protocollo-del-piacere") || allProducts[0];

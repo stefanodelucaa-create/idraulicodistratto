@@ -23,6 +23,14 @@ export const trackLead = () => {
   trackEvent('Lead');
 };
 
+export const trackViewContent = (contentName?: string, value?: string, currency = 'EUR') => {
+  trackEvent('ViewContent', { content_name: contentName, value, currency });
+};
+
+export const trackPurchase = (value: string, currency = 'EUR', contentName?: string) => {
+  trackEvent('Purchase', { value, currency, content_name: contentName });
+};
+
 // Initialize click tracking via data attributes
 export const initClickTracking = () => {
   if (typeof window === 'undefined') return;
