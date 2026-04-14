@@ -13,7 +13,7 @@ interface PrePurchaseSidebarProps {
 }
 
 const benefits = [
-  { icon: "🔓", title: "Aggiornamenti illimitati FOREVER" },
+  { icon: "🔓", title: "Aggiornamenti illimitati A VITA" },
   { icon: "🎁", title: "20% di sconto sui futuri prodotti" },
   { icon: "📧", title: "Supporto prioritario via email" },
   { icon: "📚", title: "Nuovi capitoli esclusivi" },
