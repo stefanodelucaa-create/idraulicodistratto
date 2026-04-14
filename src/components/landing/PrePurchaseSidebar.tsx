@@ -3,7 +3,7 @@ import { X, Clock, Shield, Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import ebookMockup from "@/assets/ebook-mockup.png";
+import protocolloCover from "@/assets/protocollo-cover-transparent.png";
 import lifetimeAccessCover from "@/assets/lifetime-access-cover.jpeg";
 
 interface PrePurchaseSidebarProps {
@@ -95,7 +95,7 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex justify-center sm:justify-start flex-shrink-0">
                 <img 
-                  src={ebookMockup} 
+                  src={protocolloCover} 
                   alt="Il Protocollo del Piacere" 
                   className="w-28 sm:w-20 h-auto rounded-lg shadow-md"
                 />
