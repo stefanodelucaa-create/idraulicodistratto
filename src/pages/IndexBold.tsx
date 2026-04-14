@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useCartStore } from "@/stores/cartStore";
 import { fetchProducts } from "@/lib/shopify";
+import { trackAddToCart, trackInitiateCheckout, trackViewContent } from "@/hooks/useMetaPixel";
 import { 
   ArrowRight, CheckCircle, Shield, Clock, Target, Heart, Gift, 
   X, MessageSquare, FileText, ListChecks, Smartphone, 
@@ -74,13 +75,19 @@ const IndexBold = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    trackViewContent('Il Protocollo del Piacere', '29', 'EUR');
+  }, []);
+
   const handleBuyClick = () => {
+    trackAddToCart("29", "EUR");
     setIsSidebarOpen(true);
   };
 
   const { addItem } = useCartStore();
 
   const handleCheckout = async (_includeLifetime: boolean) => {
+    trackInitiateCheckout(_includeLifetime ? "41" : "29", "EUR");
     try {
       const allProducts = await fetchProducts(10);
       const product = allProducts.find(p => p.node.handle === "protocollo-del-piacere") || allProducts[0];
