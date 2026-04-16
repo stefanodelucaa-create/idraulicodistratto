@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import protocolloCover from "@/assets/protocollo-cover-transparent.png";
-import lifetimeAccessCover from "@/assets/lifetime-access-cover.jpeg";
+import lifetimeAccessCover from "@/assets/lifetime-access-cover.png";
 
 interface PrePurchaseSidebarProps {
   isOpen: boolean;
