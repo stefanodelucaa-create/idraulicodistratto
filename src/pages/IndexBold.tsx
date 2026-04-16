@@ -86,29 +86,37 @@ const IndexBold = () => {
 
   const { addItem } = useCartStore();
 
-  const handleCheckout = async (_includeLifetime: boolean) => {
-    trackInitiateCheckout(_includeLifetime ? "41" : "29", "EUR");
+  const handleCheckout = async (includeLifetime: boolean) => {
+    trackInitiateCheckout(includeLifetime ? "41.90" : "29.90", "EUR");
     try {
-      const allProducts = await fetchProducts(10);
-      const product = allProducts.find(p => p.node.handle === "protocollo-del-piacere") || allProducts[0];
-      if (!product) {
-        toast.error("Nessun prodotto disponibile.");
+      // Clear previous cart to avoid stale items
+      useCartStore.getState().clearCart();
+
+      const allProducts = await fetchProducts(10, "vendor:\"Protocollo del Piacere\"");
+      const mainProduct = allProducts.find(p => p.node.handle === "protocollo-del-piacere");
+      if (!mainProduct) {
+        toast.error("Prodotto non trovato.");
         return;
       }
-      const variant = product.node.variants.edges[0]?.node;
-      if (!variant) return;
+      const mainVariant = mainProduct.node.variants.edges[0]?.node;
+      if (!mainVariant) return;
+
       await addItem({
-        product, variantId: variant.id, variantTitle: variant.title,
-        price: variant.price, quantity: 1, selectedOptions: variant.selectedOptions || [],
+        product: mainProduct, variantId: mainVariant.id, variantTitle: mainVariant.title,
+        price: mainVariant.price, quantity: 1, selectedOptions: mainVariant.selectedOptions || [],
       });
-      if (_includeLifetime) {
-        const lp = allProducts.find(p => p.node.handle !== "protocollo-del-piacere");
-        const lv = lp?.node.variants.edges[0]?.node;
-        if (lv && lp) await addItem({
-          product: lp, variantId: lv.id, variantTitle: lv.title,
-          price: lv.price, quantity: 1, selectedOptions: lv.selectedOptions || [],
-        });
+
+      if (includeLifetime) {
+        const lifetimeProduct = allProducts.find(p => p.node.handle === "lifetime-access-il-protocollo-del-piacere");
+        const lifetimeVariant = lifetimeProduct?.node.variants.edges[0]?.node;
+        if (lifetimeVariant && lifetimeProduct) {
+          await addItem({
+            product: lifetimeProduct, variantId: lifetimeVariant.id, variantTitle: lifetimeVariant.title,
+            price: lifetimeVariant.price, quantity: 1, selectedOptions: lifetimeVariant.selectedOptions || [],
+          });
+        }
       }
+
       const checkoutUrl = useCartStore.getState().getCheckoutUrl();
       if (checkoutUrl) window.open(checkoutUrl, '_blank');
       else toast.error("Errore nella creazione del checkout.");
