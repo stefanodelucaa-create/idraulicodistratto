@@ -16,6 +16,7 @@ import { PrePurchaseSidebar } from "@/components/landing/PrePurchaseSidebar";
 import { initClickTracking, trackAddToCart, trackInitiateCheckout, trackViewContent } from "@/hooks/useMetaPixel";
 import { useCartStore } from "@/stores/cartStore";
 import { fetchProducts } from "@/lib/shopify";
+import { getLandingProducts, prefetchLandingProducts } from "@/lib/productsCache";
 
 const Index = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -24,10 +25,12 @@ const Index = () => {
   useEffect(() => {
     initClickTracking();
     trackViewContent('Il Protocollo del Piacere', '29', 'EUR');
+    prefetchLandingProducts();
   }, []);
 
   const handleBuyClick = () => {
     trackAddToCart("29", "EUR");
+    prefetchLandingProducts();
     setIsSidebarOpen(true);
   };
 
@@ -39,7 +42,7 @@ const Index = () => {
     try {
       useCartStore.getState().clearCart();
 
-      const allProducts = await fetchProducts(10, "vendor:\"Protocollo del Piacere\"");
+      const allProducts = await getLandingProducts();
       const mainProduct = allProducts.find(p => p.node.handle === "protocollo-del-piacere");
       if (!mainProduct) {
         checkoutWindow?.close();
