@@ -64,9 +64,18 @@ const Index = () => {
       }
 
       const checkoutUrl = useCartStore.getState().getCheckoutUrl();
-      if (checkoutUrl) window.open(checkoutUrl, '_blank');
-      else toast.error("Errore nella creazione del checkout.");
+      if (checkoutUrl) {
+        if (checkoutWindow && !checkoutWindow.closed) {
+          checkoutWindow.location.href = checkoutUrl;
+        } else {
+          window.location.href = checkoutUrl;
+        }
+      } else {
+        checkoutWindow?.close();
+        toast.error("Errore nella creazione del checkout.");
+      }
     } catch (error) {
+      checkoutWindow?.close();
       console.error('Checkout error:', error);
       toast.error("Errore durante il checkout. Riprova.");
     }
