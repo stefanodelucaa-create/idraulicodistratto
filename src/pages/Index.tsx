@@ -33,19 +33,21 @@ const Index = () => {
 
   const handleCheckout = async (includeLifetime: boolean) => {
     trackInitiateCheckout(includeLifetime ? "41.90" : "29.90", "EUR");
-    // Open window synchronously to preserve user gesture (mobile popup blockers)
-    const checkoutWindow = window.open('', '_blank');
+    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+    // Desktop: open blank tab synchronously. Mobile: redirect same tab (popup blockers)
+    const checkoutWindow = isMobile ? null : window.open('', '_blank');
     try {
       useCartStore.getState().clearCart();
 
       const allProducts = await fetchProducts(10, "vendor:\"Protocollo del Piacere\"");
       const mainProduct = allProducts.find(p => p.node.handle === "protocollo-del-piacere");
       if (!mainProduct) {
+        checkoutWindow?.close();
         toast.error("Prodotto non trovato.");
         return;
       }
       const mainVariant = mainProduct.node.variants.edges[0]?.node;
-      if (!mainVariant) return;
+      if (!mainVariant) { checkoutWindow?.close(); return; }
 
       await addItem({
         product: mainProduct, variantId: mainVariant.id, variantTitle: mainVariant.title,
@@ -64,15 +66,16 @@ const Index = () => {
       }
 
       const checkoutUrl = useCartStore.getState().getCheckoutUrl();
-      if (checkoutUrl) {
-        if (checkoutWindow && !checkoutWindow.closed) {
-          checkoutWindow.location.href = checkoutUrl;
-        } else {
-          window.location.href = checkoutUrl;
-        }
-      } else {
+      if (!checkoutUrl) {
         checkoutWindow?.close();
         toast.error("Errore nella creazione del checkout.");
+        return;
+      }
+
+      if (isMobile || !checkoutWindow || checkoutWindow.closed) {
+        window.location.href = checkoutUrl;
+      } else {
+        checkoutWindow.location.href = checkoutUrl;
       }
     } catch (error) {
       checkoutWindow?.close();
