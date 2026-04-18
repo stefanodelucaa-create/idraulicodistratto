@@ -42,7 +42,7 @@ const Index = () => {
     try {
       useCartStore.getState().clearCart();
 
-      const allProducts = await fetchProducts(10, "vendor:\"Protocollo del Piacere\"");
+      const allProducts = await getLandingProducts();
       const mainProduct = allProducts.find(p => p.node.handle === "protocollo-del-piacere");
       if (!mainProduct) {
         checkoutWindow?.close();
