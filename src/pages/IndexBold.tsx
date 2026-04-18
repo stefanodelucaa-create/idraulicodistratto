@@ -88,6 +88,8 @@ const IndexBold = () => {
 
   const handleCheckout = async (includeLifetime: boolean) => {
     trackInitiateCheckout(includeLifetime ? "41.90" : "29.90", "EUR");
+    // Open window synchronously to preserve user gesture (mobile popup blockers)
+    const checkoutWindow = window.open('', '_blank');
     try {
       // Clear previous cart to avoid stale items
       useCartStore.getState().clearCart();
@@ -95,11 +97,15 @@ const IndexBold = () => {
       const allProducts = await fetchProducts(10, "vendor:\"Protocollo del Piacere\"");
       const mainProduct = allProducts.find(p => p.node.handle === "protocollo-del-piacere");
       if (!mainProduct) {
+        checkoutWindow?.close();
         toast.error("Prodotto non trovato.");
         return;
       }
       const mainVariant = mainProduct.node.variants.edges[0]?.node;
-      if (!mainVariant) return;
+      if (!mainVariant) {
+        checkoutWindow?.close();
+        return;
+      }
 
       await addItem({
         product: mainProduct, variantId: mainVariant.id, variantTitle: mainVariant.title,
@@ -118,9 +124,18 @@ const IndexBold = () => {
       }
 
       const checkoutUrl = useCartStore.getState().getCheckoutUrl();
-      if (checkoutUrl) window.open(checkoutUrl, '_blank');
-      else toast.error("Errore nella creazione del checkout.");
+      if (checkoutUrl) {
+        if (checkoutWindow && !checkoutWindow.closed) {
+          checkoutWindow.location.href = checkoutUrl;
+        } else {
+          window.location.href = checkoutUrl;
+        }
+      } else {
+        checkoutWindow?.close();
+        toast.error("Errore nella creazione del checkout.");
+      }
     } catch (error) {
+      checkoutWindow?.close();
       console.error('Checkout error:', error);
       toast.error("Errore durante il checkout.");
     }

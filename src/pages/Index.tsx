@@ -33,6 +33,8 @@ const Index = () => {
 
   const handleCheckout = async (includeLifetime: boolean) => {
     trackInitiateCheckout(includeLifetime ? "41.90" : "29.90", "EUR");
+    // Open window synchronously to preserve user gesture (mobile popup blockers)
+    const checkoutWindow = window.open('', '_blank');
     try {
       useCartStore.getState().clearCart();
 
@@ -62,9 +64,18 @@ const Index = () => {
       }
 
       const checkoutUrl = useCartStore.getState().getCheckoutUrl();
-      if (checkoutUrl) window.open(checkoutUrl, '_blank');
-      else toast.error("Errore nella creazione del checkout.");
+      if (checkoutUrl) {
+        if (checkoutWindow && !checkoutWindow.closed) {
+          checkoutWindow.location.href = checkoutUrl;
+        } else {
+          window.location.href = checkoutUrl;
+        }
+      } else {
+        checkoutWindow?.close();
+        toast.error("Errore nella creazione del checkout.");
+      }
     } catch (error) {
+      checkoutWindow?.close();
       console.error('Checkout error:', error);
       toast.error("Errore durante il checkout. Riprova.");
     }
