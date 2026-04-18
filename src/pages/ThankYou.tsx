@@ -51,7 +51,10 @@ export default function ThankYou() {
     if (!purchaseTracked.current) {
       purchaseTracked.current = true;
       const value = searchParams.get('amount') || '29';
-      trackPurchase(value, 'EUR', 'Il Protocollo del Piacere');
+      // order_id from Shopify enables deduplication with the server-side webhook event
+      const orderId = searchParams.get('order_id') || searchParams.get('order') || undefined;
+      const email = searchParams.get('email') || undefined;
+      trackPurchase(value, 'EUR', 'Il Protocollo del Piacere', orderId, email ? { email } : undefined);
     }
   }, [searchParams]);
 
