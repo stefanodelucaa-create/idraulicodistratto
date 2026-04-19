@@ -158,7 +158,7 @@ export default function AdminAnalytics() {
   const [pickerRange, setPickerRange] = useState<{ from?: Date; to?: Date }>({});
 
   const buildBody = useCallback((f: Filter): Record<string, unknown> => {
-    if (f.preset === "today") return { days: 1 };
+    if (f.preset === "today") return { preset: "today" };
     if (f.preset === "yesterday") return { preset: "yesterday" };
     if (f.preset === "7d") return { days: 7 };
     if (f.preset === "30d") return { days: 30 };

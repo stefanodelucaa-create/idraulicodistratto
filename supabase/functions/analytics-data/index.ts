@@ -72,9 +72,18 @@ Deno.serve(async (req) => {
     let toDate: Date;
     let days: number;
 
-    if (body.preset === 'yesterday') {
-      const now = new Date();
-      const startToday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+    const startOfDayInOffset = (base: Date, offsetHours: number) => {
+      const shifted = new Date(base.getTime() + offsetHours * 60 * 60 * 1000);
+      return new Date(Date.UTC(shifted.getUTCFullYear(), shifted.getUTCMonth(), shifted.getUTCDate()) - offsetHours * 60 * 60 * 1000);
+    };
+
+    if (body.preset === 'today') {
+      const startToday = startOfDayInOffset(new Date(), timezone_offset_hours_utc);
+      fromDate = startToday;
+      toDate = new Date();
+      days = 1;
+    } else if (body.preset === 'yesterday') {
+      const startToday = startOfDayInOffset(new Date(), timezone_offset_hours_utc);
       toDate = startToday;
       fromDate = new Date(startToday.getTime() - 24 * 60 * 60 * 1000);
       days = 1;
