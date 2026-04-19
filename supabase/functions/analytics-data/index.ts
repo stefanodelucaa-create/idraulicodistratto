@@ -106,7 +106,7 @@ Deno.serve(async (req) => {
     ]);
 
     const summarize = (events: typeof current) => {
-      const counts = { view_content: 0, add_to_cart: 0, initiate_checkout: 0, purchase: 0 };
+      const counts = { view_content: 0, add_to_cart: 0, initiate_checkout: 0, purchase: 0, session_start: 0, page_view: 0 };
       let revenue = 0;
       const purchases: typeof events = [];
       for (const e of events) {
@@ -119,14 +119,16 @@ Deno.serve(async (req) => {
       }
       const orders = purchases.length;
       const aov = orders ? revenue / orders : 0;
+      const sessions = counts.session_start;
       const addToCartRate = counts.view_content ? (counts.add_to_cart / counts.view_content) * 100 : 0;
       const checkoutRate = counts.add_to_cart ? (counts.initiate_checkout / counts.add_to_cart) * 100 : 0;
       const conversionRate = counts.initiate_checkout ? (orders / counts.initiate_checkout) * 100 : 0;
       const checkoutToOrder = counts.initiate_checkout ? (orders / counts.initiate_checkout) * 100 : 0;
       const cartAbandon = counts.add_to_cart ? ((counts.add_to_cart - orders) / counts.add_to_cart) * 100 : 0;
+      const sessionConversion = sessions ? (orders / sessions) * 100 : 0;
       return {
-        counts, orders, revenue, aov,
-        addToCartRate, checkoutRate, conversionRate, checkoutToOrder, cartAbandon,
+        counts, orders, revenue, aov, sessions,
+        addToCartRate, checkoutRate, conversionRate, checkoutToOrder, cartAbandon, sessionConversion,
       };
     };
 
