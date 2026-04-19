@@ -39,18 +39,7 @@ function RoutedApp() {
 function AppContent() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<IndexBold />} />
-        <Route path="/v2" element={<IndexBold />} />
-        <Route path="/thank-you" element={<ThankYou />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/termini-condizioni" element={<TermsConditions />} />
-        <Route path="/contatti" element={<Contatti />} />
-        <Route path="/unsubscribe" element={<Unsubscribe />} />
-        <Route path="/admin/auth" element={<AdminAuth />} />
-        <Route path="/admin/analytics" element={<AdminAnalytics />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <RoutedApp />
     </BrowserRouter>
   );
 }
