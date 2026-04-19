@@ -167,6 +167,60 @@ export type Database = {
         }
         Relationships: []
       }
+      tracking_events: {
+        Row: {
+          created_at: string
+          currency: string | null
+          customer_email: string | null
+          event_id: string | null
+          event_type: string
+          id: string
+          ip_address: string | null
+          metadata: Json | null
+          order_id: string | null
+          page_path: string | null
+          product_name: string | null
+          session_id: string | null
+          source: string
+          user_agent: string | null
+          value: number | null
+        }
+        Insert: {
+          created_at?: string
+          currency?: string | null
+          customer_email?: string | null
+          event_id?: string | null
+          event_type: string
+          id?: string
+          ip_address?: string | null
+          metadata?: Json | null
+          order_id?: string | null
+          page_path?: string | null
+          product_name?: string | null
+          session_id?: string | null
+          source?: string
+          user_agent?: string | null
+          value?: number | null
+        }
+        Update: {
+          created_at?: string
+          currency?: string | null
+          customer_email?: string | null
+          event_id?: string | null
+          event_type?: string
+          id?: string
+          ip_address?: string | null
+          metadata?: Json | null
+          order_id?: string | null
+          page_path?: string | null
+          product_name?: string | null
+          session_id?: string | null
+          source?: string
+          user_agent?: string | null
+          value?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
