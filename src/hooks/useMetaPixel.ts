@@ -80,6 +80,74 @@ export const trackViewContent = (contentName?: string, value?: string, currency 
   trackEvent('ViewContent', { content_name: contentName, value, currency });
 };
 
+// ----- Internal-only events (not sent to Meta Pixel, only to tracking_events) -----
+const SESSION_KEY = 'lov_session_id';
+const SESSION_LAST_KEY = 'lov_session_last';
+const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 min inactivity
+
+export const getOrCreateSessionId = (): string => {
+  if (typeof window === 'undefined') return '';
+  try {
+    const now = Date.now();
+    const last = Number(sessionStorage.getItem(SESSION_LAST_KEY) || '0');
+    let sid = sessionStorage.getItem(SESSION_KEY) || '';
+    if (!sid || (last && now - last > SESSION_TIMEOUT_MS)) {
+      sid = `s_${now}_${Math.random().toString(36).slice(2, 10)}`;
+      sessionStorage.setItem(SESSION_KEY, sid);
+      // Mark new session so caller can fire session_start
+      sessionStorage.setItem('lov_session_new', '1');
+    }
+    sessionStorage.setItem(SESSION_LAST_KEY, String(now));
+    return sid;
+  } catch {
+    return '';
+  }
+};
+
+const sendInternalEvent = async (
+  eventType: 'session_start' | 'page_view' | 'scroll_depth',
+  metadata?: Record<string, unknown>,
+) => {
+  try {
+    await fetch(`${SUPABASE_URL}/functions/v1/track-internal-event`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      keepalive: true,
+      body: JSON.stringify({
+        event_type: eventType,
+        session_id: getOrCreateSessionId(),
+        page_path: typeof window !== 'undefined' ? window.location.pathname + window.location.search : undefined,
+        event_source_url: typeof window !== 'undefined' ? window.location.href : undefined,
+        metadata,
+      }),
+    });
+  } catch (err) {
+    console.warn('internal event failed:', err);
+  }
+};
+
+export const trackSessionStart = () => {
+  if (typeof window === 'undefined') return;
+  getOrCreateSessionId();
+  if (sessionStorage.getItem('lov_session_new') === '1') {
+    sessionStorage.removeItem('lov_session_new');
+    void sendInternalEvent('session_start', {
+      referrer: document.referrer || null,
+      utm_source: new URLSearchParams(window.location.search).get('utm_source'),
+      utm_medium: new URLSearchParams(window.location.search).get('utm_medium'),
+      utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign'),
+    });
+  }
+};
+
+export const trackPageView = (path?: string) => {
+  void sendInternalEvent('page_view', { path });
+};
+
+export const trackScrollDepth = (percent: 25 | 50 | 75 | 90) => {
+  void sendInternalEvent('scroll_depth', { percent });
+};
+
 export const trackPurchase = (
   value: string,
   currency = 'EUR',
