@@ -410,6 +410,36 @@ export default function AdminAnalytics() {
           </SectionCard>
         )}
 
+        {/* Meta Ads */}
+        {adsCur && (
+          <SectionCard title="Meta Ads · Performance">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+              <KpiCard icon="💸" label="Spesa" value={fmtCurrency(adsCur.spend)} trendValue={trend(adsCur.spend, adsPrev?.spend || 0)} />
+              <KpiCard icon="🎯" label="ROAS" value={`${adsCur.roas.toFixed(2)}x`} trendValue={trend(adsCur.roas, adsPrev?.roas || 0)} />
+              <KpiCard icon="🧾" label="CPA" value={adsCur.cpa ? fmtCurrency(adsCur.cpa) : "—"} trendValue={-trend(adsCur.cpa, adsPrev?.cpa || 0)} />
+              <KpiCard icon="👁️" label="Impression" value={fmtInt(adsCur.impressions)} trendValue={trend(adsCur.impressions, adsPrev?.impressions || 0)} />
+              <KpiCard icon="🖱️" label="Click" value={fmtInt(adsCur.clicks)} trendValue={trend(adsCur.clicks, adsPrev?.clicks || 0)} />
+              <KpiCard icon="📈" label="CTR" value={fmtPct(adsCur.ctr)} trendValue={trend(adsCur.ctr, adsPrev?.ctr || 0)} />
+              <KpiCard icon="💵" label="CPC" value={fmtCurrency(adsCur.cpc)} trendValue={-trend(adsCur.cpc, adsPrev?.cpc || 0)} />
+              <KpiCard icon="📡" label="CPM" value={fmtCurrency(adsCur.cpm)} trendValue={-trend(adsCur.cpm, adsPrev?.cpm || 0)} />
+            </div>
+            {data?.ads?.timeseries?.length ? (
+              <ResponsiveContainer width="100%" height={220}>
+                <LineChart data={data.ads.timeseries}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
+                  <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#9ca3af" }} stroke="#374151" />
+                  <YAxis yAxisId="l" tick={{ fontSize: 11, fill: "#9ca3af" }} stroke="#374151" />
+                  <YAxis yAxisId="r" orientation="right" tick={{ fontSize: 11, fill: "#9ca3af" }} stroke="#374151" />
+                  <Tooltip contentStyle={tooltipStyle} />
+                  <Legend wrapperStyle={{ fontSize: 11, color: "#fff" }} />
+                  <Line yAxisId="l" type="monotone" dataKey="spend" name="Spesa €" stroke="#dc2626" strokeWidth={2} dot={false} />
+                  <Line yAxisId="r" type="monotone" dataKey="clicks" name="Click" stroke="#eab308" strokeWidth={2} dot={false} />
+                </LineChart>
+              </ResponsiveContainer>
+            ) : null}
+          </SectionCard>
+        )}
+
         {/* Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <SectionCard title="Fatturato nel Tempo">
