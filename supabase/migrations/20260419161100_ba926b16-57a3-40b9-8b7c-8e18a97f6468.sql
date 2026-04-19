@@ -1,0 +1,1 @@
+DELETE FROM public.tracking_events WHERE order_id = '820982911946154500';
