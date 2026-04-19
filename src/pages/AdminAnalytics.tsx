@@ -261,23 +261,68 @@ export default function AdminAnalytics() {
               {liveStatus.live ? "LIVE" : "IDLE"} · {liveStatus.label}
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <div className="flex rounded-lg border border-gray-800 bg-gray-900/80 overflow-hidden">
-              {([1, 7, 30] as Range[]).map((r) => (
+              {([
+                { key: "today" as Preset, label: "Oggi" },
+                { key: "yesterday" as Preset, label: "Ieri" },
+                { key: "7d" as Preset, label: "7g" },
+                { key: "30d" as Preset, label: "30g" },
+                { key: "90d" as Preset, label: "90g" },
+              ]).map((p) => (
                 <button
-                  key={r}
-                  onClick={() => setRange(r)}
-                  className={`px-3 py-1.5 text-sm font-bold transition-colors ${range === r ? "bg-red-600 text-white" : "text-white/70 hover:bg-gray-800 hover:text-white"}`}
+                  key={p.key}
+                  onClick={() => setFilter({ preset: p.key })}
+                  className={cn(
+                    "px-3 py-1.5 text-sm font-bold transition-colors",
+                    filter.preset === p.key
+                      ? "bg-red-600 text-white"
+                      : "text-white/70 hover:bg-gray-800 hover:text-white"
+                  )}
                 >
-                  {r === 1 ? "Oggi" : `${r}g`}
+                  {p.label}
                 </button>
               ))}
             </div>
+            <Popover open={pickerOpen} onOpenChange={setPickerOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  size="sm"
+                  className={cn(
+                    "border text-white h-9 gap-2",
+                    filter.preset === "custom"
+                      ? "bg-red-600 hover:bg-red-700 border-red-600"
+                      : "bg-gray-900 hover:bg-gray-800 border-gray-800"
+                  )}
+                >
+                  <CalendarIcon className="h-4 w-4" />
+                  {filter.preset === "custom" && filter.from && filter.to
+                    ? `${format(filter.from, "d MMM", { locale: it })} – ${format(filter.to, "d MMM", { locale: it })}`
+                    : "Personalizzato"}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0 bg-gray-900 border-gray-800" align="end">
+                <Calendar
+                  mode="range"
+                  selected={pickerRange as { from: Date; to?: Date }}
+                  onSelect={(r) => {
+                    setPickerRange(r || {});
+                    if (r?.from && r?.to) {
+                      setFilter({ preset: "custom", from: r.from, to: r.to });
+                      setPickerOpen(false);
+                    }
+                  }}
+                  numberOfMonths={2}
+                  locale={it}
+                  className={cn("p-3 pointer-events-auto bg-gray-900 text-white")}
+                />
+              </PopoverContent>
+            </Popover>
             <Button
               size="sm"
-              onClick={() => fetchData(range)}
+              onClick={() => fetchData(filter)}
               disabled={loading}
-              className="bg-gray-900 hover:bg-gray-800 border border-gray-800 text-white"
+              className="bg-gray-900 hover:bg-gray-800 border border-gray-800 text-white h-9"
             >
               <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
             </Button>
