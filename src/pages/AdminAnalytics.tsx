@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { isAdminEmail } from "@/lib/adminConfig";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
@@ -49,7 +47,7 @@ const trend = (cur: number, prev: number) => {
 function TrendBadge({ value }: { value: number }) {
   const positive = value >= 0;
   return (
-    <span className={`inline-flex items-center gap-0.5 text-xs font-semibold ${positive ? "text-primary" : "text-destructive"}`}>
+    <span className={`inline-flex items-center gap-0.5 text-xs font-bold ${positive ? "text-green-400" : "text-red-400"}`}>
       {positive ? <ArrowUp className="h-3 w-3" /> : <ArrowDown className="h-3 w-3" />}
       {Math.abs(value).toFixed(1)}%
     </span>
@@ -58,28 +56,26 @@ function TrendBadge({ value }: { value: number }) {
 
 function KpiCard({ icon, label, value, trendValue }: { icon: string; label: string; value: string; trendValue: number }) {
   return (
-    <Card className="bg-card-gradient shadow-soft hover:shadow-elevated transition-shadow border">
-      <CardContent className="p-4">
-        <div className="flex items-center justify-between">
-          <span className="text-2xl">{icon}</span>
-          <TrendBadge value={trendValue} />
-        </div>
-        <div className="mt-2 text-2xl font-bold text-foreground">{value}</div>
-        <div className="text-xs text-muted-foreground mt-1">{label}</div>
-      </CardContent>
-    </Card>
+    <div className="bg-gray-900/60 border border-gray-800 hover:border-red-600/50 rounded-xl p-4 transition-colors">
+      <div className="flex items-center justify-between">
+        <span className="text-2xl">{icon}</span>
+        <TrendBadge value={trendValue} />
+      </div>
+      <div className="mt-2 text-2xl font-black text-white">{value}</div>
+      <div className="text-xs text-white/70 mt-1 font-medium">{label}</div>
+    </div>
   );
 }
 
 function FunnelStep({ label, value, dropoff }: { label: string; value: number; dropoff?: number | null }) {
   return (
     <div className="flex-1 min-w-0">
-      <div className="rounded-lg border bg-card-gradient p-4 text-center shadow-soft">
-        <div className="text-xs uppercase tracking-wide text-muted-foreground">{label}</div>
-        <div className="text-2xl font-bold mt-1 text-foreground">{fmtInt(value)}</div>
+      <div className="rounded-xl border border-gray-800 bg-gray-900/60 p-4 text-center">
+        <div className="text-xs uppercase tracking-wider text-white/60 font-bold">{label}</div>
+        <div className="text-2xl font-black mt-1 text-white">{fmtInt(value)}</div>
         {dropoff !== undefined && dropoff !== null && (
-          <div className="text-xs mt-2 font-semibold">
-            <span className={dropoff > 70 ? "text-destructive" : dropoff > 40 ? "text-accent-foreground" : "text-primary"}>
+          <div className="text-xs mt-2 font-bold">
+            <span className={dropoff > 70 ? "text-red-500" : dropoff > 40 ? "text-yellow-400" : "text-green-400"}>
               {fmtPct(dropoff)} drop
             </span>
           </div>
@@ -91,13 +87,13 @@ function FunnelStep({ label, value, dropoff }: { label: string; value: number; d
 
 function eventBadge(type: string) {
   const map: Record<string, { label: string; cls: string }> = {
-    view_content: { label: "View", cls: "bg-secondary text-secondary-foreground border-border" },
-    add_to_cart: { label: "Cart", cls: "bg-accent/20 text-accent-foreground border-accent/40" },
-    initiate_checkout: { label: "Checkout", cls: "bg-primary/15 text-primary border-primary/40" },
-    purchase: { label: "Purchase", cls: "bg-primary text-primary-foreground border-primary" },
+    view_content: { label: "View", cls: "bg-blue-500/20 text-blue-300 border-blue-500/40" },
+    add_to_cart: { label: "Cart", cls: "bg-yellow-500/20 text-yellow-300 border-yellow-500/40" },
+    initiate_checkout: { label: "Checkout", cls: "bg-purple-500/20 text-purple-300 border-purple-500/40" },
+    purchase: { label: "Purchase", cls: "bg-red-600 text-white border-red-600" },
   };
-  const m = map[type] || { label: type, cls: "" };
-  return <Badge variant="outline" className={m.cls}>{m.label}</Badge>;
+  const m = map[type] || { label: type, cls: "bg-gray-800 text-gray-300 border-gray-700" };
+  return <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${m.cls}`}>{m.label}</span>;
 }
 
 function downloadCSV(rows: Record<string, unknown>[], filename: string) {
@@ -115,6 +111,16 @@ function downloadCSV(rows: Record<string, unknown>[], filename: string) {
   a.href = url; a.download = filename; a.click();
   URL.revokeObjectURL(url);
 }
+
+const SectionCard = ({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) => (
+  <div className="bg-gray-900/60 border border-gray-800 rounded-xl p-4 sm:p-5">
+    <div className="flex items-center justify-between mb-4">
+      <h2 className="text-base font-black text-white">{title}</h2>
+      {action}
+    </div>
+    {children}
+  </div>
+);
 
 export default function AdminAnalytics() {
   const navigate = useNavigate();
@@ -154,7 +160,6 @@ export default function AdminAnalytics() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [range]);
 
-  // Realtime subscription on tracking_events
   useEffect(() => {
     const ch = supabase
       .channel("tracking-events-feed")
@@ -210,45 +215,58 @@ export default function AdminAnalytics() {
     );
   }, [data, search]);
 
+  const tooltipStyle = { background: "#0a0a0a", border: "1px solid #dc2626", borderRadius: "8px", color: "#fff" };
+
   return (
-    <div className="min-h-screen bg-hero text-foreground">
+    <main className="min-h-screen bg-black text-white">
       {/* Sticky header */}
-      <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-soft">
+      <header className="sticky top-0 z-40 border-b border-red-600/30 bg-black/95 backdrop-blur">
         <div className="container mx-auto px-4 py-3 flex flex-wrap items-center gap-3 justify-between">
           <div className="flex items-center gap-3">
-            <h1 className="text-lg font-bold text-foreground">Analytics Dashboard</h1>
-            <Badge variant="outline" className={liveStatus.live ? "bg-primary/15 text-primary border-primary/40" : "bg-muted text-muted-foreground"}>
-              <Activity className={`h-3 w-3 mr-1 ${liveStatus.live ? "animate-pulse" : ""}`} />
-              {liveStatus.live ? "Live" : "Idle"} · {liveStatus.label}
-            </Badge>
+            <h1 className="text-lg sm:text-xl font-black text-white">
+              ANALYTICS <span className="text-red-500">DASHBOARD</span>
+            </h1>
+            <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold border ${liveStatus.live ? "bg-red-600 text-white border-red-600" : "bg-gray-900 text-gray-400 border-gray-800"}`}>
+              <Activity className={`h-3 w-3 ${liveStatus.live ? "animate-pulse" : ""}`} />
+              {liveStatus.live ? "LIVE" : "IDLE"} · {liveStatus.label}
+            </div>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex rounded-md border border-border bg-card overflow-hidden">
+            <div className="flex rounded-lg border border-gray-800 bg-gray-900/80 overflow-hidden">
               {([1, 7, 30] as Range[]).map((r) => (
                 <button
                   key={r}
                   onClick={() => setRange(r)}
-                  className={`px-3 py-1.5 text-sm font-medium transition-colors ${range === r ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-muted"}`}
+                  className={`px-3 py-1.5 text-sm font-bold transition-colors ${range === r ? "bg-red-600 text-white" : "text-white/70 hover:bg-gray-800 hover:text-white"}`}
                 >
                   {r === 1 ? "Oggi" : `${r}g`}
                 </button>
               ))}
             </div>
-            <Button size="sm" variant="outline" onClick={() => fetchData(range)} disabled={loading}>
+            <Button
+              size="sm"
+              onClick={() => fetchData(range)}
+              disabled={loading}
+              className="bg-gray-900 hover:bg-gray-800 border border-gray-800 text-white"
+            >
               <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
             </Button>
-            <Button size="sm" variant="ghost" onClick={logout}>
+            <Button
+              size="sm"
+              onClick={logout}
+              className="bg-gray-900 hover:bg-red-600 border border-gray-800 text-white"
+            >
               <LogOut className="h-4 w-4" />
             </Button>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-6 space-y-6">
+      <div className="container mx-auto px-4 py-6 space-y-6">
         {/* KPI Cards */}
         {loading && !data ? (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {Array.from({ length: 8 }).map((_, i) => <Skeleton key={i} className="h-28" />)}
+            {Array.from({ length: 8 }).map((_, i) => <Skeleton key={i} className="h-28 bg-gray-900" />)}
           </div>
         ) : cur && prev ? (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -265,177 +283,177 @@ export default function AdminAnalytics() {
 
         {/* Funnel */}
         {funnel && (
-          <Card>
-            <CardHeader><CardTitle className="text-base">Funnel di conversione</CardTitle></CardHeader>
-            <CardContent>
-              <div className="flex flex-wrap gap-2 items-stretch">
-                {funnel.map((s, i) => (
-                  <div key={s.label} className="flex items-center flex-1 min-w-[140px]">
-                    <FunnelStep label={s.label} value={s.value} dropoff={s.dropoff} />
-                    {i < funnel.length - 1 && <span className="px-2 text-muted-foreground hidden md:inline">→</span>}
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+          <SectionCard title="Funnel di Conversione">
+            <div className="flex flex-wrap gap-2 items-stretch">
+              {funnel.map((s, i) => (
+                <div key={s.label} className="flex items-center flex-1 min-w-[140px]">
+                  <FunnelStep label={s.label} value={s.value} dropoff={s.dropoff} />
+                  {i < funnel.length - 1 && <span className="px-2 text-red-500 font-bold hidden md:inline">→</span>}
+                </div>
+              ))}
+            </div>
+          </SectionCard>
         )}
 
         {/* Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <Card>
-            <CardHeader><CardTitle className="text-base">Fatturato nel tempo</CardTitle></CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={240}>
-                <LineChart data={data?.timeseries || []}>
-                  <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-                  <XAxis dataKey="date" tick={{ fontSize: 11 }} />
-                  <YAxis tick={{ fontSize: 11 }} />
-                  <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))" }} />
-                  <Line type="monotone" dataKey="revenue" stroke="hsl(var(--primary))" strokeWidth={2} dot={false} />
-                </LineChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader><CardTitle className="text-base">Volume eventi</CardTitle></CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={240}>
-                <BarChart data={data?.timeseries || []}>
-                  <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-                  <XAxis dataKey="date" tick={{ fontSize: 11 }} />
-                  <YAxis tick={{ fontSize: 11 }} />
-                  <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))" }} />
-                  <Legend wrapperStyle={{ fontSize: 11 }} />
-                  <Bar dataKey="add_to_cart" stackId="a" fill="hsl(var(--accent))" />
-                  <Bar dataKey="initiate_checkout" stackId="a" fill="hsl(var(--primary) / 0.6)" />
-                  <Bar dataKey="purchase" stackId="a" fill="hsl(var(--primary))" />
-                </BarChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
+          <SectionCard title="Fatturato nel Tempo">
+            <ResponsiveContainer width="100%" height={240}>
+              <LineChart data={data?.timeseries || []}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
+                <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#9ca3af" }} stroke="#374151" />
+                <YAxis tick={{ fontSize: 11, fill: "#9ca3af" }} stroke="#374151" />
+                <Tooltip contentStyle={tooltipStyle} />
+                <Line type="monotone" dataKey="revenue" stroke="#dc2626" strokeWidth={3} dot={{ fill: "#dc2626", r: 4 }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </SectionCard>
+          <SectionCard title="Volume Eventi">
+            <ResponsiveContainer width="100%" height={240}>
+              <BarChart data={data?.timeseries || []}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
+                <XAxis dataKey="date" tick={{ fontSize: 11, fill: "#9ca3af" }} stroke="#374151" />
+                <YAxis tick={{ fontSize: 11, fill: "#9ca3af" }} stroke="#374151" />
+                <Tooltip contentStyle={tooltipStyle} />
+                <Legend wrapperStyle={{ fontSize: 11, color: "#fff" }} />
+                <Bar dataKey="add_to_cart" stackId="a" fill="#eab308" />
+                <Bar dataKey="initiate_checkout" stackId="a" fill="#a855f7" />
+                <Bar dataKey="purchase" stackId="a" fill="#dc2626" />
+              </BarChart>
+            </ResponsiveContainer>
+          </SectionCard>
         </div>
 
         {/* Top products */}
-        <Card>
-          <CardHeader><CardTitle className="text-base">Top prodotti</CardTitle></CardHeader>
-          <CardContent>
-            {data?.topProducts.length ? (
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead className="text-xs text-muted-foreground border-b">
-                    <tr><th className="text-left py-2">Prodotto</th><th className="text-right">Aggiunti</th><th className="text-right">Acquistati</th><th className="text-right">Fatturato</th></tr>
-                  </thead>
-                  <tbody>
-                    {data.topProducts.map((p) => (
-                      <tr key={p.name} className="border-b last:border-0">
-                        <td className="py-2">{p.name}</td>
-                        <td className="text-right">{fmtInt(p.added)}</td>
-                        <td className="text-right">{fmtInt(p.bought)}</td>
-                        <td className="text-right">{fmtCurrency(p.revenue)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : <p className="text-sm text-muted-foreground">Nessun dato.</p>}
-          </CardContent>
-        </Card>
+        <SectionCard title="Top Prodotti">
+          {data?.topProducts.length ? (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead className="text-xs text-white/60 border-b border-gray-800 uppercase font-bold">
+                  <tr>
+                    <th className="text-left py-2">Prodotto</th>
+                    <th className="text-right">Aggiunti</th>
+                    <th className="text-right">Acquistati</th>
+                    <th className="text-right">Fatturato</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.topProducts.map((p) => (
+                    <tr key={p.name} className="border-b border-gray-800 last:border-0">
+                      <td className="py-2.5 text-white">{p.name}</td>
+                      <td className="text-right text-white/80">{fmtInt(p.added)}</td>
+                      <td className="text-right text-white/80">{fmtInt(p.bought)}</td>
+                      <td className="text-right text-red-400 font-bold">{fmtCurrency(p.revenue)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : <p className="text-sm text-white/60">Nessun dato.</p>}
+        </SectionCard>
 
         {/* Feed + Tables */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base flex items-center justify-between">
-                Eventi recenti
-                <Badge variant="outline">{data?.feed.length || 0}</Badge>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ScrollArea className="h-[400px] pr-2">
-                <div className="space-y-2">
-                  {filteredFeed.map((e) => (
-                    <div key={e.id} className="flex items-start gap-2 text-xs border-b pb-2 last:border-0">
-                      {eventBadge(e.event_type)}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex justify-between gap-2">
-                          <span className="truncate font-medium">{e.product_name || "—"}</span>
-                          {e.value != null && <span className="text-muted-foreground whitespace-nowrap">{fmtCurrency(Number(e.value), e.currency || "EUR")}</span>}
-                        </div>
-                        <div className="text-muted-foreground truncate">
-                          {e.customer_email || e.source} · {new Date(e.created_at).toLocaleString("it-IT")}
-                        </div>
+          <SectionCard
+            title="Eventi Recenti"
+            action={<span className="text-xs font-bold text-red-500 bg-red-600/10 border border-red-600/30 px-2 py-0.5 rounded">{data?.feed.length || 0}</span>}
+          >
+            <ScrollArea className="h-[400px] pr-2">
+              <div className="space-y-2">
+                {filteredFeed.map((e) => (
+                  <div key={e.id} className="flex items-start gap-2 text-xs border-b border-gray-800 pb-2 last:border-0">
+                    {eventBadge(e.event_type)}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between gap-2">
+                        <span className="truncate font-semibold text-white">{e.product_name || "—"}</span>
+                        {e.value != null && <span className="text-red-400 font-bold whitespace-nowrap">{fmtCurrency(Number(e.value), e.currency || "EUR")}</span>}
+                      </div>
+                      <div className="text-white/50 truncate">
+                        {e.customer_email || e.source} · {new Date(e.created_at).toLocaleString("it-IT")}
                       </div>
                     </div>
-                  ))}
-                  {!filteredFeed.length && <p className="text-sm text-muted-foreground text-center py-8">Nessun evento.</p>}
-                </div>
-              </ScrollArea>
-            </CardContent>
-          </Card>
+                  </div>
+                ))}
+                {!filteredFeed.length && <p className="text-sm text-white/50 text-center py-8">Nessun evento.</p>}
+              </div>
+            </ScrollArea>
+          </SectionCard>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Dettagli</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Input placeholder="Cerca email, ordine, prodotto..." value={search} onChange={(e) => setSearch(e.target.value)} className="mb-3" />
-              <Tabs defaultValue="orders">
-                <TabsList className="grid grid-cols-2 w-full">
-                  <TabsTrigger value="orders">Ordini ({data?.orders.length || 0})</TabsTrigger>
-                  <TabsTrigger value="events">Tutti gli eventi ({data?.feed.length || 0})</TabsTrigger>
-                </TabsList>
-                <TabsContent value="orders">
-                  <div className="flex justify-end mb-2">
-                    <Button size="sm" variant="outline" onClick={() => downloadCSV(filteredOrders, `orders-${range}d.csv`)}>
-                      <Download className="h-3 w-3 mr-1" />CSV
-                    </Button>
-                  </div>
-                  <ScrollArea className="h-[330px]">
-                    <table className="w-full text-xs">
-                      <thead className="text-muted-foreground border-b sticky top-0 bg-card">
-                        <tr><th className="text-left py-1.5">Data</th><th className="text-left">Email</th><th className="text-right">Valore</th></tr>
-                      </thead>
-                      <tbody>
-                        {filteredOrders.map((o) => (
-                          <tr key={o.id} className="border-b last:border-0">
-                            <td className="py-1.5">{new Date(o.created_at).toLocaleDateString("it-IT")}</td>
-                            <td className="truncate max-w-[160px]">{o.customer_email || "—"}</td>
-                            <td className="text-right">{fmtCurrency(Number(o.value || 0), o.currency || "EUR")}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                    {!filteredOrders.length && <p className="text-sm text-muted-foreground text-center py-8">Nessun ordine.</p>}
-                  </ScrollArea>
-                </TabsContent>
-                <TabsContent value="events">
-                  <div className="flex justify-end mb-2">
-                    <Button size="sm" variant="outline" onClick={() => downloadCSV(filteredFeed, `events-${range}d.csv`)}>
-                      <Download className="h-3 w-3 mr-1" />CSV
-                    </Button>
-                  </div>
-                  <ScrollArea className="h-[330px]">
-                    <table className="w-full text-xs">
-                      <thead className="text-muted-foreground border-b sticky top-0 bg-card">
-                        <tr><th className="text-left py-1.5">Tipo</th><th className="text-left">Quando</th><th className="text-left">Email</th></tr>
-                      </thead>
-                      <tbody>
-                        {filteredFeed.map((e) => (
-                          <tr key={e.id} className="border-b last:border-0">
-                            <td className="py-1.5">{eventBadge(e.event_type)}</td>
-                            <td className="text-muted-foreground">{new Date(e.created_at).toLocaleString("it-IT")}</td>
-                            <td className="truncate max-w-[160px]">{e.customer_email || "—"}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </ScrollArea>
-                </TabsContent>
-              </Tabs>
-            </CardContent>
-          </Card>
+          <SectionCard title="Dettagli">
+            <Input
+              placeholder="Cerca email, ordine, prodotto..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="mb-3 bg-black/60 border-gray-800 text-white placeholder:text-white/40 focus:border-red-500"
+            />
+            <Tabs defaultValue="orders">
+              <TabsList className="grid grid-cols-2 w-full bg-gray-900 border border-gray-800">
+                <TabsTrigger value="orders" className="data-[state=active]:bg-red-600 data-[state=active]:text-white text-white/70 font-bold">
+                  Ordini ({data?.orders.length || 0})
+                </TabsTrigger>
+                <TabsTrigger value="events" className="data-[state=active]:bg-red-600 data-[state=active]:text-white text-white/70 font-bold">
+                  Eventi ({data?.feed.length || 0})
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="orders">
+                <div className="flex justify-end mb-2">
+                  <Button
+                    size="sm"
+                    onClick={() => downloadCSV(filteredOrders, `orders-${range}d.csv`)}
+                    className="bg-red-600 hover:bg-red-700 text-white text-xs h-8"
+                  >
+                    <Download className="h-3 w-3 mr-1" />CSV
+                  </Button>
+                </div>
+                <ScrollArea className="h-[330px]">
+                  <table className="w-full text-xs">
+                    <thead className="text-white/60 border-b border-gray-800 sticky top-0 bg-gray-900 uppercase font-bold">
+                      <tr><th className="text-left py-2">Data</th><th className="text-left">Email</th><th className="text-right">Valore</th></tr>
+                    </thead>
+                    <tbody>
+                      {filteredOrders.map((o) => (
+                        <tr key={o.id} className="border-b border-gray-800 last:border-0">
+                          <td className="py-2 text-white/80">{new Date(o.created_at).toLocaleDateString("it-IT")}</td>
+                          <td className="truncate max-w-[160px] text-white">{o.customer_email || "—"}</td>
+                          <td className="text-right text-red-400 font-bold">{fmtCurrency(Number(o.value || 0), o.currency || "EUR")}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  {!filteredOrders.length && <p className="text-sm text-white/50 text-center py-8">Nessun ordine.</p>}
+                </ScrollArea>
+              </TabsContent>
+              <TabsContent value="events">
+                <div className="flex justify-end mb-2">
+                  <Button
+                    size="sm"
+                    onClick={() => downloadCSV(filteredFeed, `events-${range}d.csv`)}
+                    className="bg-red-600 hover:bg-red-700 text-white text-xs h-8"
+                  >
+                    <Download className="h-3 w-3 mr-1" />CSV
+                  </Button>
+                </div>
+                <ScrollArea className="h-[330px]">
+                  <table className="w-full text-xs">
+                    <thead className="text-white/60 border-b border-gray-800 sticky top-0 bg-gray-900 uppercase font-bold">
+                      <tr><th className="text-left py-2">Tipo</th><th className="text-left">Quando</th><th className="text-left">Email</th></tr>
+                    </thead>
+                    <tbody>
+                      {filteredFeed.map((e) => (
+                        <tr key={e.id} className="border-b border-gray-800 last:border-0">
+                          <td className="py-2">{eventBadge(e.event_type)}</td>
+                          <td className="text-white/60">{new Date(e.created_at).toLocaleString("it-IT")}</td>
+                          <td className="truncate max-w-[160px] text-white">{e.customer_email || "—"}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </ScrollArea>
+              </TabsContent>
+            </Tabs>
+          </SectionCard>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
