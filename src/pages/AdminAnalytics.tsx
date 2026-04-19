@@ -137,14 +137,31 @@ export default function AdminAnalytics() {
   const navigate = useNavigate();
   const [data, setData] = useState<AnalyticsResponse | null>(null);
   const [loading, setLoading] = useState(true);
-  const [range, setRange] = useState<Range>(7);
+  const [filter, setFilter] = useState<Filter>({ preset: "7d" });
   const [search, setSearch] = useState("");
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [pickerRange, setPickerRange] = useState<{ from?: Date; to?: Date }>({});
 
-  const fetchData = async (days: Range) => {
+  const buildBody = useCallback((f: Filter): Record<string, unknown> => {
+    if (f.preset === "today") return { days: 1 };
+    if (f.preset === "yesterday") return { preset: "yesterday" };
+    if (f.preset === "7d") return { days: 7 };
+    if (f.preset === "30d") return { days: 30 };
+    if (f.preset === "90d") return { days: 90 };
+    if (f.preset === "custom" && f.from && f.to) {
+      // include the full "to" day
+      const toEnd = new Date(f.to);
+      toEnd.setHours(23, 59, 59, 999);
+      return { from: f.from.toISOString(), to: toEnd.toISOString() };
+    }
+    return { days: 7 };
+  }, []);
+
+  const fetchData = useCallback(async (f: Filter) => {
     setLoading(true);
     try {
       const { data: res, error } = await supabase.functions.invoke("analytics-data", {
-        body: { days },
+        body: buildBody(f),
       });
       if (error) throw error;
       setData(res as AnalyticsResponse);
@@ -153,7 +170,7 @@ export default function AdminAnalytics() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [buildBody]);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: s }) => {
@@ -161,26 +178,28 @@ export default function AdminAnalytics() {
         navigate("/admin/auth", { replace: true });
         return;
       }
-      fetchData(range);
+      fetchData(filter);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    fetchData(range);
+    if (filter.preset !== "custom" || (filter.from && filter.to)) {
+      fetchData(filter);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [range]);
+  }, [filter]);
 
   useEffect(() => {
     const ch = supabase
       .channel("tracking-events-feed")
       .on("postgres_changes", { event: "INSERT", schema: "public", table: "tracking_events" }, () => {
-        fetchData(range);
+        fetchData(filter);
       })
       .subscribe();
     return () => { supabase.removeChannel(ch); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [range]);
+  }, [filter]);
 
   const logout = async () => {
     await supabase.auth.signOut();
