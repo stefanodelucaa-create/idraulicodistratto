@@ -383,6 +383,16 @@ export default function AdminAnalytics() {
             </Popover>
             <Button
               size="sm"
+              onClick={handleSyncMetaAds}
+              disabled={syncing}
+              className="bg-red-600 hover:bg-red-500 text-white h-9 gap-1.5 font-bold"
+              title="Sincronizza Meta Ads in tempo reale"
+            >
+              <Zap className={`h-4 w-4 ${syncing ? "animate-pulse" : ""}`} />
+              <span className="hidden sm:inline">{syncing ? "Sync…" : "Sync Ads"}</span>
+            </Button>
+            <Button
+              size="sm"
               onClick={() => fetchData(filter)}
               disabled={loading}
               className="bg-gray-900 hover:bg-gray-800 border border-gray-800 text-white h-9"
