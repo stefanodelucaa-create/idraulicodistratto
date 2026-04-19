@@ -64,10 +64,24 @@ Deno.serve(async (req) => {
 
     const body = await req.json().catch(() => ({}));
 
+    const fetchAdsTimezone = async () => {
+      const url = `${SUPABASE_URL}/rest/v1/meta_ads_stats?select=account_timezone_name,account_timezone_offset_hours_utc&account_timezone_offset_hours_utc=not.is.null&order=date.desc&limit=1`;
+      const res = await fetch(url, {
+        headers: { apikey: SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}` },
+      });
+      if (!res.ok) return { timezone_name: null, timezone_offset_hours_utc: 0 };
+      const rows = await res.json() as Array<Record<string, number | string | null>>;
+      return {
+        timezone_name: rows[0]?.account_timezone_name ? String(rows[0].account_timezone_name) : null,
+        timezone_offset_hours_utc: Number(rows[0]?.account_timezone_offset_hours_utc) || 0,
+      };
+    };
+    const { timezone_name, timezone_offset_hours_utc } = await fetchAdsTimezone();
+
     // Resolve range:
     //  - explicit { from, to } ISO strings (custom range)
     //  - or { days } shortcut (1, 7, 30, ...)
-    //  - or { preset: 'yesterday' }
+    //  - or { preset: 'today' | 'yesterday' } using Meta account timezone
     let fromDate: Date;
     let toDate: Date;
     let days: number;
@@ -153,19 +167,6 @@ Deno.serve(async (req) => {
       if (!res.ok) return [] as Array<Record<string, number | string | null>>;
       return (await res.json()) as Array<Record<string, number | string | null>>;
     };
-    const fetchAdsTimezone = async () => {
-      const url = `${SUPABASE_URL}/rest/v1/meta_ads_stats?select=account_timezone_name,account_timezone_offset_hours_utc&account_timezone_offset_hours_utc=not.is.null&order=date.desc&limit=1`;
-      const res = await fetch(url, {
-        headers: { apikey: SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}` },
-      });
-      if (!res.ok) return { timezone_name: null, timezone_offset_hours_utc: 0 };
-      const rows = await res.json() as Array<Record<string, number | string | null>>;
-      return {
-        timezone_name: rows[0]?.account_timezone_name ? String(rows[0].account_timezone_name) : null,
-        timezone_offset_hours_utc: Number(rows[0]?.account_timezone_offset_hours_utc) || 0,
-      };
-    };
-    const { timezone_name, timezone_offset_hours_utc } = await fetchAdsTimezone();
     const ymdInOffset = (d: Date, offsetHours: number) => {
       const shifted = new Date(d.getTime() + offsetHours * 60 * 60 * 1000);
       return shifted.toISOString().slice(0, 10);
