@@ -135,6 +135,46 @@ Deno.serve(async (req) => {
     const cur = summarize(current);
     const prev = summarize(previous);
 
+    // ===== Meta Ads stats (current + previous range) =====
+    const fetchAdsBetween = async (fromDay: string, toDay: string) => {
+      const url = `${SUPABASE_URL}/rest/v1/meta_ads_stats?date=gte.${fromDay}&date=lte.${toDay}&order=date.asc`;
+      const res = await fetch(url, {
+        headers: { apikey: SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}` },
+      });
+      if (!res.ok) return [] as Array<Record<string, number | string>>;
+      return (await res.json()) as Array<Record<string, number | string>>;
+    };
+    const ymd = (d: Date) => d.toISOString().slice(0, 10);
+    const adsCurrent = await fetchAdsBetween(ymd(fromDate), ymd(new Date(toDate.getTime() - 1)));
+    const adsPrevious = await fetchAdsBetween(ymd(prevFrom), ymd(new Date(fromDate.getTime() - 1)));
+    const sumAds = (rows: typeof adsCurrent) => {
+      const t = { spend: 0, impressions: 0, clicks: 0, purchases: 0, purchase_value: 0 };
+      for (const r of rows) {
+        t.spend += Number(r.spend) || 0;
+        t.impressions += Number(r.impressions) || 0;
+        t.clicks += Number(r.clicks) || 0;
+        t.purchases += Number(r.purchases) || 0;
+        t.purchase_value += Number(r.purchase_value) || 0;
+      }
+      const cpm = t.impressions ? (t.spend / t.impressions) * 1000 : 0;
+      const cpc = t.clicks ? t.spend / t.clicks : 0;
+      const ctr = t.impressions ? (t.clicks / t.impressions) * 100 : 0;
+      // ROAS uses ACTUAL revenue from our webhook (most reliable), not Meta-reported value
+      return { ...t, cpm, cpc, ctr };
+    };
+    const adsCur = sumAds(adsCurrent);
+    const adsPrev = sumAds(adsPrevious);
+    const roasCur = adsCur.spend > 0 ? cur.revenue / adsCur.spend : 0;
+    const roasPrev = adsPrev.spend > 0 ? prev.revenue / adsPrev.spend : 0;
+    const cpaCur = adsCur.spend > 0 && cur.orders > 0 ? adsCur.spend / cur.orders : 0;
+    const cpaPrev = adsPrev.spend > 0 && prev.orders > 0 ? adsPrev.spend / prev.orders : 0;
+    const adsTimeseries = adsCurrent.map((r) => ({
+      date: String(r.date),
+      spend: Number(r.spend) || 0,
+      impressions: Number(r.impressions) || 0,
+      clicks: Number(r.clicks) || 0,
+    }));
+
     // Time series buckets (hourly if span<=2 days, else daily)
     const hourly = days <= 2;
     const buckets = new Map<string, { date: string; revenue: number; view_content: number; add_to_cart: number; initiate_checkout: number; purchase: number }>();
@@ -191,6 +231,11 @@ Deno.serve(async (req) => {
       ok: true,
       range: { days, since, until, now: new Date().toISOString() },
       kpis: { current: cur, previous: prev },
+      ads: {
+        current: { ...adsCur, roas: roasCur, cpa: cpaCur },
+        previous: { ...adsPrev, roas: roasPrev, cpa: cpaPrev },
+        timeseries: adsTimeseries,
+      },
       timeseries,
       topProducts,
       feed,
