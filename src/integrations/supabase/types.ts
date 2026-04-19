@@ -101,6 +101,54 @@ export type Database = {
         }
         Relationships: []
       }
+      meta_ads_stats: {
+        Row: {
+          clicks: number
+          cpc: number
+          cpm: number
+          created_at: string
+          ctr: number
+          date: string
+          id: string
+          impressions: number
+          purchase_value: number
+          purchases: number
+          raw: Json | null
+          spend: number
+          synced_at: string
+        }
+        Insert: {
+          clicks?: number
+          cpc?: number
+          cpm?: number
+          created_at?: string
+          ctr?: number
+          date: string
+          id?: string
+          impressions?: number
+          purchase_value?: number
+          purchases?: number
+          raw?: Json | null
+          spend?: number
+          synced_at?: string
+        }
+        Update: {
+          clicks?: number
+          cpc?: number
+          cpm?: number
+          created_at?: string
+          ctr?: number
+          date?: string
+          id?: string
+          impressions?: number
+          purchase_value?: number
+          purchases?: number
+          raw?: Json | null
+          spend?: number
+          synced_at?: string
+        }
+        Relationships: []
+      }
       orders: {
         Row: {
           amount_total: number
