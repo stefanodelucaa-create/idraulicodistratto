@@ -34,10 +34,22 @@ interface Kpis {
   checkoutToOrder: number; cartAbandon: number;
 }
 
+interface AdsKpis {
+  spend: number; impressions: number; clicks: number;
+  purchases: number; purchase_value: number;
+  cpm: number; cpc: number; ctr: number;
+  roas: number; cpa: number;
+}
+
 interface AnalyticsResponse {
   ok: boolean;
   range: { days: number; since: string; now: string };
   kpis: { current: Kpis; previous: Kpis };
+  ads?: {
+    current: AdsKpis;
+    previous: AdsKpis;
+    timeseries: Array<{ date: string; spend: number; impressions: number; clicks: number }>;
+  };
   timeseries: Array<{ date: string; revenue: number; view_content: number; add_to_cart: number; initiate_checkout: number; purchase: number }>;
   topProducts: Array<{ name: string; added: number; bought: number; revenue: number }>;
   feed: Array<{ id: string; event_type: string; source: string; customer_email: string | null; order_id: string | null; product_name: string | null; value: number | null; currency: string | null; created_at: string }>;
