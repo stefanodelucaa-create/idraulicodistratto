@@ -16,7 +16,7 @@ import {
   ResponsiveContainer, LineChart, Line, BarChart, Bar, XAxis, YAxis,
   CartesianGrid, Tooltip, Legend,
 } from "recharts";
-import { ArrowDown, ArrowUp, Download, LogOut, RefreshCw, Activity, CalendarIcon, Trash2 } from "lucide-react";
+import { ArrowDown, ArrowUp, Download, LogOut, RefreshCw, Activity, CalendarIcon, Trash2, Zap } from "lucide-react";
 import { toast } from "sonner";
 
 type Preset = "today" | "yesterday" | "7d" | "30d" | "90d" | "custom";
@@ -156,6 +156,27 @@ export default function AdminAnalytics() {
   const [search, setSearch] = useState("");
   const [pickerOpen, setPickerOpen] = useState(false);
   const [pickerRange, setPickerRange] = useState<{ from?: Date; to?: Date }>({});
+  const [syncing, setSyncing] = useState(false);
+
+  const handleSyncMetaAds = useCallback(async () => {
+    setSyncing(true);
+    const t = toast.loading("Sync Meta Ads in corso…");
+    try {
+      const { data: res, error } = await supabase.functions.invoke("meta-ads-sync", {
+        body: { days: 2 },
+      });
+      if (error) throw error;
+      const upserted = (res as { upserted?: number })?.upserted ?? 0;
+      toast.success(`Meta Ads sincronizzato (${upserted} righe)`, { id: t });
+      await fetchData(filter);
+    } catch (err) {
+      console.error(err);
+      toast.error("Sync Meta Ads fallito", { id: t });
+    } finally {
+      setSyncing(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter]);
 
   const buildBody = useCallback((f: Filter): Record<string, unknown> => {
     if (f.preset === "today") return { preset: "today" };
@@ -360,6 +381,16 @@ export default function AdminAnalytics() {
                 />
               </PopoverContent>
             </Popover>
+            <Button
+              size="sm"
+              onClick={handleSyncMetaAds}
+              disabled={syncing}
+              className="bg-red-600 hover:bg-red-500 text-white h-9 gap-1.5 font-bold"
+              title="Sincronizza Meta Ads in tempo reale"
+            >
+              <Zap className={`h-4 w-4 ${syncing ? "animate-pulse" : ""}`} />
+              <span className="hidden sm:inline">{syncing ? "Sync…" : "Sync Ads"}</span>
+            </Button>
             <Button
               size="sm"
               onClick={() => fetchData(filter)}
