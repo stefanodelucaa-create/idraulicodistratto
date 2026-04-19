@@ -23,12 +23,34 @@ interface InsightRow {
   cpm?: string;
   cpc?: string;
   ctr?: string;
+  inline_link_clicks?: string;
+  inline_link_click_ctr?: string;
+  cost_per_inline_link_click?: string;
   actions?: Array<{ action_type: string; value: string }>;
   action_values?: Array<{ action_type: string; value: string }>;
 }
 
+interface AccountInfo {
+  timezone_name?: string;
+  timezone_offset_hours_utc?: number;
+}
+
 function ymd(d: Date): string {
   return d.toISOString().slice(0, 10);
+}
+
+async function fetchAccountInfo(): Promise<AccountInfo> {
+  const url = new URL(`https://graph.facebook.com/${API_VERSION}/${ACCOUNT_ID}`);
+  url.searchParams.set('access_token', META_TOKEN);
+  url.searchParams.set('fields', 'timezone_name,timezone_offset_hours_utc');
+
+  const res = await fetch(url);
+  if (!res.ok) {
+    const txt = await res.text();
+    throw new Error(`Meta account fetch error ${res.status}: ${txt}`);
+  }
+
+  return await res.json() as AccountInfo;
 }
 
 async function fetchInsights(since: string, until: string): Promise<InsightRow[]> {
@@ -36,8 +58,9 @@ async function fetchInsights(since: string, until: string): Promise<InsightRow[]
   url.searchParams.set('access_token', META_TOKEN);
   url.searchParams.set('level', 'account');
   url.searchParams.set('time_increment', '1');
+  url.searchParams.set('action_report_time', 'conversion');
   url.searchParams.set('time_range', JSON.stringify({ since, until }));
-  url.searchParams.set('fields', 'date_start,spend,impressions,clicks,cpm,cpc,ctr,actions,action_values');
+  url.searchParams.set('fields', 'date_start,spend,impressions,clicks,cpm,cpc,ctr,inline_link_clicks,inline_link_click_ctr,cost_per_inline_link_click,actions,action_values');
   url.searchParams.set('limit', '500');
 
   const all: InsightRow[] = [];
@@ -63,7 +86,7 @@ function extractPurchases(row: InsightRow): { count: number; value: number } {
   return { count, value };
 }
 
-async function upsertStats(rows: InsightRow[]) {
+async function upsertStats(rows: InsightRow[], accountInfo: AccountInfo) {
   if (!rows.length) return 0;
   const payload = rows.map((r) => {
     const { count, value } = extractPurchases(r);
@@ -72,11 +95,16 @@ async function upsertStats(rows: InsightRow[]) {
       spend: Number(r.spend) || 0,
       impressions: Number(r.impressions) || 0,
       clicks: Number(r.clicks) || 0,
+      link_clicks: Number(r.inline_link_clicks) || 0,
       cpm: Number(r.cpm) || 0,
       cpc: Number(r.cpc) || 0,
+      link_cpc: Number(r.cost_per_inline_link_click) || 0,
       ctr: Number(r.ctr) || 0,
+      link_ctr: Number(r.inline_link_click_ctr) || 0,
       purchases: count,
       purchase_value: value,
+      account_timezone_name: accountInfo.timezone_name || null,
+      account_timezone_offset_hours_utc: typeof accountInfo.timezone_offset_hours_utc === 'number' ? accountInfo.timezone_offset_hours_utc : null,
       raw: r,
       synced_at: new Date().toISOString(),
     };
@@ -116,10 +144,11 @@ Deno.serve(async (req) => {
 
     const until = new Date();
     const since = new Date(until.getTime() - (days - 1) * 86400000);
+    const accountInfo = await fetchAccountInfo();
     const rows = await fetchInsights(ymd(since), ymd(until));
-    const count = await upsertStats(rows);
+    const count = await upsertStats(rows, accountInfo);
 
-    return new Response(JSON.stringify({ ok: true, days, rows: count, account: ACCOUNT_ID }), {
+    return new Response(JSON.stringify({ ok: true, days, rows: count, account: ACCOUNT_ID, timezone: accountInfo.timezone_name || null }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (err) {

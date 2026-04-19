@@ -141,25 +141,60 @@ Deno.serve(async (req) => {
       const res = await fetch(url, {
         headers: { apikey: SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}` },
       });
-      if (!res.ok) return [] as Array<Record<string, number | string>>;
-      return (await res.json()) as Array<Record<string, number | string>>;
+      if (!res.ok) return [] as Array<Record<string, number | string | null>>;
+      return (await res.json()) as Array<Record<string, number | string | null>>;
     };
-    const ymd = (d: Date) => d.toISOString().slice(0, 10);
-    const adsCurrent = await fetchAdsBetween(ymd(fromDate), ymd(new Date(toDate.getTime() - 1)));
-    const adsPrevious = await fetchAdsBetween(ymd(prevFrom), ymd(new Date(fromDate.getTime() - 1)));
+    const fetchAdsTimezone = async () => {
+      const url = `${SUPABASE_URL}/rest/v1/meta_ads_stats?select=account_timezone_name,account_timezone_offset_hours_utc&account_timezone_offset_hours_utc=not.is.null&order=date.desc&limit=1`;
+      const res = await fetch(url, {
+        headers: { apikey: SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}` },
+      });
+      if (!res.ok) return { timezone_name: null, timezone_offset_hours_utc: 0 };
+      const rows = await res.json() as Array<Record<string, number | string | null>>;
+      return {
+        timezone_name: rows[0]?.account_timezone_name ? String(rows[0].account_timezone_name) : null,
+        timezone_offset_hours_utc: Number(rows[0]?.account_timezone_offset_hours_utc) || 0,
+      };
+    };
+    const { timezone_name, timezone_offset_hours_utc } = await fetchAdsTimezone();
+    const ymdInOffset = (d: Date, offsetHours: number) => {
+      const shifted = new Date(d.getTime() + offsetHours * 60 * 60 * 1000);
+      return shifted.toISOString().slice(0, 10);
+    };
+    const adsCurrent = await fetchAdsBetween(
+      ymdInOffset(fromDate, timezone_offset_hours_utc),
+      ymdInOffset(new Date(toDate.getTime() - 1), timezone_offset_hours_utc),
+    );
+    const adsPrevious = await fetchAdsBetween(
+      ymdInOffset(prevFrom, timezone_offset_hours_utc),
+      ymdInOffset(new Date(fromDate.getTime() - 1), timezone_offset_hours_utc),
+    );
     const sumAds = (rows: typeof adsCurrent) => {
-      const t = { spend: 0, impressions: 0, clicks: 0, purchases: 0, purchase_value: 0 };
+      const t = {
+        spend: 0,
+        impressions: 0,
+        clicks: 0,
+        link_clicks: 0,
+        purchases: 0,
+        purchase_value: 0,
+        timezone_name: null as string | null,
+        timezone_offset_hours_utc: null as number | null,
+      };
       for (const r of rows) {
         t.spend += Number(r.spend) || 0;
         t.impressions += Number(r.impressions) || 0;
         t.clicks += Number(r.clicks) || 0;
+        t.link_clicks += Number(r.link_clicks) || 0;
         t.purchases += Number(r.purchases) || 0;
         t.purchase_value += Number(r.purchase_value) || 0;
+        t.timezone_name ||= r.account_timezone_name ? String(r.account_timezone_name) : null;
+        t.timezone_offset_hours_utc ??= r.account_timezone_offset_hours_utc !== null && r.account_timezone_offset_hours_utc !== undefined
+          ? Number(r.account_timezone_offset_hours_utc)
+          : null;
       }
       const cpm = t.impressions ? (t.spend / t.impressions) * 1000 : 0;
-      const cpc = t.clicks ? t.spend / t.clicks : 0;
-      const ctr = t.impressions ? (t.clicks / t.impressions) * 100 : 0;
-      // ROAS uses ACTUAL revenue from our webhook (most reliable), not Meta-reported value
+      const cpc = t.link_clicks ? t.spend / t.link_clicks : 0;
+      const ctr = t.impressions ? (t.link_clicks / t.impressions) * 100 : 0;
       return { ...t, cpm, cpc, ctr };
     };
     const adsCur = sumAds(adsCurrent);
@@ -172,7 +207,7 @@ Deno.serve(async (req) => {
       date: String(r.date),
       spend: Number(r.spend) || 0,
       impressions: Number(r.impressions) || 0,
-      clicks: Number(r.clicks) || 0,
+      clicks: Number(r.link_clicks) || 0,
     }));
 
     // Time series buckets (hourly if span<=2 days, else daily)
@@ -232,8 +267,8 @@ Deno.serve(async (req) => {
       range: { days, since, until, now: new Date().toISOString() },
       kpis: { current: cur, previous: prev },
       ads: {
-        current: { ...adsCur, roas: roasCur, cpa: cpaCur },
-        previous: { ...adsPrev, roas: roasPrev, cpa: cpaPrev },
+        current: { ...adsCur, roas: roasCur, cpa: cpaCur, timezone_name, timezone_offset_hours_utc },
+        previous: { ...adsPrev, roas: roasPrev, cpa: cpaPrev, timezone_name, timezone_offset_hours_utc },
         timeseries: adsTimeseries,
       },
       timeseries,
