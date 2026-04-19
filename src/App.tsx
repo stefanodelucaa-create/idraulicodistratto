@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useCartSync } from "@/hooks/useCartSync";
+import { usePageTracking } from "@/hooks/usePageTracking";
 import IndexBold from "./pages/IndexBold";
 import ThankYou from "./pages/ThankYou";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -16,23 +17,29 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-function AppContent() {
+function RoutedApp() {
   useCartSync();
+  usePageTracking();
+  return (
+    <Routes>
+      <Route path="/" element={<IndexBold />} />
+      <Route path="/v2" element={<IndexBold />} />
+      <Route path="/thank-you" element={<ThankYou />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/termini-condizioni" element={<TermsConditions />} />
+      <Route path="/contatti" element={<Contatti />} />
+      <Route path="/unsubscribe" element={<Unsubscribe />} />
+      <Route path="/admin/auth" element={<AdminAuth />} />
+      <Route path="/admin/analytics" element={<AdminAnalytics />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
+}
 
+function AppContent() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<IndexBold />} />
-        <Route path="/v2" element={<IndexBold />} />
-        <Route path="/thank-you" element={<ThankYou />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/termini-condizioni" element={<TermsConditions />} />
-        <Route path="/contatti" element={<Contatti />} />
-        <Route path="/unsubscribe" element={<Unsubscribe />} />
-        <Route path="/admin/auth" element={<AdminAuth />} />
-        <Route path="/admin/analytics" element={<AdminAnalytics />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <RoutedApp />
     </BrowserRouter>
   );
 }
