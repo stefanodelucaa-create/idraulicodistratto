@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { isAdminEmail } from "@/lib/adminConfig";
-import { Lock } from "lucide-react";
+import { Lock, Shield } from "lucide-react";
 
 export default function AdminAuth() {
   const navigate = useNavigate();
@@ -54,45 +53,81 @@ export default function AdminAuth() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-hero p-4">
-      <Card className="w-full max-w-md bg-card-gradient shadow-elevated border-2">
-        <CardHeader className="text-center space-y-3">
-          <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-            <Lock className="w-6 h-6 text-primary" />
+    <main className="min-h-screen bg-black text-white flex items-center justify-center p-4 overflow-hidden relative">
+      {/* Background red glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-red-900/30 via-black to-black pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10 w-full max-w-md">
+        <div className="bg-gray-900/80 backdrop-blur border-2 border-red-600/50 rounded-2xl p-6 sm:p-8 shadow-2xl">
+          {/* Header */}
+          <div className="text-center space-y-3 mb-6">
+            <div className="mx-auto w-14 h-14 rounded-full bg-red-600 flex items-center justify-center shadow-lg shadow-red-600/40">
+              <Lock className="w-7 h-7 text-white" />
+            </div>
+            <div className="inline-block bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">
+              Area Riservata
+            </div>
+            <h1 className="text-2xl sm:text-3xl font-black text-white">
+              {mode === "login" ? (
+                <>Accesso <span className="text-red-500">Admin</span></>
+              ) : (
+                <>Crea <span className="text-red-500">Account</span></>
+              )}
+            </h1>
+            <p className="text-sm text-white/80">
+              Dashboard analisi e tracking conversioni
+            </p>
           </div>
-          <CardTitle className="text-2xl">
-            {mode === "login" ? "Accesso Admin" : "Crea Account Admin"}
-          </CardTitle>
-          <p className="text-sm text-muted-foreground">
-            Dashboard di analisi e tracking conversioni
-          </p>
-        </CardHeader>
-        <CardContent>
+
           <form onSubmit={onSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" />
+              <Label htmlFor="email" className="text-white font-semibold">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
+                className="bg-black/60 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-500 focus:ring-red-500/30 h-11"
+              />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} autoComplete={mode === "login" ? "current-password" : "new-password"} />
+              <Label htmlFor="password" className="text-white font-semibold">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                required
+                minLength={8}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete={mode === "login" ? "current-password" : "new-password"}
+                className="bg-black/60 border-gray-700 text-white placeholder:text-gray-500 focus:border-red-500 focus:ring-red-500/30 h-11"
+              />
             </div>
-            <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold h-11" disabled={loading}>
-              {loading ? "Attendere..." : mode === "login" ? "Accedi" : "Registrati"}
+            <Button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-red-600 hover:bg-red-700 text-white text-base font-bold h-12 rounded-xl whitespace-normal"
+            >
+              {loading ? "Attendere..." : mode === "login" ? "Accedi alla Dashboard" : "Crea Account Admin"}
             </Button>
             <button
               type="button"
-              className="text-sm text-muted-foreground hover:text-primary underline w-full text-center transition-colors"
+              className="text-sm text-white/70 hover:text-red-400 underline w-full text-center transition-colors"
               onClick={() => setMode(mode === "login" ? "signup" : "login")}
             >
               {mode === "login" ? "Non hai un account? Registrati" : "Hai già un account? Accedi"}
             </button>
-            <p className="text-xs text-muted-foreground text-center pt-2 border-t">
-              Solo email autorizzate possono accedere alla dashboard.
-            </p>
+            <div className="flex items-center justify-center gap-2 pt-3 border-t border-gray-800 text-xs text-white/60">
+              <Shield className="w-3.5 h-3.5 text-red-500" />
+              <span>Solo email autorizzate possono accedere</span>
+            </div>
           </form>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      </div>
+    </main>
   );
 }
