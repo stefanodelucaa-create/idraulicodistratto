@@ -246,6 +246,8 @@ export default function AdminAnalytics() {
 
   const cur = data?.kpis.current;
   const prev = data?.kpis.previous;
+  const adsCur = data?.ads?.current;
+  const adsPrev = data?.ads?.previous;
 
   const funnel = useMemo(() => {
     if (!cur) return null;
