@@ -16,7 +16,8 @@ import {
   ResponsiveContainer, LineChart, Line, BarChart, Bar, XAxis, YAxis,
   CartesianGrid, Tooltip, Legend,
 } from "recharts";
-import { ArrowDown, ArrowUp, Download, LogOut, RefreshCw, Activity, CalendarIcon } from "lucide-react";
+import { ArrowDown, ArrowUp, Download, LogOut, RefreshCw, Activity, CalendarIcon, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 type Preset = "today" | "yesterday" | "7d" | "30d" | "90d" | "custom";
 
@@ -204,6 +205,31 @@ export default function AdminAnalytics() {
   const logout = async () => {
     await supabase.auth.signOut();
     navigate("/admin/auth", { replace: true });
+  };
+
+  const handleDeleteOrder = async (id: string, label: string) => {
+    if (!window.confirm(`Eliminare definitivamente l'ordine "${label}"? Questa azione non può essere annullata.`)) return;
+    try {
+      const { data: res, error } = await supabase.functions.invoke("analytics-delete-event", {
+        body: { id },
+      });
+      if (error) throw error;
+      if ((res as { ok?: boolean })?.ok) {
+        toast.success("Ordine eliminato");
+        // Optimistic update + refetch
+        setData((d) => d ? {
+          ...d,
+          orders: d.orders.filter((o) => o.id !== id),
+          feed: d.feed.filter((e) => e.id !== id),
+        } : d);
+        fetchData(filter);
+      } else {
+        toast.error("Eliminazione fallita");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Errore durante l'eliminazione");
+    }
   };
 
   const cur = data?.kpis.current;
@@ -483,14 +509,29 @@ export default function AdminAnalytics() {
                 <ScrollArea className="h-[330px]">
                   <table className="w-full text-xs">
                     <thead className="text-white/60 border-b border-gray-800 sticky top-0 bg-gray-900 uppercase font-bold">
-                      <tr><th className="text-left py-2">Data</th><th className="text-left">Email</th><th className="text-right">Valore</th></tr>
+                      <tr>
+                        <th className="text-left py-2">Data</th>
+                        <th className="text-left">Email</th>
+                        <th className="text-right">Valore</th>
+                        <th className="text-right w-10"></th>
+                      </tr>
                     </thead>
                     <tbody>
                       {filteredOrders.map((o) => (
-                        <tr key={o.id} className="border-b border-gray-800 last:border-0">
+                        <tr key={o.id} className="border-b border-gray-800 last:border-0 group">
                           <td className="py-2 text-white/80">{new Date(o.created_at).toLocaleDateString("it-IT")}</td>
                           <td className="truncate max-w-[160px] text-white">{o.customer_email || "—"}</td>
                           <td className="text-right text-red-400 font-bold">{fmtCurrency(Number(o.value || 0), o.currency || "EUR")}</td>
+                          <td className="text-right">
+                            <button
+                              onClick={() => handleDeleteOrder(o.id, o.order_id || o.customer_email || o.id)}
+                              className="p-1.5 rounded text-white/40 hover:text-red-500 hover:bg-red-500/10 transition-colors"
+                              title="Elimina ordine"
+                              aria-label="Elimina ordine"
+                            >
+                              <Trash2 className="h-3.5 w-3.5" />
+                            </button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
