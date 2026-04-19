@@ -37,6 +37,7 @@ const sendToCAPI = async (
         event_name: eventName,
         event_id: eventId,
         event_source_url: typeof window !== 'undefined' ? window.location.href : undefined,
+        session_id: getOrCreateSessionId(),
         user_data: {
           ...userData,
           fbp: getCookie('_fbp'),

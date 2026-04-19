@@ -143,12 +143,14 @@ Deno.serve(async (req) => {
       const orders = purchases.length;
       const aov = orders ? revenue / orders : 0;
       const sessions = counts.session_start;
-      const addToCartRate = counts.view_content ? (counts.add_to_cart / counts.view_content) * 100 : 0;
-      const checkoutRate = counts.add_to_cart ? (counts.initiate_checkout / counts.add_to_cart) * 100 : 0;
-      const conversionRate = counts.initiate_checkout ? (orders / counts.initiate_checkout) * 100 : 0;
-      const checkoutToOrder = counts.initiate_checkout ? (orders / counts.initiate_checkout) * 100 : 0;
-      const cartAbandon = counts.add_to_cart ? ((counts.add_to_cart - orders) / counts.add_to_cart) * 100 : 0;
-      const sessionConversion = sessions ? (orders / sessions) * 100 : 0;
+      const clamp = (n: number) => Math.min(Math.max(n, 0), 100);
+      const addToCartRate = clamp(counts.view_content ? (counts.add_to_cart / counts.view_content) * 100 : 0);
+      // Checkout Rate uses view_content as denominator (more stable than add_to_cart, which can be skipped or under-tracked)
+      const checkoutRate = clamp(counts.view_content ? (counts.initiate_checkout / counts.view_content) * 100 : 0);
+      const conversionRate = clamp(counts.initiate_checkout ? (orders / counts.initiate_checkout) * 100 : 0);
+      const checkoutToOrder = clamp(counts.initiate_checkout ? (orders / counts.initiate_checkout) * 100 : 0);
+      const cartAbandon = clamp(counts.add_to_cart ? ((counts.add_to_cart - orders) / counts.add_to_cart) * 100 : 0);
+      const sessionConversion = clamp(sessions ? (orders / sessions) * 100 : 0);
       return {
         counts, orders, revenue, aov, sessions,
         addToCartRate, checkoutRate, conversionRate, checkoutToOrder, cartAbandon, sessionConversion,

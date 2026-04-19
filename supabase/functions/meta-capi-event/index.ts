@@ -51,6 +51,7 @@ interface IncomingEvent {
   event_name: string;
   event_id: string;
   event_source_url?: string;
+  session_id?: string;
   user_data?: {
     email?: string;
     phone?: string;
@@ -141,6 +142,7 @@ Deno.serve(async (req) => {
         event_type: internalType,
         event_id: body.event_id,
         source: 'browser',
+        session_id: body.session_id || null,
         customer_email: body.user_data?.email || null,
         order_id: (cd.order_id as string) || null,
         product_name: (cd.content_name as string) || null,
