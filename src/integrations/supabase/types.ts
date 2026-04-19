@@ -103,6 +103,8 @@ export type Database = {
       }
       meta_ads_stats: {
         Row: {
+          account_timezone_name: string | null
+          account_timezone_offset_hours_utc: number | null
           clicks: number
           cpc: number
           cpm: number
@@ -111,6 +113,9 @@ export type Database = {
           date: string
           id: string
           impressions: number
+          link_clicks: number
+          link_cpc: number
+          link_ctr: number
           purchase_value: number
           purchases: number
           raw: Json | null
@@ -118,6 +123,8 @@ export type Database = {
           synced_at: string
         }
         Insert: {
+          account_timezone_name?: string | null
+          account_timezone_offset_hours_utc?: number | null
           clicks?: number
           cpc?: number
           cpm?: number
@@ -126,6 +133,9 @@ export type Database = {
           date: string
           id?: string
           impressions?: number
+          link_clicks?: number
+          link_cpc?: number
+          link_ctr?: number
           purchase_value?: number
           purchases?: number
           raw?: Json | null
@@ -133,6 +143,8 @@ export type Database = {
           synced_at?: string
         }
         Update: {
+          account_timezone_name?: string | null
+          account_timezone_offset_hours_utc?: number | null
           clicks?: number
           cpc?: number
           cpm?: number
@@ -141,6 +153,9 @@ export type Database = {
           date?: string
           id?: string
           impressions?: number
+          link_clicks?: number
+          link_cpc?: number
+          link_ctr?: number
           purchase_value?: number
           purchases?: number
           raw?: Json | null
