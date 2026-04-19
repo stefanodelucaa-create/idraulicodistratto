@@ -35,10 +35,12 @@ interface Kpis {
 }
 
 interface AdsKpis {
-  spend: number; impressions: number; clicks: number;
+  spend: number; impressions: number; clicks: number; link_clicks: number;
   purchases: number; purchase_value: number;
   cpm: number; cpc: number; ctr: number;
   roas: number; cpa: number;
+  timezone_name?: string | null;
+  timezone_offset_hours_utc?: number | null;
 }
 
 interface AnalyticsResponse {
@@ -413,14 +415,18 @@ export default function AdminAnalytics() {
         {/* Meta Ads */}
         {adsCur && (
           <SectionCard title="Meta Ads · Performance">
+            <div className="mb-3 text-xs font-medium text-white/70">
+              Metriche allineate alle colonne account Meta: <span className="text-white">Spesa, Link Click, Link CTR, Link CPC</span>
+              {adsCur.timezone_name ? <> · Fuso account: <span className="text-white">{adsCur.timezone_name}</span></> : null}
+            </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
               <KpiCard icon="💸" label="Spesa" value={fmtCurrency(adsCur.spend)} trendValue={trend(adsCur.spend, adsPrev?.spend || 0)} />
               <KpiCard icon="🎯" label="ROAS" value={`${adsCur.roas.toFixed(2)}x`} trendValue={trend(adsCur.roas, adsPrev?.roas || 0)} />
               <KpiCard icon="🧾" label="CPA" value={adsCur.cpa ? fmtCurrency(adsCur.cpa) : "—"} trendValue={-trend(adsCur.cpa, adsPrev?.cpa || 0)} />
               <KpiCard icon="👁️" label="Impression" value={fmtInt(adsCur.impressions)} trendValue={trend(adsCur.impressions, adsPrev?.impressions || 0)} />
-              <KpiCard icon="🖱️" label="Click" value={fmtInt(adsCur.clicks)} trendValue={trend(adsCur.clicks, adsPrev?.clicks || 0)} />
-              <KpiCard icon="📈" label="CTR" value={fmtPct(adsCur.ctr)} trendValue={trend(adsCur.ctr, adsPrev?.ctr || 0)} />
-              <KpiCard icon="💵" label="CPC" value={fmtCurrency(adsCur.cpc)} trendValue={-trend(adsCur.cpc, adsPrev?.cpc || 0)} />
+              <KpiCard icon="🖱️" label="Link Click" value={fmtInt(adsCur.link_clicks)} trendValue={trend(adsCur.link_clicks, adsPrev?.link_clicks || 0)} />
+              <KpiCard icon="📈" label="Link CTR" value={fmtPct(adsCur.ctr)} trendValue={trend(adsCur.ctr, adsPrev?.ctr || 0)} />
+              <KpiCard icon="💵" label="Link CPC" value={fmtCurrency(adsCur.cpc)} trendValue={-trend(adsCur.cpc, adsPrev?.cpc || 0)} />
               <KpiCard icon="📡" label="CPM" value={fmtCurrency(adsCur.cpm)} trendValue={-trend(adsCur.cpm, adsPrev?.cpm || 0)} />
             </div>
             {data?.ads?.timeseries?.length ? (
@@ -433,7 +439,7 @@ export default function AdminAnalytics() {
                   <Tooltip contentStyle={tooltipStyle} />
                   <Legend wrapperStyle={{ fontSize: 11, color: "#fff" }} />
                   <Line yAxisId="l" type="monotone" dataKey="spend" name="Spesa €" stroke="#dc2626" strokeWidth={2} dot={false} />
-                  <Line yAxisId="r" type="monotone" dataKey="clicks" name="Click" stroke="#eab308" strokeWidth={2} dot={false} />
+                  <Line yAxisId="r" type="monotone" dataKey="clicks" name="Link Click" stroke="#eab308" strokeWidth={2} dot={false} />
                 </LineChart>
               </ResponsiveContainer>
             ) : null}

@@ -148,18 +148,31 @@ Deno.serve(async (req) => {
     const adsCurrent = await fetchAdsBetween(ymd(fromDate), ymd(new Date(toDate.getTime() - 1)));
     const adsPrevious = await fetchAdsBetween(ymd(prevFrom), ymd(new Date(fromDate.getTime() - 1)));
     const sumAds = (rows: typeof adsCurrent) => {
-      const t = { spend: 0, impressions: 0, clicks: 0, purchases: 0, purchase_value: 0 };
+      const t = {
+        spend: 0,
+        impressions: 0,
+        clicks: 0,
+        link_clicks: 0,
+        purchases: 0,
+        purchase_value: 0,
+        timezone_name: null as string | null,
+        timezone_offset_hours_utc: null as number | null,
+      };
       for (const r of rows) {
         t.spend += Number(r.spend) || 0;
         t.impressions += Number(r.impressions) || 0;
         t.clicks += Number(r.clicks) || 0;
+        t.link_clicks += Number(r.link_clicks) || 0;
         t.purchases += Number(r.purchases) || 0;
         t.purchase_value += Number(r.purchase_value) || 0;
+        t.timezone_name ||= r.account_timezone_name ? String(r.account_timezone_name) : null;
+        t.timezone_offset_hours_utc ??= r.account_timezone_offset_hours_utc !== null && r.account_timezone_offset_hours_utc !== undefined
+          ? Number(r.account_timezone_offset_hours_utc)
+          : null;
       }
       const cpm = t.impressions ? (t.spend / t.impressions) * 1000 : 0;
-      const cpc = t.clicks ? t.spend / t.clicks : 0;
-      const ctr = t.impressions ? (t.clicks / t.impressions) * 100 : 0;
-      // ROAS uses ACTUAL revenue from our webhook (most reliable), not Meta-reported value
+      const cpc = t.link_clicks ? t.spend / t.link_clicks : 0;
+      const ctr = t.impressions ? (t.link_clicks / t.impressions) * 100 : 0;
       return { ...t, cpm, cpc, ctr };
     };
     const adsCur = sumAds(adsCurrent);
@@ -172,7 +185,7 @@ Deno.serve(async (req) => {
       date: String(r.date),
       spend: Number(r.spend) || 0,
       impressions: Number(r.impressions) || 0,
-      clicks: Number(r.clicks) || 0,
+      clicks: Number(r.link_clicks) || 0,
     }));
 
     // Time series buckets (hourly if span<=2 days, else daily)
