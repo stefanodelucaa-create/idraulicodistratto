@@ -15,6 +15,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
 import Contatti from "./pages/Contatti";
 import Unsubscribe from "./pages/Unsubscribe";
+import AdminAuth from "./pages/AdminAuth";
+import AdminAnalytics from "./pages/AdminAnalytics";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +38,8 @@ function AppContent() {
         <Route path="/termini-condizioni" element={<TermsConditions />} />
         <Route path="/contatti" element={<Contatti />} />
         <Route path="/unsubscribe" element={<Unsubscribe />} />
+        <Route path="/admin/auth" element={<AdminAuth />} />
+        <Route path="/admin/analytics" element={<AdminAnalytics />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

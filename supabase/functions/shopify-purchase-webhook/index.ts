@@ -5,6 +5,25 @@ const META_PIXEL_ID = Deno.env.get('META_PIXEL_ID');
 const META_CAPI_ACCESS_TOKEN = Deno.env.get('META_CAPI_ACCESS_TOKEN');
 const META_CAPI_TEST_EVENT_CODE = Deno.env.get('META_CAPI_TEST_EVENT_CODE');
 const SHOPIFY_WEBHOOK_SECRET = Deno.env.get('SHOPIFY_WEBHOOK_SECRET');
+const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
+const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+
+async function logPurchaseToTracking(payload: Record<string, unknown>) {
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/tracking_events`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: SUPABASE_SERVICE_ROLE_KEY,
+        Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+        Prefer: 'resolution=ignore-duplicates',
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    console.warn('tracking_events log failed:', err);
+  }
+}
 
 async function sha256Hex(input: string): Promise<string> {
   const data = new TextEncoder().encode(input.trim().toLowerCase());
@@ -95,6 +114,28 @@ Deno.serve(async (req) => {
       // Still return 200 so Shopify doesn't retry forever on Meta-side issues
       return new Response(JSON.stringify({ ok: false, meta: metaJson }), { status: 200 });
     }
+
+    // Log to tracking_events (webhook source = source of truth for Purchase)
+    void logPurchaseToTracking({
+      event_type: 'purchase',
+      event_id: `purchase_${orderId}`,
+      source: 'webhook',
+      customer_email: email || null,
+      order_id: orderId,
+      product_name: order.line_items?.[0]?.title || 'Il Protocollo del Piacere',
+      value: total,
+      currency,
+      page_path: order.order_status_url || null,
+      user_agent: order.client_details?.user_agent || null,
+      ip_address: order.client_details?.browser_ip || null,
+      metadata: {
+        line_items: order.line_items?.map((l: { title?: string; quantity?: number; price?: string }) => ({
+          title: l.title, quantity: l.quantity, price: l.price,
+        })),
+        financial_status: order.financial_status,
+        customer_name: [order.customer?.first_name, order.customer?.last_name].filter(Boolean).join(' ') || null,
+      },
+    });
 
     console.log('Purchase tracked:', orderId, total, currency);
     return new Response(JSON.stringify({ ok: true }), { status: 200 });

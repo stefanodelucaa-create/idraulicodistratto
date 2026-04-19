@@ -11,6 +11,33 @@ const corsHeaders = {
 const META_PIXEL_ID = Deno.env.get('META_PIXEL_ID');
 const META_CAPI_ACCESS_TOKEN = Deno.env.get('META_CAPI_ACCESS_TOKEN');
 const META_CAPI_TEST_EVENT_CODE = Deno.env.get('META_CAPI_TEST_EVENT_CODE');
+const SUPABASE_URL = Deno.env.get('SUPABASE_URL')!;
+const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+
+// Map Meta event names to our internal event_type enum
+const EVENT_TYPE_MAP: Record<string, string> = {
+  ViewContent: 'view_content',
+  AddToCart: 'add_to_cart',
+  InitiateCheckout: 'initiate_checkout',
+  Purchase: 'purchase',
+};
+
+async function logTrackingEvent(payload: Record<string, unknown>) {
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/tracking_events`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: SUPABASE_SERVICE_ROLE_KEY,
+        Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+        Prefer: 'resolution=ignore-duplicates',
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    console.warn('tracking_events log failed:', err);
+  }
+}
 
 async function sha256(input: string): Promise<string> {
   const data = new TextEncoder().encode(input.trim().toLowerCase());
@@ -102,6 +129,27 @@ Deno.serve(async (req) => {
       return new Response(JSON.stringify({ error: 'Meta CAPI rejected', details: metaJson }), {
         status: 502,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Log to tracking_events for our analytics dashboard (browser source)
+    const internalType = EVENT_TYPE_MAP[body.event_name];
+    if (internalType) {
+      const cd = body.custom_data || {};
+      const valueNum = typeof cd.value === 'string' ? parseFloat(cd.value) : (cd.value as number | undefined);
+      void logTrackingEvent({
+        event_type: internalType,
+        event_id: body.event_id,
+        source: 'browser',
+        customer_email: body.user_data?.email || null,
+        order_id: (cd.order_id as string) || null,
+        product_name: (cd.content_name as string) || null,
+        value: Number.isFinite(valueNum as number) ? valueNum : null,
+        currency: (cd.currency as string) || 'EUR',
+        page_path: body.event_source_url || null,
+        user_agent: userAgent || null,
+        ip_address: clientIp || null,
+        metadata: cd,
       });
     }
 
