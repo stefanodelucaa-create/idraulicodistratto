@@ -156,6 +156,27 @@ export default function AdminAnalytics() {
   const [search, setSearch] = useState("");
   const [pickerOpen, setPickerOpen] = useState(false);
   const [pickerRange, setPickerRange] = useState<{ from?: Date; to?: Date }>({});
+  const [syncing, setSyncing] = useState(false);
+
+  const handleSyncMetaAds = useCallback(async () => {
+    setSyncing(true);
+    const t = toast.loading("Sync Meta Ads in corso…");
+    try {
+      const { data: res, error } = await supabase.functions.invoke("meta-ads-sync", {
+        body: { days: 2 },
+      });
+      if (error) throw error;
+      const upserted = (res as { upserted?: number })?.upserted ?? 0;
+      toast.success(`Meta Ads sincronizzato (${upserted} righe)`, { id: t });
+      await fetchData(filter);
+    } catch (err) {
+      console.error(err);
+      toast.error("Sync Meta Ads fallito", { id: t });
+    } finally {
+      setSyncing(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter]);
 
   const buildBody = useCallback((f: Filter): Record<string, unknown> => {
     if (f.preset === "today") return { preset: "today" };
