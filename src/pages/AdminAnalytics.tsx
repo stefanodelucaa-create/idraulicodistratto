@@ -306,9 +306,9 @@ export default function AdminAnalytics() {
                   <YAxis tick={{ fontSize: 11 }} />
                   <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))" }} />
                   <Legend wrapperStyle={{ fontSize: 11 }} />
-                  <Bar dataKey="add_to_cart" stackId="a" fill="#eab308" />
-                  <Bar dataKey="initiate_checkout" stackId="a" fill="#a855f7" />
-                  <Bar dataKey="purchase" stackId="a" fill="#10b981" />
+                  <Bar dataKey="add_to_cart" stackId="a" fill="hsl(var(--accent))" />
+                  <Bar dataKey="initiate_checkout" stackId="a" fill="hsl(var(--primary) / 0.6)" />
+                  <Bar dataKey="purchase" stackId="a" fill="hsl(var(--primary))" />
                 </BarChart>
               </ResponsiveContainer>
             </CardContent>
