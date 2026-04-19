@@ -207,6 +207,31 @@ export default function AdminAnalytics() {
     navigate("/admin/auth", { replace: true });
   };
 
+  const handleDeleteOrder = async (id: string, label: string) => {
+    if (!window.confirm(`Eliminare definitivamente l'ordine "${label}"? Questa azione non può essere annullata.`)) return;
+    try {
+      const { data: res, error } = await supabase.functions.invoke("analytics-delete-event", {
+        body: { id },
+      });
+      if (error) throw error;
+      if ((res as { ok?: boolean })?.ok) {
+        toast.success("Ordine eliminato");
+        // Optimistic update + refetch
+        setData((d) => d ? {
+          ...d,
+          orders: d.orders.filter((o) => o.id !== id),
+          feed: d.feed.filter((e) => e.id !== id),
+        } : d);
+        fetchData(filter);
+      } else {
+        toast.error("Eliminazione fallita");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Errore durante l'eliminazione");
+    }
+  };
+
   const cur = data?.kpis.current;
   const prev = data?.kpis.previous;
 
