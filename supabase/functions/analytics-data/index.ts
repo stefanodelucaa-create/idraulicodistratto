@@ -27,16 +27,27 @@ async function getUserFromAuth(authHeader: string | null): Promise<{ email: stri
   return data?.email ? { email: data.email } : null;
 }
 
-async function fetchEvents(sinceIso: string) {
-  const url = `${SUPABASE_URL}/rest/v1/tracking_events?created_at=gte.${encodeURIComponent(sinceIso)}&order=created_at.desc&limit=5000`;
-  const res = await fetch(url, {
-    headers: {
-      apikey: SUPABASE_SERVICE_ROLE_KEY,
-      Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
-    },
-  });
-  if (!res.ok) throw new Error(`fetch events failed: ${res.status}`);
-  return await res.json() as Array<Record<string, unknown>>;
+async function fetchEventsBetween(fromIso: string, toIso: string) {
+  // Paginate to bypass the default 1000-row Supabase limit
+  const all: Array<Record<string, unknown>> = [];
+  const pageSize = 1000;
+  let offset = 0;
+  while (true) {
+    const url = `${SUPABASE_URL}/rest/v1/tracking_events?created_at=gte.${encodeURIComponent(fromIso)}&created_at=lt.${encodeURIComponent(toIso)}&order=created_at.desc&limit=${pageSize}&offset=${offset}`;
+    const res = await fetch(url, {
+      headers: {
+        apikey: SUPABASE_SERVICE_ROLE_KEY,
+        Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+      },
+    });
+    if (!res.ok) throw new Error(`fetch events failed: ${res.status}`);
+    const batch = await res.json() as Array<Record<string, unknown>>;
+    all.push(...batch);
+    if (batch.length < pageSize) break;
+    offset += pageSize;
+    if (offset > 50000) break; // hard safety cap
+  }
+  return all;
 }
 
 Deno.serve(async (req) => {
@@ -52,14 +63,47 @@ Deno.serve(async (req) => {
     }
 
     const body = await req.json().catch(() => ({}));
-    const days = Math.min(Math.max(Number(body.days) || 7, 1), 90);
-    const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
-    const prevSince = new Date(Date.now() - 2 * days * 24 * 60 * 60 * 1000).toISOString();
 
-    const allEvents = await fetchEvents(prevSince);
-    const sinceMs = new Date(since).getTime();
-    const current = allEvents.filter((e) => new Date(e.created_at as string).getTime() >= sinceMs);
-    const previous = allEvents.filter((e) => new Date(e.created_at as string).getTime() < sinceMs);
+    // Resolve range:
+    //  - explicit { from, to } ISO strings (custom range)
+    //  - or { days } shortcut (1, 7, 30, ...)
+    //  - or { preset: 'yesterday' }
+    let fromDate: Date;
+    let toDate: Date;
+    let days: number;
+
+    if (body.preset === 'yesterday') {
+      const now = new Date();
+      const startToday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+      toDate = startToday;
+      fromDate = new Date(startToday.getTime() - 24 * 60 * 60 * 1000);
+      days = 1;
+    } else if (body.from && body.to) {
+      fromDate = new Date(String(body.from));
+      toDate = new Date(String(body.to));
+      if (isNaN(fromDate.getTime()) || isNaN(toDate.getTime()) || toDate <= fromDate) {
+        return new Response(JSON.stringify({ error: 'Invalid date range' }), {
+          status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      days = Math.max(1, Math.round((toDate.getTime() - fromDate.getTime()) / (24 * 60 * 60 * 1000)));
+    } else {
+      days = Math.min(Math.max(Number(body.days) || 7, 1), 365);
+      toDate = new Date();
+      fromDate = new Date(toDate.getTime() - days * 24 * 60 * 60 * 1000);
+    }
+
+    const spanMs = toDate.getTime() - fromDate.getTime();
+    const prevFrom = new Date(fromDate.getTime() - spanMs);
+
+    const since = fromDate.toISOString();
+    const until = toDate.toISOString();
+    const prevSince = prevFrom.toISOString();
+
+    const [current, previous] = await Promise.all([
+      fetchEventsBetween(since, until),
+      fetchEventsBetween(prevSince, since),
+    ]);
 
     const summarize = (events: typeof current) => {
       const counts = { view_content: 0, add_to_cart: 0, initiate_checkout: 0, purchase: 0 };
@@ -89,7 +133,7 @@ Deno.serve(async (req) => {
     const cur = summarize(current);
     const prev = summarize(previous);
 
-    // Time series buckets (hourly if days<=2, else daily)
+    // Time series buckets (hourly if span<=2 days, else daily)
     const hourly = days <= 2;
     const buckets = new Map<string, { date: string; revenue: number; view_content: number; add_to_cart: number; initiate_checkout: number; purchase: number }>();
     for (const e of current) {
@@ -143,7 +187,7 @@ Deno.serve(async (req) => {
 
     return new Response(JSON.stringify({
       ok: true,
-      range: { days, since, now: new Date().toISOString() },
+      range: { days, since, until, now: new Date().toISOString() },
       kpis: { current: cur, previous: prev },
       timeseries,
       topProducts,

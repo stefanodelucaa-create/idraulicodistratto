@@ -1,5 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
+import { it } from "date-fns/locale";
 import { supabase } from "@/integrations/supabase/client";
 import { isAdminEmail } from "@/lib/adminConfig";
 import { Button } from "@/components/ui/button";
@@ -7,13 +9,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 import {
   ResponsiveContainer, LineChart, Line, BarChart, Bar, XAxis, YAxis,
   CartesianGrid, Tooltip, Legend,
 } from "recharts";
-import { ArrowDown, ArrowUp, Download, LogOut, RefreshCw, Activity } from "lucide-react";
+import { ArrowDown, ArrowUp, Download, LogOut, RefreshCw, Activity, CalendarIcon } from "lucide-react";
 
-type Range = 1 | 7 | 30;
+type Preset = "today" | "yesterday" | "7d" | "30d" | "90d" | "custom";
+
+interface Filter {
+  preset: Preset;
+  from?: Date;
+  to?: Date;
+}
 
 interface Kpis {
   counts: { view_content: number; add_to_cart: number; initiate_checkout: number; purchase: number };
@@ -126,14 +137,31 @@ export default function AdminAnalytics() {
   const navigate = useNavigate();
   const [data, setData] = useState<AnalyticsResponse | null>(null);
   const [loading, setLoading] = useState(true);
-  const [range, setRange] = useState<Range>(7);
+  const [filter, setFilter] = useState<Filter>({ preset: "7d" });
   const [search, setSearch] = useState("");
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [pickerRange, setPickerRange] = useState<{ from?: Date; to?: Date }>({});
 
-  const fetchData = async (days: Range) => {
+  const buildBody = useCallback((f: Filter): Record<string, unknown> => {
+    if (f.preset === "today") return { days: 1 };
+    if (f.preset === "yesterday") return { preset: "yesterday" };
+    if (f.preset === "7d") return { days: 7 };
+    if (f.preset === "30d") return { days: 30 };
+    if (f.preset === "90d") return { days: 90 };
+    if (f.preset === "custom" && f.from && f.to) {
+      // include the full "to" day
+      const toEnd = new Date(f.to);
+      toEnd.setHours(23, 59, 59, 999);
+      return { from: f.from.toISOString(), to: toEnd.toISOString() };
+    }
+    return { days: 7 };
+  }, []);
+
+  const fetchData = useCallback(async (f: Filter) => {
     setLoading(true);
     try {
       const { data: res, error } = await supabase.functions.invoke("analytics-data", {
-        body: { days },
+        body: buildBody(f),
       });
       if (error) throw error;
       setData(res as AnalyticsResponse);
@@ -142,7 +170,7 @@ export default function AdminAnalytics() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [buildBody]);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: s }) => {
@@ -150,26 +178,28 @@ export default function AdminAnalytics() {
         navigate("/admin/auth", { replace: true });
         return;
       }
-      fetchData(range);
+      fetchData(filter);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    fetchData(range);
+    if (filter.preset !== "custom" || (filter.from && filter.to)) {
+      fetchData(filter);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [range]);
+  }, [filter]);
 
   useEffect(() => {
     const ch = supabase
       .channel("tracking-events-feed")
       .on("postgres_changes", { event: "INSERT", schema: "public", table: "tracking_events" }, () => {
-        fetchData(range);
+        fetchData(filter);
       })
       .subscribe();
     return () => { supabase.removeChannel(ch); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [range]);
+  }, [filter]);
 
   const logout = async () => {
     await supabase.auth.signOut();
@@ -231,23 +261,68 @@ export default function AdminAnalytics() {
               {liveStatus.live ? "LIVE" : "IDLE"} · {liveStatus.label}
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <div className="flex rounded-lg border border-gray-800 bg-gray-900/80 overflow-hidden">
-              {([1, 7, 30] as Range[]).map((r) => (
+              {([
+                { key: "today" as Preset, label: "Oggi" },
+                { key: "yesterday" as Preset, label: "Ieri" },
+                { key: "7d" as Preset, label: "7g" },
+                { key: "30d" as Preset, label: "30g" },
+                { key: "90d" as Preset, label: "90g" },
+              ]).map((p) => (
                 <button
-                  key={r}
-                  onClick={() => setRange(r)}
-                  className={`px-3 py-1.5 text-sm font-bold transition-colors ${range === r ? "bg-red-600 text-white" : "text-white/70 hover:bg-gray-800 hover:text-white"}`}
+                  key={p.key}
+                  onClick={() => setFilter({ preset: p.key })}
+                  className={cn(
+                    "px-3 py-1.5 text-sm font-bold transition-colors",
+                    filter.preset === p.key
+                      ? "bg-red-600 text-white"
+                      : "text-white/70 hover:bg-gray-800 hover:text-white"
+                  )}
                 >
-                  {r === 1 ? "Oggi" : `${r}g`}
+                  {p.label}
                 </button>
               ))}
             </div>
+            <Popover open={pickerOpen} onOpenChange={setPickerOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  size="sm"
+                  className={cn(
+                    "border text-white h-9 gap-2",
+                    filter.preset === "custom"
+                      ? "bg-red-600 hover:bg-red-700 border-red-600"
+                      : "bg-gray-900 hover:bg-gray-800 border-gray-800"
+                  )}
+                >
+                  <CalendarIcon className="h-4 w-4" />
+                  {filter.preset === "custom" && filter.from && filter.to
+                    ? `${format(filter.from, "d MMM", { locale: it })} – ${format(filter.to, "d MMM", { locale: it })}`
+                    : "Personalizzato"}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0 bg-gray-900 border-gray-800" align="end">
+                <Calendar
+                  mode="range"
+                  selected={pickerRange as { from: Date; to?: Date }}
+                  onSelect={(r) => {
+                    setPickerRange(r || {});
+                    if (r?.from && r?.to) {
+                      setFilter({ preset: "custom", from: r.from, to: r.to });
+                      setPickerOpen(false);
+                    }
+                  }}
+                  numberOfMonths={2}
+                  locale={it}
+                  className={cn("p-3 pointer-events-auto bg-gray-900 text-white")}
+                />
+              </PopoverContent>
+            </Popover>
             <Button
               size="sm"
-              onClick={() => fetchData(range)}
+              onClick={() => fetchData(filter)}
               disabled={loading}
-              className="bg-gray-900 hover:bg-gray-800 border border-gray-800 text-white"
+              className="bg-gray-900 hover:bg-gray-800 border border-gray-800 text-white h-9"
             >
               <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
             </Button>
@@ -399,7 +474,7 @@ export default function AdminAnalytics() {
                 <div className="flex justify-end mb-2">
                   <Button
                     size="sm"
-                    onClick={() => downloadCSV(filteredOrders, `orders-${range}d.csv`)}
+                    onClick={() => downloadCSV(filteredOrders, `orders-${filter.preset}.csv`)}
                     className="bg-red-600 hover:bg-red-700 text-white text-xs h-8"
                   >
                     <Download className="h-3 w-3 mr-1" />CSV
@@ -427,7 +502,7 @@ export default function AdminAnalytics() {
                 <div className="flex justify-end mb-2">
                   <Button
                     size="sm"
-                    onClick={() => downloadCSV(filteredFeed, `events-${range}d.csv`)}
+                    onClick={() => downloadCSV(filteredFeed, `events-${filter.preset}.csv`)}
                     className="bg-red-600 hover:bg-red-700 text-white text-xs h-8"
                   >
                     <Download className="h-3 w-3 mr-1" />CSV
