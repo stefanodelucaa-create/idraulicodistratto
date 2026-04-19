@@ -1,5 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
+import { it } from "date-fns/locale";
 import { supabase } from "@/integrations/supabase/client";
 import { isAdminEmail } from "@/lib/adminConfig";
 import { Button } from "@/components/ui/button";
@@ -7,13 +9,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 import {
   ResponsiveContainer, LineChart, Line, BarChart, Bar, XAxis, YAxis,
   CartesianGrid, Tooltip, Legend,
 } from "recharts";
-import { ArrowDown, ArrowUp, Download, LogOut, RefreshCw, Activity } from "lucide-react";
+import { ArrowDown, ArrowUp, Download, LogOut, RefreshCw, Activity, CalendarIcon } from "lucide-react";
 
-type Range = 1 | 7 | 30;
+type Preset = "today" | "yesterday" | "7d" | "30d" | "90d" | "custom";
+
+interface Filter {
+  preset: Preset;
+  from?: Date;
+  to?: Date;
+}
 
 interface Kpis {
   counts: { view_content: number; add_to_cart: number; initiate_checkout: number; purchase: number };
