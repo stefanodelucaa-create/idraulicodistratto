@@ -4,12 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useCartSync } from "@/hooks/useCartSync";
-import Index from "./pages/Index";
 import IndexBold from "./pages/IndexBold";
-import IndexDark from "./pages/IndexDark";
-import IndexTech from "./pages/IndexTech";
-import IndexHybrid from "./pages/IndexHybrid";
-import IndexTripleHybrid from "./pages/IndexTripleHybrid";
 import ThankYou from "./pages/ThankYou";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
@@ -27,12 +22,8 @@ function AppContent() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Index />} />
+        <Route path="/" element={<IndexBold />} />
         <Route path="/v2" element={<IndexBold />} />
-        <Route path="/v3" element={<IndexDark />} />
-        <Route path="/v4" element={<IndexTech />} />
-        <Route path="/v5" element={<IndexHybrid />} />
-        <Route path="/v6" element={<IndexTripleHybrid />} />
         <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/termini-condizioni" element={<TermsConditions />} />

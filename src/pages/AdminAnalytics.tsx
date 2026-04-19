@@ -49,7 +49,7 @@ const trend = (cur: number, prev: number) => {
 function TrendBadge({ value }: { value: number }) {
   const positive = value >= 0;
   return (
-    <span className={`inline-flex items-center gap-0.5 text-xs font-semibold ${positive ? "text-emerald-500" : "text-red-500"}`}>
+    <span className={`inline-flex items-center gap-0.5 text-xs font-semibold ${positive ? "text-primary" : "text-destructive"}`}>
       {positive ? <ArrowUp className="h-3 w-3" /> : <ArrowDown className="h-3 w-3" />}
       {Math.abs(value).toFixed(1)}%
     </span>
@@ -58,13 +58,13 @@ function TrendBadge({ value }: { value: number }) {
 
 function KpiCard({ icon, label, value, trendValue }: { icon: string; label: string; value: string; trendValue: number }) {
   return (
-    <Card>
+    <Card className="bg-card-gradient shadow-soft hover:shadow-elevated transition-shadow border">
       <CardContent className="p-4">
         <div className="flex items-center justify-between">
           <span className="text-2xl">{icon}</span>
           <TrendBadge value={trendValue} />
         </div>
-        <div className="mt-2 text-2xl font-bold">{value}</div>
+        <div className="mt-2 text-2xl font-bold text-foreground">{value}</div>
         <div className="text-xs text-muted-foreground mt-1">{label}</div>
       </CardContent>
     </Card>
@@ -74,12 +74,12 @@ function KpiCard({ icon, label, value, trendValue }: { icon: string; label: stri
 function FunnelStep({ label, value, dropoff }: { label: string; value: number; dropoff?: number | null }) {
   return (
     <div className="flex-1 min-w-0">
-      <div className="rounded-lg border bg-card p-4 text-center">
+      <div className="rounded-lg border bg-card-gradient p-4 text-center shadow-soft">
         <div className="text-xs uppercase tracking-wide text-muted-foreground">{label}</div>
-        <div className="text-2xl font-bold mt-1">{fmtInt(value)}</div>
+        <div className="text-2xl font-bold mt-1 text-foreground">{fmtInt(value)}</div>
         {dropoff !== undefined && dropoff !== null && (
-          <div className="text-xs mt-2">
-            <span className={dropoff > 70 ? "text-red-500" : dropoff > 40 ? "text-yellow-500" : "text-emerald-500"}>
+          <div className="text-xs mt-2 font-semibold">
+            <span className={dropoff > 70 ? "text-destructive" : dropoff > 40 ? "text-accent-foreground" : "text-primary"}>
               {fmtPct(dropoff)} drop
             </span>
           </div>
@@ -91,10 +91,10 @@ function FunnelStep({ label, value, dropoff }: { label: string; value: number; d
 
 function eventBadge(type: string) {
   const map: Record<string, { label: string; cls: string }> = {
-    view_content: { label: "View", cls: "bg-blue-500/15 text-blue-400 border-blue-500/30" },
-    add_to_cart: { label: "Cart", cls: "bg-yellow-500/15 text-yellow-400 border-yellow-500/30" },
-    initiate_checkout: { label: "Checkout", cls: "bg-purple-500/15 text-purple-400 border-purple-500/30" },
-    purchase: { label: "Purchase", cls: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30" },
+    view_content: { label: "View", cls: "bg-secondary text-secondary-foreground border-border" },
+    add_to_cart: { label: "Cart", cls: "bg-accent/20 text-accent-foreground border-accent/40" },
+    initiate_checkout: { label: "Checkout", cls: "bg-primary/15 text-primary border-primary/40" },
+    purchase: { label: "Purchase", cls: "bg-primary text-primary-foreground border-primary" },
   };
   const m = map[type] || { label: type, cls: "" };
   return <Badge variant="outline" className={m.cls}>{m.label}</Badge>;
@@ -211,24 +211,24 @@ export default function AdminAnalytics() {
   }, [data, search]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground dark">
+    <div className="min-h-screen bg-hero text-foreground">
       {/* Sticky header */}
-      <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-soft">
         <div className="container mx-auto px-4 py-3 flex flex-wrap items-center gap-3 justify-between">
           <div className="flex items-center gap-3">
-            <h1 className="text-lg font-bold">Analytics Dashboard</h1>
-            <Badge variant="outline" className={liveStatus.live ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30" : "bg-muted text-muted-foreground"}>
+            <h1 className="text-lg font-bold text-foreground">Analytics Dashboard</h1>
+            <Badge variant="outline" className={liveStatus.live ? "bg-primary/15 text-primary border-primary/40" : "bg-muted text-muted-foreground"}>
               <Activity className={`h-3 w-3 mr-1 ${liveStatus.live ? "animate-pulse" : ""}`} />
               {liveStatus.live ? "Live" : "Idle"} · {liveStatus.label}
             </Badge>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex rounded-md border bg-card">
+            <div className="flex rounded-md border border-border bg-card overflow-hidden">
               {([1, 7, 30] as Range[]).map((r) => (
                 <button
                   key={r}
                   onClick={() => setRange(r)}
-                  className={`px-3 py-1.5 text-sm ${range === r ? "bg-primary text-primary-foreground" : "hover:bg-muted"} ${r === 1 ? "rounded-l-md" : ""} ${r === 30 ? "rounded-r-md" : ""}`}
+                  className={`px-3 py-1.5 text-sm font-medium transition-colors ${range === r ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-muted"}`}
                 >
                   {r === 1 ? "Oggi" : `${r}g`}
                 </button>
@@ -306,9 +306,9 @@ export default function AdminAnalytics() {
                   <YAxis tick={{ fontSize: 11 }} />
                   <Tooltip contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))" }} />
                   <Legend wrapperStyle={{ fontSize: 11 }} />
-                  <Bar dataKey="add_to_cart" stackId="a" fill="#eab308" />
-                  <Bar dataKey="initiate_checkout" stackId="a" fill="#a855f7" />
-                  <Bar dataKey="purchase" stackId="a" fill="#10b981" />
+                  <Bar dataKey="add_to_cart" stackId="a" fill="hsl(var(--accent))" />
+                  <Bar dataKey="initiate_checkout" stackId="a" fill="hsl(var(--primary) / 0.6)" />
+                  <Bar dataKey="purchase" stackId="a" fill="hsl(var(--primary))" />
                 </BarChart>
               </ResponsiveContainer>
             </CardContent>
