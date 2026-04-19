@@ -502,7 +502,7 @@ export default function AdminAnalytics() {
                 <div className="flex justify-end mb-2">
                   <Button
                     size="sm"
-                    onClick={() => downloadCSV(filteredFeed, `events-${range}d.csv`)}
+                    onClick={() => downloadCSV(filteredFeed, `events-${filter.preset}.csv`)}
                     className="bg-red-600 hover:bg-red-700 text-white text-xs h-8"
                   >
                     <Download className="h-3 w-3 mr-1" />CSV
