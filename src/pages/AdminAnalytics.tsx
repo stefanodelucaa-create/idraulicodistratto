@@ -16,7 +16,8 @@ import {
   ResponsiveContainer, LineChart, Line, BarChart, Bar, XAxis, YAxis,
   CartesianGrid, Tooltip, Legend,
 } from "recharts";
-import { ArrowDown, ArrowUp, Download, LogOut, RefreshCw, Activity, CalendarIcon } from "lucide-react";
+import { ArrowDown, ArrowUp, Download, LogOut, RefreshCw, Activity, CalendarIcon, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 type Preset = "today" | "yesterday" | "7d" | "30d" | "90d" | "custom";
 
