@@ -14,6 +14,7 @@ const META_ACCOUNT_RAW = (Deno.env.get('META_ADS_ACCOUNT_ID') || '').trim();
 const ACCOUNT_ID = META_ACCOUNT_RAW.startsWith('act_') ? META_ACCOUNT_RAW : `act_${META_ACCOUNT_RAW}`;
 
 const API_VERSION = 'v21.0';
+const BUILD_ID = 'diag-v2';
 
 interface InsightRow {
   date_start: string;
