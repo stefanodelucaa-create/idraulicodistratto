@@ -127,6 +127,26 @@ async function upsertStats(rows: InsightRow[], accountInfo: AccountInfo) {
   return payload.length;
 }
 
+async function diagnose() {
+  const out: Record<string, unknown> = { configured_account_id: ACCOUNT_ID };
+  // 1) /me
+  try {
+    const meRes = await fetch(`https://graph.facebook.com/${API_VERSION}/me?access_token=${META_TOKEN}&fields=id,name`);
+    out.me = { status: meRes.status, body: await meRes.json() };
+  } catch (e) { out.me = { error: String(e) }; }
+  // 2) /me/adaccounts (lista account visibili)
+  try {
+    const aaRes = await fetch(`https://graph.facebook.com/${API_VERSION}/me/adaccounts?access_token=${META_TOKEN}&fields=id,account_id,name,account_status,business&limit=100`);
+    out.adaccounts = { status: aaRes.status, body: await aaRes.json() };
+  } catch (e) { out.adaccounts = { error: String(e) }; }
+  // 3) chiamata diretta all'account configurato
+  try {
+    const accRes = await fetch(`https://graph.facebook.com/${API_VERSION}/${ACCOUNT_ID}?access_token=${META_TOKEN}&fields=id,name,account_status,business,timezone_name`);
+    out.target_account = { status: accRes.status, body: await accRes.json() };
+  } catch (e) { out.target_account = { error: String(e) }; }
+  return out;
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response(null, { headers: corsHeaders });
   try {
@@ -137,10 +157,19 @@ Deno.serve(async (req) => {
     }
 
     let days = 7;
+    let diagnoseMode = false;
     try {
       const body = await req.json();
       if (typeof body?.days === 'number' && body.days > 0 && body.days <= 90) days = Math.floor(body.days);
+      if (body?.diagnose === true) diagnoseMode = true;
     } catch { /* GET / no body */ }
+
+    if (diagnoseMode) {
+      const result = await diagnose();
+      return new Response(JSON.stringify(result, null, 2), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
 
     const until = new Date();
     const since = new Date(until.getTime() - (days - 1) * 86400000);
