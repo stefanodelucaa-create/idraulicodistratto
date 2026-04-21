@@ -157,26 +157,50 @@ export default function AdminAnalytics() {
   const [pickerOpen, setPickerOpen] = useState(false);
   const [pickerRange, setPickerRange] = useState<{ from?: Date; to?: Date }>({});
   const [syncing, setSyncing] = useState(false);
+  const [syncError, setSyncError] = useState<string | null>(null);
+  const [checklistOpen, setChecklistOpen] = useState(false);
+  const [checklist, setChecklist] = useState<Record<string, boolean>>({});
 
   const handleSyncMetaAds = useCallback(async () => {
     setSyncing(true);
+    setSyncError(null);
     const t = toast.loading("Sync Meta Ads in corso…");
     try {
       const { data: res, error } = await supabase.functions.invoke("meta-ads-sync", {
         body: { days: 2 },
       });
-      if (error) throw error;
+      if (error) {
+        // Try to surface the underlying Meta error message
+        let detail = error.message || "Errore sconosciuto";
+        try {
+          const ctx = (error as { context?: { body?: string } }).context;
+          if (ctx?.body) {
+            const parsed = JSON.parse(ctx.body);
+            if (parsed?.error) detail = String(parsed.error);
+          }
+        } catch { /* noop */ }
+        throw new Error(detail);
+      }
       const upserted = (res as { upserted?: number })?.upserted ?? 0;
       toast.success(`Meta Ads sincronizzato (${upserted} righe)`, { id: t });
       await fetchData(filter);
     } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
       console.error(err);
-      toast.error("Sync Meta Ads fallito", { id: t });
+      setSyncError(msg);
+      // If it looks like an auth/permission error, open the checklist
+      if (/access blocked|OAuthException|permission|token|forbidden|401|403|400/i.test(msg)) {
+        setChecklistOpen(true);
+      }
+      toast.error("Sync Meta Ads fallito", { id: t, description: msg });
     } finally {
       setSyncing(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
+
+  const toggleCheck = (key: string) =>
+    setChecklist((prev) => ({ ...prev, [key]: !prev[key] }));
 
   const buildBody = useCallback((f: Filter): Record<string, unknown> => {
     if (f.preset === "today") return { preset: "today" };
