@@ -437,6 +437,33 @@ export default function AdminAnalytics() {
       </header>
 
       <div className="container mx-auto px-4 py-6 space-y-6">
+        {/* Sync error banner with checklist trigger */}
+        {syncError && (
+          <div className="rounded-lg border border-red-900/60 bg-red-950/40 p-4 flex items-start gap-3">
+            <AlertTriangle className="h-5 w-5 text-red-400 flex-shrink-0 mt-0.5" />
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-bold text-red-200">Sync Meta Ads fallito</p>
+              <p className="text-xs text-red-300/80 mt-1 break-all">{syncError}</p>
+              <Button
+                size="sm"
+                variant="outline"
+                className="mt-3 h-8 bg-transparent border-red-700 text-red-100 hover:bg-red-900/40"
+                onClick={() => setChecklistOpen(true)}
+              >
+                <HelpCircle className="h-3.5 w-3.5 mr-1.5" />
+                Apri checklist diagnostica
+              </Button>
+            </div>
+            <button
+              onClick={() => setSyncError(null)}
+              className="text-red-300/60 hover:text-red-200 text-xs"
+              aria-label="Chiudi"
+            >
+              ✕
+            </button>
+          </div>
+        )}
+
         {/* KPI Cards */}
         {loading && !data ? (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
