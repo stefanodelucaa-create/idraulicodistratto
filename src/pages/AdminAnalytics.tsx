@@ -704,6 +704,160 @@ export default function AdminAnalytics() {
           </SectionCard>
         </div>
       </div>
+
+      {/* Meta Ads diagnostics checklist */}
+      <Dialog open={checklistOpen} onOpenChange={setChecklistOpen}>
+        <DialogContent className="bg-gray-950 border border-gray-800 text-white max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-xl flex items-center gap-2">
+              <HelpCircle className="h-5 w-5 text-red-400" />
+              Diagnostica Meta Ads — Checklist
+            </DialogTitle>
+            <DialogDescription className="text-gray-400">
+              Segui i passi in ordine. L'errore "API access blocked" indica quasi sempre che il System User non ha accesso all'Ad Account o mancano permessi.
+            </DialogDescription>
+          </DialogHeader>
+
+          <ol className="space-y-4 mt-2">
+            {[
+              {
+                key: "step1",
+                title: "1. Apri Meta Business Settings",
+                body: (
+                  <>
+                    Vai su{" "}
+                    <a
+                      href="https://business.facebook.com/settings"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-red-400 hover:underline inline-flex items-center gap-1"
+                    >
+                      business.facebook.com/settings <ExternalLink className="h-3 w-3" />
+                    </a>{" "}
+                    e seleziona il Business Manager corretto in alto a sinistra.
+                  </>
+                ),
+              },
+              {
+                key: "step2",
+                title: "2. Trova il System User",
+                body: (
+                  <>
+                    Menu sinistro → <b>Users → System Users</b>. Seleziona il System User che ha generato il token (di solito uno con ruolo <b>Admin</b>).
+                  </>
+                ),
+              },
+              {
+                key: "step3",
+                title: "3. Assegna l'Ad Account come Asset",
+                body: (
+                  <>
+                    Nel pannello del System User → tab <b>Assigned Assets</b> → <b>Add Assets</b> → <b>Ad Accounts</b>. Seleziona il tuo account pubblicitario e attiva almeno il permesso <b>"Manage campaigns"</b> (o <b>"View performance"</b> come minimo). Salva.
+                  </>
+                ),
+              },
+              {
+                key: "step4",
+                title: "4. Genera un nuovo Token",
+                body: (
+                  <>
+                    Sempre nel System User → click su <b>Generate New Token</b>. Seleziona la tua App Meta. Spunta i permessi:
+                    <ul className="list-disc ml-5 mt-2 text-sm space-y-1">
+                      <li><code className="bg-gray-800 px-1.5 py-0.5 rounded text-red-300">ads_read</code></li>
+                      <li><code className="bg-gray-800 px-1.5 py-0.5 rounded text-red-300">read_insights</code></li>
+                      <li><code className="bg-gray-800 px-1.5 py-0.5 rounded text-red-300">business_management</code></li>
+                    </ul>
+                    <span className="block mt-2">Imposta <b>Token Expiration: Never</b>. Copia il token.</span>
+                  </>
+                ),
+              },
+              {
+                key: "step5",
+                title: "5. Verifica l'App in Live Mode",
+                body: (
+                  <>
+                    Vai su{" "}
+                    <a
+                      href="https://developers.facebook.com/apps/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-red-400 hover:underline inline-flex items-center gap-1"
+                    >
+                      developers.facebook.com/apps <ExternalLink className="h-3 w-3" />
+                    </a>{" "}
+                    → la tua app → in alto deve essere su <b>"Live"</b> (non Development), altrimenti il System User che non è admin dell'app non può usarla.
+                  </>
+                ),
+              },
+              {
+                key: "step6",
+                title: "6. Testa il Token",
+                body: (
+                  <>
+                    Prima di salvarlo, testalo nel{" "}
+                    <a
+                      href="https://developers.facebook.com/tools/debug/accesstoken/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-red-400 hover:underline inline-flex items-center gap-1"
+                    >
+                      Access Token Debugger <ExternalLink className="h-3 w-3" />
+                    </a>
+                    . Verifica che mostri: <b>Valid: True</b>, <b>Expires: Never</b>, e che gli scope includano <code className="bg-gray-800 px-1 rounded text-xs">ads_read</code>.
+                  </>
+                ),
+              },
+              {
+                key: "step7",
+                title: "7. Aggiorna il Secret in Lovable",
+                body: (
+                  <>
+                    Quando hai un token valido e funzionante, chiedimi in chat di aggiornare <code className="bg-gray-800 px-1.5 py-0.5 rounded text-red-300 text-xs">META_ADS_ACCESS_TOKEN</code>. Poi clicca <b>Sync Ads</b> qui in dashboard per verificare.
+                  </>
+                ),
+              },
+            ].map((step) => (
+              <li key={step.key} className="flex items-start gap-3">
+                <Checkbox
+                  id={step.key}
+                  checked={!!checklist[step.key]}
+                  onCheckedChange={() => toggleCheck(step.key)}
+                  className="mt-1 border-gray-600 data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600"
+                />
+                <label htmlFor={step.key} className="flex-1 cursor-pointer">
+                  <p className={cn("font-bold text-sm", checklist[step.key] && "line-through text-gray-500")}>
+                    {step.title}
+                  </p>
+                  <div className={cn("text-sm text-gray-300 mt-1", checklist[step.key] && "opacity-50")}>
+                    {step.body}
+                  </div>
+                </label>
+              </li>
+            ))}
+          </ol>
+
+          <DialogFooter className="mt-4 gap-2">
+            <Button
+              variant="outline"
+              className="bg-transparent border-gray-700 text-white hover:bg-gray-800"
+              onClick={() => setChecklist({})}
+            >
+              Reset
+            </Button>
+            <Button
+              className="bg-red-600 hover:bg-red-500 text-white font-bold"
+              onClick={() => {
+                setChecklistOpen(false);
+                handleSyncMetaAds();
+              }}
+              disabled={syncing}
+            >
+              <Zap className={`h-4 w-4 mr-1.5 ${syncing ? "animate-pulse" : ""}`} />
+              Riprova Sync
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </main>
   );
 }
