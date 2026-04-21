@@ -11,12 +11,14 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
 import {
   ResponsiveContainer, LineChart, Line, BarChart, Bar, XAxis, YAxis,
   CartesianGrid, Tooltip, Legend,
 } from "recharts";
-import { ArrowDown, ArrowUp, Download, LogOut, RefreshCw, Activity, CalendarIcon, Trash2, Zap } from "lucide-react";
+import { ArrowDown, ArrowUp, Download, LogOut, RefreshCw, Activity, CalendarIcon, Trash2, Zap, HelpCircle, AlertTriangle, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 
 type Preset = "today" | "yesterday" | "7d" | "30d" | "90d" | "custom";
@@ -157,26 +159,50 @@ export default function AdminAnalytics() {
   const [pickerOpen, setPickerOpen] = useState(false);
   const [pickerRange, setPickerRange] = useState<{ from?: Date; to?: Date }>({});
   const [syncing, setSyncing] = useState(false);
+  const [syncError, setSyncError] = useState<string | null>(null);
+  const [checklistOpen, setChecklistOpen] = useState(false);
+  const [checklist, setChecklist] = useState<Record<string, boolean>>({});
 
   const handleSyncMetaAds = useCallback(async () => {
     setSyncing(true);
+    setSyncError(null);
     const t = toast.loading("Sync Meta Ads in corso…");
     try {
       const { data: res, error } = await supabase.functions.invoke("meta-ads-sync", {
         body: { days: 2 },
       });
-      if (error) throw error;
+      if (error) {
+        // Try to surface the underlying Meta error message
+        let detail = error.message || "Errore sconosciuto";
+        try {
+          const ctx = (error as { context?: { body?: string } }).context;
+          if (ctx?.body) {
+            const parsed = JSON.parse(ctx.body);
+            if (parsed?.error) detail = String(parsed.error);
+          }
+        } catch { /* noop */ }
+        throw new Error(detail);
+      }
       const upserted = (res as { upserted?: number })?.upserted ?? 0;
       toast.success(`Meta Ads sincronizzato (${upserted} righe)`, { id: t });
       await fetchData(filter);
     } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
       console.error(err);
-      toast.error("Sync Meta Ads fallito", { id: t });
+      setSyncError(msg);
+      // If it looks like an auth/permission error, open the checklist
+      if (/access blocked|OAuthException|permission|token|forbidden|401|403|400/i.test(msg)) {
+        setChecklistOpen(true);
+      }
+      toast.error("Sync Meta Ads fallito", { id: t, description: msg });
     } finally {
       setSyncing(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
+
+  const toggleCheck = (key: string) =>
+    setChecklist((prev) => ({ ...prev, [key]: !prev[key] }));
 
   const buildBody = useCallback((f: Filter): Record<string, unknown> => {
     if (f.preset === "today") return { preset: "today" };
@@ -411,6 +437,33 @@ export default function AdminAnalytics() {
       </header>
 
       <div className="container mx-auto px-4 py-6 space-y-6">
+        {/* Sync error banner with checklist trigger */}
+        {syncError && (
+          <div className="rounded-lg border border-red-900/60 bg-red-950/40 p-4 flex items-start gap-3">
+            <AlertTriangle className="h-5 w-5 text-red-400 flex-shrink-0 mt-0.5" />
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-bold text-red-200">Sync Meta Ads fallito</p>
+              <p className="text-xs text-red-300/80 mt-1 break-all">{syncError}</p>
+              <Button
+                size="sm"
+                variant="outline"
+                className="mt-3 h-8 bg-transparent border-red-700 text-red-100 hover:bg-red-900/40"
+                onClick={() => setChecklistOpen(true)}
+              >
+                <HelpCircle className="h-3.5 w-3.5 mr-1.5" />
+                Apri checklist diagnostica
+              </Button>
+            </div>
+            <button
+              onClick={() => setSyncError(null)}
+              className="text-red-300/60 hover:text-red-200 text-xs"
+              aria-label="Chiudi"
+            >
+              ✕
+            </button>
+          </div>
+        )}
+
         {/* KPI Cards */}
         {loading && !data ? (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -651,6 +704,160 @@ export default function AdminAnalytics() {
           </SectionCard>
         </div>
       </div>
+
+      {/* Meta Ads diagnostics checklist */}
+      <Dialog open={checklistOpen} onOpenChange={setChecklistOpen}>
+        <DialogContent className="bg-gray-950 border border-gray-800 text-white max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-xl flex items-center gap-2">
+              <HelpCircle className="h-5 w-5 text-red-400" />
+              Diagnostica Meta Ads — Checklist
+            </DialogTitle>
+            <DialogDescription className="text-gray-400">
+              Segui i passi in ordine. L'errore "API access blocked" indica quasi sempre che il System User non ha accesso all'Ad Account o mancano permessi.
+            </DialogDescription>
+          </DialogHeader>
+
+          <ol className="space-y-4 mt-2">
+            {[
+              {
+                key: "step1",
+                title: "1. Apri Meta Business Settings",
+                body: (
+                  <>
+                    Vai su{" "}
+                    <a
+                      href="https://business.facebook.com/settings"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-red-400 hover:underline inline-flex items-center gap-1"
+                    >
+                      business.facebook.com/settings <ExternalLink className="h-3 w-3" />
+                    </a>{" "}
+                    e seleziona il Business Manager corretto in alto a sinistra.
+                  </>
+                ),
+              },
+              {
+                key: "step2",
+                title: "2. Trova il System User",
+                body: (
+                  <>
+                    Menu sinistro → <b>Users → System Users</b>. Seleziona il System User che ha generato il token (di solito uno con ruolo <b>Admin</b>).
+                  </>
+                ),
+              },
+              {
+                key: "step3",
+                title: "3. Assegna l'Ad Account come Asset",
+                body: (
+                  <>
+                    Nel pannello del System User → tab <b>Assigned Assets</b> → <b>Add Assets</b> → <b>Ad Accounts</b>. Seleziona il tuo account pubblicitario e attiva almeno il permesso <b>"Manage campaigns"</b> (o <b>"View performance"</b> come minimo). Salva.
+                  </>
+                ),
+              },
+              {
+                key: "step4",
+                title: "4. Genera un nuovo Token",
+                body: (
+                  <>
+                    Sempre nel System User → click su <b>Generate New Token</b>. Seleziona la tua App Meta. Spunta i permessi:
+                    <ul className="list-disc ml-5 mt-2 text-sm space-y-1">
+                      <li><code className="bg-gray-800 px-1.5 py-0.5 rounded text-red-300">ads_read</code></li>
+                      <li><code className="bg-gray-800 px-1.5 py-0.5 rounded text-red-300">read_insights</code></li>
+                      <li><code className="bg-gray-800 px-1.5 py-0.5 rounded text-red-300">business_management</code></li>
+                    </ul>
+                    <span className="block mt-2">Imposta <b>Token Expiration: Never</b>. Copia il token.</span>
+                  </>
+                ),
+              },
+              {
+                key: "step5",
+                title: "5. Verifica l'App in Live Mode",
+                body: (
+                  <>
+                    Vai su{" "}
+                    <a
+                      href="https://developers.facebook.com/apps/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-red-400 hover:underline inline-flex items-center gap-1"
+                    >
+                      developers.facebook.com/apps <ExternalLink className="h-3 w-3" />
+                    </a>{" "}
+                    → la tua app → in alto deve essere su <b>"Live"</b> (non Development), altrimenti il System User che non è admin dell'app non può usarla.
+                  </>
+                ),
+              },
+              {
+                key: "step6",
+                title: "6. Testa il Token",
+                body: (
+                  <>
+                    Prima di salvarlo, testalo nel{" "}
+                    <a
+                      href="https://developers.facebook.com/tools/debug/accesstoken/"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-red-400 hover:underline inline-flex items-center gap-1"
+                    >
+                      Access Token Debugger <ExternalLink className="h-3 w-3" />
+                    </a>
+                    . Verifica che mostri: <b>Valid: True</b>, <b>Expires: Never</b>, e che gli scope includano <code className="bg-gray-800 px-1 rounded text-xs">ads_read</code>.
+                  </>
+                ),
+              },
+              {
+                key: "step7",
+                title: "7. Aggiorna il Secret in Lovable",
+                body: (
+                  <>
+                    Quando hai un token valido e funzionante, chiedimi in chat di aggiornare <code className="bg-gray-800 px-1.5 py-0.5 rounded text-red-300 text-xs">META_ADS_ACCESS_TOKEN</code>. Poi clicca <b>Sync Ads</b> qui in dashboard per verificare.
+                  </>
+                ),
+              },
+            ].map((step) => (
+              <li key={step.key} className="flex items-start gap-3">
+                <Checkbox
+                  id={step.key}
+                  checked={!!checklist[step.key]}
+                  onCheckedChange={() => toggleCheck(step.key)}
+                  className="mt-1 border-gray-600 data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600"
+                />
+                <label htmlFor={step.key} className="flex-1 cursor-pointer">
+                  <p className={cn("font-bold text-sm", checklist[step.key] && "line-through text-gray-500")}>
+                    {step.title}
+                  </p>
+                  <div className={cn("text-sm text-gray-300 mt-1", checklist[step.key] && "opacity-50")}>
+                    {step.body}
+                  </div>
+                </label>
+              </li>
+            ))}
+          </ol>
+
+          <DialogFooter className="mt-4 gap-2">
+            <Button
+              variant="outline"
+              className="bg-transparent border-gray-700 text-white hover:bg-gray-800"
+              onClick={() => setChecklist({})}
+            >
+              Reset
+            </Button>
+            <Button
+              className="bg-red-600 hover:bg-red-500 text-white font-bold"
+              onClick={() => {
+                setChecklistOpen(false);
+                handleSyncMetaAds();
+              }}
+              disabled={syncing}
+            >
+              <Zap className={`h-4 w-4 mr-1.5 ${syncing ? "animate-pulse" : ""}`} />
+              Riprova Sync
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </main>
   );
 }
