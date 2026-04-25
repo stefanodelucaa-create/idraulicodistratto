@@ -120,7 +120,7 @@ export const Hero = ({ onBuyClick, price, originalPrice }: HeroProps) => {
                 variant="cta"
                 size="xl"
                 onClick={onBuyClick}
-                className="w-full group min-h-[56px] sm:min-h-[60px] text-lg sm:text-xl md:text-2xl font-bold whitespace-normal tracking-tight"
+                className="w-full group min-h-[56px] sm:min-h-[60px] text-lg sm:text-xl md:text-2xl font-bold whitespace-normal tracking-tight bg-primary-foreground text-foreground hover:bg-primary-foreground/90"
               >
                 Ottieni Tutto a {price}
                 <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-1" />
