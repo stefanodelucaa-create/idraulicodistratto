@@ -320,7 +320,7 @@ const IndexBold = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-black text-white">
               Non troverai nulla del genere
-              <span className="text-red-500 block">su internet (né da nessun'altra parte)…</span>
+              <span className="block"><span className="text-white">su internet</span> <span className="text-red-500">(né da nessun'altra parte)</span><span className="text-white">…</span></span>
             </h2>
           </div>
 
