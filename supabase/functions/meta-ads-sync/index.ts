@@ -67,12 +67,12 @@ async function fetchInsights(since: string, until: string): Promise<InsightRow[]
   const all: InsightRow[] = [];
   let next: string | null = url.toString();
   while (next) {
-    const res = await fetch(next);
+    const res: Response = await fetch(next);
     if (!res.ok) {
       const txt = await res.text();
       throw new Error(`Meta API error ${res.status}: ${txt}`);
     }
-    const json = await res.json();
+    const json: any = await res.json();
     if (Array.isArray(json.data)) all.push(...json.data);
     next = json.paging?.next ?? null;
   }
