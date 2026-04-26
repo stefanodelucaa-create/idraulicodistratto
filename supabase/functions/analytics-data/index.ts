@@ -147,7 +147,7 @@ Deno.serve(async (req) => {
       const addToCartRate = clamp(counts.view_content ? (counts.add_to_cart / counts.view_content) * 100 : 0);
       // Checkout Rate uses view_content as denominator (more stable than add_to_cart, which can be skipped or under-tracked)
       const checkoutRate = clamp(counts.view_content ? (counts.initiate_checkout / counts.view_content) * 100 : 0);
-      const conversionRate = clamp(counts.initiate_checkout ? (orders / counts.initiate_checkout) * 100 : 0);
+      const conversionRate = clamp(sessions ? (orders / sessions) * 100 : 0);
       const checkoutToOrder = clamp(counts.initiate_checkout ? (orders / counts.initiate_checkout) * 100 : 0);
       const cartAbandon = clamp(counts.add_to_cart ? ((counts.add_to_cart - orders) / counts.add_to_cart) * 100 : 0);
       const sessionConversion = clamp(sessions ? (orders / sessions) * 100 : 0);
