@@ -162,6 +162,7 @@ export default function AdminAnalytics() {
   const [syncError, setSyncError] = useState<string | null>(null);
   const [checklistOpen, setChecklistOpen] = useState(false);
   const [checklist, setChecklist] = useState<Record<string, boolean>>({});
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   const handleSyncMetaAds = useCallback(async () => {
     setSyncing(true);
@@ -222,35 +223,63 @@ export default function AdminAnalytics() {
   const fetchData = useCallback(async (f: Filter) => {
     setLoading(true);
     try {
-      const { data: res, error } = await supabase.functions.invoke("analytics-data", {
-        body: buildBody(f),
+      const { data: sessionData } = await supabase.auth.getSession();
+      const session = sessionData.session;
+      const email = session?.user?.email;
+
+      if (!session?.access_token || !email || !isAdminEmail(email)) {
+        setIsAuthorized(false);
+        setData(null);
+        navigate("/admin/auth", { replace: true });
+        return;
+      }
+
+      setIsAuthorized(true);
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/analytics-data`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session.access_token}`,
+          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+        },
+        body: JSON.stringify(buildBody(f)),
       });
-      if (error) throw error;
-      setData(res as AnalyticsResponse);
+
+      if (response.status === 401 || response.status === 403) {
+        setIsAuthorized(false);
+        setData(null);
+        navigate("/admin/auth", { replace: true });
+        return;
+      }
+
+      if (!response.ok) throw new Error(`analytics-data failed: ${response.status}`);
+      setData(await response.json() as AnalyticsResponse);
     } catch (err) {
-      console.error(err);
+      toast.error(err instanceof Error ? err.message : "Errore caricamento analytics");
     } finally {
       setLoading(false);
     }
-  }, [buildBody]);
+  }, [buildBody, navigate]);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: s }) => {
       if (!s.session?.user?.email || !isAdminEmail(s.session.user.email)) {
+        setIsAuthorized(false);
         navigate("/admin/auth", { replace: true });
         return;
       }
+      setIsAuthorized(true);
       fetchData(filter);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (filter.preset !== "custom" || (filter.from && filter.to)) {
+    if (isAuthorized && (filter.preset !== "custom" || (filter.from && filter.to))) {
       fetchData(filter);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filter]);
+  }, [filter, isAuthorized]);
 
   useEffect(() => {
     const ch = supabase
