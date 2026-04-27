@@ -330,14 +330,15 @@ export default function AdminAnalytics() {
   const funnel = useMemo(() => {
     if (!cur) return null;
     const c = cur.counts;
+    const fbSessions = Math.round(Number(adsCur?.link_clicks) || 0);
     const stepDrop = (a: number, b: number) => (a ? ((a - b) / a) * 100 : 0);
     return [
-      { label: "Visualizzazioni", value: c.view_content, dropoff: null as number | null },
-      { label: "Add to Cart", value: c.add_to_cart, dropoff: stepDrop(c.view_content, c.add_to_cart) },
+      { label: "Sessioni FB Ads", value: fbSessions, dropoff: null as number | null },
+      { label: "Add to Cart", value: c.add_to_cart, dropoff: stepDrop(fbSessions, c.add_to_cart) },
       { label: "Checkout", value: c.initiate_checkout, dropoff: stepDrop(c.add_to_cart, c.initiate_checkout) },
       { label: "Acquisti", value: cur.orders, dropoff: stepDrop(c.initiate_checkout, cur.orders) },
     ];
-  }, [cur]);
+  }, [cur, adsCur]);
 
   const liveStatus = useMemo(() => {
     if (!data?.lastEvent) return { live: false, label: "Nessun evento" };
