@@ -13,6 +13,7 @@ import Contatti from "./pages/Contatti";
 import Unsubscribe from "./pages/Unsubscribe";
 import AdminAuth from "./pages/AdminAuth";
 import AdminAnalytics from "./pages/AdminAnalytics";
+import Advertorial1 from "./pages/Advertorial1";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
