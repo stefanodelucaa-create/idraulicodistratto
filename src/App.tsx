@@ -13,6 +13,7 @@ import Contatti from "./pages/Contatti";
 import Unsubscribe from "./pages/Unsubscribe";
 import AdminAuth from "./pages/AdminAuth";
 import AdminAnalytics from "./pages/AdminAnalytics";
+import Advertorial1 from "./pages/Advertorial1";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ function RoutedApp() {
       <Route path="/unsubscribe" element={<Unsubscribe />} />
       <Route path="/admin/auth" element={<AdminAuth />} />
       <Route path="/admin/analytics" element={<AdminAnalytics />} />
+      <Route path="/advertorial-1" element={<Advertorial1 />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
