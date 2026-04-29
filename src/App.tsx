@@ -32,6 +32,7 @@ function RoutedApp() {
       <Route path="/unsubscribe" element={<Unsubscribe />} />
       <Route path="/admin/auth" element={<AdminAuth />} />
       <Route path="/admin/analytics" element={<AdminAnalytics />} />
+      <Route path="/advertorial-1" element={<Advertorial1 />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
