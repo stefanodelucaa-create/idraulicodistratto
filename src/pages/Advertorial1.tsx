@@ -279,16 +279,6 @@ const Advertorial1 = () => {
             In questo contesto, vengono cercate risposte tra forum e video in navigazione privata… ma nessuno di questi contenuti arriva davvero alla radice del problema.
           </p>
 
-          <div className="adv-cta-box">
-            <h4 className="adv-cta-title">Protocollo del Piacere</h4>
-            <p className="adv-cta-text">
-              Un sistema scientifico di oltre 200 pagine, strutturato in sei sezioni progressive. Dalla psicologia all'anatomia, dalle tecniche step-by-step agli scenari avanzati.
-            </p>
-            <a className="adv-cta-btn" href={CTA_URL} rel="noopener">
-              Scopri il Protocollo del Piacere →
-            </a>
-          </div>
-
           <h3 className="adv-h3">Il secondo livello — quello che nessuno affronta</h3>
 
           <p>
