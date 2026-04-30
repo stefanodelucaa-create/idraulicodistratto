@@ -128,10 +128,17 @@ Deno.serve(async (req) => {
       fetchEventsBetween(prevSince, since),
     ]);
 
+    const isAdvPath = (p: string) => p.startsWith('/adv-1') || p.startsWith('/advertorial-1');
+    const isLandingPath = (p: string) => p === '/' || p.startsWith('/?') || p === '/v2' || p.startsWith('/v2?');
+
     const summarize = (events: typeof current) => {
       const counts = { view_content: 0, add_to_cart: 0, initiate_checkout: 0, purchase: 0, session_start: 0, page_view: 0 };
       let revenue = 0;
       const purchases: typeof events = [];
+      // Track per-session which paths were visited to compute advertorial → landing flow
+      const advSessions = new Set<string>();
+      const advToLandingSessions = new Set<string>();
+      let advViews = 0;
       for (const e of events) {
         const t = e.event_type as keyof typeof counts;
         if (t in counts) counts[t]++;
@@ -139,21 +146,34 @@ Deno.serve(async (req) => {
           revenue += Number(e.value) || 0;
           purchases.push(e);
         }
+        if (t === 'page_view') {
+          const path = String((e as Record<string, unknown>).page_path || '');
+          const sid = String((e as Record<string, unknown>).session_id || '');
+          if (isAdvPath(path)) {
+            advViews++;
+            if (sid) advSessions.add(sid);
+          } else if (isLandingPath(path) && sid && advSessions.has(sid)) {
+            advToLandingSessions.add(sid);
+          }
+        }
       }
       const orders = purchases.length;
       const aov = orders ? revenue / orders : 0;
       const sessions = counts.session_start;
       const clamp = (n: number) => Math.min(Math.max(n, 0), 100);
       const addToCartRate = clamp(counts.view_content ? (counts.add_to_cart / counts.view_content) * 100 : 0);
-      // Checkout Rate uses view_content as denominator (more stable than add_to_cart, which can be skipped or under-tracked)
       const checkoutRate = clamp(counts.view_content ? (counts.initiate_checkout / counts.view_content) * 100 : 0);
       const conversionRate = clamp(sessions ? (orders / sessions) * 100 : 0);
       const checkoutToOrder = clamp(counts.initiate_checkout ? (orders / counts.initiate_checkout) * 100 : 0);
       const cartAbandon = clamp(counts.add_to_cart ? ((counts.add_to_cart - orders) / counts.add_to_cart) * 100 : 0);
       const sessionConversion = clamp(sessions ? (orders / sessions) * 100 : 0);
+      const advertorialViews = advViews;
+      const advertorialToLanding = advToLandingSessions.size;
+      const advertorialCtr = clamp(advertorialViews ? (advertorialToLanding / advertorialViews) * 100 : 0);
       return {
         counts, orders, revenue, aov, sessions,
         addToCartRate, checkoutRate, conversionRate, checkoutToOrder, cartAbandon, sessionConversion,
+        advertorialViews, advertorialToLanding, advertorialCtr,
       };
     };
 
