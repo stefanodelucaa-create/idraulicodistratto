@@ -331,9 +331,13 @@ export default function AdminAnalytics() {
   const funnel = useMemo(() => {
     if (!cur) return null;
     const c = cur.counts;
+    const advViews = Number(cur.advertorialViews) || 0;
+    const advToLanding = Number(cur.advertorialToLanding) || 0;
     const fbSessions = Math.round(Number(adsCur?.link_clicks) || 0);
     const stepDrop = (a: number, b: number) => (a ? ((a - b) / a) * 100 : 0);
     return [
+      { label: "Visite Advertorial", value: advViews, dropoff: null as number | null },
+      { label: "Adv → Landing", value: advToLanding, dropoff: stepDrop(advViews, advToLanding) },
       { label: "Sessioni FB Ads", value: fbSessions, dropoff: null as number | null },
       { label: "Add to Cart", value: c.add_to_cart, dropoff: stepDrop(fbSessions, c.add_to_cart) },
       { label: "Checkout", value: c.initiate_checkout, dropoff: stepDrop(c.add_to_cart, c.initiate_checkout) },
