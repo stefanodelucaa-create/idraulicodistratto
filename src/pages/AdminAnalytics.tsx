@@ -333,17 +333,15 @@ export default function AdminAnalytics() {
     const c = cur.counts;
     const advViews = Number(cur.advertorialViews) || 0;
     const advToLanding = Number(cur.advertorialToLanding) || 0;
-    const fbSessions = Math.round(Number(adsCur?.link_clicks) || 0);
     const stepDrop = (a: number, b: number) => (a ? ((a - b) / a) * 100 : 0);
     return [
       { label: "Visite Advertorial", value: advViews, dropoff: null as number | null },
-      { label: "Adv → Landing", value: advToLanding, dropoff: stepDrop(advViews, advToLanding) },
-      { label: "Sessioni FB Ads", value: fbSessions, dropoff: null as number | null },
-      { label: "Add to Cart", value: c.add_to_cart, dropoff: stepDrop(fbSessions, c.add_to_cart) },
+      { label: "Landing", value: advToLanding, dropoff: stepDrop(advViews, advToLanding) },
+      { label: "Add to Cart", value: c.add_to_cart, dropoff: stepDrop(advToLanding, c.add_to_cart) },
       { label: "Checkout", value: c.initiate_checkout, dropoff: stepDrop(c.add_to_cart, c.initiate_checkout) },
       { label: "Acquisti", value: cur.orders, dropoff: stepDrop(c.initiate_checkout, cur.orders) },
     ];
-  }, [cur, adsCur]);
+  }, [cur]);
 
   const liveStatus = useMemo(() => {
     if (!data?.lastEvent) return { live: false, label: "Nessun evento" };
