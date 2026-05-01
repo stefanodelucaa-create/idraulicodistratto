@@ -4,9 +4,7 @@ import uomoLettoImg from "@/assets/adv-uomo-letto.png";
 import ipotalamoImg from "@/assets/adv-ipotalamo.png";
 import circoloViziosoImg from "@/assets/adv-circolo-vizioso.png";
 import uomoLaptopImg from "@/assets/adv-uomo-laptop.png";
-import { Book3DScene } from "@/components/landing/Book3D";
-import bookCover from "@/assets/ebook-base-cover.png";
-import bonusCover from "@/assets/bonus-mockup.png";
+import mockupProtocollo from "@/assets/adv-mockup-protocollo.png";
 
 const CTA_URL = "https://manualeidraulicodistratto.com";
 
