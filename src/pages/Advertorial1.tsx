@@ -158,6 +158,22 @@ const styles = `
     font-weight: 600;
   }
   .adv-textlink:hover { color: #6e1414; }
+  .adv-textlink-black {
+    color: #1a1a1a;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    font-weight: 600;
+  }
+  .adv-textlink-black:hover { color: #000; }
+  .adv-guarantee-strong {
+    text-align: center;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #8b1a1a;
+    margin: 14px 0 0;
+  }
   .adv-book-wrap {
     margin: 40px 0 8px;
     text-align: center;
@@ -328,7 +344,7 @@ const Advertorial1 = () => {
           </p>
 
           <p>
-            Come dimostreremo in questo articolo, <mark>questo metodo ti permette di risolvere il problema alla radice</mark>.
+            Come dimostreremo in questo articolo, <a className="adv-textlink-black" href={CTA_URL} rel="noopener">questo metodo ti permette di risolvere il problema alla radice</a>.
           </p>
 
           <h3 className="adv-h3">Nel 1986, David H. Barlow pubblicò una ricerca che cambiò la medicina sessuale</h3>
@@ -415,7 +431,7 @@ const Advertorial1 = () => {
 
           <p>
             Se vuoi applicare questo metodo,{" "}
-            <a className="adv-textlink" href={CTA_URL} rel="noopener">
+            <a className="adv-textlink-black" href={CTA_URL} rel="noopener">
               in questo Protocollo Scientifico trovi esattamente come fare
             </a>.
           </p>
@@ -492,7 +508,7 @@ const Advertorial1 = () => {
             <a className="adv-cta-btn" href={CTA_URL} rel="noopener">
               Clicca qui per accedere al Protocollo del Piacere
             </a>
-            <p className="adv-guarantee">
+            <p className="adv-guarantee-strong">
               60 giorni di garanzia completa. Se non è quello che cercavi, rimborso totale senza farti domande.
             </p>
           </div>
