@@ -4,9 +4,7 @@ import uomoLettoImg from "@/assets/adv-uomo-letto.png";
 import ipotalamoImg from "@/assets/adv-ipotalamo.png";
 import circoloViziosoImg from "@/assets/adv-circolo-vizioso.png";
 import uomoLaptopImg from "@/assets/adv-uomo-laptop.png";
-import { Book3DScene } from "@/components/landing/Book3D";
-import bookCover from "@/assets/ebook-base-cover.png";
-import bonusCover from "@/assets/bonus-mockup.png";
+import mockupProtocollo from "@/assets/adv-mockup-protocollo.png";
 
 const CTA_URL = "https://manualeidraulicodistratto.com";
 
@@ -162,9 +160,15 @@ const styles = `
   .adv-textlink:hover { color: #6e1414; }
   .adv-book-wrap {
     margin: 40px 0 8px;
-    background: linear-gradient(180deg, #fafafa 0%, #f0e8df 100%);
-    border-radius: 4px;
+    text-align: center;
     padding: 16px 0 0;
+  }
+  .adv-book-wrap img {
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.25));
   }
   .adv-cta-block {
     text-align: center;
@@ -461,7 +465,7 @@ const Advertorial1 = () => {
           <p>E solo dopo arriva alle tecniche pratiche.</p>
 
           <div className="adv-book-wrap">
-            <Book3DScene mainCover={bookCover} bonusCover={bonusCover} />
+            <img src={mockupProtocollo} alt="Mockup del libro Il Protocollo del Piacere" loading="lazy" />
           </div>
 
           <div className="adv-cta-block">
