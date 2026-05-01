@@ -5,6 +5,7 @@ import ipotalamoImg from "@/assets/adv-ipotalamo.png";
 import circoloViziosoImg from "@/assets/adv-circolo-vizioso.png";
 import uomoLaptopImg from "@/assets/adv-uomo-laptop.png";
 import mockupProtocollo from "@/assets/adv-mockup-protocollo.png";
+import ebookPreview from "@/assets/adv-ebook-preview.png";
 
 const CTA_URL = "https://manualeidraulicodistratto.com";
 
@@ -512,6 +513,11 @@ const Advertorial1 = () => {
               60 giorni di garanzia completa. Se non è quello che cercavi, rimborso totale senza farti domande.
             </p>
           </div>
+
+          <figure className="adv-figure">
+            <img src={ebookPreview} alt="Anteprima delle pagine interne del Protocollo del Piacere" loading="lazy" />
+            <figcaption>Anteprima di alcune pagine interne del Protocollo</figcaption>
+          </figure>
 
           <hr className="adv-refs-divider" />
           <h4 className="adv-refs-title">Riferimenti scientifici</h4>
