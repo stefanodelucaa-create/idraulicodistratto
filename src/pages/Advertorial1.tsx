@@ -270,9 +270,6 @@ const Advertorial1 = () => {
         <span><span className="adv-live-num">{visitors.toLocaleString("it-IT")}</span> visitatori nelle ultime 24 ore</span>
       </div>
 
-      <div className="adv-sponsor-bar">
-        Articolo sponsorizzato · Contenuto informativo basato su ricerca clinica
-      </div>
 
       <div className="adv-breadcrumb">
         Start &gt; Articoli &gt; Tra le lenzuola &gt; Problematiche comuni
