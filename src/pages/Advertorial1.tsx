@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useScrollDepth } from "@/hooks/use-scroll-depth";
 import barlowImg from "@/assets/adv-barlow.png";
 import uomoLettoImg from "@/assets/adv-uomo-letto.png";
 import ipotalamoImg from "@/assets/adv-ipotalamo.png";
