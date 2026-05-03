@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 
 declare global {
   interface Window {
-    fbq?: (action: string, event: string, params?: Record<string, unknown>) => void;
     Tinybird?: { trackEvent: (event: string, payload: Record<string, unknown>) => void };
   }
 }
