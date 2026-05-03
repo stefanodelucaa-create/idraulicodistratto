@@ -42,6 +42,7 @@
       (function () {
         if (window.location.pathname !== '/adv-1') return;
         var fired = {};
+
         function fire(pct) {
           if (fired[pct]) return;
           fired[pct] = true;
@@ -53,13 +54,17 @@
             window.Tinybird.trackEvent('scroll_depth_' + pct, payload);
           }
         }
+
         function check() {
-          var pct = ((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight) * 100;
+          var scrolled = window.scrollY + window.innerHeight;
+          var total = document.documentElement.scrollHeight;
+          if (total <= window.innerHeight) return;
+          var pct = (scrolled / total) * 100;
           if (pct >= 25) fire(25);
           if (pct >= 50) fire(50);
         }
+
         window.addEventListener('scroll', check, { passive: true });
-        check();
       })();
     </script>
   </body>
