@@ -38,5 +38,29 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (function () {
+        if (window.location.pathname !== '/adv-1') return;
+        var fired = {};
+        function fire(pct) {
+          if (fired[pct]) return;
+          fired[pct] = true;
+          var payload = { scroll_percent: pct, page: '/adv-1' };
+          if (typeof window.fbq === 'function') {
+            window.fbq('trackCustom', 'ScrollDepth' + pct, payload);
+          }
+          if (window.Tinybird && typeof window.Tinybird.trackEvent === 'function') {
+            window.Tinybird.trackEvent('scroll_depth_' + pct, payload);
+          }
+        }
+        function check() {
+          var pct = ((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight) * 100;
+          if (pct >= 25) fire(25);
+          if (pct >= 50) fire(50);
+        }
+        window.addEventListener('scroll', check, { passive: true });
+        check();
+      })();
+    </script>
   </body>
 </html>
