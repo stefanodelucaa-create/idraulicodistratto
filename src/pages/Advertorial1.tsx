@@ -258,6 +258,7 @@ const styles = `
 `;
 
 const Advertorial1 = () => {
+  useScrollDepth('/adv-1');
   const [people, setPeople] = useState(493);
   const [visitors, setVisitors] = useState(2374);
 
