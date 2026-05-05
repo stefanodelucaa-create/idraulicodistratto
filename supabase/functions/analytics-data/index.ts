@@ -186,6 +186,8 @@ Deno.serve(async (req) => {
         counts, orders, revenue, aov, sessions,
         addToCartRate, checkoutRate, conversionRate, checkoutToOrder, cartAbandon, sessionConversion,
         advertorialViews, advertorialToLanding, advertorialCtr,
+        landingScroll25: landingScroll25Sessions.size,
+        landingScroll50: landingScroll50Sessions.size,
       };
     };
 
