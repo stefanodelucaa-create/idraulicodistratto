@@ -139,9 +139,9 @@ Deno.serve(async (req) => {
       const advSessions = new Set<string>();
       const advToLandingSessions = new Set<string>();
       let advViews = 0;
-      // Landing scroll depth: unique sessions that scrolled >=25% / >=50% on landing
-      const landingScroll25Sessions = new Set<string>();
-      const landingScroll50Sessions = new Set<string>();
+      // Advertorial scroll depth: unique sessions that scrolled >=25% / >=50% on /adv-1
+      const advScroll25Sessions = new Set<string>();
+      const advScroll50Sessions = new Set<string>();
       for (const e of events) {
         const t = e.event_type as keyof typeof counts;
         if (t in counts) counts[t]++;
@@ -162,11 +162,11 @@ Deno.serve(async (req) => {
         if ((e.event_type as string) === 'scroll_depth') {
           const path = String((e as Record<string, unknown>).page_path || '');
           const sid = String((e as Record<string, unknown>).session_id || '');
-          if (!sid || !isLandingPath(path)) continue;
+          if (!sid || !isAdvPath(path)) continue;
           const meta = (e as Record<string, unknown>).metadata as Record<string, unknown> | null;
           const pct = Number(meta?.percent ?? meta?.scroll_percent ?? 0);
-          if (pct >= 25) landingScroll25Sessions.add(sid);
-          if (pct >= 50) landingScroll50Sessions.add(sid);
+          if (pct >= 25) advScroll25Sessions.add(sid);
+          if (pct >= 50) advScroll50Sessions.add(sid);
         }
       }
       const orders = purchases.length;
@@ -186,8 +186,8 @@ Deno.serve(async (req) => {
         counts, orders, revenue, aov, sessions,
         addToCartRate, checkoutRate, conversionRate, checkoutToOrder, cartAbandon, sessionConversion,
         advertorialViews, advertorialToLanding, advertorialCtr,
-        landingScroll25: landingScroll25Sessions.size,
-        landingScroll50: landingScroll50Sessions.size,
+        advScroll25: advScroll25Sessions.size,
+        advScroll50: advScroll50Sessions.size,
       };
     };
 
