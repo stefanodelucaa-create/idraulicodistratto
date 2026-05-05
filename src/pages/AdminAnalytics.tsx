@@ -338,9 +338,9 @@ export default function AdminAnalytics() {
     const scroll25 = Number(cur.advScroll25) || 0;
     const scroll50 = Number(cur.advScroll50) || 0;
     return [
-      { label: "Visite Advertorial", value: advViews, dropoff: null as number | null },
-      { label: "Scroll 25% Advertorial", value: scroll25, dropoff: stepDrop(advViews, scroll25) },
-      { label: "Scroll 50% Advertorial", value: scroll50, dropoff: stepDrop(scroll25, scroll50) },
+      { label: "Visite Adv", value: advViews, dropoff: null as number | null },
+      { label: "Scroll 25% Adv", value: scroll25, dropoff: stepDrop(advViews, scroll25) },
+      { label: "Scroll 50% Adv", value: scroll50, dropoff: stepDrop(scroll25, scroll50) },
       { label: "Landing", value: advToLanding, dropoff: stepDrop(scroll50, advToLanding) },
       { label: "Add to Cart", value: c.add_to_cart, dropoff: stepDrop(advToLanding, c.add_to_cart) },
       { label: "Checkout", value: c.initiate_checkout, dropoff: stepDrop(c.add_to_cart, c.initiate_checkout) },
