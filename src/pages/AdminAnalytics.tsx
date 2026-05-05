@@ -35,6 +35,7 @@ interface Kpis {
   addToCartRate: number; checkoutRate: number; conversionRate: number;
   checkoutToOrder: number; cartAbandon: number;
   advertorialViews?: number; advertorialToLanding?: number; advertorialCtr?: number;
+  landingScroll25?: number; landingScroll50?: number;
 }
 
 interface AdsKpis {
@@ -334,10 +335,14 @@ export default function AdminAnalytics() {
     const advViews = Number(cur.advertorialViews) || 0;
     const advToLanding = Number(cur.advertorialToLanding) || 0;
     const stepDrop = (a: number, b: number) => (a ? ((a - b) / a) * 100 : 0);
+    const scroll25 = Number(cur.landingScroll25) || 0;
+    const scroll50 = Number(cur.landingScroll50) || 0;
     return [
       { label: "Visite Advertorial", value: advViews, dropoff: null as number | null },
       { label: "Landing", value: advToLanding, dropoff: stepDrop(advViews, advToLanding) },
-      { label: "Add to Cart", value: c.add_to_cart, dropoff: stepDrop(advToLanding, c.add_to_cart) },
+      { label: "Scroll 25% Landing", value: scroll25, dropoff: stepDrop(advToLanding, scroll25) },
+      { label: "Scroll 50% Landing", value: scroll50, dropoff: stepDrop(scroll25, scroll50) },
+      { label: "Add to Cart", value: c.add_to_cart, dropoff: stepDrop(scroll50, c.add_to_cart) },
       { label: "Checkout", value: c.initiate_checkout, dropoff: stepDrop(c.add_to_cart, c.initiate_checkout) },
       { label: "Acquisti", value: cur.orders, dropoff: stepDrop(c.initiate_checkout, cur.orders) },
     ];
