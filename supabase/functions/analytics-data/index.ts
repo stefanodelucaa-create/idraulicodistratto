@@ -139,9 +139,9 @@ Deno.serve(async (req) => {
       const advSessions = new Set<string>();
       const advToLandingSessions = new Set<string>();
       let advViews = 0;
-      // Landing scroll depth: unique sessions that scrolled >=25% / >=50% on landing
-      const landingScroll25Sessions = new Set<string>();
-      const landingScroll50Sessions = new Set<string>();
+      // Advertorial scroll depth: unique sessions that scrolled >=25% / >=50% on /adv-1
+      const advScroll25Sessions = new Set<string>();
+      const advScroll50Sessions = new Set<string>();
       for (const e of events) {
         const t = e.event_type as keyof typeof counts;
         if (t in counts) counts[t]++;
