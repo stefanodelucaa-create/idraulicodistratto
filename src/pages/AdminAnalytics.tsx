@@ -509,14 +509,15 @@ export default function AdminAnalytics() {
           </div>
         ) : cur && prev ? (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <KpiCard icon="💰" label="Fatturato" value={fmtCurrency(cur.revenue)} trendValue={trend(cur.revenue, prev.revenue)} />
-            <KpiCard icon="📦" label="Ordini" value={fmtInt(cur.orders)} trendValue={trend(cur.orders, prev.orders)} />
-            <KpiCard icon="📊" label="AOV" value={fmtCurrency(cur.aov)} trendValue={trend(cur.aov, prev.aov)} />
+            {/* Funnel order: Adv → Landing → Cart → Checkout → Order → Revenue */}
+            <KpiCard icon="➡️" label="Adv→Landing" value={fmtPct(cur.advertorialCtr ?? 0)} trendValue={trend(cur.advertorialCtr ?? 0, prev.advertorialCtr ?? 0)} />
             <KpiCard icon="🛒" label="Add-to-Cart Rate" value={fmtPct(cur.addToCartRate)} trendValue={trend(cur.addToCartRate, prev.addToCartRate)} />
             <KpiCard icon="🚀" label="Checkout Rate" value={fmtPct(cur.checkoutRate)} trendValue={trend(cur.checkoutRate, prev.checkoutRate)} />
-            <KpiCard icon="✅" label="Conversion Rate" value={fmtPct(cur.conversionRate)} trendValue={trend(cur.conversionRate, prev.conversionRate)} />
             <KpiCard icon="🔁" label="Checkout→Order" value={fmtPct(cur.checkoutToOrder)} trendValue={trend(cur.checkoutToOrder, prev.checkoutToOrder)} />
-            <KpiCard icon="➡️" label="Adv→Landing" value={fmtPct(cur.advertorialCtr ?? 0)} trendValue={trend(cur.advertorialCtr ?? 0, prev.advertorialCtr ?? 0)} />
+            <KpiCard icon="✅" label="Conversion Rate" value={fmtPct(cur.conversionRate)} trendValue={trend(cur.conversionRate, prev.conversionRate)} />
+            <KpiCard icon="📦" label="Ordini" value={fmtInt(cur.orders)} trendValue={trend(cur.orders, prev.orders)} />
+            <KpiCard icon="💰" label="Fatturato" value={fmtCurrency(cur.revenue)} trendValue={trend(cur.revenue, prev.revenue)} />
+            <KpiCard icon="📊" label="AOV" value={fmtCurrency(cur.aov)} trendValue={trend(cur.aov, prev.aov)} />
           </div>
         ) : null}
 
