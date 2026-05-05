@@ -35,6 +35,7 @@ interface Kpis {
   addToCartRate: number; checkoutRate: number; conversionRate: number;
   checkoutToOrder: number; cartAbandon: number;
   advertorialViews?: number; advertorialToLanding?: number; advertorialCtr?: number;
+  landingScroll25?: number; landingScroll50?: number;
 }
 
 interface AdsKpis {
