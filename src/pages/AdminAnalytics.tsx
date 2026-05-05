@@ -516,7 +516,7 @@ export default function AdminAnalytics() {
             <KpiCard icon="🚀" label="Checkout Rate" value={fmtPct(cur.checkoutRate)} trendValue={trend(cur.checkoutRate, prev.checkoutRate)} />
             <KpiCard icon="✅" label="Conversion Rate" value={fmtPct(cur.conversionRate)} trendValue={trend(cur.conversionRate, prev.conversionRate)} />
             <KpiCard icon="🔁" label="Checkout→Order" value={fmtPct(cur.checkoutToOrder)} trendValue={trend(cur.checkoutToOrder, prev.checkoutToOrder)} />
-            <KpiCard icon="💸" label="Cart Abandon" value={fmtPct(cur.cartAbandon)} trendValue={-trend(cur.cartAbandon, prev.cartAbandon)} />
+            <KpiCard icon="➡️" label="Adv→Landing" value={fmtPct(cur.advertorialCtr ?? 0)} trendValue={trend(cur.advertorialCtr ?? 0, prev.advertorialCtr ?? 0)} />
           </div>
         ) : null}
 
