@@ -162,11 +162,11 @@ Deno.serve(async (req) => {
         if ((e.event_type as string) === 'scroll_depth') {
           const path = String((e as Record<string, unknown>).page_path || '');
           const sid = String((e as Record<string, unknown>).session_id || '');
-          if (!sid || !isLandingPath(path)) continue;
+          if (!sid || !isAdvPath(path)) continue;
           const meta = (e as Record<string, unknown>).metadata as Record<string, unknown> | null;
           const pct = Number(meta?.percent ?? meta?.scroll_percent ?? 0);
-          if (pct >= 25) landingScroll25Sessions.add(sid);
-          if (pct >= 50) landingScroll50Sessions.add(sid);
+          if (pct >= 25) advScroll25Sessions.add(sid);
+          if (pct >= 50) advScroll50Sessions.add(sid);
         }
       }
       const orders = purchases.length;
