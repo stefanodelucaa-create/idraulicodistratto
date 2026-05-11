@@ -429,14 +429,9 @@ const Advertorial1 = () => {
           </p>
 
           <p>
-            Serve un metodo comprovato, basato su fonti anatomiche e psicologiche reali, che guidi in modo graduale verso una risoluzione completa e definitiva.
-          </p>
-
-          <p>
-            Se vuoi applicare questo metodo,{" "}
             <a className="adv-textlink-black" href={CTA_URL} rel="noopener">
-              in questo Protocollo Scientifico trovi esattamente come fare
-            </a>.
+              Serve un metodo comprovato
+            </a>, basato su fonti anatomiche e psicologiche reali, che guidi in modo graduale verso una risoluzione completa e definitiva.
           </p>
 
           <h3 className="adv-h3">Il secondo livello – quello che nessuno affronta</h3>
