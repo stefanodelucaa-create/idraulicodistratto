@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import protocolloCover from "@/assets/protocollo-cover-transparent.png";
 import { PrePurchaseSidebar } from "@/components/landing/PrePurchaseSidebar";
+import { SiteFooter } from "@/components/SiteFooter";
 
 // ============ DATA ============
 const bulletPoints = [
@@ -489,18 +490,7 @@ const IndexBold = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-8 bg-black border-t border-gray-800">
-        <div className="container px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white">
-            <p>© {new Date().getFullYear()} Il Protocollo del Piacere. Tutti i diritti riservati.</p>
-            <div className="flex items-center gap-6">
-              <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="/terms" className="hover:text-white transition-colors">Termini</a>
-              <a href="/contatti" className="hover:text-white transition-colors">Contatti</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       {/* STICKY CTA */}
       {isStickyCTAVisible && (

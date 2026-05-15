@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useScrollDepth } from "@/hooks/use-scroll-depth";
+import { SiteFooter } from "@/components/SiteFooter";
 import barlowImg from "@/assets/adv-barlow.png";
 import uomoLettoImg from "@/assets/adv-uomo-letto.png";
 import ipotalamoImg from "@/assets/adv-ipotalamo.png";
@@ -538,9 +539,7 @@ const Advertorial1 = () => {
         </div>
       </article>
 
-      <footer className="adv-footer">
-        © 2026 · Contenuto sponsorizzato · manualeidraulicodistratto.com
-      </footer>
+      <SiteFooter />
     </div>
   );
 };

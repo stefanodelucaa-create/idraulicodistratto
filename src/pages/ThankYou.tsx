@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { Download } from "lucide-react";
 import { toast } from "sonner";
 import { trackPurchase } from "@/hooks/useMetaPixel";
+import { SiteFooter } from "@/components/SiteFooter";
 
 interface OrderData {
   customerName: string;
@@ -149,23 +150,8 @@ export default function ThankYou() {
           </div>
         </section>
 
-        {/* FOOTER */}
-        <footer className="bg-foreground text-muted rounded-2xl p-8 mt-12 text-center text-sm">
-          <p className="mb-4">
-            © {new Date().getFullYear()} Manuale dell'Idraulico Distratto. Tutti i diritti riservati.
-          </p>
-          <p className="mb-4">
-            <Link to="/privacy-policy" className="text-accent hover:underline">Privacy Policy</Link>
-            {" • "}
-            <Link to="/termini-condizioni" className="text-accent hover:underline">Termini e Condizioni</Link>
-            {" • "}
-            <Link to="/contatti" className="text-accent hover:underline">Contatti</Link>
-          </p>
-          <p className="text-muted-foreground/70">
-            Hai domande? Rispondi all'email di conferma ricevuta.
-          </p>
-        </footer>
       </div>
+      <SiteFooter />
     </div>
   );
 }
