@@ -538,9 +538,7 @@ const Advertorial1 = () => {
         </div>
       </article>
 
-      <footer className="adv-footer">
-        © 2026 · Contenuto sponsorizzato · manualeidraulicodistratto.com
-      </footer>
+      <SiteFooter />
     </div>
   );
 };
