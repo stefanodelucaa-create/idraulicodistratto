@@ -152,7 +152,6 @@ export default function ThankYou() {
 
       </div>
       <SiteFooter />
-      </div>
     </div>
   );
 }
