@@ -1,152 +1,91 @@
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { LegalLayout } from "@/components/legal/LegalLayout";
 
 export default function TermsConditions() {
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-3xl mx-auto px-5 md:px-10 py-10 md:py-16">
-        {/* Back Link */}
-        <Link 
-          to="/" 
-          className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mb-8"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Torna alla Home</span>
-        </Link>
+    <LegalLayout title="Termini e Condizioni">
+      <section>
+        <p>
+          I presenti Termini e Condizioni regolano l'acquisto del prodotto digitale offerto
+          tramite questo sito da <strong>PrimeVector Limited</strong> (Unit 1603, 16th Floor,
+          The L. Plaza, 367-375 Queen's Road Central, Sheung Wan, Hong Kong – Tax ID: 78308723).
+        </p>
+      </section>
 
-        <h1 className="font-bold text-3xl md:text-4xl text-foreground mb-8">
-          Termini e Condizioni
-        </h1>
+      <section>
+        <h2>1. Oggetto</h2>
+        <p>
+          Il prodotto è di natura <strong>digitale</strong> e viene consegnato tramite
+          <strong> link di download immediato</strong> al completamento del pagamento.
+        </p>
+      </section>
 
-        <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
-          <p className="text-sm text-muted-foreground/70">
-            Ultimo aggiornamento: {new Date().toLocaleDateString('it-IT')}
-          </p>
+      <section>
+        <h2>2. Rinuncia al diritto di recesso</h2>
+        <p>
+          Completando l'acquisto, il cliente <strong>rinuncia espressamente al diritto di recesso</strong>{" "}
+          ai sensi dell'<strong>art. 59, comma 1, lett. o) del Codice del Consumo
+          (D.Lgs. 206/2005)</strong> e della <strong>Direttiva 2011/83/UE</strong>, in quanto il
+          contenuto digitale non è fornito su supporto materiale e la consegna inizia
+          immediatamente dopo la conferma del pagamento.
+        </p>
+        <p>
+          Al checkout è richiesta l'accettazione esplicita della seguente dichiarazione:
+        </p>
+        <p className="border-l-2 border-red-600 pl-4 italic text-gray-200">
+          "Ho letto e accetto i Termini e Condizioni e confermo di rinunciare al diritto di
+          recesso ai sensi dell'art. 59 del Codice del Consumo, poiché il prodotto digitale
+          sarà disponibile immediatamente dopo il pagamento."
+        </p>
+      </section>
 
-          <section>
-            <h2 className="text-xl font-semibold text-foreground mt-8 mb-4">1. Accettazione dei Termini</h2>
-            <p>
-              Acquistando il prodotto "Manuale dell'Idraulico Distratto" accetti integralmente 
-              i presenti Termini e Condizioni. Ti invitiamo a leggerli attentamente prima di 
-              procedere con l'acquisto.
-            </p>
-          </section>
+      <section>
+        <h2>3. Natura dei contenuti</h2>
+        <p>
+          I contenuti forniti sono esclusivamente a <strong>scopo educativo e informativo</strong>{" "}
+          e non costituiscono in alcun modo consulenza medica, psicologica o terapeutica.
+        </p>
+      </section>
 
-          <section>
-            <h2 className="text-xl font-semibold text-foreground mt-8 mb-4">2. Descrizione del Prodotto</h2>
-            <p>
-              "Manuale dell'Idraulico Distratto" è un prodotto digitale (ebook) che fornisce 
-              informazioni e consigli relativi all'intimità di coppia. Il prodotto viene consegnato 
-              in formato digitale PDF tramite email.
-            </p>
-          </section>
+      <section>
+        <h2>4. Proprietà intellettuale</h2>
+        <p>
+          Tutti i contenuti sono protetti da diritto d'autore. È <strong>vietata qualsiasi
+          forma di redistribuzione, rivendita, condivisione o copia</strong> del materiale,
+          anche parziale.
+        </p>
+      </section>
 
-          <section>
-            <h2 className="text-xl font-semibold text-foreground mt-8 mb-4">3. Acquisto e Pagamento</h2>
-            <ul className="list-disc pl-6 space-y-2 mt-3">
-              <li>I prezzi sono indicati in Euro (€) e includono l'IVA ove applicabile</li>
-              <li>Il pagamento viene elaborato in modo sicuro tramite Shopify Payments</li>
-              <li>Accettiamo carte di credito/debito e altri metodi di pagamento disponibili</li>
-              <li>L'ordine è confermato solo dopo l'avvenuto pagamento</li>
-            </ul>
-          </section>
+      <section>
+        <h2>5. Pagamenti</h2>
+        <p>
+          I pagamenti sono elaborati esclusivamente da provider certificati terzi
+          (PayPal, Stripe). I dati della carta non vengono mai conservati dal venditore.
+        </p>
+      </section>
 
-          <section>
-            <h2 className="text-xl font-semibold text-foreground mt-8 mb-4">4. Consegna</h2>
-            <p>
-              Dopo il completamento dell'acquisto, riceverai un'email all'indirizzo fornito 
-              contenente il link per scaricare il prodotto digitale. La consegna è immediata 
-              e automatica.
-            </p>
-          </section>
+      <section>
+        <h2>6. Limitazione di responsabilità</h2>
+        <p>
+          PrimeVector Limited non si assume responsabilità per risultati individuali o per
+          l'uso improprio delle informazioni contenute nel prodotto.
+        </p>
+      </section>
 
-          <section>
-            <h2 className="text-xl font-semibold text-foreground mt-8 mb-4">5. Garanzia Soddisfatti o Rimborsati</h2>
-            <p>
-              Offriamo una garanzia di 60 giorni "Soddisfatti o Rimborsati". Se per qualsiasi 
-              motivo non sei soddisfatto del prodotto, puoi richiedere un rimborso completo 
-              entro 60 giorni dalla data di acquisto, senza dover fornire alcuna spiegazione.
-            </p>
-            <p className="mt-3">
-              Per richiedere il rimborso, contattaci a: <a href="mailto:idraulicodistratto@gmail.com" className="text-primary hover:underline">idraulicodistratto@gmail.com</a>
-            </p>
-          </section>
+      <section>
+        <h2>7. Legge applicabile e foro competente</h2>
+        <p>
+          I presenti Termini e Condizioni sono regolati dal <strong>diritto di Hong Kong</strong>.
+          Per qualsiasi controversia sarà <strong>competente il foro di Hong Kong</strong>.
+        </p>
+      </section>
 
-          <section>
-            <h2 className="text-xl font-semibold text-foreground mt-8 mb-4">6. Proprietà Intellettuale</h2>
-            <p>
-              Tutti i contenuti del prodotto, inclusi testi, immagini e grafica, sono protetti 
-              da diritto d'autore. L'acquisto conferisce una licenza personale e non trasferibile 
-              per l'utilizzo del prodotto.
-            </p>
-            <p className="mt-3">È vietato:</p>
-            <ul className="list-disc pl-6 space-y-2 mt-3">
-              <li>Riprodurre, distribuire o rivendere il prodotto</li>
-              <li>Condividere il prodotto con terzi</li>
-              <li>Modificare o creare opere derivate</li>
-              <li>Utilizzare il contenuto per scopi commerciali</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-foreground mt-8 mb-4">7. Limitazione di Responsabilità</h2>
-            <p>
-              Il prodotto ha scopo puramente informativo e educativo. Non sostituisce in alcun 
-              modo il parere di professionisti qualificati (medici, psicologi, sessuologi).
-            </p>
-            <p className="mt-3">
-              Non ci assumiamo responsabilità per:
-            </p>
-            <ul className="list-disc pl-6 space-y-2 mt-3">
-              <li>Risultati individuali che possono variare</li>
-              <li>Uso improprio delle informazioni contenute</li>
-              <li>Danni diretti o indiretti derivanti dall'uso del prodotto</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-foreground mt-8 mb-4">8. Lifetime Access</h2>
-            <p>
-              L'opzione "Lifetime Access" garantisce l'accesso a tutti gli aggiornamenti futuri 
-              del prodotto. Questa opzione è disponibile come upgrade separato e include:
-            </p>
-            <ul className="list-disc pl-6 space-y-2 mt-3">
-              <li>Aggiornamenti illimitati del contenuto</li>
-              <li>Supporto prioritario via email</li>
-              <li>Sconti su futuri prodotti</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-foreground mt-8 mb-4">9. Modifiche ai Termini</h2>
-            <p>
-              Ci riserviamo il diritto di modificare questi Termini e Condizioni in qualsiasi 
-              momento. Le modifiche saranno effettive dalla data di pubblicazione su questa pagina.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-foreground mt-8 mb-4">10. Legge Applicabile e Foro Competente</h2>
-            <p>
-              I presenti Termini e Condizioni sono regolati dalla legge italiana. Per qualsiasi 
-              controversia sarà competente il Foro del luogo di residenza del consumatore.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-foreground mt-8 mb-4">11. Contatti</h2>
-            <p>
-              Per qualsiasi domanda relativa a questi Termini e Condizioni, contattaci a: <br />
-              <a href="mailto:idraulicodistratto@gmail.com" className="text-primary hover:underline">idraulicodistratto@gmail.com</a>
-            </p>
-          </section>
-        </div>
-
-        {/* Footer */}
-        <footer className="mt-16 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Manuale dell'Idraulico Distratto. Tutti i diritti riservati.</p>
-        </footer>
-      </div>
-    </div>
+      <section>
+        <h2>8. Contatti</h2>
+        <p>
+          Per qualsiasi richiesta:{" "}
+          <a href="mailto:idraulicodistratto@gmail.com">idraulicodistratto@gmail.com</a>
+        </p>
+      </section>
+    </LegalLayout>
   );
 }
