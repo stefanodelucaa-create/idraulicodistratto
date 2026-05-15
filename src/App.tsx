@@ -14,6 +14,8 @@ import Unsubscribe from "./pages/Unsubscribe";
 import AdminAuth from "./pages/AdminAuth";
 import AdminAnalytics from "./pages/AdminAnalytics";
 import Advertorial1 from "./pages/Advertorial1";
+import CookiePolicy from "./pages/CookiePolicy";
+import Disclaimer from "./pages/Disclaimer";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +30,9 @@ function RoutedApp() {
       <Route path="/thank-you" element={<ThankYou />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/termini-condizioni" element={<TermsConditions />} />
+      <Route path="/termini-e-condizioni" element={<TermsConditions />} />
+      <Route path="/cookie-policy" element={<CookiePolicy />} />
+      <Route path="/disclaimer" element={<Disclaimer />} />
       <Route path="/contatti" element={<Contatti />} />
       <Route path="/unsubscribe" element={<Unsubscribe />} />
       <Route path="/admin/auth" element={<AdminAuth />} />
