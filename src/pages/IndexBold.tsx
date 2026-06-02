@@ -259,7 +259,8 @@ const IndexBold = () => {
               <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
               <div className="w-full">
                 <p className="text-white text-base sm:text-lg leading-relaxed font-bold">E molto, molto altro…</p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-left max-w-3xl mx-auto mt-6">
+                <hr className="border-gray-700 my-4" />
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-left max-w-3xl mx-auto">
                 {[
                   { icon: Book, title: "200+ PAGINE", text: "dettagliate per sbloccare il sesso più appagante della vostra vita" },
                   { icon: FileText, title: "30+ ILLUSTRAZIONI", text: "per vedere cosa dovrai fare prima ancora di trovarti lì" },
