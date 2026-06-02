@@ -32,6 +32,7 @@ const bulletPoints = [
 ];
 
 const beforeAfter = [
+  { before: "Cerchi di farle avere un orgasmo ma non riesci, e questo ti fa sentire frustrato", after: "Riesci a farla venire senza nessuna pressione, mentre ti godi il rapporto" },
   { before: "Non sai se sta fingendo o se le è piaciuto davvero", after: "Sai esattamente quali segnali leggere per decifrare il suo corpo e le sue sensazioni" },
   { before: 'Durante il sesso hai mille pensieri ("Sto facendo bene? Quanto manca?")', after: "Sei completamente presente e riesci a goderti ogni secondo" },
   { before: "Cerchi risposte ai tuoi dubbi alle 2 di notte tra mille forum e siti poco affidabili", after: "Sai di avere nello stesso posto tutte le info che ti servono + step pratici da seguire" },
