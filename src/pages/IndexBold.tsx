@@ -185,7 +185,7 @@ const IndexBold = () => {
               </h1>
 
               <p className="text-lg sm:text-xl text-white max-w-xl mx-auto leading-relaxed">
-                Scopri i <span className="font-bold">"Giusti Tasti"</span> da Toccare per Portare il Sesso al Livello Superiore… <span className="text-red-400 font-bold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
+                Scopri i <span className="font-bold">"Giusti Tasti"</span> da Toccare per Portare il Sesso al Livello Superiore <span className="font-bold">e Farla Squirtare Ogni Volta che Vuoi...</span><br /><br /><span className="text-red-400 font-bold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
               <p className="text-base sm:text-lg text-white max-w-xl mx-auto leading-relaxed">
