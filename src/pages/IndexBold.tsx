@@ -161,23 +161,25 @@ const IndexBold = () => {
         <div className="absolute top-0 right-0 w-96 h-96 bg-red-600/20 rounded-full blur-3xl" />
         
         <div className="container relative z-10 px-4 sm:px-6">
-          <div className="max-w-2xl mx-auto text-center space-y-6">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-6xl mx-auto">
+            {/* Cover Image */}
+            <div className="flex justify-center lg:justify-start order-1">
+              <div className="relative">
+                <div className="absolute inset-0 bg-red-600/20 rounded-3xl blur-3xl scale-90" />
+                <img 
+                  src={protocolloCover} 
+                  alt="Il Protocollo del Piacere" 
+                  loading="eager"
+                  className="relative w-64 sm:w-72 md:w-80 lg:w-96 drop-shadow-2xl"
+                  style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.4))" }}
+                />
+              </div>
+            </div>
+
+            {/* Text Content */}
+            <div className="space-y-6 text-center lg:text-left order-2">
               <div className="inline-block bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide">
                 Offerta di Lancio – 71% di sconto
-              </div>
-
-              {/* Cover Image */}
-              <div className="flex justify-center">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-red-600/20 rounded-3xl blur-3xl scale-90" />
-                  <img 
-                    src={protocolloCover} 
-                    alt="Il Protocollo del Piacere" 
-                    loading="eager"
-                    className="relative w-64 sm:w-72 md:w-80 lg:w-96 drop-shadow-2xl"
-                    style={{ filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.4))" }}
-                  />
-                </div>
               </div>
               
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
@@ -185,15 +187,15 @@ const IndexBold = () => {
                 <span className="text-red-500 block">DEL PIACERE</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-white max-w-xl mx-auto leading-relaxed">
+              <p className="text-lg sm:text-xl text-white max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 Sfrutta Questa Precisa <span className="font-bold">Sequenza Anatomica</span> per Farle Raggiungere l'<span className="text-red-400 font-bold">Orgasmo</span> Ogni Singola Volta...<br /><br /><span className="text-red-400 font-bold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
-              <p className="text-base sm:text-lg text-white max-w-xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-white max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 Il <span className="font-bold">Protocollo Scientifico</span> di oltre 200 pagine che ti mostrerà i segreti dell'<span className="font-bold">anatomia femminile</span> e della <span className="font-bold">psicologia sessuale</span> per migliorare le tue performance e aumentare la tua sicurezza in camera da letto
               </p>
 
-              <div className="grid grid-cols-2 gap-3 text-left max-w-xl mx-auto">
+              <div className="grid grid-cols-2 gap-3 text-left max-w-xl mx-auto lg:mx-0">
                 {[
                   { icon: FileText, text: "Strategie pratiche che potrai usare già dalla prossima occasione" },
                   { icon: Target, text: "Basato su riferimenti anatomici scientificamente accurati" },
@@ -208,7 +210,7 @@ const IndexBold = () => {
               </div>
 
               {/* Price Block */}
-              <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-4 sm:p-6 border-2 border-red-600/50">
+              <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-4 sm:p-6 border-2 border-red-600/50 max-w-xl mx-auto lg:mx-0">
                 <p className="text-white text-sm mb-1">Prezzo di Cartellino</p>
                 <div className="flex items-center justify-center gap-3 sm:gap-4 mb-1">
                   <span className="text-xl sm:text-2xl text-red-600 line-through">{originalPrice}</span>
@@ -231,6 +233,7 @@ const IndexBold = () => {
                   <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-500" /> Garanzia 60 giorni</span>
                 </div>
               </div>
+            </div>
           </div>
         </div>
       </section>
