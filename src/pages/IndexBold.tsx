@@ -187,15 +187,15 @@ const IndexBold = () => {
                 <span className="text-red-500 block">DEL PIACERE</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-white max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-lg sm:text-xl text-white max-w-xl mx-auto md:mx-0 leading-relaxed">
                 Sfrutta Questa Precisa <span className="font-bold">Sequenza Anatomica</span> per Farle Raggiungere l'<span className="text-red-400 font-bold">Orgasmo</span> Ogni Singola Volta...<br /><br /><span className="text-red-400 font-bold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
-              <p className="text-base sm:text-lg text-white max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-base sm:text-lg text-white max-w-xl mx-auto md:mx-0 leading-relaxed">
                 Il <span className="font-bold">Protocollo Scientifico</span> di oltre 200 pagine che ti mostrerà i segreti dell'<span className="font-bold">anatomia femminile</span> e della <span className="font-bold">psicologia sessuale</span> per migliorare le tue performance e aumentare la tua sicurezza in camera da letto
               </p>
 
-              <div className="grid grid-cols-2 gap-3 text-left max-w-xl mx-auto lg:mx-0">
+              <div className="grid grid-cols-2 gap-3 text-left max-w-xl mx-auto md:mx-0">
                 {[
                   { icon: FileText, text: "Strategie pratiche che potrai usare già dalla prossima occasione" },
                   { icon: Target, text: "Basato su riferimenti anatomici scientificamente accurati" },
@@ -210,7 +210,7 @@ const IndexBold = () => {
               </div>
 
               {/* Price Block */}
-              <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-4 sm:p-6 border-2 border-red-600/50 max-w-xl mx-auto lg:mx-0">
+              <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-4 sm:p-6 border-2 border-red-600/50 max-w-xl mx-auto md:mx-0">
                 <p className="text-white text-sm mb-1">Prezzo di Cartellino</p>
                 <div className="flex items-center justify-center gap-3 sm:gap-4 mb-1">
                   <span className="text-xl sm:text-2xl text-red-600 line-through">{originalPrice}</span>
