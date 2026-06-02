@@ -185,11 +185,11 @@ const IndexBold = () => {
               </h1>
 
               <p className="text-lg sm:text-xl text-white max-w-xl mx-auto leading-relaxed">
-                Scopri i <span className="font-bold">"Giusti Tasti"</span> da Toccare per Portare il Sesso al Livello Superiore <span className="font-bold">e Farla Squirtare Ogni Volta che Vuoi...</span><br /><br /><span className="text-red-400 font-bold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
+                Sfrutta Questa Precisa <span className="font-bold">Sequenza Anatomica</span> per Farle Raggiungere l'<span className="text-red-400 font-bold">Orgasmo</span> Ogni Singola Volta...<br /><br /><span className="text-red-400 font-bold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
               <p className="text-base sm:text-lg text-white max-w-xl mx-auto leading-relaxed">
-                Il <span className="font-bold">Protocollo Scientifico</span> di oltre 200 pagine che ti mostrerà i segreti della psicologia sessuale, dell'anatomia femminile e della comunicazione intima per sbloccare il <span className="font-bold">miglior sesso della sua (e della tua) vita</span>
+                Il <span className="font-bold">Protocollo Scientifico</span> di oltre 200 pagine che ti mostrerà i segreti dell'<span className="font-bold">anatomia femminile</span> e della <span className="font-bold">psicologia sessuale</span> per migliorare le tue performance e aumentare la tua sicurezza in camera da letto
               </p>
 
               <div className="grid grid-cols-2 gap-3 text-left max-w-xl mx-auto">
