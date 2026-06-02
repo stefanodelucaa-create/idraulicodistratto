@@ -257,24 +257,24 @@ const IndexBold = () => {
             ))}
             <div className="flex items-start gap-3 bg-gray-900/50 rounded-xl p-4 border border-gray-800 mt-8">
               <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-              <div className="w-full">
-                <p className="text-white text-base sm:text-lg leading-relaxed font-bold">E molto, molto altro…</p>
-                <hr className="border-gray-700 my-4" />
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-left max-w-3xl mx-auto">
-                {[
-                  { icon: Book, title: "200+ PAGINE", text: "dettagliate per sbloccare il sesso più appagante della vostra vita" },
-                  { icon: FileText, title: "30+ ILLUSTRAZIONI", text: "per vedere cosa dovrai fare prima ancora di trovarti lì" },
-                  { icon: Target, title: "50+ ESERCIZI", text: "per migliorare le tue performance e farla godere di più" },
-                  { icon: ListChecks, title: "25 CAPITOLI", text: "per renderti un amante più esperto un passo alla volta" },
-                ].map((item, i) => (
-                  <div key={i} className="bg-black/40 rounded-lg p-3 border border-gray-800">
-                    <item.icon className="w-6 h-6 text-red-500 mb-2" />
-                    <p className="text-white font-black text-sm sm:text-base mb-1">{item.title}</p>
-                    <p className="text-white text-xs sm:text-sm leading-snug">{item.text}</p>
-                  </div>
-                ))}
-              </div>
-              </div>
+              <p className="text-white text-base sm:text-lg leading-relaxed font-bold">E molto, molto altro…</p>
+            </div>
+          </div>
+
+          <div className="max-w-3xl mx-auto mt-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-left">
+              {[
+                { icon: Book, title: "200+ PAGINE", text: "dettagliate per sbloccare il sesso più appagante della vostra vita" },
+                { icon: FileText, title: "30+ ILLUSTRAZIONI", text: "per vedere cosa dovrai fare prima ancora di trovarti lì" },
+                { icon: Target, title: "50+ ESERCIZI", text: "per migliorare le tue performance e farla godere di più" },
+                { icon: ListChecks, title: "25 CAPITOLI", text: "per renderti un amante più esperto un passo alla volta" },
+              ].map((item, i) => (
+                <div key={i} className="bg-black/40 rounded-lg p-3 border border-gray-800">
+                  <item.icon className="w-6 h-6 text-red-500 mb-2" />
+                  <p className="text-white font-black text-sm sm:text-base mb-1">{item.title}</p>
+                  <p className="text-white text-xs sm:text-sm leading-snug">{item.text}</p>
+                </div>
+              ))}
             </div>
           </div>
 
