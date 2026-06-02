@@ -255,11 +255,11 @@ const IndexBold = () => {
                 <span className="text-white text-base sm:text-lg leading-relaxed">{point}</span>
               </div>
             ))}
-            <div className="flex items-start gap-3 bg-gray-900/50 rounded-xl p-4 border border-gray-800">
+            <div className="flex items-start gap-3 bg-gray-900/50 rounded-xl p-4 border border-gray-800 mt-8">
               <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
               <div className="w-full">
                 <p className="text-white text-base sm:text-lg leading-relaxed font-bold">E molto, molto altro…</p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-left max-w-3xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-left max-w-3xl mx-auto mt-6">
                 {[
                   { icon: Book, title: "200+ PAGINE", text: "dettagliate per sbloccare il sesso più appagante della vostra vita" },
                   { icon: FileText, title: "30+ ILLUSTRAZIONI", text: "per vedere cosa dovrai fare prima ancora di trovarti lì" },
