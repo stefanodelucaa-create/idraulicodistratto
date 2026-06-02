@@ -32,6 +32,7 @@ const bulletPoints = [
 ];
 
 const beforeAfter = [
+  { before: "Cerchi di farle avere un orgasmo ma non riesci, e questo ti fa sentire frustrato", after: "Riesci a farla venire senza nessuna pressione, mentre ti godi il rapporto" },
   { before: "Non sai se sta fingendo o se le è piaciuto davvero", after: "Sai esattamente quali segnali leggere per decifrare il suo corpo e le sue sensazioni" },
   { before: 'Durante il sesso hai mille pensieri ("Sto facendo bene? Quanto manca?")', after: "Sei completamente presente e riesci a goderti ogni secondo" },
   { before: "Cerchi risposte ai tuoi dubbi alle 2 di notte tra mille forum e siti poco affidabili", after: "Sai di avere nello stesso posto tutte le info che ti servono + step pratici da seguire" },
@@ -185,11 +186,11 @@ const IndexBold = () => {
               </h1>
 
               <p className="text-lg sm:text-xl text-white max-w-xl mx-auto leading-relaxed">
-                Scopri i <span className="font-bold">"Giusti Tasti"</span> da Toccare per Portare il Sesso al Livello Superiore <span className="font-bold">e Farla Squirtare Ogni Volta che Vuoi...</span><br /><br /><span className="text-red-400 font-bold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
+                Sfrutta Questa Precisa <span className="font-bold">Sequenza Anatomica</span> per Farle Raggiungere l'<span className="text-red-400 font-bold">Orgasmo</span> Ogni Singola Volta...<br /><br /><span className="text-red-400 font-bold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
               <p className="text-base sm:text-lg text-white max-w-xl mx-auto leading-relaxed">
-                Il <span className="font-bold">Protocollo Scientifico</span> di oltre 200 pagine che ti mostrerà i segreti della psicologia sessuale, dell'anatomia femminile e della comunicazione intima per sbloccare il <span className="font-bold">miglior sesso della sua (e della tua) vita</span>
+                Il <span className="font-bold">Protocollo Scientifico</span> di oltre 200 pagine che ti mostrerà i segreti dell'<span className="font-bold">anatomia femminile</span> e della <span className="font-bold">psicologia sessuale</span> per migliorare le tue performance e aumentare la tua sicurezza in camera da letto
               </p>
 
               <div className="grid grid-cols-2 gap-3 text-left max-w-xl mx-auto">
@@ -252,17 +253,18 @@ const IndexBold = () => {
               </div>
             ))}
             <div className="bg-gray-900/50 rounded-xl p-4 border border-gray-800">
-              <p className="text-red-400 font-bold text-lg sm:text-xl text-center mb-3">E molto, molto altro…</p>
-              <div className="grid grid-cols-2 gap-3 text-left max-w-lg mx-auto">
+              <p className="text-red-400 font-bold text-lg sm:text-xl text-center mb-4">E molto, molto altro…</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-left max-w-3xl mx-auto">
                 {[
-                  { icon: Book, text: "Oltre 200 pagine chiare" },
-                  { icon: ListChecks, text: "25 capitoli guidati" },
-                  { icon: Target, text: "50+ esercizi pratici" },
-                  { icon: FileText, text: "Illustrazioni dettagliate" },
+                  { icon: Book, title: "200+ PAGINE", text: "dettagliate per sbloccare il sesso più appagante della vostra vita" },
+                  { icon: FileText, title: "30+ ILLUSTRAZIONI", text: "per vedere cosa dovrai fare prima ancora di trovarti lì" },
+                  { icon: Target, title: "50+ ESERCIZI", text: "per migliorare le tue performance e farla godere di più" },
+                  { icon: ListChecks, title: "25 CAPITOLI", text: "per renderti un amante più esperto un passo alla volta" },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-2">
-                    <item.icon className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-white font-medium text-sm sm:text-base">{item.text}</span>
+                  <div key={i} className="bg-black/40 rounded-lg p-3 border border-gray-800">
+                    <item.icon className="w-6 h-6 text-red-500 mb-2" />
+                    <p className="text-white font-black text-sm sm:text-base mb-1">{item.title}</p>
+                    <p className="text-white text-xs sm:text-sm leading-snug">{item.text}</p>
                   </div>
                 ))}
               </div>
