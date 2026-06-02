@@ -209,11 +209,12 @@ const IndexBold = () => {
               {/* Price Block */}
               <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-4 sm:p-6 border-2 border-red-600/50">
                 <p className="text-white text-sm mb-1">Prezzo di Cartellino</p>
-                <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
+                <div className="flex items-center justify-center gap-3 sm:gap-4 mb-1">
                   <span className="text-xl sm:text-2xl text-red-600 line-through">{originalPrice}</span>
                   <span className="text-4xl sm:text-5xl font-black text-green-500">{price}</span>
                   <span className="bg-red-600 text-white text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-71%</span>
                 </div>
+                <p className="text-white/80 text-xs sm:text-sm mb-4">(70 € di sconto)</p>
                 
                 <Button 
                   onClick={handleBuyClick}
