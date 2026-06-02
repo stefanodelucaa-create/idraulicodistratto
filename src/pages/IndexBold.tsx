@@ -273,6 +273,7 @@ const IndexBold = () => {
                   </div>
                 ))}
               </div>
+              </div>
             </div>
           </div>
 
