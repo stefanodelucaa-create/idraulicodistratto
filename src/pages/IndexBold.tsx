@@ -53,16 +53,16 @@ const bonuses = [
   { icon: LineChart, title: "Scheda di Tracking Progressi", value: 21, description: "Con questo template tieni traccia di cosa funziona, dei feedback di lei e dei cambiamenti nel tempo – così ogni sessione costruisce sulla precedente invece di ripartire da zero." },
 ];
 
-const testimonials = [
-  { name: "Matteo F.", location: "28 anni, Bologna", text: "Avevo già cercato qualcosa online, ma il problema è che sono tutti pezzi scollegati, uno dice una cosa e l'altro il contrario. Qui per la prima volta ho trovato tutto in un posto solo e in un ordine che ha senso. Avevo quasi perso le speranze, ma sta andando meglio con la mia compagna, quindi grazie!", rating: 5 },
-  { name: "Utente Anonimo", location: "Italia", text: "Tenetemi anonimo, ma ci tenevo a scrivervi perché dopo anni di ansia da prestazione sto finalmente migliorando e ho rapporti completi in cui riesco a godermi l'attimo. Avevo quasi perso le speranze e voi me le avete ridate, quindi grazie.", rating: 5 },
-  { name: "Marco P.", location: "38 anni, Verona", text: "Dopo 10 anni insieme a mia moglie eravamo finiti in quel loop in cui il sesso non è più niente di speciale, ma due giorni fa sono riuscito a farle raggiungere l'orgasmo. Non capitava da mesi.", rating: 5 },
-  { name: "Andrea L.", location: "30 anni, Firenze", text: "Erano mesi che cercavo un libro del genere con riferimenti scientifici e informazioni pratiche sul sesso, mi avete salvato la vita! Finalmente sono riuscito a far venire la mia fidanzata. Ho dovuto rileggere alcuni capitoli due volte perché la prima non ci credevo. Le illustrazioni poi sono fantastiche, mi tolgono qualsiasi dubbio.", rating: 5 },
-  { name: "Federico G.", location: "27 anni, Padova", text: "La cosa che mi ha aiutato di più è stata la parte sull'ansia: è la prima volta che leggo qualcosa che spiega davvero cosa succede in testa durante il sesso e perché va a rovinare tutto. Da quando ho capito il meccanismo è come se si fosse allentato qualcosa, e adesso con la mia ragazza riusciamo a venire entrambi, cosa che prima non succedeva mai. All'inizio mi sembrava un miracolo.", rating: 5 },
-  { name: "Giuseppe M.", location: "35 anni, Lecce", text: "Ho preso il Protocollo perché la mia ragazza era sempre stanca. Non litigavamo e non c'era niente di rotto, ma si sentiva che qualcosa si era spento. Da quando ho messo in pratica le informazioni del manuale sta andando alla grande! Lei è diversa. O forse sono io che sono diverso, non lo so. Comunque funziona, quindi grazie.", rating: 5 },
-  { name: "Martin S.", location: "34 anni, Roma", text: "Pensavo di sapere già tutto a 34 anni e invece mi sbagliavo di brutto. Ho scoperto un sacco di cose che non sapevo, soprattutto sulla stimolazione combinata e su come leggere i segnali del corpo di lei. Incredibile quante cazzate si vedono nei porno.", rating: 5 },
-  { name: "Riccardo V.", location: "42 anni, Genova", text: "L'ho letto tutto in tre sere, è scritto bene e si capisce tutto. Mia moglie ultimamente mi ha chiesto cosa è cambiato in me. Non gliel'ho spiegato nei dettagli, ma sorrideva mentre me lo chiedeva. Grazie dell'aiuto!", rating: 5 },
-];
+import rev1 from "@/assets/reviews/recensione_1.png.asset.json";
+import rev2 from "@/assets/reviews/recensione_2.png.asset.json";
+import rev4 from "@/assets/reviews/recensione_4.png.asset.json";
+import rev5 from "@/assets/reviews/recensione_5.png.asset.json";
+import rev6 from "@/assets/reviews/recensione_6.png.asset.json";
+import rev7 from "@/assets/reviews/recensione_7.png.asset.json";
+import rev8 from "@/assets/reviews/recensione_8.png.asset.json";
+import rev9 from "@/assets/reviews/recensione_9.png.asset.json";
+
+const reviewImages = [rev1, rev2, rev4, rev5, rev6, rev7, rev8, rev9];
 
 const IndexBold = () => {
   const [isStickyCTAVisible, setIsStickyCTAVisible] = useState(false);
