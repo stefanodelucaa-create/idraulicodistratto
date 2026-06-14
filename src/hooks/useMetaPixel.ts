@@ -174,6 +174,17 @@ export const trackPurchase = (
   );
 };
 
+// Allow-list of Meta Pixel events that can be fired via data attributes,
+// to prevent arbitrary event names from being injected.
+const ALLOWED_CLICK_EVENTS = new Set([
+  'AddToCart',
+  'InitiateCheckout',
+  'Lead',
+  'ViewContent',
+  'Purchase',
+]);
+const ALLOWED_CURRENCIES = new Set(['EUR', 'USD', 'GBP']);
+
 // Initialize click tracking via data attributes
 export const initClickTracking = () => {
   if (typeof window === 'undefined') return;
@@ -185,13 +196,16 @@ export const initClickTracking = () => {
     if (trackableElement) {
       const eventName = trackableElement.getAttribute('data-fb-event');
       const eventValue = trackableElement.getAttribute('data-fb-value');
-      const eventCurrency = trackableElement.getAttribute('data-fb-currency') || 'EUR';
+      const rawCurrency = trackableElement.getAttribute('data-fb-currency') || 'EUR';
+      const eventCurrency = ALLOWED_CURRENCIES.has(rawCurrency) ? rawCurrency : 'EUR';
 
-      if (eventName) {
-        const params: Record<string, unknown> = {};
-        if (eventValue) params.value = eventValue;
-        if (eventCurrency) params.currency = eventCurrency;
-        trackEvent(eventName, Object.keys(params).length > 0 ? params : undefined);
+      if (eventName && ALLOWED_CLICK_EVENTS.has(eventName)) {
+        const params: Record<string, unknown> = { currency: eventCurrency };
+        if (eventValue) {
+          const parsed = parseFloat(eventValue);
+          if (Number.isFinite(parsed) && parsed >= 0) params.value = parsed;
+        }
+        trackEvent(eventName, params);
       }
     }
   });
