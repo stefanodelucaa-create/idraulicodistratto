@@ -411,22 +411,15 @@ const IndexBold = () => {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {testimonials.map((t, i) => (
-              <div key={i} className="bg-black/50 rounded-2xl p-6 border border-gray-800">
-                <Quote className="w-8 h-8 text-red-600/30 mb-4" />
-                <p className="text-white italic text-base mb-5">"{t.text}"</p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-semibold text-white">{t.name}</p>
-                    <p className="text-sm text-white">{t.location}</p>
-                  </div>
-                  <div className="flex gap-0.5">
-                    {Array.from({ length: t.rating }).map((_, j) => (
-                      <Star key={j} className="w-4 h-4 fill-red-500 text-red-500" />
-                    ))}
-                  </div>
-                </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {reviewImages.map((img, i) => (
+              <div key={i} className="bg-white rounded-2xl overflow-hidden border border-gray-800 shadow-lg">
+                <img
+                  src={img.url}
+                  alt={`Recensione cliente ${i + 1}`}
+                  loading="lazy"
+                  className="w-full h-auto block"
+                />
               </div>
             ))}
           </div>
