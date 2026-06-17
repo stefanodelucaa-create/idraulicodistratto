@@ -214,9 +214,9 @@ const IndexBold = () => {
                 <div className="flex items-center justify-center gap-3 sm:gap-4 mb-1">
                   <span className="text-xl sm:text-2xl text-red-600 line-through">{originalPrice}</span>
                   <span className="text-4xl sm:text-5xl font-black text-green-500">{price}</span>
-                  <span className="bg-red-600 text-white text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-71%</span>
+                  <span className="bg-red-600 text-white text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded whitespace-nowrap">70€ DI SCONTO</span>
                 </div>
-                <p className="text-white/80 text-xs sm:text-sm mb-4">(70 € di sconto)</p>
+
                 
                 <Button 
                   onClick={handleBuyClick}
