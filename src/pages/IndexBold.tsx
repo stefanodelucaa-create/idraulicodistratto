@@ -385,7 +385,7 @@ const IndexBold = () => {
                   <div className="flex-1">
                     <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
                       <h3 className="text-base sm:text-lg font-bold text-white">BONUS #{i + 1} — {bonus.title}</h3>
-                      <span className="text-red-500 font-bold text-sm">(Valore €{bonus.value})</span>
+                      <span className="text-red-500 font-black text-lg sm:text-2xl" style={{ color: '#ff2d2d' }}>(Valore €{bonus.value})</span>
                     </div>
                     <p className="text-white text-sm sm:text-base leading-relaxed">{bonus.description}</p>
                   </div>
