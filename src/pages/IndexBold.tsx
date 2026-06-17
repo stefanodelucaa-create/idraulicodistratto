@@ -47,9 +47,9 @@ const beforeAfter = [
 const bonuses = [
   { icon: ListChecks, title: "Checklist Completa per Ogni Situazione", value: 19, description: "Prima di un momento intimo la testa può andare in mille direzioni… Ma con questa checklist pratica, non dovrai più pensare a cosa fare e cosa non fare. Avrai una lista precompilata – segnali da osservare, errori da evitare – che ti aiuterà a concentrarti su quello che stai facendo." },
   { icon: MessageSquare, title: "FAQ Estese con Risposte Complete", value: 24, description: "Ci hai provato più volte e non succede nulla. Lei sente dolore e non capisci perché. Ha paura di \"fare pipì\" e si blocca ogni volta che ci va vicino. Queste sono le domande a cui non trovi risposte sui forum. Qui le risolverai tutte, una per una." },
-  { icon: FileText, title: "Guida Rapida Risoluzione Problemi", value: 17, description: "Non è il momento di sfogliare 200 pagine. Questa guida funziona come una mappa decisionale immediata: succede X, fai Y. Tienila a portata di mano per i momenti in cui qualcosa va storto e hai bisogno della risposta giusta nell'immediato." },
+  { icon: FileText, title: "Guida Rapida Risoluzione Problemi", value: 29, description: "Non è il momento di sfogliare 200 pagine. Questa guida funziona come una mappa decisionale immediata: succede X, fai Y. Tienila a portata di mano per i momenti in cui qualcosa va storto e hai bisogno della risposta giusta nell'immediato." },
   { icon: Heart, title: "Esercizi Pratici per Lei", value: 29, description: "Il 40% del risultato dipende da quanto lei riesce ad abbandonarsi. Questa mini guida – pensata per essere condivisa con la tua partner – la aiuta a sviluppare consapevolezza corporea, rimuovere le inibizioni e dirti cosa sente davvero. Meno blocchi da parte sua significa meno sforzo da parte tua." },
-  { icon: Smartphone, title: "App Utili per Coppie", value: 15, description: "La sessione perfetta si costruisce anche fuori dal letto. Questa selezione ragionata di app ti aiuta a creare anticipazione, migliorare la comunicazione e mantenere alta l'intimità nel tempo, senza trasformarsi nell'ennesima fonte di pressione." },
+  { icon: Smartphone, title: "App Utili per Coppie", value: 17, description: "La sessione perfetta si costruisce anche fuori dal letto. Questa selezione ragionata di app ti aiuta a creare anticipazione, migliorare la comunicazione e mantenere alta l'intimità nel tempo, senza trasformarsi nell'ennesima fonte di pressione." },
   { icon: LineChart, title: "Scheda di Tracking Progressi", value: 21, description: "Con questo template tieni traccia di cosa funziona, dei feedback di lei e dei cambiamenti nel tempo – così ogni sessione costruisce sulla precedente invece di ripartire da zero." },
 ];
 
@@ -143,7 +143,7 @@ const IndexBold = () => {
     }
   };
 
-  const price = "€29";
+  const price = "29 euro";
   const originalPrice = "€99";
   const bonusTotal = bonuses.reduce((sum, b) => sum + b.value, 0);
 
@@ -151,7 +151,7 @@ const IndexBold = () => {
     <main className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* ANNOUNCEMENT BAR */}
       <div className="bg-red-600 text-white py-2.5 sm:py-4 text-center text-base sm:text-lg font-bold px-4 sm:px-6 animate-pulse leading-snug">
-        Offerta di Lancio – 71% di sconto + 6 Bonus GRATIS dal valore di €138
+        Offerta di Lancio – 70€ DI SCONTO + 6 Bonus GRATIS dal valore di €139
       </div>
 
       {/* ====== 1. HERO SECTION ====== */}
@@ -178,7 +178,7 @@ const IndexBold = () => {
             {/* Text Content */}
             <div className="space-y-6 text-center lg:text-left order-2">
               <div className="inline-block bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide">
-                Offerta di Lancio – 71% di sconto
+                Offerta di Lancio – 70€ DI SCONTO
               </div>
               
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
@@ -198,7 +198,7 @@ const IndexBold = () => {
                 {[
                   { icon: FileText, text: "Strategie pratiche che potrai usare già dalla prossima occasione" },
                   { icon: Target, text: "Basato su riferimenti anatomici scientificamente accurati" },
-                  { icon: Gift, text: "In REGALO 6 BONUS Esclusivi dal Valore Totale di €138" },
+                  { icon: Gift, text: "In REGALO 6 BONUS Esclusivi dal Valore Totale di €139" },
                   { icon: Shield, text: 'Garanzia 60 giorni "L\'hai Soddisfatta o ti Rimborsiamo"' },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
@@ -211,18 +211,18 @@ const IndexBold = () => {
               {/* Price Block */}
               <div className="bg-gradient-to-r from-red-900/50 to-red-800/30 rounded-2xl p-4 sm:p-6 border-2 border-red-600/50 max-w-xl mx-auto lg:mx-0">
                 <p className="text-white text-sm mb-1">Prezzo di Cartellino</p>
-                <div className="flex items-center justify-center gap-3 sm:gap-4 mb-1">
+                <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 flex-wrap">
                   <span className="text-xl sm:text-2xl text-red-600 line-through">{originalPrice}</span>
                   <span className="text-4xl sm:text-5xl font-black text-green-500">{price}</span>
-                  <span className="bg-red-600 text-white text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-71%</span>
+                  <span className="bg-red-600 text-white text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded whitespace-nowrap">70€ DI SCONTO</span>
                 </div>
-                <p className="text-white/80 text-xs sm:text-sm mb-4">(70 € di sconto)</p>
+
                 
                 <Button 
                   onClick={handleBuyClick}
                   className="w-full bg-white text-red-600 hover:bg-gray-100 text-[13px] sm:text-xl font-black py-5 sm:py-5 px-4 sm:px-6 rounded-xl h-auto whitespace-normal"
                 >
-                  <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
+                  <span className="text-center leading-snug">Sì, voglio il Protocollo Scientifico + TUTTI I BONUS<br className="sm:hidden" /> (dal Valore di 139€) per soli 29 euro</span>
                 </Button>
                 
 
@@ -279,7 +279,7 @@ const IndexBold = () => {
 
           <div className="mt-10 text-center">
             <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 sm:py-5 px-4 sm:px-8 text-[13px] sm:text-lg h-auto whitespace-normal">
-              <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
+              <span className="text-center leading-snug">Sì, voglio il Protocollo Scientifico + TUTTI I BONUS<br className="sm:hidden" /> (dal Valore di 139€) per soli 29 euro</span>
             </Button>
           </div>
         </div>
@@ -366,7 +366,7 @@ const IndexBold = () => {
 
           <div className="text-center">
             <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 sm:py-5 px-4 sm:px-8 text-[13px] sm:text-lg h-auto whitespace-normal">
-              <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
+              <span className="text-center leading-snug">Sì, voglio il Protocollo Scientifico + TUTTI I BONUS<br className="sm:hidden" /> (dal Valore di 139€) per soli 29 euro</span>
             </Button>
           </div>
         </div>
@@ -385,7 +385,7 @@ const IndexBold = () => {
                   <div className="flex-1">
                     <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
                       <h3 className="text-base sm:text-lg font-bold text-white">BONUS #{i + 1} — {bonus.title}</h3>
-                      <span className="text-red-500 font-bold text-sm">(Valore €{bonus.value})</span>
+                      <span className="text-red-500 font-black text-lg sm:text-2xl" style={{ color: '#ff2d2d' }}>(Valore €{bonus.value})</span>
                     </div>
                     <p className="text-white text-sm sm:text-base leading-relaxed">{bonus.description}</p>
                   </div>
@@ -396,7 +396,7 @@ const IndexBold = () => {
 
           <div className="mt-10 text-center">
             <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 sm:py-5 px-4 sm:px-8 text-[13px] sm:text-lg h-auto whitespace-normal">
-              <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
+              <span className="text-center leading-snug">Sì, voglio il Protocollo Scientifico + TUTTI I BONUS<br className="sm:hidden" /> (dal Valore di 139€) per soli 29 euro</span>
             </Button>
           </div>
         </div>
@@ -471,13 +471,13 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
             <div className="bg-black/30 rounded-2xl p-5 sm:p-8 border border-red-600/30">
-              <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
-                <span className="text-xl sm:text-2xl text-red-200/60 line-through">€{99 + bonusTotal}</span>
+              <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 flex-wrap">
+                <span className="text-xl sm:text-2xl text-red-200/60 line-through">{originalPrice}</span>
                 <span className="text-4xl sm:text-5xl font-black text-white">{price}</span>
-                <span className="bg-white text-red-600 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-71%</span>
+                <span className="bg-white text-red-600 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded whitespace-nowrap">70€ DI SCONTO</span>
               </div>
               <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-[13px] sm:text-xl font-black py-5 sm:py-7 px-4 sm:px-12 h-auto whitespace-normal">
-                <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
+                <span className="text-center leading-snug">Sì, voglio il Protocollo Scientifico + TUTTI I BONUS<br className="sm:hidden" /> (dal Valore di 139€) per soli 29 euro</span>
               </Button>
               
             </div>
