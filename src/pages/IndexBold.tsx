@@ -151,7 +151,7 @@ const IndexBold = () => {
     <main className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* ANNOUNCEMENT BAR */}
       <div className="bg-red-600 text-white py-2.5 sm:py-4 text-center text-base sm:text-lg font-bold px-4 sm:px-6 animate-pulse leading-snug">
-        Offerta di Lancio – 71% di sconto + 6 Bonus GRATIS dal valore di €138
+        Offerta di Lancio – 70€ DI SCONTO + 6 Bonus GRATIS dal valore di €139
       </div>
 
       {/* ====== 1. HERO SECTION ====== */}
@@ -178,7 +178,7 @@ const IndexBold = () => {
             {/* Text Content */}
             <div className="space-y-6 text-center lg:text-left order-2">
               <div className="inline-block bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wide">
-                Offerta di Lancio – 71% di sconto
+                Offerta di Lancio – 70€ DI SCONTO
               </div>
               
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight">
@@ -198,7 +198,7 @@ const IndexBold = () => {
                 {[
                   { icon: FileText, text: "Strategie pratiche che potrai usare già dalla prossima occasione" },
                   { icon: Target, text: "Basato su riferimenti anatomici scientificamente accurati" },
-                  { icon: Gift, text: "In REGALO 6 BONUS Esclusivi dal Valore Totale di €138" },
+                  { icon: Gift, text: "In REGALO 6 BONUS Esclusivi dal Valore Totale di €139" },
                   { icon: Shield, text: 'Garanzia 60 giorni "L\'hai Soddisfatta o ti Rimborsiamo"' },
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
@@ -222,7 +222,7 @@ const IndexBold = () => {
                   onClick={handleBuyClick}
                   className="w-full bg-white text-red-600 hover:bg-gray-100 text-[13px] sm:text-xl font-black py-5 sm:py-5 px-4 sm:px-6 rounded-xl h-auto whitespace-normal"
                 >
-                  <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
+                  <span className="text-center leading-snug">Sì, voglio il Protocollo Scientifico + TUTTI I BONUS<br className="sm:hidden" /> (dal Valore di 139€) per soli 29 euro</span>
                 </Button>
                 
 
@@ -279,7 +279,7 @@ const IndexBold = () => {
 
           <div className="mt-10 text-center">
             <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 sm:py-5 px-4 sm:px-8 text-[13px] sm:text-lg h-auto whitespace-normal">
-              <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
+              <span className="text-center leading-snug">Sì, voglio il Protocollo Scientifico + TUTTI I BONUS<br className="sm:hidden" /> (dal Valore di 139€) per soli 29 euro</span>
             </Button>
           </div>
         </div>
@@ -366,7 +366,7 @@ const IndexBold = () => {
 
           <div className="text-center">
             <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 sm:py-5 px-4 sm:px-8 text-[13px] sm:text-lg h-auto whitespace-normal">
-              <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
+              <span className="text-center leading-snug">Sì, voglio il Protocollo Scientifico + TUTTI I BONUS<br className="sm:hidden" /> (dal Valore di 139€) per soli 29 euro</span>
             </Button>
           </div>
         </div>
@@ -396,7 +396,7 @@ const IndexBold = () => {
 
           <div className="mt-10 text-center">
             <Button onClick={handleBuyClick} className="bg-red-600 hover:bg-red-700 text-white font-bold py-5 sm:py-5 px-4 sm:px-8 text-[13px] sm:text-lg h-auto whitespace-normal">
-              <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
+              <span className="text-center leading-snug">Sì, voglio il Protocollo Scientifico + TUTTI I BONUS<br className="sm:hidden" /> (dal Valore di 139€) per soli 29 euro</span>
             </Button>
           </div>
         </div>
@@ -477,7 +477,7 @@ const IndexBold = () => {
                 <span className="bg-white text-red-600 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-71%</span>
               </div>
               <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-[13px] sm:text-xl font-black py-5 sm:py-7 px-4 sm:px-12 h-auto whitespace-normal">
-                <span className="text-center leading-snug">Sì, Voglio il Protocollo Scientifico + TUTTI i BONUS<br className="sm:hidden" /> (Valore complessivo €237) per soli 29€</span>
+                <span className="text-center leading-snug">Sì, voglio il Protocollo Scientifico + TUTTI I BONUS<br className="sm:hidden" /> (dal Valore di 139€) per soli 29 euro</span>
               </Button>
               
             </div>
