@@ -471,10 +471,10 @@ const IndexBold = () => {
         <div className="container px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
             <div className="bg-black/30 rounded-2xl p-5 sm:p-8 border border-red-600/30">
-              <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
-                <span className="text-xl sm:text-2xl text-red-200/60 line-through">€{99 + bonusTotal}</span>
+              <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 flex-wrap">
+                <span className="text-xl sm:text-2xl text-red-200/60 line-through">{originalPrice}</span>
                 <span className="text-4xl sm:text-5xl font-black text-white">{price}</span>
-                <span className="bg-white text-red-600 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded">-71%</span>
+                <span className="bg-white text-red-600 text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded whitespace-nowrap">70€ DI SCONTO</span>
               </div>
               <Button onClick={handleBuyClick} className="w-full sm:w-auto bg-white text-red-600 hover:bg-gray-100 text-[13px] sm:text-xl font-black py-5 sm:py-7 px-4 sm:px-12 h-auto whitespace-normal">
                 <span className="text-center leading-snug">Sì, voglio il Protocollo Scientifico + TUTTI I BONUS<br className="sm:hidden" /> (dal Valore di 139€) per soli 29 euro</span>
