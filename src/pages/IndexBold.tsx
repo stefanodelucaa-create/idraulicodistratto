@@ -286,10 +286,11 @@ const IndexBold = () => {
       </section>
 
       {/* ====== 3. SFORZARTI NON SERVE ====== */}
-      <section className="py-16 sm:py-20 bg-background">
+      <section className="py-16 sm:py-20 bg-black">
         <div className="container px-4 sm:px-6 max-w-3xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-8">
-            Sforzarti non serve a niente, se non sai questo...
+            Sforzarti non serve a niente,
+            <span className="text-red-500 block">se non sai questo...</span>
           </h2>
           
           <div className="space-y-5 text-base sm:text-lg text-white leading-relaxed">
