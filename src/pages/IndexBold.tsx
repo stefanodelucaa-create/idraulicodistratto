@@ -187,7 +187,7 @@ const IndexBold = () => {
               </h1>
 
               <p className="text-lg sm:text-xl text-white max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                Sfrutta il Metodo della Stimolazione Incrociata<br />per Farle Raggiungere l'<span className="text-red-400 font-bold">Orgasmo</span><br />Ogni Volta Che Vuoi…<br /><br /><span className="text-red-400 font-bold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
+                Sfrutta il Metodo della Stimolazione Incrociata per Farle Raggiungere l'<span className="text-red-400 font-bold">Orgasmo</span><br />Ogni Volta Che Vuoi…<br /><br /><span className="text-red-400 font-bold">Senza Ansia, Senza Pressione e Senza Sentirti Inadeguato</span>
               </p>
 
               <p className="text-base sm:text-lg text-white max-w-xl mx-auto lg:mx-0 leading-relaxed">
