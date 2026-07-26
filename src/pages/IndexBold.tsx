@@ -285,7 +285,28 @@ const IndexBold = () => {
         </div>
       </section>
 
-      {/* ====== 3. PRIMA vs DOPO ====== */}
+      {/* ====== 3. SFORZARTI NON SERVE ====== */}
+      <section className="py-16 sm:py-20 bg-background">
+        <div className="container px-4 sm:px-6 max-w-3xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-8">
+            Sforzarti non serve a niente, se non sai questo...
+          </h2>
+          
+          <div className="space-y-5 text-base sm:text-lg text-white leading-relaxed">
+            <p>Quasi tutti provano a "fare bene una cosa": durare di più, spingere di più, insistere su un punto sperando che basti.</p>
+            <p>Ma non basta.</p>
+            <p>Perché il piacere di una donna non si accende sforzandosi in una sola direzione.</p>
+            <p>Si accende quando due stimolazioni ben precise si combinano, nel momento e nell'ordine giusto.</p>
+            <p>Prese una alla volta fanno poco. Messe insieme, si moltiplicano.</p>
+            <p>I sessuologi lo sanno bene, ma il problema è che queste informazioni restano chiuse nei manuali tecnici, scritte in un modo che a letto non ti serve.</p>
+            <p>Il Protocollo prende tutta quella conoscenza teorica e te la dà come ti serve davvero: concreta, pronta all'uso, con disegni per mostrarti la sequenza.</p>
+            <p>Non è un talento con cui si nasce.</p>
+            <p>È un metodo preciso, che chiunque può imparare e ripetere, ogni volta che vuole.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ====== 4. PRIMA vs DOPO ====== */}
       <section className="py-16 sm:py-20 bg-gray-900">
         <div className="container px-4 sm:px-6">
           <div className="text-center mb-12">
