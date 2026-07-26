@@ -16,7 +16,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 
 // ============ DATA ============
 const bulletPoints = [
-  "I 2 punti specifici del suo corpo che la faranno impazzire ogni singola volta – con illustrazioni e spiegazioni pratiche…",
+  "I 2 punti della Stimolazione Incrociata che la faranno impazzire ogni singola volta – con illustrazioni e spiegazioni pratiche…",
   "Quali sono i 12 errori più commessi tra le lenzuola e come evitarli definitivamente…",
   "La verità sullo squirting: perché NON è quello che ti hanno sempre raccontato…",
   "7 Segnali di Eccitazione che nessuno può fingere e che ti sveleranno il suo REALE livello di coinvolgimento…",
