@@ -470,7 +470,7 @@ const IndexBold = () => {
                   Se alla fine di questo periodo non sei soddisfatto del risultato – per <span className="font-bold">qualsiasi motivo</span>, anche uno che non mi vuoi spiegare – ti rimborsiamo il <span className="font-bold">100%</span> di quello che hai speso. Senza domande. Senza moduli da compilare. Senza aspettare settimane.
                 </p>
                 <p className="text-xl sm:text-2xl font-black leading-tight text-center mt-6">
-                  Questo significa che hai solo <span className="text-red-500">2 possibilità</span>: o esci da questa pagina con un sistema scientifico che <span className="text-red-400">cambia la tua vita sessuale per sempre</span>… o esci con gli stessi 29€ in tasca.
+                  Questo significa che hai solo <span className="text-red-500">2 possibilità</span>: o il Metodo della Stimolazione Incrociata <span className="text-red-400">cambia la tua vita sessuale per sempre</span>… o esci con gli stessi 29€ in tasca.
                 </p>
                 <p className="font-bold">Non perdi niente in nessuno dei due casi.</p>
                 <p className="text-red-400 font-bold">
