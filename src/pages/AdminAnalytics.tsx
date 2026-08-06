@@ -97,16 +97,16 @@ function KpiCard({ icon, label, value, trendValue }: { icon: string; label: stri
   );
 }
 
-function FunnelStep({ label, value, dropoff }: { label: string; value: number; dropoff?: number | null }) {
+function FunnelStep({ label, value, conversion }: { label: string; value: number; conversion?: number | null }) {
   return (
     <div className="flex-1 min-w-0">
       <div className="rounded-xl border border-gray-800 bg-gray-900/60 p-4 text-center">
         <div className="text-xs uppercase tracking-wider text-white/60 font-bold">{label}</div>
         <div className="text-2xl font-black mt-1 text-white">{fmtInt(value)}</div>
-        {dropoff !== undefined && dropoff !== null && (
+        {conversion !== undefined && conversion !== null && (
           <div className="text-xs mt-2 font-bold">
-            <span className={dropoff > 70 ? "text-red-500" : dropoff > 40 ? "text-yellow-400" : "text-green-400"}>
-              {fmtPct(dropoff)} drop
+            <span className={conversion < 30 ? "text-red-500" : conversion < 60 ? "text-yellow-400" : "text-green-400"}>
+              {fmtPct(conversion)} passa
             </span>
           </div>
         )}
@@ -114,6 +114,7 @@ function FunnelStep({ label, value, dropoff }: { label: string; value: number; d
     </div>
   );
 }
+
 
 function eventBadge(type: string) {
   const map: Record<string, { label: string; cls: string }> = {
@@ -333,13 +334,14 @@ export default function AdminAnalytics() {
     if (!cur) return null;
     const c = cur.counts;
     const visits = Number(cur.websiteVisits) || 0;
-    const stepDrop = (a: number, b: number) => (a ? ((a - b) / a) * 100 : 0);
+    const stepConv = (a: number, b: number) => (a ? (b / a) * 100 : 0);
     return [
-      { label: "Visite Sito", value: visits, dropoff: null as number | null },
-      { label: "Add to Cart", value: c.add_to_cart, dropoff: stepDrop(visits, c.add_to_cart) },
-      { label: "Checkout", value: c.initiate_checkout, dropoff: stepDrop(c.add_to_cart, c.initiate_checkout) },
-      { label: "Acquisti", value: cur.orders, dropoff: stepDrop(c.initiate_checkout, cur.orders) },
+      { label: "Visite Sito", value: visits, conversion: null as number | null },
+      { label: "Add to Cart", value: c.add_to_cart, conversion: stepConv(visits, c.add_to_cart) },
+      { label: "Checkout", value: c.initiate_checkout, conversion: stepConv(c.add_to_cart, c.initiate_checkout) },
+      { label: "Acquisti", value: cur.orders, conversion: stepConv(c.initiate_checkout, cur.orders) },
     ];
+
   }, [cur]);
 
   const liveStatus = useMemo(() => {
@@ -521,7 +523,7 @@ export default function AdminAnalytics() {
             <div className="flex flex-wrap gap-2 items-stretch">
               {funnel.map((s, i) => (
                 <div key={s.label} className="flex items-center flex-1 min-w-[140px]">
-                  <FunnelStep label={s.label} value={s.value} dropoff={s.dropoff} />
+                  <FunnelStep label={s.label} value={s.value} conversion={s.conversion} />
                   {i < funnel.length - 1 && <span className="px-2 text-red-500 font-bold hidden md:inline">→</span>}
                 </div>
               ))}
