@@ -108,8 +108,8 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
                   Ebook completo + Bonus
                 </p>
                 <div className="flex items-baseline gap-2 justify-center sm:justify-start flex-wrap">
-                  <span className="text-sm text-white line-through">€99</span>
-                  <span className="text-2xl sm:text-xl font-black text-green-500">€{basePrice}</span>
+                  <span className="text-sm text-red-600 line-through">€99</span>
+                  <span className="text-2xl sm:text-xl font-black text-green-500">{basePrice} euro</span>
                   <span className="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded whitespace-nowrap">70€ DI SCONTO</span>
                 </div>
               </div>
@@ -157,8 +157,8 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
                     Aggiornamenti illimitati <span className="font-bold">per sempre</span>
                   </p>
                   <div className="flex items-baseline gap-2 justify-center sm:justify-start">
-                    <span className="text-sm text-white line-through">€97</span>
-                    <span className="text-xl font-bold text-red-500">+€{lifetimePrice}</span>
+                    <span className="text-sm text-red-600 line-through">€97</span>
+                    <span className="text-xl font-bold text-green-500">+{lifetimePrice} euro</span>
                     <span className="text-xs text-white font-semibold">(solo oggi)</span>
                   </div>
                 </div>
@@ -225,9 +225,9 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
             <span className="text-white font-medium">Totale:</span>
             <div className="flex items-baseline gap-2">
               {includeLifetime && (
-                <span className="text-xs text-white line-through">€{79 + 97}</span>
+                <span className="text-xs text-red-600 line-through">€{79 + 97}</span>
               )}
-              <span className="text-2xl font-bold text-white">€{totalPrice}</span>
+              <span className="text-2xl font-bold text-white">{totalPrice} euro</span>
             </div>
           </div>
 
