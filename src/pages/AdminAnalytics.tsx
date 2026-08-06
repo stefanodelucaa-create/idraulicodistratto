@@ -332,17 +332,11 @@ export default function AdminAnalytics() {
   const funnel = useMemo(() => {
     if (!cur) return null;
     const c = cur.counts;
-    const advViews = Number(cur.advertorialViews) || 0;
-    const advToLanding = Number(cur.advertorialToLanding) || 0;
+    const visits = Number(cur.websiteVisits) || 0;
     const stepDrop = (a: number, b: number) => (a ? ((a - b) / a) * 100 : 0);
-    const scroll25 = Number(cur.advScroll25) || 0;
-    const scroll50 = Number(cur.advScroll50) || 0;
     return [
-      { label: "Visite Adv", value: advViews, dropoff: null as number | null },
-      { label: "Scroll 25% Adv", value: scroll25, dropoff: stepDrop(advViews, scroll25) },
-      { label: "Scroll 50% Adv", value: scroll50, dropoff: stepDrop(scroll25, scroll50) },
-      { label: "Landing", value: advToLanding, dropoff: stepDrop(scroll50, advToLanding) },
-      { label: "Add to Cart", value: c.add_to_cart, dropoff: stepDrop(advToLanding, c.add_to_cart) },
+      { label: "Visite Sito", value: visits, dropoff: null as number | null },
+      { label: "Add to Cart", value: c.add_to_cart, dropoff: stepDrop(visits, c.add_to_cart) },
       { label: "Checkout", value: c.initiate_checkout, dropoff: stepDrop(c.add_to_cart, c.initiate_checkout) },
       { label: "Acquisti", value: cur.orders, dropoff: stepDrop(c.initiate_checkout, cur.orders) },
     ];
