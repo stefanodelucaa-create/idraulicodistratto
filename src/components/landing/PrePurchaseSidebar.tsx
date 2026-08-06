@@ -233,28 +233,10 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
             </div>
           </div>
 
-          {/* Terms checkbox */}
-          <label className="flex items-start gap-2 text-[11px] leading-snug text-gray-300 cursor-pointer">
-            <Checkbox
-              checked={acceptedTerms}
-              onCheckedChange={(v) => setAcceptedTerms(v === true)}
-              className="mt-0.5 border-gray-500 data-[state=checked]:bg-red-600 data-[state=checked]:border-red-600"
-            />
-            <span>
-              Ho letto e accetto i{" "}
-              <Link to="/termini-e-condizioni" target="_blank" className="underline text-white">
-                Termini e Condizioni
-              </Link>{" "}
-              e confermo di rinunciare al diritto di recesso ai sensi dell'art. 59 del Codice del
-              Consumo, poiché il prodotto digitale sarà disponibile immediatamente dopo il pagamento.
-            </span>
-          </label>
-
           {/* CTA Button */}
           <button
-            onClick={() => acceptedTerms && onCheckout(includeLifetime)}
-            disabled={!acceptedTerms}
-            className="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white text-lg font-bold py-4 rounded-xl group transition-colors flex items-center justify-center"
+            onClick={() => onCheckout(includeLifetime)}
+            className="w-full bg-red-600 hover:bg-red-700 text-white text-lg font-bold py-4 rounded-xl group transition-colors flex items-center justify-center"
           >
             Procedi al Checkout
             <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
