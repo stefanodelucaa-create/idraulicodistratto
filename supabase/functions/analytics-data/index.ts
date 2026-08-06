@@ -162,8 +162,8 @@ Deno.serve(async (req) => {
       const sessions = counts.session_start;
       const websiteVisits = counts.page_view;
       const clamp = (n: number) => Math.min(Math.max(n, 0), 100);
-      const addToCartRate = clamp(websiteVisits ? (counts.add_to_cart / websiteVisits) * 100 : 0);
-      const checkoutRate = clamp(websiteVisits ? (counts.initiate_checkout / websiteVisits) * 100 : 0);
+      const addToCartRate = clamp(counts.view_content ? (counts.add_to_cart / counts.view_content) * 100 : 0);
+      const checkoutRate = clamp(counts.view_content ? (counts.initiate_checkout / counts.view_content) * 100 : 0);
       const conversionRate = clamp(sessions ? (orders / sessions) * 100 : 0);
       const checkoutToOrder = clamp(counts.initiate_checkout ? (orders / counts.initiate_checkout) * 100 : 0);
       const cartAbandon = clamp(counts.add_to_cart ? ((counts.add_to_cart - orders) / counts.add_to_cart) * 100 : 0);
