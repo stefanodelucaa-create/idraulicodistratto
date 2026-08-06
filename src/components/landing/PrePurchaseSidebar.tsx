@@ -225,9 +225,9 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
             <span className="text-white font-medium">Totale:</span>
             <div className="flex items-baseline gap-2">
               {includeLifetime && (
-                <span className="text-xs text-white line-through">€{79 + 97}</span>
+                <span className="text-xs text-red-600 line-through">€{79 + 97}</span>
               )}
-              <span className="text-2xl font-bold text-white">€{totalPrice}</span>
+              <span className="text-2xl font-bold text-white">{totalPrice} euro</span>
             </div>
           </div>
 
