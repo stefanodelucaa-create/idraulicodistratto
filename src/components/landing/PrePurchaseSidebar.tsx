@@ -110,7 +110,7 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
                 <div className="flex items-baseline gap-2 justify-center sm:justify-start flex-wrap">
                   <span className="text-sm text-white line-through">€99</span>
                   <span className="text-2xl sm:text-xl font-black text-green-500">€{basePrice}</span>
-                  <span className="text-xs font-bold text-green-500 whitespace-nowrap">70€ DI SCONTO</span>
+                  <span className="bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded whitespace-nowrap">70€ DI SCONTO</span>
                 </div>
               </div>
             </div>
