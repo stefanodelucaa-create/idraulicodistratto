@@ -156,10 +156,10 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
                   <p className="text-sm text-white font-medium mb-2">
                     Aggiornamenti illimitati <span className="font-bold">per sempre</span>
                   </p>
-                  <div className="flex items-baseline gap-2 justify-center sm:justify-start">
+                  <div className="flex items-baseline gap-2 justify-center sm:justify-start flex-wrap">
                     <span className="text-sm text-red-600 line-through">€97</span>
                     <span className="text-xl font-bold text-green-500">+{lifetimePrice} euro</span>
-                    <span className="text-xs text-white font-semibold">(solo oggi)</span>
+                    <span className="bg-red-600 text-white text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded whitespace-nowrap">solo oggi</span>
                   </div>
                 </div>
               </div>
