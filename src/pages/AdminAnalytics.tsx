@@ -106,7 +106,7 @@ function FunnelStep({ label, value, conversion }: { label: string; value: number
         {conversion !== undefined && conversion !== null && (
           <div className="text-xs mt-2 font-bold">
             <span className={conversion < 30 ? "text-red-500" : conversion < 60 ? "text-yellow-400" : "text-green-400"}>
-              {fmtPct(conversion)} passa
+              {fmtPct(conversion)}
             </span>
           </div>
         )}
