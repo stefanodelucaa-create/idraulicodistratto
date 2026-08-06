@@ -157,8 +157,8 @@ export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseS
                     Aggiornamenti illimitati <span className="font-bold">per sempre</span>
                   </p>
                   <div className="flex items-baseline gap-2 justify-center sm:justify-start">
-                    <span className="text-sm text-white line-through">€97</span>
-                    <span className="text-xl font-bold text-red-500">+€{lifetimePrice}</span>
+                    <span className="text-sm text-red-600 line-through">€97</span>
+                    <span className="text-xl font-bold text-green-500">+{lifetimePrice} euro</span>
                     <span className="text-xs text-white font-semibold">(solo oggi)</span>
                   </div>
                 </div>
