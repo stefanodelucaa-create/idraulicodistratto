@@ -39,7 +39,6 @@ const faqs = [
 export const PrePurchaseSidebar = ({ isOpen, onClose, onCheckout }: PrePurchaseSidebarProps) => {
   const [countdown, setCountdown] = useState({ minutes: 5, seconds: 0 });
   const [includeLifetime, setIncludeLifetime] = useState(false);
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   // Countdown timer
   useEffect(() => {
