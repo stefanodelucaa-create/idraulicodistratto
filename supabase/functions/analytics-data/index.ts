@@ -139,9 +139,6 @@ Deno.serve(async (req) => {
       const advSessions = new Set<string>();
       const advToLandingSessions = new Set<string>();
       let advViews = 0;
-      // Advertorial scroll depth: unique sessions that scrolled >=25% / >=50% on /adv-1
-      const advScroll25Sessions = new Set<string>();
-      const advScroll50Sessions = new Set<string>();
       for (const e of events) {
         const t = e.event_type as keyof typeof counts;
         if (t in counts) counts[t]++;
@@ -159,19 +156,11 @@ Deno.serve(async (req) => {
             advToLandingSessions.add(sid);
           }
         }
-        if ((e.event_type as string) === 'scroll_depth') {
-          const path = String((e as Record<string, unknown>).page_path || '');
-          const sid = String((e as Record<string, unknown>).session_id || '');
-          if (!sid || !isAdvPath(path)) continue;
-          const meta = (e as Record<string, unknown>).metadata as Record<string, unknown> | null;
-          const pct = Number(meta?.percent ?? meta?.scroll_percent ?? 0);
-          if (pct >= 25) advScroll25Sessions.add(sid);
-          if (pct >= 50) advScroll50Sessions.add(sid);
-        }
       }
       const orders = purchases.length;
       const aov = orders ? revenue / orders : 0;
       const sessions = counts.session_start;
+      const websiteVisits = counts.page_view;
       const clamp = (n: number) => Math.min(Math.max(n, 0), 100);
       const addToCartRate = clamp(counts.view_content ? (counts.add_to_cart / counts.view_content) * 100 : 0);
       const checkoutRate = clamp(counts.view_content ? (counts.initiate_checkout / counts.view_content) * 100 : 0);
@@ -183,11 +172,9 @@ Deno.serve(async (req) => {
       const advertorialToLanding = advToLandingSessions.size;
       const advertorialCtr = clamp(advertorialViews ? (advertorialToLanding / advertorialViews) * 100 : 0);
       return {
-        counts, orders, revenue, aov, sessions,
+        counts, orders, revenue, aov, sessions, websiteVisits,
         addToCartRate, checkoutRate, conversionRate, checkoutToOrder, cartAbandon, sessionConversion,
         advertorialViews, advertorialToLanding, advertorialCtr,
-        advScroll25: advScroll25Sessions.size,
-        advScroll50: advScroll50Sessions.size,
       };
     };
 
